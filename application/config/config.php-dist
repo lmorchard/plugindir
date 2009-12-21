@@ -72,7 +72,7 @@ $config['global_xss_filtering'] = TRUE;
 /**
  * Enable or disable hooks.
  */
-$config['enable_hooks'] = FALSE;
+$config['enable_hooks'] = TRUE;
 
 /**
  * Log thresholds:
@@ -82,7 +82,7 @@ $config['enable_hooks'] = FALSE;
  *  3 - Notices
  *  4 - Debugging
  */
-$config['log_threshold'] = 1;
+$config['log_threshold'] = 4;
 
 /**
  * Message logging directory.
@@ -116,6 +116,8 @@ $config['extension_prefix'] = 'MY_';
  */
 $config['modules'] = array
 (
+    MODPATH.'twig',
+    MODPATH.'phpunit',
 	// MODPATH.'auth',      // Authentication
 	// MODPATH.'kodoc',     // Self-generating documentation
 	// MODPATH.'gmaps',     // Google Maps integration

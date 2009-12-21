@@ -40,6 +40,6 @@ $config['default'] = array
 	'character_set' => 'utf8',
 	'table_prefix'  => '',
 	'object'        => TRUE,
-	'cache'         => FALSE,
+	'cache'         => TRUE,
 	'escape'        => TRUE
 );

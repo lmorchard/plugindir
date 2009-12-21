@@ -1,5 +1,100 @@
 {% extends "layout.html" %}
 
+{% import "index/index.html" as this %}
+
+{% block title %}
+    Home
+{% endblock %}
+
 {% block content %}
-Index page is go!
+
+    <div class="intro">
+        <p>Intro copy. Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+        Cras vel velit sit amet dolor pharetra ullamcorper ac sit amet lectus.
+        Curabitur ut est ipsum, quis viverra odio. Suspendisse at lacinia
+        justo. Curabitur felis orci, iaculis in feugiat ut, rhoncus sit amet
+        lectus.</p>
+    </div>
+
+    <div class="listing">
+
+        <ul class="nav">
+
+            {% macro nav_item(name, label, selected) %}
+                <li>
+                    {% if name == selected %}
+                        <span class="selected">{{label}}</span>
+                    {% else %}
+                        <a href="?by={{name}}">{{label}}</a>
+                    {% endif %}
+                </li>
+            {% endmacro %}
+
+            {{ this.nav_item('installed', 'Your Installed Plugins', by_cat) }}
+            {# this.nav_item('claimed', 'Your Claimed Plugins', by_cat) #}
+            {{ this.nav_item('name', 'By Name', by_cat) }}
+            {{ this.nav_item('application', 'By Application', by_cat) }}
+            {{ this.nav_item('os', 'By Operating System', by_cat) }}
+
+        </ul>
+
+        {% if 'claimed' == by_cat %}
+
+            {# TODO #}
+
+        {% elseif 'name' == by_cat %}
+
+            <ul class="plugin_names">
+                {% for plugin in plugin_names %}
+                    <li><a href="{{base_url}}plugins/{{plugin.pfs_id | urlencode | e}}">{{plugin.name | e}}</a></li>
+                {% endfor %}
+            </ul>
+
+        {% elseif 'application' == by_cat %}
+    
+            <ul class="platform_counts">
+                {% for platform in platform_counts %}
+                    <li>
+                        <span class="count">({{platform.count|e}})</span>
+                        <a href="{{base_url}}search/?platform_id={{platform.id|urlencode|e}}">{{platform.app_id|e}} (v{{platform.app_release}}, {{platform.app_version}}) {{platform.locale}}</a>
+                    </li>
+                {% endfor %}
+            </ul>
+            
+        {% elseif 'os' == by_cat %}
+        
+            <ul class="os_counts">
+                {% for os in os_counts %}
+                    <li>
+                        <span class="count">({{os.count|e}})</span>
+                        <a href="{{base_url}}search/?os_id={{os.id|urlencode|e}}">{{os.name|e}}</a>
+                    </li>
+                {% endfor %}
+            </ul>
+
+        {% else %}
+
+            <table class="installed_plugins">
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Version</th>
+                        <!-- <th>Description</th> -->
+                        <th>Status</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr class="template">
+                        <td class="name">...</td>
+                        <td class="version">...</td>
+                        <!-- <td class="description">...</td> -->
+                        <td class="status">...</td>
+                    </tr>
+                </tbody>
+            </table>
+
+        {% endif %}
+
+    </div>
+
 {% endblock %}

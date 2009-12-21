@@ -31,7 +31,7 @@ class Util_Controller extends Local_Controller {
     }
 
     /**
-     * Import one more more JSON files as plugins in the database.
+     * Import one or more JSON files as plugins in the database.
      */
     function import()
     {
