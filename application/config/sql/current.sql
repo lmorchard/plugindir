@@ -297,6 +297,7 @@ CREATE TABLE `submissions` (
   `detected_version` varchar(255) DEFAULT NULL,
   `version` varchar(255) DEFAULT NULL,
   `description` varchar(255) DEFAULT NULL,
+  `comments` text,
   `vulnerability_description` text,
   `vulnerability_url` varchar(255) DEFAULT NULL,
   `mimetypes` text,
