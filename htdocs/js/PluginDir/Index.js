@@ -7,29 +7,43 @@ PluginDir.Index = (function () {
     var $this = {
 
         /**
-         * Initialize the package.
+         * Initialize the package, loading sandbox plugins list if user is
+         * logged in or skipping straight to second phase if not.
          */
         init: function () {
 
             $(document).ready(function () {
                 // Only act on the index page.
                 $('#ctrl_index_act_index').each(function () {
-
-                    // These enhancements are just for "Your Installed Plugins":
-                    $('table.installed_plugins').each(function () {
-                        var tbl = $(this);
-                        // Detect plugins and build the installed table.
-                        $this.buildInstalledPluginsTable(tbl);
-                        if (PluginDir.is_logged_in) {
-                            // Handle clicks to add releases to sandbox plugins.
-                            $this.wireUpNewReleaseHandler(tbl);
-                        }
-                    });
-
+                    if (PluginDir.is_logged_in) {
+                        $.getJSON(PluginDir.sandbox_url, {}, function (data) {
+                            $this.sandbox_plugins = data;
+                            $this.init_2();
+                        });
+                    } else {
+                        return $this.init_2();
+                    }
                 });
             });
 
             return this;
+        },
+
+        /**
+         * Second phase of initialization, after sandbox plugins have been 
+         * loaded or skipped.
+         */
+        init_2: function () {
+            // These enhancements are just for "Your Installed Plugins":
+            $('table.installed_plugins').each(function () {
+                var tbl = $(this);
+                // Detect plugins and build the installed table.
+                $this.buildInstalledPluginsTable(tbl);
+                if (PluginDir.is_logged_in) {
+                    // Handle clicks to add releases to sandbox plugins.
+                    $this.wireUpNewReleaseHandler(tbl);
+                }
+            });
         },
 
         /**
@@ -69,7 +83,7 @@ PluginDir.Index = (function () {
                     // Callback to process plugins with detected versions.
                     var raw_plugin = data.pluginInfo.raw;
                     var version = Pfs.parseVersion(data.pluginInfo.plugin).join('.');
-                    var has_pfs_match = (data.status !== 'unknown');
+                    var has_pfs_match = (data.status !== 'unknown') && data.pfsInfo;
                     var latest = (!has_pfs_match) ? null : data.pfsInfo.releases.latest;
                     var pfs_id = (!has_pfs_match) ? null : latest.pfs_id;
 
@@ -123,7 +137,7 @@ PluginDir.Index = (function () {
                     // If logged in, build the control to add a release to a
                     // sandbox plugin
                     var new_release_col = 
-                        $this.buildAddRelease(data, submit_params);
+                        $this.buildAddRelease(data, plugin_url, submit_params);
 
                     // Finally, build and add the new table row.
                     var row = PluginDir.cloneTemplate(
@@ -206,23 +220,56 @@ PluginDir.Index = (function () {
          * Also, tack the submission params onto the end of each plugin edit
          * URL in options to provide defaults to the editor.
          */
-        buildAddRelease: function (data, submit_params) {
-            if (!PluginDir.is_logged_in) {
-                return null;
-            } else {
-                var add_release = $(PluginDir.cloneTemplate($('.add_release')));
+        buildAddRelease: function (data, plugin_url, submit_params) {
 
-                add_release.find('option').each(function () {
-                    var option = $(this);
-                    var value = option.attr('value');
-                    if (value) {
-                        option.attr('value', value +
-                            '?add_release=1&' + submit_params);
+            if (!PluginDir.is_logged_in) {
+                // No control for logged out users
+                return null;
+            }
+            
+            var has_pfs_match = (data.status !== 'unknown') && data.pfsInfo;
+            var latest = (!has_pfs_match) ? null : data.pfsInfo.releases.latest;
+            var pfs_id = (!has_pfs_match) ? null : latest.pfs_id;
+
+            var add_release = PluginDir.cloneTemplate($('.add_release'));
+            var select = $(add_release).find('select')[0];
+
+            if (has_pfs_match && !latest.sandbox_profile_screen_name) {
+                
+                // If PFS matched but not sandboxed, allow copy to sandbox.
+                select.options[0] = new Option("Copy to sandbox", plugin_url+';copy');
+            
+            } else if (has_pfs_match && latest.sandbox_profile_screen_name) {
+                
+                // If PFS matched and in sandbox, allow edit in sandbox.
+                // TODO: Maybe need sandbox plugins indexed by PFS ID from server?
+                $.each($this.sandbox_plugins, function () {
+                    if (this.pfs_id == pfs_id) {
+                        select.options[0] = new Option("Edit in sandbox", this.edit);
                     }
                 });
 
-                return add_release[0];
+            } else {
+
+                // Neither PFS matched nor in sandbox, so provide options to
+                // create a new plugin in the sandbox, or to add this detected
+                // release to an existing sandbox plugin.
+                select.options[0] = new Option(
+                    "Create new sandbox plugin",
+                    PluginDir.base_url + 'profiles/'+ PluginDir.screen_name + 
+                        '/plugins;create?' + submit_params
+                );
+                
+                $.each($this.sandbox_plugins, function (i) {
+                    select.options[i+1] = new Option(
+                        "Add to " + this.name, 
+                        this.edit + '?add_release=1&' + submit_params
+                    );
+                })
+
             }
+
+            return add_release;
         },
 
         /**
