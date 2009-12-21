@@ -17,11 +17,17 @@ class Search_Controller extends Local_Controller {
     }
 
     /**
-     *
+     * Search results page.
      */
     function results()
     {
         $release = ORM::factory('pluginrelease');
+
+        // Exclude sandbox plugins from search results.
+        // TODO: Need to add in just the logged in user?
+        $release
+            ->join('plugins', 'plugin_releases.plugin_id', 'plugins.id')
+            ->where('sandbox_profile_id IS NULL');
 
         if ($p_id = $this->input->get('platform_id')) {
             $release->where('platform_id', $p_id);
@@ -35,7 +41,7 @@ class Search_Controller extends Local_Controller {
             foreach ($parts as $part) {
                 $clauses = array();
                 foreach (array('name', 'description', 'vendor') as $col) {
-                    $clauses[$col] = $part;
+                    $clauses['plugin_releases.'.$col] = $part;
                 }
                 $release->orlike($clauses);
             }
