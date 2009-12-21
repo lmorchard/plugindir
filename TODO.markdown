@@ -1,16 +1,15 @@
 # Plugin directory TODO
 
-* Shadow database for reads
 * Request pull from sandbox
+* Add release menu from submission items
+* Upstream changes to Perfidies
+* Shadow database for reads
 * Loading indicator for plugin editor
 * Per-plugin release list and per-release GET/PUT/POST in JSON
 * Advanced search pulldown
 * Search results
-* Request pull from sandbox
-* Add sandbox ID to search criteria in API
-    * Use sandbox data on installed list
-        * Offer a switch to use sandbox or not
-    * Detect plugins on sandbox page
+* Offer a switch to use sandbox or not on front page
+* Detect plugins on sandbox page
 * Add release via JSON API
 * HTTP basic auth in API (OAuth?)
 

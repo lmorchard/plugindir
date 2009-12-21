@@ -18,10 +18,9 @@
                 <div class="secondary">
                     <ul class="auth clearfix">
                         {% if is_logged_in %}
-                            <li>{{ authprofile.screen_name }}</li>
-                            <li><a href="{{base_url}}profiles/{{authprofile.screen_name|urlencode|e}}/plugins">sandbox</a></li>
-                            <li><a href="{{base_url}}logout">logout</a></li>
+                            <li><a href="{{base_url}}profiles/{{authprofile.screen_name|urlencode|e}}/plugins">{{ authprofile.screen_name }}</a></li>
                             <li><a href="{{base_url}}profiles/{{authprofile.screen_name|urlencode|e}}/settings">settings</a></li>
+                            <li><a href="{{base_url}}logout">logout</a></li>
                         {% else %}
                             <li><a href="{{base_url}}login">login</a></li>
                             <li><a href="{{base_url}}register">register</a></li>

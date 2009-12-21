@@ -51,7 +51,7 @@ class PluginDir_ACL_Setup
 
             ->allow('editor', 'plugin', array(
                 'view_any', 'edit_sandbox', 'delete_sandbox', 
-                'deploy', 'create_sandbox'
+                'deploy', 'create_sandbox', 'view_submissions'
             ))
 
             ->allow('member', 'profile', 'view_sandbox', 

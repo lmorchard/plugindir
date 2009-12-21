@@ -22,7 +22,7 @@
         {% else %}
             {% set plugin_base as base_url ~ "plugins/detail/" ~ plugin.pfs_id|urlencode|e %}
         {% endif %}
-        {% if plugin.is_allowed(authprofile, 'copy') %}
+        {% if not plugin.sandbox_profile_id and plugin.is_allowed(authprofile, 'copy') %}
             <li><a href="{{plugin_base}};copy">Copy to sandbox</a></li>
         {% endif %}
         {% if plugin.is_allowed(authprofile, 'edit') %}

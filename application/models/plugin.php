@@ -191,6 +191,17 @@ class Plugin_Model extends ORM_Resource {
     }
 
     /**
+     * Assemble plugins for a given profile's sandbox.
+     */
+    public function find_for_sandbox($profile_id)
+    {
+        return $this
+            ->where('sandbox_profile_id', $profile_id)
+            ->orderby('modified', 'DESC')
+            ->find_all();
+    }
+
+    /**
      * Assemble a data structure suitable for later import from plugin records.
      */
     public function export()

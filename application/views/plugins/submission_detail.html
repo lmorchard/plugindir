@@ -1,0 +1,34 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Submissions :: {{ submission.id | e }}
+{% endblock %}
+
+{% block content %}
+    <form method="POST">
+
+        <div class="controls">
+            {% if submission.seen %}
+                <input type="submit" name="unseen" value="Mark as unseen" />
+            {% else %}
+                <input type="submit" name="seen" value="Mark as seen" />
+            {% endif %}
+            <ul>
+                <li><a href="{{base_url}}profiles/{{authprofile.screen_name|urlencode|e}}/plugins;create?{{submit_params|e}}">Create a new sandbox release</a></li>
+                {% for plugin in sandbox_plugins %}
+                    <li><a href="{{base_url}}profiles/{{authprofile.screen_name|urlencode|e}}/plugins/detail/{{ plugin.pfs_id | e }};edit?add_release=1&amp;{{submit_params|e}}">Create a new release in {{ plugin.name | e }}</a></li>
+                {% endfor %}
+            </ul>
+        </div>
+
+        <dl class="submission">
+            {% for name, value in submission.as_array %}
+                {% set classname as ( loop.index % 2 == 0 ) ? 'even' : 'odd' %}
+                <dt class="{{classname}}">{{ name | e }}</dt>
+                <dd class="{{classname}}">{{ value | e }}&nbsp;</dd>
+            {% endfor %}
+        </dl>
+
+    </form>
+
+{% endblock %}

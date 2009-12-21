@@ -197,6 +197,9 @@ PluginDir.Index = (function () {
 
                     });
 
+                    $("tr:not(.template):nth-child(odd)").addClass("odd");
+                    $("tr:not(.template):nth-child(even)").addClass("even");
+
                 }
             );
 
@@ -250,7 +253,7 @@ PluginDir.Index = (function () {
                 
                 $.each($this.sandbox_plugins, function (i) {
                     select.options[i+1] = new Option(
-                        "Add to " + this.name, 
+                        "Add release to " + this.name, 
                         this.edit + '?add_release=1&' + submit_params
                     );
                 })

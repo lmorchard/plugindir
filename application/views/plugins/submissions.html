@@ -1,0 +1,57 @@
+{% extends "index/index_shell.html" %}
+
+{% block index_content %}
+
+<form method="POST">
+
+    <div class="controls">
+        <input type="submit" name="seen" value="Mark as seen" />
+    </div>
+
+    <table class="submissions toggle_all">
+        <thead>
+            <tr>
+                <th><input type="checkbox" class="toggler" /></th>
+                <th>Date</th>
+                <th>Name</th>
+                <th>Version</th>
+                <th>Status</th>
+                <th>OS</th>
+                <th>Platform</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for submission in submissions %}
+                <tr>
+                    <td><input type="checkbox" name="selected[]" class="toggled"
+                        value="{{submission.id|e}}" /></td>
+                    <td><a href="{{base_url}}plugins/submissions/{{submission.id|urlencode|e}}">{{submission.created|e}}</a></td>
+                    <td>{{submission.name|e}}</td>
+                    <td>{{submission.version|e}}</td>
+                    <td>{{submission.status|e}}</td>
+                    <td>{{submission.clientOS|e}}</td>
+                    <td>
+                        {{submission.appID|e}}
+                        {{submission.appRelease|e}}
+                        {{submission.appVersion|e}}
+                        {{submission.chromeLocale|e}}
+                    </td>
+                </tr>
+            {% else %}
+                <tr>
+                    <td colspan="7">No submissions.</td>
+                </tr>
+            {% endfor %}
+            
+        </tbody>
+    </table>
+    
+    <div class="controls">
+        <input type="submit" name="seen" value="Mark as seen" />
+    </div>
+
+</form>
+
+{{ pagination }}
+
+{% endblock %}

@@ -51,6 +51,91 @@ class Plugins_Controller extends Local_Controller {
     }
 
     /**
+     * View plugin data submissions.
+     */
+    function submissions()
+    {
+        if (!authprofiles::is_allowed('plugin', 'view_submissions'))
+            return Event::run('system.forbidden');
+
+        if ('post' == request::method()) {
+            if ($this->input->post('seen')) {
+                // Mark selected submissions as seen on 'seen' POST.
+                $selected = $this->input->post('selected');
+                Database::instance(Kohana::config('model.database'))
+                    ->from('submissions')
+                    ->set('seen', 1)
+                    ->in('id', $selected)
+                    ->update();
+            }
+        }
+
+        $this->view->by_cat = 'submissions';
+
+        $per_page = $this->input->get('count', 25);
+        $page_num = $this->input->get('page', 1);
+        $offset   = ($page_num - 1) * $per_page;
+
+        $submission_model = ORM::factory('submission');
+        $this->view->submissions = $submission_model
+            ->where('seen', 0)
+            ->orderby('created', 'DESC')
+            ->limit($per_page, $offset)
+            ->find_all();
+
+        $this->view->pagination = new Pagination(array(
+            'style' => 'digg',
+            'items_per_page' => $per_page,
+            'query_string' => 'page',
+            'total_items' => $submission_model->count_last_query()
+        ));
+    }
+
+    /**
+     * Display the details for a given submission.
+     */
+    function submission_detail($id)
+    {
+        if (!authprofiles::is_allowed('plugin', 'view_submissions'))
+            return Event::run('system.forbidden');
+
+        $submission = ORM::factory('submission', $id);
+        if (!$submission->loaded)
+            return Event::run('system.404');
+
+        if ('post' == request::method()) {
+            if ($this->input->post('unseen')) {
+                $submission->set(array('seen' => 0))->save();
+            }
+            if ($this->input->post('seen')) {
+                $submission->set(array('seen' => 1))->save();
+            }
+        }
+
+        $this->view->submission = $submission;
+
+        $this->view->submit_params = http_build_query(array(
+            "status"           => $submission->status,
+            "pfs_id"           => $submission->pfs_id,
+            "name"             => $submission->name,
+            "vendor"           => $submission->vendor,
+            "filename"         => $submission->filename,
+            "description"      => $submission->description,
+            "version"          => $submission->version,
+            "detected_version" => $submission->detected_version,
+            "mimetypes"        => $submission->mimetypes,
+            "appID"            => $submission->appID,
+            "appRelease"       => $submission->appRelease,
+            "appVersion"       => $submission->appVersion,
+            "clientOS"         => $submission->clientOS,
+            "chromeLocale"     => $submission->chromeLocale
+        ));
+
+        $this->view->sandbox_plugins = ORM::factory('plugin')
+            ->find_for_sandbox(authprofiles::get_profile('id'));
+    }
+
+    /**
      * Create a new plugin, either in public or in a sandbox.
      */
     function create($screen_name=null)

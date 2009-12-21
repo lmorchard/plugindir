@@ -37,10 +37,7 @@ class Index_Controller extends Local_Controller {
                 $this->view->by_cat = 'installed';
                 if (authprofiles::is_logged_in()) {
                     $this->view->sandbox_plugins = ORM::factory('plugin')
-                        ->where('sandbox_profile_id', 
-                            authprofiles::get_profile('id'))
-                        ->orderby('modified','DESC')
-                        ->find_all()->as_array();
+                        ->find_for_sandbox(authprofiles::get_profile('id'));
                 }
                 break;
         }

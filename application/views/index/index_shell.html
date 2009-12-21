@@ -44,28 +44,26 @@
 
         <ul class="nav clearfix">
 
-            {% macro nav_item(base_url, name, label, selected, screen_name) %}
+            {% macro nav_item(base_url, name, path, label, selected) %}
                 <li class="{{ (name == selected) ? 'selected' : '' }}">
                     {% if name == selected %}
                         <span>{{label}}</span>
                     {% else %}
-                        {% if "sandbox" == name %}
-                            <a href="{{base_url}}profiles/{{screen_name|urlencode|e}}/plugins">{{label}}</a>
-                        {% else %}
-                            <a href="{{base_url}}?by={{name}}">{{label}}</a>
-                        {% endif %}
+                        <a href="{{base_url}}{{path}}">{{label}}</a>
                     {% endif %}
                 </li>
             {% endmacro %}
 
-            {{ this.nav_item(base_url, 'installed', 'Your Installed Plugins', by_cat) }}
+            {{ this.nav_item(base_url, 'installed', '?by=installed', 'Your Installed Plugins', by_cat) }}
             {% if is_logged_in %}
-                {{ this.nav_item(base_url, 'sandbox', 'Your Sandbox', by_cat, authprofile.screen_name) }}
+                {{ this.nav_item(base_url, 'sandbox', 'profiles/' ~ authprofile.screen_name|urlencode|e ~ '/plugins', 'Your Sandbox', by_cat, authprofile.screen_name) }}
             {% endif %}
-            {{ this.nav_item(base_url, 'name', 'By Name', by_cat) }}
-            {{ this.nav_item(base_url, 'application', 'By Application', by_cat) }}
-            {{ this.nav_item(base_url, 'os', 'By Operating System', by_cat) }}
-
+            {% if authprofile.is_allowed('plugin', 'view_submissions') %}
+                {{ this.nav_item(base_url, 'submissions', 'plugins/submissions', 'Submissions', by_cat) }}
+            {% endif %}
+            {{ this.nav_item(base_url, 'name', '?by=name', 'By Name', by_cat) }}
+            {{ this.nav_item(base_url, 'application', '?by=application', 'By Application', by_cat) }}
+            {{ this.nav_item(base_url, 'os', '?by=os', 'By Operating System', by_cat) }}
         </ul>
 
         <div class="listing_content">{% block index_content %}{% endblock %}</div>

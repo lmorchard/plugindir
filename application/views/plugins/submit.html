@@ -55,7 +55,7 @@
                             <dt>{{ name | e }}</dt>
                             <dd>
                                 {{ data[name] | e }}
-                                {{ forms.hidden(data, errors, 'pfs_id') }}
+                                {{ forms.hidden(data, errors, name) }}
                             </dd>
                         {% endfor %}
                     </dl>

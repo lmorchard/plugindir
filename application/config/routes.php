@@ -1,7 +1,5 @@
 <?php defined('SYSPATH') OR die('No direct access allowed.');
 
-$config['plugins/submit'] = 'plugins/submit';
-
 $config['plugins/?;create'] = 'plugins/create';
 
 $config['plugins/detail/([^\.]+).json'] = 'plugins/detail/$1/json';
@@ -23,6 +21,10 @@ $config['profiles/([^/]+)/plugins/detail/([^;]+);(.*)'] =
     'plugins/$3/$2/$1';
 $config['profiles/([^/]+)/plugins/detail/(.*)'] = 
     'plugins/detail/$2/html/$1';
+
+$config['plugins/submissions/(.*)'] = 'plugins/submission_detail/$1';
+
+$config['plugins/(.*)'] = 'plugins/$1';
 
 $config['pfs/v2'] = 'search/pfs_v2';
 

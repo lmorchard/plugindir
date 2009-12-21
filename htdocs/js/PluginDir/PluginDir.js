@@ -42,6 +42,19 @@ PluginDir = (function () {
                     $(this).attr('href', $(this).attr('href') + '?' + submit_params);
                 });
 
+                // Set up toggle-all checkboxes
+                $('form .toggle_all').each(function () {
+                    var parent = $(this);
+                    parent.find('.toggler').click(function () {
+                        var toggler = $(this);
+                        parent.find('.toggled')
+                            .attr('checked', toggler.attr('checked'));
+                    });
+                });
+
+                $("tr:not(.template):nth-child(odd)").addClass("odd");
+                $("tr:not(.template):nth-child(even)").addClass("even");
+
             });
 
             return this;
