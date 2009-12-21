@@ -22,17 +22,17 @@ without the "-dist" and modified for your installation.
 
 * Set up Apache config something like the following for a virtual host:
 
-    <VirtualHost *:80>
-        ServerName dev.plugindir.mozilla.org
-        DocumentRoot {plugindir path}/htdocs/
-        ErrorLog {plugindir path}/logs/error_log
-        TransferLog {plugindir path}/logs/access_log
-        <Directory {plugindir path}/htdocs/>
-            AllowOverride all
-            Order allow,deny
-            Allow from all
-        </Directory>
-    </VirtualHost>
+        <VirtualHost *:80>
+            ServerName dev.plugindir.mozilla.org
+            DocumentRoot {plugindir path}/htdocs/
+            ErrorLog {plugindir path}/logs/error_log
+            TransferLog {plugindir path}/logs/access_log
+            <Directory {plugindir path}/htdocs/>
+                AllowOverride all
+                Order allow,deny
+                Allow from all
+            </Directory>
+        </VirtualHost>
 
 * Copy application/config/config-local.php-dist to application/config/config-local.php
     * Modify $config['database.default'] to reflect your database details
