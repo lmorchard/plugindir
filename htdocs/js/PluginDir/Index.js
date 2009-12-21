@@ -7,21 +7,24 @@ PluginDir.Index = (function () {
     var $this = {
 
         /**
-         * Initialize the package, loading sandbox plugins list if user is
-         * logged in or skipping straight to second phase if not.
+         * Initialize the package.
          */
         init: function () {
 
             $(document).ready(function () {
                 // Only act on the index page.
                 $('#ctrl_index_act_index').each(function () {
-                    if (PluginDir.is_logged_in) {
+                    if (!PluginDir.is_logged_in) {
+                        // If not logged in, continue on to second stage of
+                        // initialization.
+                        return $this.init_2();
+                    } else {
+                        // If logged in, load up sandbox plugins before
+                        // continuing initialization.
                         $.getJSON(PluginDir.sandbox_url, {}, function (data) {
                             $this.sandbox_plugins = data;
                             $this.init_2();
                         });
-                    } else {
-                        return $this.init_2();
                     }
                 });
             });
@@ -40,25 +43,10 @@ PluginDir.Index = (function () {
                 // Detect plugins and build the installed table.
                 $this.buildInstalledPluginsTable(tbl);
                 if (PluginDir.is_logged_in) {
-                    // Handle clicks to add releases to sandbox plugins.
-                    $this.wireUpNewReleaseHandler(tbl);
-                }
-            });
-        },
-
-        /**
-         * Wire up a delegation-based click handler to accept clicks from all
-         * the (+) buttons in the add release column.
-         */
-        wireUpNewReleaseHandler: function (tbl) {
-            tbl.click(function (ev) {
-                if ('button' == ev.target.tagName.toLowerCase()) {
-                    var button = $(ev.target);
-                    if (button.parent().hasClass('add_release')) {
-                        var select = button.prev('select');
-                            url    = select.val();
-                        window.location = url;
-                    }
+                    // Handle clicks to sandbox actions buttons.
+                    $('.add_release button').live('click', function (ev) {
+                        window.location = $(this).prev('select').val();
+                    });
                 }
             });
         },
@@ -137,7 +125,7 @@ PluginDir.Index = (function () {
                     // If logged in, build the control to add a release to a
                     // sandbox plugin
                     var new_release_col = 
-                        $this.buildAddRelease(data, plugin_url, submit_params);
+                        $this.buildSandboxActions(data, plugin_url, submit_params);
 
                     // Finally, build and add the new table row.
                     var row = PluginDir.cloneTemplate(
@@ -198,7 +186,7 @@ PluginDir.Index = (function () {
                                 $('#feedback_templates').find('.unknown'),
                                 { '@href': submit_url }
                             ),
-                            '.new_release': $this.buildAddRelease({}, submit_params)
+                            '.new_release': $this.buildSandboxActions({}, '', submit_params)
                         };
 
                         // Add the table row from template.
@@ -220,7 +208,7 @@ PluginDir.Index = (function () {
          * Also, tack the submission params onto the end of each plugin edit
          * URL in options to provide defaults to the editor.
          */
-        buildAddRelease: function (data, plugin_url, submit_params) {
+        buildSandboxActions: function (data, plugin_url, submit_params) {
 
             if (!PluginDir.is_logged_in) {
                 // No control for logged out users
