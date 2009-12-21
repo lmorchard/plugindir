@@ -1,5 +1,6 @@
 # Plugin directory TODO
 
+* Shadow database for reads
 * Request pull from sandbox
 * Loading indicator for plugin editor
 * Per-plugin release list and per-release GET/PUT/POST in JSON
