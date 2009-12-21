@@ -10,9 +10,6 @@
     * Use sandbox data on installed list
         * Offer a switch to use sandbox or not
     * Detect plugins on sandbox page
-* Add release to plugin in editor
-    * New release based in installed plugin
-    * New release based on submitted reports
 * Add release via JSON API
 * HTTP basic auth in API (OAuth?)
 
