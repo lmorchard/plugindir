@@ -27,7 +27,7 @@
 {% endmacro %}
 
 {% macro textarea(data, errors, name, label, defval, notes) %}
-    <li class="field input-textarea {{ errors[name] ? 'error' : '' }}">
+    <li class="field textarea {{ errors[name] ? 'error' : '' }}">
         <label for="{{name}}">{{label ? label : '&nbsp;' }}</label>
         <textarea id="{{name}}" name="{{name}}" class="textarea">{{data[name] | default(defval) | e}}</textarea>
         {% if notes %}
@@ -37,6 +37,25 @@
             <p class="error">{{ errors[name] }}</p>
         {% endif %}
     </li>
+{% endmacro %}
+
+{% macro dropdown(data, errors, name, label, choices, defval, notes) %}
+    {% set value as data[name] | default(defval) %}
+    <li class="field dropdown {{ errors[name] ? 'error' : '' }}">
+        <label for="{{name}}">{{label ? label : '&nbsp;' }}</label>
+        <select id="{{name}}" name="{{name}}" class="select">
+            {% for v,l in choices %}
+                <option value="{{v|e}}"{{(v==value)?' selected':''}}>{{l|e}}</option>
+            {% endfor %}
+        </select>
+        {% if notes %}
+            <p class="notes">{{ notes }}</p>
+        {% endif %}
+        {% if errors[name] %}
+            <p class="error">{{ errors[name] }}</p>
+        {% endif %}
+    </li>
+
 {% endmacro %}
 
 {% macro submit(name, label, val, notes) %}

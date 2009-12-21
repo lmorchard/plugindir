@@ -32,7 +32,7 @@
 
             {{ this.nav_item('installed', 'Your Installed Plugins', by_cat) }}
             {% if is_logged_in %}
-                {{ this.nav_item('claimed', 'Your Claimed Plugins', by_cat) }}
+                {{ this.nav_item('sandbox', 'Your Sandbox', by_cat) }}
             {% endif %}
             {{ this.nav_item('name', 'By Name', by_cat) }}
             {{ this.nav_item('application', 'By Application', by_cat) }}
@@ -40,9 +40,19 @@
 
         </ul>
 
-        {% if 'claimed' == by_cat %}
+        {% if 'sandbox' == by_cat %}
+            
+            {% if not sandbox_plugins %}
+                <p>
+                    You have no plugins in your sandbox, yet.  Try viewing the
+                    details of a plugin and adding it to your sandbox from
+                    there.
+                </p>
+            {% else %}
 
-            {# TODO #}
+
+
+            {% endif %}
 
         {% elseif 'name' == by_cat %}
 
@@ -50,7 +60,7 @@
                 {% for plugin in name_counts %}
                     <li>
                         <span class="count">({{plugin.count|e}})</span>
-                        <a href="{{base_url}}plugins/{{plugin.pfs_id | urlencode | e}}">{{plugin.name | e}}</a>
+                        <a href="{{base_url}}plugins/detail/{{plugin.pfs_id | urlencode | e}}">{{plugin.name | e}}</a>
                     </li>
                 {% endfor %}
             </ul>
@@ -81,6 +91,21 @@
 
         {% else %}
 
+            <p>
+                The following is a list of plugins detected as installed
+                in your browser, along with the status of each with respect
+                to our plugin database.  Some of these plugins may not be
+                present in our database, and some may have incorrect details.
+                You can help us improve this directory by using the feedback
+                links next to each plugin.
+            </p>
+
+            <p class="installed_plugins_warning">
+                If you can see this message, we were unable to perform
+                plugin detection on your browser.  You may have JavaScript
+                disabled, which this site requires for many of its features.
+            </p>
+
             <table class="installed_plugins">
                 <thead>
                     <tr>
@@ -93,14 +118,30 @@
                 </thead>
                 <tbody>
                     <tr class="template">
-                        <td class="name">...</td>
-                        <td class="version">...</td>
-                        <!-- <td class="description">...</td> -->
-                        <td class="status">...</td>
-                        <td class="action">...</td>
+                        <td class="name"></td>
+                        <td class="version"></td>
+                        <!-- <td class="description"></td> -->
+                        <td class="status"></td>
+                        <td class="feedback"></td>
                     </tr>
                 </tbody>
             </table>
+
+            <div id="status_templates" class="templates">
+                <span class="newer">Newer</span>
+                <span class="latest">Up to date</span>
+                <span class="vulnerable">Vulnerable</span>
+                <span class="outdated">Needs update</span>
+                <span class="unknown">Unknown</span>
+            </div>
+
+            <div id="feedback_templates" class="templates">
+                <a href="#" class="newer">Suggest update</a>
+                <a href="#" class="latest">Suggest correction</a>
+                <a href="#" class="vulnerable">Suggest correction</a>
+                <a href="#" class="outdated">Suggest correction</a>
+                <a href="#" class="unknown">Contribute new info</a>
+            </div>
 
         {% endif %}
 

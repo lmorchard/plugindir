@@ -1,0 +1,33 @@
+<?php
+$config['core.needs_installation'] = false;
+$config['core.site_domain'] = 'dev.plugindir.mozilla.org';
+$config['core.log_threshold'] = 4;
+$config['core.internal_cache'] = FALSE; //120;
+$config['core.display_errors'] = TRUE;
+$config['core.render_stats'] = TRUE;
+
+$config['model.enable_delete_all'] = true;
+$config['model.database'] = 'testing';
+
+$config['database.default'] = array
+(
+	'benchmark'     => TRUE,
+	'persistent'    => FALSE,
+	'connection'    => array
+	(
+		'type'     => 'mysql',
+		'user'     => 'plugindir',
+		'pass'     => 'plugindir',
+		'host'     => '127.0.0.1',
+		'port'     => FALSE,
+		'socket'   => FALSE,
+		'database' => 'plugindir_test'
+	),
+	'character_set' => 'utf8',
+	'table_prefix'  => '',
+	'object'        => TRUE,
+	'cache'         => TRUE,
+	'escape'        => TRUE
+);
+
+$config['email.driver'] = 'native';

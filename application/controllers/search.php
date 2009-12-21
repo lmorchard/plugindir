@@ -52,12 +52,31 @@ class Search_Controller extends Local_Controller {
     }
 
     /**
-     *
+     * PFS2 API lookup handler.
      */
-    function api()
+    function lookup_apiv1()
     {
         $this->auto_render = FALSE;
 
+        $params = array(
+            'mimetype' => '',
+            'clientOS' => '',
+            'appID' => '',
+            'appVersion' => '',
+            'appRelease' => '',
+            'chromeLocale' => '',
+            'callback' => ''
+        );
+        foreach ($params as $name=>$default) {
+            $params[$name] = $this->input->get($name, $default);
+        }
+
+        $callback = $params['callback'];
+        unset($params['callback']);
+
+        return json::render(
+            ORM::factory('plugin')->lookup($params), $callback
+        );
     }
 
 }

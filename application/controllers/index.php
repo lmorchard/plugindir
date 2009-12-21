@@ -18,7 +18,7 @@ class Index_Controller extends Local_Controller {
         $this->view->by_cat = $by_cat;
 
         switch ($by_cat) {
-            case 'claimed':
+            case 'sandbox':
                 // TODO
                 break;
 

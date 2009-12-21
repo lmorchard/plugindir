@@ -9,17 +9,55 @@
 class Plugins_Controller extends Local_Controller {
 
     /**
-     * Home page action
+     * Accept plugin data contributions.
      */
-    function detail($pfs_id)
+    function submit()
     {
+        $this->view->status_choices = Plugin_Model::$status_choices;
+
+        // Just display the populated form on GET.
+        if ('post' != request::method()) {
+            form::$data = $_GET;
+            return;
+        }
+
+        // The only requirement is that the captcha is valid.
+        if (!Captcha::valid($this->input->post('captcha'))) {
+            form::$data = $_POST;
+            form::$errors = array(
+                'captcha' => 'Valid captcha response is required'
+            );
+            return;
+        }
+
+        // Save the form data as a plugin submission.
+        $submission = ORM::factory('submission')
+            ->set($this->input->post())
+            ->save();
+
+        $this->view->saved = TRUE;
+    }
+
+    /**
+     * Display plugin details.
+     */
+    function detail($pfs_id, $format)
+    {
+        // Look for the plugin, throw a 404 if not found.
         $plugin = ORM::factory('plugin', $pfs_id);
         if (!$plugin->loaded) {
             return Event::run('system.404');
         }
 
+        if ('json' == $format) {
+            $this->auto_render = FALSE;
+            $out = $plugin->export();
+            return json::render($out, $this->input->get('callback'));
+        }
+
         $this->view->plugin = $plugin->as_array();
 
+        // Collate the plugin releases by version.
         $releases = array();
         foreach ($plugin->pluginreleases as $release) {
             if (!isset($releases[$release->version])) {
@@ -33,6 +71,7 @@ class Plugins_Controller extends Local_Controller {
         
         $this->view->releases = $releases;
     }
+
 
     /**
      * Munge and compare two versions for sorting.

@@ -1,7 +1,7 @@
 /**
  * Main styles
  */
-.template { 
+.template, .templates { 
     display: none;
 }
 
@@ -126,6 +126,12 @@
 }
 #ctrl_index_act_index .listing .installed_plugins {
     margin: 0.5em 0em;
+}
+#ctrl_index_act_index.noJS .listing .installed_plugins {
+    display: none; /* This will be overridden in JS */
+}
+#ctrl_index_act_index.hasJS .listing .installed_plugins_warning {
+    display: none; /* This will be overridden in JS */
 }
 #ctrl_index_act_index .listing .installed_plugins thead th {
     text-align: left;

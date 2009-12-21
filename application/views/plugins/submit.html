@@ -1,0 +1,65 @@
+{% extends "layout.html" %}
+
+{% import "macros/platforms.html" as platforms %}
+{% import "macros/oses.html" as oses %}
+{% import "macros/statuses.html" as statuses %}
+{% import "macros/forms.html" as forms %}
+
+{% block title %}
+    Submit plugin info
+{% endblock %}
+
+{% block content %}
+    {% if saved %}
+        <p>Your plugin data submission has been accepted, thank you!</p>
+    {% else %}
+
+        <form class="contribute" action="{{base_url}}plugins/submit" method="post">
+            {% set data, errors as form_data, form_errors %}
+
+            {# These fields are not user-serviceable #}
+
+            {{ forms.hidden(data, errors, 'pfs_id') }}
+            {{ forms.hidden(data, errors, 'detected_version', _GET.version) }}
+            {{ forms.hidden(data, errors, 'filename') }}
+            {{ forms.hidden(data, errors, 'appID') }}
+            {{ forms.hidden(data, errors, 'appRelease') }}
+            {{ forms.hidden(data, errors, 'appVersion') }}
+            {{ forms.hidden(data, errors, 'clientOS') }}
+            {{ forms.hidden(data, errors, 'chromeLocale') }}
+            {{ forms.hidden(data, errors, 'mimetypes') }}
+
+            {% if is_logged_in %}
+                {{ forms.hidden(data, errors, 'screen_name', authprofile.screen_name) }}
+            {% endif %}
+            
+            {{ forms.fieldset('Plugin details', 'plugin_details') }}
+        
+                <p>
+                    This form will {{ is_logged_in ? '' : 'anonymously' }}
+                    submit details detected about this plugin and your browser,
+                    along with the following fields that you may modify to suggest
+                    corrections.
+                </p>
+
+                {% debug status_choices %}
+
+                {{ forms.dropdown(data, errors, 'status', 'Status', status_choices) }}
+                {{ forms.input(data, errors, 'text', 'vulnerability_url', 'Vulnerability URL') }}
+                {{ forms.textarea(data, errors, 'vulnerability_description', 'Vulnerability description') }}
+                {{ forms.input(data, errors, 'text', 'vendor', 'Vendor') }}
+                {{ forms.input(data, errors, 'text', 'name', 'Name') }}
+                {{ forms.input(data, errors, 'text', 'version', 'Version') }}
+                {{ forms.textarea(data, errors, 'description', 'Description') }}
+
+                {{ forms.captcha(data, errors, 'captcha', 'Captcha') }}
+                
+                {{ forms.submit('submit', '', 'Submit') }}
+                
+            {{ forms.endfieldset() }}
+
+        </form>
+
+    {% endif %}
+
+{% endblock %}
