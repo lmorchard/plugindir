@@ -12,8 +12,6 @@ PluginDir = (function () {
          */
         init: function () {
 
-            Pfs.endpoint = $this.pfs_endpoint;
-
             $(document).ready(function () {
 
                 // Tweak the body tag to indicate JS is working.
@@ -52,6 +50,8 @@ PluginDir = (function () {
          * Detect installed plugins and render the appropriate table rows.
          */
         buildInstalledPluginsTable: function () {
+            Pfs.endpoint = $this.pfs_endpoint;
+
             var plugins_table = $('table.installed_plugins');
 
             var browser_plugins = Pfs.UI.browserPlugins(navigator.plugins);
