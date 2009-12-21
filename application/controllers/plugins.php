@@ -14,11 +14,8 @@ class Plugins_Controller extends Local_Controller {
     function detail($pfs_id)
     {
         $plugin = ORM::factory('plugin', $pfs_id);
-
         if (!$plugin->loaded) {
-            header('HTTP/1.1 404 Not Found');
-            Event::run('system.404');
-            return;
+            return Event::run('system.404');
         }
 
         $this->view->plugin = $plugin->as_array();
@@ -30,8 +27,33 @@ class Plugins_Controller extends Local_Controller {
             }
             $releases[$release->version][] = $release->as_array();
         }
-        $this->view->releases = $releases;
 
+        // Do a rough version sort.
+        uksort($releases, array($this, '_versionCmp'));
+        
+        $this->view->releases = $releases;
+    }
+
+    /**
+     * Munge and compare two versions for sorting.
+     */
+    function _versionCmp($a, $b) {
+        $am = $this->_versionMunge($a);
+        $bm = $this->_versionMunge($b);
+        return strcmp($bm, $am);
+    }
+
+    /**
+     * For rough string comparisons, split versions on dots and pad out each 
+     * component with zeroes to 5 digits.
+     */
+    function _versionMunge($v) {
+        $parts = explode('.', $v);
+        $out = array();
+        foreach ($parts as $part) {
+            $out[] = substr('00000' . $part, -5, 5);
+        }
+        return join('.', $out);
     }
 
 }

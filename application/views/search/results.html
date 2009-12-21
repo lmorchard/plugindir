@@ -1,5 +1,9 @@
 {% extends "layout.html" %}
 
+{% import "macros/platforms.html" as platforms %}
+{% import "macros/oses.html" as oses %}
+{% import "macros/statuses.html" as statuses %}
+
 {% block title %}
     Search Results
 {% endblock %}
@@ -10,10 +14,9 @@
             <tr>
                 <th>Name</th>
                 <th>Version</th>
-                <th>Status</th>
-                <th>Application</th>
+                <th>Platform</th>
                 <th>OS</th>
-                <th>Locale</th>
+                <th>Status</th>
             </tr>
         </thead>
         <tbody>
@@ -21,14 +24,9 @@
                 <tr>
                     <td><a href="{{base_url}}plugins/{{release.plugin.pfs_id|urlencode|e}}">{{release.plugin.name}}</a></td>
                     <td><a href="{{base_url}}plugins/{{release.plugin.pfs_id|urlencode|e}}#{{release.version|urlencode|e}}">{{release.version}}</a></td>
-                    <td>{{release.status_code}}</td>
-                    <td>
-                        {{release.platform.app_id}}
-                        {{release.platform.app_release}}
-                        {{release.platform.app_version}}
-                    </td>
-                    <td>{{release.os.name}}</td>
-                    <td>{{release.platform.locale}}</td>
+                    <td>{{platforms.readable(release.platform)}}</td>
+                    <td>{{oses.readable(release.os)}}</td>
+                    <td>{{statuses.readable(release.status_code)}}</td>
                 </tr>
             {% endfor %}
         </tbody>

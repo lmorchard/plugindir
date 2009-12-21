@@ -1,0 +1,24 @@
+{% extends "layout.html" %}
+
+{% import "macros/forms.html" as forms %}
+
+{% block title %}
+    Settings for {{authprofile.screen_name|e}}
+{% endblock %}
+
+{% block content %}
+    <h3>Profile settings for <a href="{{base_url}}profiles/{{authprofile.screen_name|urlencode}}">{{authprofile.screen_name|e}}</a></h3>
+    <ul class="sections">
+        {% for section in sections %}
+            <li class="section">
+                <h3>{{section.title|e}}</h3>
+                <dl>
+                    {% for item in section.items %}
+                        <dt><a href="{{base_url}}{{item.url|e}}">{{item.title|e}}</a></dt>
+                        <dd>{{item.description|e}}</dd>
+                    {% endfor %}
+                </dl>
+            </li>
+        {% endfor %}
+    </ul>
+{% endblock %}

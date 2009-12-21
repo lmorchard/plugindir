@@ -16,6 +16,11 @@ PluginDir = (function () {
 
             $(document).ready(function () {
 
+                $('#advanced_search_toggle > a').click(function () {
+                    $('#advanced_search').toggle();
+                    return false;
+                });
+
                 // If the installed plugins table is present, build it.
                 $('table.installed_plugins')
                     .each($this.buildInstalledPluginsTable);
@@ -43,7 +48,8 @@ PluginDir = (function () {
                         ".name": plugin.name,
                         ".description": plugin.description,
                         ".version": 'Not detected (<a href="#">Any ideas?</a>)',
-                        ".status": 'Unknown (<a href="#">Contribute?</a>)'
+                        ".status": 'Unknown',
+                        ".action": '<a href="#">Contribute info</a>'
                     }
                 );
             });
@@ -73,17 +79,28 @@ PluginDir = (function () {
                         };
                     }
 
+                    // TODO: Embed these as localized templates in the HTML?
                     switch (data.status) {
                         case 'newer':
-                            row_data['.status'] = 'Newer (<a href="#">Contribute?</a>)'; break;
+                            row_data['.status'] = 'Newer';
+                            row_data['.action'] = '<a href="#">Suggest update</a>'; 
+                            break;
                         case 'latest':
-                            row_data['.status'] = 'Up to date'; break;
+                            row_data['.status'] = 'Up to date';
+                            row_data['.action'] = '<a href="#">Suggest correction</a>'; 
+                            break;
                         case 'vulnerable':
-                            row_data['.status'] = '<a href="'+data.url+'">Vulnerable</a>'; break;
+                            row_data['.status'] = '<a href="'+data.url+'">Vulnerable</a>';
+                            row_data['.action'] = '<a href="#">Suggest correction</a>'; 
+                            break;
                         case 'outdated':
-                            row_data['.status'] = '<a href="'+data.url+'">Needs update</a>'; break;
+                            row_data['.status'] = '<a href="'+data.url+'">Needs update</a>'; 
+                            row_data['.action'] = '<a href="#">Suggest correction</a>'; 
+                            break;
                         default:
-                            row_data['.status'] = 'Unknown (<a href="#">Contribute?</a>)'; break;
+                            row_data['.status'] = 'Unknown'; 
+                            row_data['.action'] = '<a href="#">Contribute info</a>'; 
+                            break;
                     }
 
                     $this.appendTemplate(

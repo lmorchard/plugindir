@@ -1,0 +1,32 @@
+{% extends "layout.html" %}
+
+{% import "macros/forms.html" as forms %}
+
+{% block title %}
+    Register
+{% endblock %}
+
+{% block content %}
+    {% if login_inactive %}
+        <p>Sorry, that login has been disabled.</p>
+    {% endif %}
+
+    {% if no_verified_email %}
+        <p>Sorry, the email address for that login has not yet been verified.</p>
+        <form action="{{base_url}}reverifyemail/{{_POST['login_name']|urlencode|e}}" method="POST">
+            <input type="submit" value="Re-send Account Activation Information" />
+        </form>
+    {% endif %}
+
+    <form class="login" action="{{base_url}}login" method="post">
+        {% set data, errors as form_data, form_errors %}
+        {{ forms.hidden(data, errors, 'jump') }}
+        {{ forms.fieldset('Login', 'login') }}
+            {{ forms.input(data, errors, 'text', 'login_name', 'Login name') }}
+            {{ forms.input(data, errors, 'password', 'password', 'Password') }}
+            {{ forms.submit('login', '', 'Login') }}
+            <li><a href="{{base_url}}forgotpassword">Forgot password?</a></li>
+        {{ forms.endfieldset() }}
+    </form>
+
+{% endblock %}

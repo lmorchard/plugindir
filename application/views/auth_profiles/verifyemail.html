@@ -1,0 +1,18 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Register (verified)
+{% endblock %}
+
+{% block content %}
+    {% if invalid_token %}
+        <p>Invalid email verification token.</p>
+    {% else %}
+        <p>
+            New email address verified.  
+            {% if not is_logged_in %}
+                <a href="{{base_url}}login">Login?</a>
+            {% endif %}
+        </p>
+    {% endif %}
+{% endblock %}

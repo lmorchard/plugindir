@@ -1,0 +1,19 @@
+{% extends "layout.html" %}
+
+{% import "macros/forms.html" as forms %}
+
+{% block title %}
+    Register
+{% endblock %}
+
+{% block content %}
+    <form class="register" action="{{base_url}}register" method="post">
+        {% set data, errors as form_data, form_errors %}
+        {{ forms.fieldset('Login details', 'login') }}
+            {# {{ forms.input(data, errors, 'text', 'screen_name', 'Screen name') }} #}
+            {{ forms.input(data, errors, 'text', 'full_name', 'Full name') }}
+            {{ forms.textarea(data, errors, 'bio', 'Bio / About you') }}
+            {{ forms.submit('update', '', 'Update') }}
+        {{ forms.endfieldset() }}
+    </form>
+{% endblock %}

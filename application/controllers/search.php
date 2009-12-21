@@ -29,6 +29,17 @@ class Search_Controller extends Local_Controller {
         if ($os_id = $this->input->get('os_id')) {
             $release->where('os_id', $os_id);
         }
+        if ($q = $this->input->get('q')) {
+            $this->view->q = $q;
+            $parts = explode(' ', $q);
+            foreach ($parts as $part) {
+                $clauses = array();
+                foreach (array('name', 'description', 'vendor') as $col) {
+                    $clauses[$col] = $part;
+                }
+                $release->orlike($clauses);
+            }
+        }
 
         $rows =  $release->find_all();
 

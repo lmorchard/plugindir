@@ -23,6 +23,19 @@ class PluginRelease_Model extends ORM {
         'detection_type' => 'original',
     );
 
+    /**
+     *
+     */
+    public function search($criteria)
+    {
+
+
+    }
+
+    /**
+     * Build an array full of the properties of this release - plus the 
+     * properties of the associated plugin, platform, and OS.
+     */
     public function as_array()
     {
         $arr = parent::as_array();

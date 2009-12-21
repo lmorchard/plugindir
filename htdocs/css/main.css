@@ -5,10 +5,104 @@
     display: none;
 }
 
+.content form fieldset ul.fields {
+}
+.content form fieldset ul.fields li {
+    list-style: none;
+    position: relative;
+    min-height: 2.25em;
+}
+.content form fieldset ul.fields li.field label {
+    float: left;
+    display: block;
+    width: 24ex;
+    padding-right: 0.5em;
+    text-align: right;
+}
+.content form fieldset ul.fields li.error label {
+    color: red;
+}
+.content form fieldset ul.fields li.field textarea.textarea,
+.content form fieldset ul.fields li.field input.text,
+.content form fieldset ul.fields li.field input.password {
+    width: 60ex;
+}
+.content form fieldset ul.fields li.field textarea.textarea {
+    height: 4em;
+    margin: 0 0 1em 0;
+}
+.content form fieldset ul.fields li.field input.captcha {
+    width: 25ex;
+    display: block;
+    margin: 0 0 1.5em 31ex;
+}
+.content form fieldset ul.fields li.error textarea.textarea,
+.content form fieldset ul.fields li.error input.text,
+.content form fieldset ul.fields li.error input.captcha,
+.content form fieldset ul.fields li.error input.password {
+    background: #fee;
+}
+.content form fieldset ul.fields li.error p.error {
+    margin: 0.25em 0 0.5em 26ex;
+    padding: 0;
+}
+.content form fieldset ul.fields li.field p.notes {
+    margin: 0.25em 0 0.5em 26ex;
+    padding: 0;
+}
+
+#main {
+    position: relative;
+}
+#main .header {
+    position: relative;
+    height: 2.5em;
+}
+#main .header .title {
+    font-size: 125%;
+}
+#main .header .secondary {
+    position: absolute;
+    top: 0;
+    right: 0;
+}
+#main .header .secondary .auth {
+    display: inline;
+}
+#main .header .secondary .search {
+    display: inline;
+}
+#main .header .secondary .search form {
+    display: inline;
+}
+#main .header .secondary #simple_search {
+    display: inline;
+}
+#main .header #advanced_search_toggle {
+    display: block;
+    width: 100%;
+    text-align: right;
+    padding: 0.25em;
+}
+#main .header #advanced_search {
+    display: none;
+    background: #fff;
+    width: 600px;
+    position: absolute;
+    top: 2.75em;
+    right: 0;
+}
+
 #ctrl_index_act_index .listing {
     margin: 0.5em;
     padding: 0.5em;
     border: 1px solid #ccc;
+}
+#ctrl_index_act_index .listing .count {
+    float: left;
+    width: 5ex;
+    text-align: right;
+    padding-right: 0.5em;
 }
 #ctrl_index_act_index .listing ul.nav {
     list-style: none;
@@ -79,7 +173,7 @@
     border-bottom: 2px solid #333;
 }
 #ctrl_search_act_results table.releases tbody td {
-    padding: 0.25em 0.25em 0.125em 0.25em;
+    padding: 0.25em 0.5em 0.25em 0.5em;
 }
 
 

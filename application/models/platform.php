@@ -20,7 +20,7 @@ class Platform_Model extends ORM {
      *
      * @return array List of name / count arrays.
      */
-    public function find_plugin_counts()
+    public function find_release_counts()
     {
         return $this->db->query("
             SELECT count(plugin_releases.id) AS count, platforms.*

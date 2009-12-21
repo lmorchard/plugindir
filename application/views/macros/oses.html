@@ -1,0 +1,27 @@
+{% macro readable(os) %}
+    {% if '*' == os.name %}
+        Any
+    {% elseif 'win' == os.name %}
+        Windows
+    {% elseif 'windows nt 6.0' == os.name %}
+        Windows Vista
+    {% elseif 'intel mac os x 10.6' == os.name %}
+        Intel Mac OS X 10.6
+    {% elseif 'intel mac os x' == os.name %}
+        Intel Mac OS X
+    {% elseif 'ppc mac os x' == os.name %}
+        PPC Mac OS X
+    {% elseif 'mac os x' == os.name %}
+        Mac OS X
+    {% elseif 'mac' == os.name %}
+        Mac
+    {% elseif 'linux' == os.name %}
+        Linux
+    {% elseif 'sunos' == os.name %}
+        SunOS
+    {% elseif 'sunos sun4u' == os.name %}
+        SunOS (sun4u)
+    {% else %}
+        {{os.name | e}}
+    {% endif %}
+{% endmacro %}

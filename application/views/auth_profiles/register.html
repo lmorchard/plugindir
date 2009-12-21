@@ -1,0 +1,24 @@
+{% extends "layout.html" %}
+
+{% import "macros/forms.html" as forms %}
+
+{% block title %}
+    Register
+{% endblock %}
+
+{% block content %}
+    <form class="register" action="{{base_url}}register" method="post">
+        {% set data, errors as form_data, form_errors %}
+        {{ forms.fieldset('Login details', 'login') }}
+            {{ forms.input(data, errors, 'text', 'login_name', 'Login name') }}
+            {{ forms.input(data, errors, 'text', 'full_name', 'Full name') }}
+            {{ forms.textarea(data, errors, 'bio', 'Bio / About you') }}
+            {{ forms.input(data, errors, 'text', 'email', 'Email') }}
+            {{ forms.input(data, errors, 'text', 'email_confirm', 'Email (confirm)') }}
+            {{ forms.input(data, errors, 'password', 'password', 'Password') }}
+            {{ forms.input(data, errors, 'password', 'password_confirm', 'Password (confirm)') }}
+            {{ forms.captcha(data, errors, 'captcha', 'Captcha') }}
+            {{ forms.submit('register', '', 'Register') }}
+        {{ forms.endfieldset() }}
+    </form>
+{% endblock %}

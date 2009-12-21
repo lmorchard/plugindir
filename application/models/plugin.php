@@ -22,6 +22,20 @@ class Plugin_Model extends ORM {
     public $has_many = array('pluginreleases');
 
     /**
+     * Assemble a count of releases by plugin.
+     */
+    public function find_release_counts()
+    {
+        return $this->db->query("
+            SELECT count(plugin_releases.id) AS count, plugins.*
+            FROM plugins
+            JOIN plugin_releases WHERE plugins.id = plugin_releases.plugin_id
+            GROUP BY plugins.id
+            ORDER BY plugins.name ASC
+        ")->result_array();
+    }
+
+    /**
      * Assemble a data structure suitable for later import from plugin records.
      */
     public function export()

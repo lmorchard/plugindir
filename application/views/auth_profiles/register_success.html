@@ -1,0 +1,12 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Register (verify)
+{% endblock %}
+
+{% block content %}
+    Check your email to verify your address before login.
+    <form action="{{base_url}}reverifyemail/{{login_name|urlencode}}" method="POST">
+        <input type="submit" value="Re-send verification email" />
+    </form>
+{% endblock %}
