@@ -1,15 +1,11 @@
 # Plugin directory TODO
 
-* ACLs as static arrays in config, rather than object defs
+* Request pull from sandbox
 * Loading indicator for plugin editor
+* Per-plugin release list and per-release GET/PUT/POST in JSON
 * Advanced search pulldown
 * Search results
-* Clone plugin to sandbox from details page
-* Clone / create plugin to sandbox from installed plugins page
 * Request pull from sandbox
-* Request claim on plugin
-* (admin) Approve claim on plugin
-* (admin / claimant) Push live from sandbox
 * Add sandbox ID to search criteria in API
     * Use sandbox data on installed list
         * Offer a switch to use sandbox or not
