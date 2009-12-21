@@ -229,20 +229,19 @@
 }
 #ctrl_plugins_act_edit ul.controls {
     list-style-type: none;
-    text-align: right;
     padding: 0 0 0em 0;
     margin: 0 0 0em 0;
     font-size: 0.85em;
-    height: 1.5em;
+    height: 2.5em;
 }
 #ctrl_plugins_act_edit .release ul.controls {
-    margin: 0 0 2em 0;
+    margin: 0.25em 0 1em 0;
 }
 #ctrl_plugins_act_edit ul.controls li {
-    margin: 0 0 0 1em;
+    margin: 0 1em 0 0;
     padding: 0.25em 0.5em;
     border: 1px solid #ccc;
-    float: right;
+    float: left;
 }
 #ctrl_plugins_act_edit ul.fields li.field {
     position: relative;

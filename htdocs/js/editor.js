@@ -79,6 +79,15 @@ PluginDir.Editor = (function () {
                 return false;
             });
 
+            // Wire up controls for meta fields.
+            var meta = $('#meta-fields').parent();
+            meta.find('.controls .hide').click( function () {
+                $this.hideEmptyProperties(meta); return false;
+            });
+            meta.find('.controls .show').click( function () {
+                $this.showAllProperties(meta); return false;
+            });
+
             // If the server set a JSON URL for loading, do so.
             if ($this.json_url) {
                 $this.loadPlugin($this.json_url);

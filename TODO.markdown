@@ -1,5 +1,6 @@
 # Plugin directory TODO
 
+* Loading indicator for plugin editor
 * Advanced search pulldown
 * Search results
 * Clone plugin to sandbox from details page
