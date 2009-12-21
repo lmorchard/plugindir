@@ -64,6 +64,11 @@ class OS_Model extends ORM {
         if (preg_match('/^intel mac os x/', $client_os)) {
             $list[] = 'intel mac os x';
         }
+        if (preg_match('/^macintel/', $client_os)) {
+            $list[] = 'intel mac os x';
+            $list[] = 'mac os x';
+            $list[] = 'mac';
+        }
         if (preg_match('/^(ppc|intel) mac os x/', $client_os)) {
             $list[] = 'mac os x';
             $list[] = 'mac';
