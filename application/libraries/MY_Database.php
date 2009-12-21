@@ -96,4 +96,29 @@ class Database extends Database_Core {
         return $this;
     }
 
+	/**
+	 * Selects the or like(s) for a database query.
+	 *
+	 * @param   string|array  field name or array of field => match pairs
+	 * @param   string        like value to match with field
+	 * @param   boolean       automatically add starting and ending wildcards
+	 * @return  Database_Core        This Database object.
+	 */
+	public function orlike($field, $match = '', $auto = TRUE)
+	{
+		$fields = is_array($field) ? $field : array($field => $match);
+
+        $sub_where = array();
+		foreach ($fields as $field => $match)
+		{
+			$field       = (strpos($field, '.') !== FALSE) ? $this->config['table_prefix'].$field : $field;
+			$sub_where[] = $this->driver->like($field, $match, $auto, 'OR ', count($sub_where));
+		}
+        $this->where[] =
+            ( count($this->where) ? 'AND ' : '' ) . 
+            '( ' .  implode(' ', $sub_where) .  ' )';
+
+		return $this;
+	}
+
 }
