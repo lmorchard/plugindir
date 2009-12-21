@@ -4,4 +4,5 @@
  *
  * Sets the default route to "welcome"
  */
+$config['plugins/(.*)'] = 'plugins/detail/$1';
 $config['_default'] = 'index';

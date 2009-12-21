@@ -19,6 +19,8 @@ class Plugin_Model extends ORM {
         'mimetypes'
     );
 
+    public $has_many = array('pluginreleases');
+
     /**
      * Assemble a data structure suitable for later import from plugin records.
      */
@@ -84,7 +86,7 @@ class Plugin_Model extends ORM {
 
             // Assemble the release data with defaults from plugin data.
             $release_data = array_merge(
-                Plugin_Release_Model::$defaults, $meta, $release_data
+                PluginRelease_Model::$defaults, $meta, $release_data
             );
 
             if (!isset($release_data['detected_version'])) {
@@ -126,7 +128,7 @@ class Plugin_Model extends ORM {
 
             // Find and update or create the appropriate release.
             $release = ORM::find_or_insert(
-                'plugin_release', 
+                'pluginrelease', 
                 array(
                     'plugin_id'        => $plugin->id,
                     'os_id'            => $os->id,
@@ -160,7 +162,7 @@ class Plugin_Model extends ORM {
                     'is_regex'  => $is_regex
                 );
                 $alias = ORM::find_or_insert(
-                    'plugin_alias', $alias_data, $alias_data
+                    'pluginalias', $alias_data, $alias_data
                 );
             }
         }

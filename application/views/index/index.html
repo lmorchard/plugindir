@@ -56,7 +56,7 @@
                 {% for platform in platform_counts %}
                     <li>
                         <span class="count">({{platform.count|e}})</span>
-                        <a href="{{base_url}}search/?platform_id={{platform.id|urlencode|e}}">{{platform.app_id|e}} (v{{platform.app_release}}, {{platform.app_version}}) {{platform.locale}}</a>
+                        <a href="{{base_url}}search/results?platform_id={{platform.id|urlencode|e}}">{{platform.app_id|e}} (v{{platform.app_release}}, {{platform.app_version}}) {{platform.locale}}</a>
                     </li>
                 {% endfor %}
             </ul>
@@ -67,7 +67,7 @@
                 {% for os in os_counts %}
                     <li>
                         <span class="count">({{os.count|e}})</span>
-                        <a href="{{base_url}}search/?os_id={{os.id|urlencode|e}}">{{os.name|e}}</a>
+                        <a href="{{base_url}}search/results?os_id={{os.id|urlencode|e}}">{{os.name|e}}</a>
                     </li>
                 {% endfor %}
             </ul>

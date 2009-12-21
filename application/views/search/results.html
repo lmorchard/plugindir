@@ -1,0 +1,36 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Search Results
+{% endblock %}
+
+{% block content %}
+    <table class="releases">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Version</th>
+                <th>Status</th>
+                <th>Application</th>
+                <th>OS</th>
+                <th>Locale</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for release in releases %}
+                <tr>
+                    <td><a href="{{base_url}}plugins/{{release.plugin.pfs_id|urlencode|e}}">{{release.plugin.name}}</a></td>
+                    <td><a href="{{base_url}}plugins/{{release.plugin.pfs_id|urlencode|e}}#{{release.version|urlencode|e}}">{{release.version}}</a></td>
+                    <td>{{release.status_code}}</td>
+                    <td>
+                        {{release.platform.app_id}}
+                        {{release.platform.app_release}}
+                        {{release.platform.app_version}}
+                    </td>
+                    <td>{{release.os.name}}</td>
+                    <td>{{release.platform.locale}}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

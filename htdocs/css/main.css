@@ -43,3 +43,46 @@
 }
 
 
+#ctrl_plugins_act_detail ul.releases {
+    list-style: none;
+    margin: 0; padding: 0;
+}
+#ctrl_plugins_act_detail ul.releases li.release {
+}
+#ctrl_plugins_act_detail ul.releases li.release .version {
+    font-size: 130%;
+    font-weight: bold;
+    padding: 0.25em 0.5em;
+    margin: 0.5em 0 0 0.5em;
+    border: 1px solid #ccc;
+    background: #eee;
+}
+#ctrl_plugins_act_detail ul.releases li.release table.version_releases {
+    margin: 0.5em 1.5em 0.5em 1.5em;
+    width: 70%;
+}
+#ctrl_plugins_act_detail ul.releases li.release table.version_releases thead th {
+    text-align: left;
+    padding: 0.25em 0.5em 0.125em 0.5em;
+    border-bottom: 2px solid #333;
+}
+#ctrl_plugins_act_detail ul.releases li.release table.version_releases tbody td {
+    padding: 0.25em 0.5em 0.125em 0.5em;
+}
+
+#ctrl_search_act_results table.releases {
+    margin: 0.5em 1.5em 0.5em 1.5em;
+}
+#ctrl_search_act_results table.releases thead th {
+    text-align: left;
+    padding: 0.25em 0.5em 0.125em 0.5em;
+    border-bottom: 2px solid #333;
+}
+#ctrl_search_act_results table.releases tbody td {
+    padding: 0.25em 0.25em 0.125em 0.25em;
+}
+
+
+
+
+

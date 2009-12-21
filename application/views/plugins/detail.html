@@ -1,0 +1,45 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Plugin Detail :: {{plugin.name | e}}
+{% endblock %}
+
+{% block content %}
+    <div class="meta">
+        [ICON]
+        <p>{{plugin.description}}</p>
+    </div>
+
+    <ul class="releases">
+        {% for version, version_releases in releases %}
+            <li class="release">
+            <div id="{{version | e}}" class="version">{{version | e}}</div>
+                <table class="version_releases">
+                    <thead>
+                        <tr>
+                            <th>Application</th>
+                            <th>OS</th>
+                            <th>Locale</th>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for release in version_releases %}
+                        <tr id="{{release.plugin.pfs_id}}-{{release.id}}">
+                                <td>
+                                    {{release.platform.app_id}}
+                                    {{release.platform.app_release}}
+                                    {{release.platform.app_version}}
+                                </td>
+                                <td>{{release.os.name}}</td>
+                                <td>{{release.platform.locale}}</td>
+                                <td>{{release.status_code}}</td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </li>
+        {% endfor %}
+    </ul>
+
+{% endblock %}
