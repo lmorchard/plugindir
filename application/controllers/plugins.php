@@ -207,7 +207,7 @@ class Plugins_Controller extends Local_Controller {
         if (!authprofiles::is_allowed($plugin, 'delete'))
             return Event::run('system.forbidden');
 
-        // Only perform the copy on POST.
+        // Only perform the delete on POST.
         if ('post' == request::method()) {
 
             $plugin->delete();
