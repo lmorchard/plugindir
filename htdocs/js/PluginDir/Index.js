@@ -58,96 +58,96 @@ PluginDir.Index = (function () {
             var browser_info = Pfs.UI.browserInfo();
 
             if (PluginDir.is_logged_in) {
+                // Include the user's sandbox in PFS lookups, if logged in.
                 browser_info.sandboxScreenName = PluginDir.screen_name;
             }
 
             // Next, run each of the plugins with detected versions though PFS2
             Pfs.findPluginInfos(browser_info, browser_plugins, 
+
                 function (data) {
+                    // Callback to process plugins with detected versions.
+                    var raw_plugin = data.pluginInfo.raw;
+                    var version = Pfs.parseVersion(data.pluginInfo.plugin).join('.');
+                    var has_pfs_match = (data.status !== 'unknown');
+                    var latest = (!has_pfs_match) ? null : data.pfsInfo.releases.latest;
+                    var pfs_id = (!has_pfs_match) ? null : latest.pfs_id;
 
-                    var pfs_id = (data.status == 'unknown') ? null : 
-                            data.pfsInfo.releases.latest.pfs_id,
-                        latest = (!pfs_id) ? null :
-                            data.pfsInfo.releases.latest;
-                        plugin = data.pluginInfo.raw,
-                        version = Pfs.parseVersion(data.pluginInfo.plugin).join('.');
-
-                    // Build a URL for the plugin, including the profile 
-                    // sandbox path if the plugin is sandboxed.
-                    var plugin_url;
-                    if (pfs_id) {
+                    // Come up with a URL for the plugin if there was 
+                    // a PFS match.
+                    var plugin_url = '';
+                    if (has_pfs_match) {
                         plugin_url = 'plugins/detail/' + pfs_id;
                         if (latest.sandbox_profile_screen_name) {
-                            plugin_url = 
-                                'profiles/' + latest.sandbox_profile_screen_name +
+                            // Include profile path if plugin is sandboxed
+                            plugin_url = 'profiles/' + 
+                                latest.sandbox_profile_screen_name +
                                 '/' + plugin_url;
                         }
+                        // Finally, append the base path.
                         plugin_url = PluginDir.base_url + plugin_url;
                     }
                         
-                    // Build a URL for use in linking to the contribution form,
-                    // composed of detected plugin details and browser info.
+                    // Build URL params for use in linking to the contribution
+                    // and creation forms, composed of detected plugin details
+                    // and browser info.
                     var submit_params = $.param($.extend({
                         status: data.status,
-                        pfs_id: pfs_id || $this.inventPfsId(plugin),
-                        name: plugin.name,
-                        filename: plugin.filename,
-                        vendor: (data.status == 'unknown') ? '' :
-                            data.pfsInfo.releases.latest.vendor,
-                        description: plugin.description,
+                        pfs_id: pfs_id || $this.inventPfsId(raw_plugin),
                         version: version,
+                        name: raw_plugin.name,
+                        filename: raw_plugin.filename,
+                        description: raw_plugin.description,
+                        vendor: (!has_pfs_match) ? '' : latest.vendor,
                         mimetypes: data.pluginInfo.mimes.join("\n")
                     }, Pfs.UI.browserInfo()));
 
-                    var submit_url = PluginDir.base_url + 'plugins/submit?' + 
-                        submit_params;
+                    // Link the name if there's a known PFS match
+                    var name_col = (!has_pfs_match) ? raw_plugin.name :
+                        '<a href="'+plugin_url+'">' + raw_plugin.name + '</a>';
+
+                    // Link the version if there's a PFS match
+                    var version_col = (!has_pfs_match) ? version :
+                        '<a href="'+plugin_url+'#'+version+'">' + version + '</a>';
 
                     var status_col = PluginDir.cloneTemplate(
-                        // HACK: Use template named for status, fall back
-                        // to unknown if not found.
-                        $($('#status_templates').find('.'+data.status+',.unknown')[0]),
-                        { '.version': ( 'unknown' !== data.status ) ? 
-                                data.pfsInfo.releases.latest.version : '' }
+                        $('#status_templates').find('.'+data.status+',.unknown').eq(0),
+                        { '.version': (!has_pfs_match) ? '' : latest.version }
                     );
 
-                    var row_data = {
-                        // Link the name if there's a known pfs_id
-                        '.name': (!pfs_id) ? data.pluginInfo.raw.name :
-                            '<a href="'+plugin_url+'">' +
-                            data.pluginInfo.raw.name + '</a>',
-                        // Link the version if there's a known pfs_id
-                        '.version': (!pfs_id) ? version :
-                            '<a href="'+PluginDir.base_url+'plugins/detail/'+
-                                pfs_id+'#'+version+'">' + version + '</a>',
-                        '.status': status_col,
-                        '.feedback': PluginDir.cloneTemplate(
-                            // HACK: Use template named for status, fall back
-                            // to unknown if not found.
-                            $($('#feedback_templates')
-                                .find('.'+data.status+',.unknown')[0]),
-                            { '@href': submit_url }
-                        ),
-                        '.new_release': $this.buildAddRelease(data, submit_params)
-                    };
+                    var feedback_col = PluginDir.cloneTemplate(
+                        $('#feedback_templates').find('.'+data.status+',.unknown').eq(0),
+                        { '@href': PluginDir.base_url+'plugins/submit?'+submit_params }
+                    );
+
+                    // If logged in, build the control to add a release to a
+                    // sandbox plugin
+                    var new_release_col = 
+                        $this.buildAddRelease(data, submit_params);
 
                     // Finally, build and add the new table row.
                     var row = PluginDir.cloneTemplate(
                         plugins_table.find('tr.template'), 
-                        row_data, plugins_table
+                        {
+                            '.name': name_col,
+                            '.version': version_col,
+                            '.status': status_col,
+                            '.feedback': feedback_col,
+                            '.new_release': new_release_col
+                        }, 
+                        plugins_table
                     );
 
                     // Annotate this result if it was found via sandbox.
-                    if ('unknown' !== data.status) {
-                        if (data.pfsInfo.releases.latest.sandbox_profile_id) {
-                            $(row).addClass("from_sandbox");
-                        }
+                    if (has_pfs_match && latest.sandbox_profile_screen_name) {
+                        $(row).addClass("from_sandbox");
                     }
                     
                 },
 
                 function () {
 
-                    // After detection finished, append rows for the plugins
+                    // After PFS lookups finished, append rows for the plugins
                     // with undetected versions
                     $.each(Pfs.UI.unknownVersionPlugins, function () {
                         var mimes = [], plugin = this;
@@ -178,8 +178,7 @@ PluginDir.Index = (function () {
                             // TODO: Need a bugzilla URL or something here for detection ideas
                             ".version": 'Not detected (<a href="#">Any ideas?</a>)',
                             '.status': PluginDir.cloneTemplate(
-                                $('#status_templates').find('.unknown'),
-                                { '@href': submit_url }
+                                $('#status_templates').find('.unknown')
                             ),
                             '.feedback': PluginDir.cloneTemplate(
                                 $('#feedback_templates').find('.unknown'),
@@ -214,10 +213,10 @@ PluginDir.Index = (function () {
                 var add_release = $(PluginDir.cloneTemplate($('.add_release')));
 
                 add_release.find('option').each(function () {
-                    var option = $(this),
-                        value = option.attr('value');
+                    var option = $(this);
+                    var value = option.attr('value');
                     if (value) {
-                        option.attr('value', value + 
+                        option.attr('value', value +
                             '?add_release=1&' + submit_params);
                     }
                 });
