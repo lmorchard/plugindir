@@ -67,7 +67,7 @@
         <script type="text/javascript">
             {% block js_defines %}
                 PluginDir.base_url = "{{base_url}}";
-                PluginDir.pfs_endpoint = PluginDir.base_url + "api/v1/lookup";
+                PluginDir.pfs_endpoint = PluginDir.base_url + "pfs/v2";
                 {% if authprofile.screen_name %}
                     PluginDir.is_logged_in = true;
                     PluginDir.screen_name = "{{authprofile.screen_name|e}}";

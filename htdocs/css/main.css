@@ -142,6 +142,17 @@
     padding: 0.25em 0.5em 0.25em 0.5em;
 }
 
+.index_home .listing .installed_plugins tbody tr.from_sandbox td {
+    background-color: #ddd;
+}
+.index_home .listing .installed_plugins tbody tr.from_sandbox td.name {
+    background-color: #ddd;
+    font-weight: bold;
+}
+.index_home .listing .installed_plugins tbody tr.from_sandbox td.name:after {
+    content: " (from sandbox)";
+}
+
 
 #ctrl_plugins_act_detail ul.releases {
     list-style: none;

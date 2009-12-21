@@ -48,6 +48,16 @@ PluginDir.Editor = (function () {
          */
         ready: function () {
 
+            // Update defaults from browser detection details.
+            var browser_info = Pfs.UI.browserInfo();
+            $this.property_defaults.os_name = browser_info.clientOS;
+            $this.property_defaults.platform = {
+                app_id: browser_info.appID,
+                app_release: browser_info.appRelease,
+                app_version: browser_info.appVersion,
+                locale: browser_info.chromeLocale
+            };
+
             // Disable form submit for editor.
             $('#editor').submit(function () { return false; });
 

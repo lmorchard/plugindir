@@ -48,7 +48,7 @@
         <span class="newer">Newer</span>
         <span class="latest">Up to date</span>
         <span class="vulnerable">Vulnerable</span>
-        <span class="outdated">Needs update</span>
+        <span class="outdated">Needs update (<span class="version">###</span> available)</span>
         <span class="unknown">Unknown</span>
     </div>
 
@@ -63,7 +63,8 @@
     <div class="add_release template">
         <select name="sandbox_plugins">
             <option value="">-</option>
-            <option value="{{base_url}}profiles/{{authprofile.screen_name|urlencode}}/plugins;create">+ Create new plugin +</option>
+            <option class="create" value="{{base_url}}profiles/{{authprofile.screen_name|urlencode}}/plugins;create">+ Create new plugin +</option>
+            <!-- <option class="clone" value="{{base_url}}">+ Copy to sandbox +</option> -->
             {% for plugin in sandbox_plugins %}
                 <option value="{{base_url}}profiles/{{authprofile.screen_name|urlencode}}/plugins/detail/{{plugin.pfs_id}};edit">{{plugin.name|e}}</option>
             {% endfor %}

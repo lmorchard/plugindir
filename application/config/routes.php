@@ -24,6 +24,6 @@ $config['profiles/([^/]+)/plugins/detail/([^;]+);(.*)'] =
 $config['profiles/([^/]+)/plugins/detail/(.*)'] = 
     'plugins/detail/$2/html/$1';
 
-$config['api/v1/lookup'] = 'search/lookup_apiv1';
+$config['pfs/v2'] = 'search/pfs_v2';
 
 $config['_default'] = 'index';

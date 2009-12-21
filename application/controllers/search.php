@@ -54,7 +54,7 @@ class Search_Controller extends Local_Controller {
     /**
      * PFS2 API lookup handler.
      */
-    function lookup_apiv1()
+    function pfs_v2()
     {
         $this->auto_render = FALSE;
 

@@ -6,7 +6,7 @@ PluginDir = (function () {
 
     var $this = {
 
-        pfs_endpoint: 'http://dev.plugindir.mozilla.org/api/v1/lookup',
+        pfs_endpoint: 'http://dev.plugindir.mozilla.org/pfs/v2',
 
         /**
          * Initialize the package.

@@ -55,20 +55,26 @@ PluginDir.Index = (function () {
         buildInstalledPluginsTable: function (plugins_table) {
             Pfs.endpoint = PluginDir.pfs_endpoint;
             var browser_plugins = Pfs.UI.browserPlugins(navigator.plugins);
+            var browser_info = Pfs.UI.browserInfo();
+
+            if (PluginDir.is_logged_in) {
+                browser_info.sandboxScreenName = PluginDir.screen_name;
+            }
 
             // Next, run each of the plugins with detected versions though PFS2
-            Pfs.findPluginInfos(Pfs.UI.browserInfo(), browser_plugins, 
+            Pfs.findPluginInfos(browser_info, browser_plugins, 
                 function (data) {
 
-                    var submit_params, submit_url, row_data,
-                        pfs_id = (data.status == 'unknown') ? null : 
+                    var pfs_id = (data.status == 'unknown') ? null : 
                             data.pfsInfo.releases.latest.pfs_id,
+                        plugin_url = (pfs_id) ? 
+                            PluginDir.base_url+'plugins/detail/'+pfs_id : '',
                         plugin = data.pluginInfo.raw,
                         version = Pfs.parseVersion(data.pluginInfo.plugin).join('.');
                         
                     // Build a URL for use in linking to the contribution form,
                     // composed of detected plugin details and browser info.
-                    submit_params = $.param($.extend({
+                    var submit_params = $.param($.extend({
                         status: data.status,
                         pfs_id: pfs_id || $this.inventPfsId(plugin),
                         name: plugin.name,
@@ -80,37 +86,51 @@ PluginDir.Index = (function () {
                         mimetypes: data.pluginInfo.mimes.join("\n")
                     }, Pfs.UI.browserInfo()));
 
-                    submit_url = PluginDir.base_url + 'plugins/submit?' + 
-                        submit_params;
+                    var submit_url = PluginDir.base_url + 'plugins/submit?' + submit_params;
 
-                    row_data = {
+                    var status_col = PluginDir.cloneTemplate(
+                        // HACK: Use template named for status, fall back
+                        // to unknown if not found.
+                        $($('#status_templates')
+                            .find('.'+data.status+',.unknown')[0]),
+                        { 
+                            '.version': ( 'unknown' !== data.status ) ? 
+                                data.pfsInfo.releases.latest.version : '' 
+                        }
+                    );
+
+                    var row_data = {
                         // Link the name if there's a known pfs_id
                         '.name': (!pfs_id) ? data.pluginInfo.raw.name :
-                            '<a href="'+PluginDir.base_url+'plugins/detail/'+pfs_id+'">' +
+                            '<a href="'+plugin_url+'">' +
                             data.pluginInfo.raw.name + '</a>',
                         // Link the version if there's a known pfs_id
                         '.version': (!pfs_id) ? version :
                             '<a href="'+PluginDir.base_url+'plugins/detail/'+
                                 pfs_id+'#'+version+'">' + version + '</a>',
-                        '.status': PluginDir.cloneTemplate(
-                            // HACK: Use template named for status, fall back
-                            // to unknown if not found.
-                            $($('#status_templates').find('.'+data.status+',.unknown')[0])
-                        ),
+                        '.status': status_col,
                         '.feedback': PluginDir.cloneTemplate(
                             // HACK: Use template named for status, fall back
                             // to unknown if not found.
-                            $($('#feedback_templates').find('.'+data.status+',.unknown')[0]),
+                            $($('#feedback_templates')
+                                .find('.'+data.status+',.unknown')[0]),
                             { '@href': submit_url }
                         ),
-                        '.new_release': $this.buildAddRelease(submit_params)
+                        '.new_release': $this.buildAddRelease(data, submit_params)
                     };
 
                     // Finally, build and add the new table row.
-                    PluginDir.cloneTemplate(
+                    var row = PluginDir.cloneTemplate(
                         plugins_table.find('tr.template'), 
                         row_data, plugins_table
                     );
+
+                    // Annotate this result if it was found via sandbox.
+                    if ('unknown' !== data.status) {
+                        if (data.pfsInfo.releases.latest.sandbox_profile_id) {
+                            $(row).addClass("from_sandbox");
+                        }
+                    }
                     
                 },
 
@@ -119,9 +139,7 @@ PluginDir.Index = (function () {
                     // After detection finished, append rows for the plugins
                     // with undetected versions
                     $.each(Pfs.UI.unknownVersionPlugins, function () {
-                        var submit_params, submit_url, row_data, fake_pfs_id,
-                            mimes = [],
-                            plugin = this;
+                        var mimes = [], plugin = this;
 
                         // Collect the mimetypes from the unknown plugin.
                         for (var i=0; i<plugin.length; i++) {
@@ -130,7 +148,7 @@ PluginDir.Index = (function () {
 
                         // Build a URL for use in linking to the contribution form,
                         // composed of detected plugin details and browser info.
-                        submit_params = $.param($.extend({
+                        var submit_params = $.param($.extend({
                             status: 'unknown',
                             pfs_id: $this.inventPfsId(plugin),
                             name: plugin.name,
@@ -140,22 +158,23 @@ PluginDir.Index = (function () {
                             mimetypes: mimes.join("\n")
                         }, Pfs.UI.browserInfo()));
 
-                        submit_url = PluginDir.base_url + 'plugins/submit?' +
+                        var submit_url = PluginDir.base_url + 'plugins/submit?' +
                             submit_params;
 
-                        row_data = {
+                        var row_data = {
                             ".name": plugin.name,
                             ".description": plugin.description,
                             // TODO: Need a bugzilla URL or something here for detection ideas
                             ".version": 'Not detected (<a href="#">Any ideas?</a>)',
                             '.status': PluginDir.cloneTemplate(
-                                $('#status_templates').find('.unknown')
+                                $('#status_templates').find('.unknown'),
+                                { '@href': submit_url }
                             ),
                             '.feedback': PluginDir.cloneTemplate(
                                 $('#feedback_templates').find('.unknown'),
                                 { '@href': submit_url }
                             ),
-                            '.new_release': $this.buildAddRelease(submit_params)
+                            '.new_release': $this.buildAddRelease({}, submit_params)
                         };
 
                         // Add the table row from template.
@@ -177,12 +196,13 @@ PluginDir.Index = (function () {
          * Also, tack the submission params onto the end of each plugin edit
          * URL in options to provide defaults to the editor.
          */
-        buildAddRelease: function (submit_params) {
+        buildAddRelease: function (data, submit_params) {
             if (!PluginDir.is_logged_in) {
                 return null;
             } else {
-                var add_release = PluginDir.cloneTemplate($('.add_release'));
-                $(add_release).find('option').each(function () {
+                var add_release = $(PluginDir.cloneTemplate($('.add_release')));
+
+                add_release.find('option').each(function () {
                     var option = $(this),
                         value = option.attr('value');
                     if (value) {
@@ -190,7 +210,8 @@ PluginDir.Index = (function () {
                             '?add_release=1&' + submit_params);
                     }
                 });
-                return add_release;
+
+                return add_release[0];
             }
         },
 
