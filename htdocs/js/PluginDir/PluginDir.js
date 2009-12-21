@@ -26,7 +26,7 @@ PluginDir = (function () {
 
                 // Wire up the status selector to hide/show vulnerability 
                 // fields, also setting up the initial state.
-                $('#ctrl_plugins_act_submit select#status').each(function () {
+                $('.contribute select#status').each(function () {
                     var status = $(this),
                         fn = function () {
                             $('#vulnerability_url, #vulnerability_description')
@@ -35,6 +35,11 @@ PluginDir = (function () {
                         };
                     fn();
                     status.change(fn);
+                });
+
+                $('.listing a.new_plugin').each(function () {
+                    var submit_params = $.param(Pfs.UI.browserInfo());
+                    $(this).attr('href', $(this).attr('href') + '?' + submit_params);
                 });
 
             });

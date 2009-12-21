@@ -51,6 +51,69 @@ class Plugins_Controller extends Local_Controller {
     }
 
     /**
+     * Create a new plugin, either in public or in a sandbox.
+     */
+    function create($screen_name=null)
+    {
+        $profile = ORM::factory('profile', $screen_name);
+        $resource = ($profile->loaded) ? $profile : 'profile';
+        if (!authprofiles::is_allowed($resource, 'create_in_sandbox'))
+            return Event::run('system.forbidden');
+
+        $this->view->profile = ($profile->loaded) ? $profile : null;
+        $this->view->status_choices = Plugin_Model::$status_choices;
+
+        // Just display the populated form on GET.
+        if ('post' != request::method()) {
+            $this->view->form_data = $_GET;
+            return;
+        }
+
+        $import = array(
+            'meta' => array(
+                'pfs_id' => $this->input->post('pfs_id'),
+                'name' => $this->input->post('name'),
+                'filename' => $this->input->post('filename'),
+                'vulnerability_url' => 
+                    $this->input->post('vulnerability_url'),
+                'vulnerability_description' => 
+                    $this->input->post('vulnerability_description'),
+            ),
+            'aliases' => array(),
+            'mimes' => preg_split("/\s+/", $this->input->post('mimetypes')),
+            'releases' => array(
+                array(
+                    'status' => $this->input->post('status'),
+                    'version' => $this->input->post('version'),
+                    'os_name' => $this->input->post('clientOS'),
+                    'platform' => array(
+                        'app_id' => $this->input->post('appID'),
+                        'app_release' => $this->input->post('appRelease'),
+                        'app_version' => $this->input->post('appVersion'),
+                        'locale' =>  $this->input->post('chromeLocale'),
+                    )
+                )
+            ),
+        );
+
+        if ($profile->loaded) {
+            $import['meta']['sandbox_profile_id'] = $profile->id;
+        }
+
+        // Create a new plugin from the export.
+        $new_plugin = ORM::factory('plugin')->import($import);
+
+        // Bounce over to the created plugin
+        if ($new_plugin->sandbox_profile_id) {
+            url::redirect("profiles/{$profile->screen_name}/plugins".
+                "/detail/{$new_plugin->pfs_id};edit");
+        } else {
+            url::redirect("plugins/detail/{$new_plugin->pfs_id};edit");
+        }
+
+    }
+
+    /**
      * User's plugin sandbox
      */
     function sandbox($screen_name, $format='html') {
@@ -206,8 +269,8 @@ class Plugins_Controller extends Local_Controller {
             $export = $plugin->export();
 
             // Discard sandbox details, which will replace the original.
-            unset($export['meta']['sandbox_profile_id']);
-            unset($export['meta']['original_plugin_id']);
+            $export['meta']['sandbox_profile_id'] = null;
+            $export['meta']['original_plugin_id'] = null;
             
             // Import the export to finish deployment.
             $new_plugin = ORM::factory('plugin')->import($export);

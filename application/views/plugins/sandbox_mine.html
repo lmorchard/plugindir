@@ -1,5 +1,9 @@
 {% extends "index/index_shell.html" %}
 
 {% block index_content %}
+    <p>
+        <a class="new_plugin" href="{{base_url}}profiles/{{authprofile.screen_name|urlencode}}/plugins;create">+ Create new sandbox plugin</a>
+    </p>
+
     {% include 'plugins/sandbox_listing.html' %}
 {% endblock %}

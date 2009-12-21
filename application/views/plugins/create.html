@@ -1,0 +1,62 @@
+{% extends "layout.html" %}
+
+{% import "macros/platforms.html" as platforms %}
+{% import "macros/oses.html" as oses %}
+{% import "macros/statuses.html" as statuses %}
+{% import "macros/forms.html" as forms %}
+
+{% block title %}
+    Create new 
+    {% if profile %}
+        sandbox plugin for {{profile.screen_name|e}}
+    {% else %}
+        public plugin
+    {% endif %}
+{% endblock %}
+
+{% block content %}
+    {% if saved %}
+        <p>Your plugin data submission has been accepted, thank you!</p>
+    {% else %}
+
+        <form class="contribute" action="" method="post">
+            {% set data, errors as form_data, form_errors %}
+
+            {{ forms.hidden(data, errors, 'detected_version', _GET.version) }}
+            
+            {{ forms.fieldset('New plugin details', 'plugin_details') }}
+        
+                <li><p>
+                    Use this form to provide details to create a new plugin
+                    and an initial release.  Some or all of these details may
+                    have already been filled in from data detected about your
+                    browser and an installed plugin, so you may not need to
+                    modify these values.
+                </p></li>
+
+                {{ forms.input(data, errors, 'text', 'pfs_id', 'PFS ID') }}
+                {{ forms.dropdown(data, errors, 'status', 'Status', status_choices) }}
+                {{ forms.input(data, errors, 'text', 'vulnerability_url', 'Vulnerability URL') }}
+                {{ forms.textarea(data, errors, 'vulnerability_description', 'Vulnerability description') }}
+                {{ forms.input(data, errors, 'text', 'name', 'Name') }}
+                {{ forms.input(data, errors, 'text', 'version', 'Version') }}
+                {{ forms.input(data, errors, 'text', 'vendor', 'Vendor') }}
+                {{ forms.input(data, errors, 'text', 'filename', 'Filename') }}
+                {{ forms.textarea(data, errors, 'description', 'Description') }}
+                {{ forms.textarea(data, errors, 'mimetypes', 'MIME types') }}
+
+                {{ forms.input(data, errors, 'text', 'appID', 'App ID') }}
+                {{ forms.input(data, errors, 'text', 'appRelease', 'App release') }}
+                {{ forms.input(data, errors, 'text', 'appVersion', 'App version') }}
+                {{ forms.input(data, errors, 'text', 'clientOS', 'OS name') }}
+                {{ forms.input(data, errors, 'text', 'chromeLocale', 'Locale') }}
+                
+                {{ forms.submit('create', '', 'Create') }}
+                
+            {{ forms.endfieldset() }}
+
+        </form>
+
+    {% endif %}
+
+{% endblock %}

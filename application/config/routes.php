@@ -2,6 +2,8 @@
 
 $config['plugins/submit'] = 'plugins/submit';
 
+$config['plugins/?;create'] = 'plugins/create';
+
 $config['plugins/detail/([^\.]+).json'] = 'plugins/detail/$1/json';
 $config['plugins/detail/([^\.]+).html'] = 'plugins/detail/$1/html';
 $config['plugins/detail/([^;]+);(.*)']  = 'plugins/$2/$1';
@@ -11,6 +13,8 @@ $config['profiles/([^/]+)/']             = 'plugins/sandbox/$1';
 $config['profiles/([^/]+)/plugins/']     = 'plugins/sandbox/$1';
 $config['profiles/([^/]+)/plugins.json'] = 'plugins/sandbox/$1/json';
 
+$config['profiles/([^/]+)/plugins/?;create'] = 
+    'plugins/create/$1';
 $config['profiles/([^/]+)/plugins/detail/([^\.]+).json'] = 
     'plugins/detail/$2/json/$1';
 $config['profiles/([^/]+)/plugins/detail/([^\.]+).html'] = 

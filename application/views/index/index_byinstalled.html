@@ -26,7 +26,7 @@
                 <th>Installed Status</th>
                 <th>Have feedback?</th>
                 {% if is_logged_in %}
-                    <th>Add release to sandbox plugin</th>
+                    <th>Add release to sandbox</th>
                 {% endif %}
             </tr>
         </thead>
@@ -63,6 +63,7 @@
     <div class="add_release template">
         <select name="sandbox_plugins">
             <option value="">-</option>
+            <option value="{{base_url}}profiles/{{authprofile.screen_name|urlencode}}/plugins;create">+ Create new plugin +</option>
             {% for plugin in sandbox_plugins %}
                 <option value="{{base_url}}profiles/{{authprofile.screen_name|urlencode}}/plugins/detail/{{plugin.pfs_id}};edit">{{plugin.name|e}}</option>
             {% endfor %}

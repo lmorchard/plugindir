@@ -34,45 +34,54 @@ class PluginDir_ACL_Setup
             ->addResource('plugin')
 
             ->allow('guest', 'plugin', 'view', 
-                new PluginDir_Plugin_View_Assertion())
+                new PluginDir_Acl_Assert_Plugin_View())
             ->allow('guest', 'plugin', array(
                 'view_public', 'submit_plugin'
             ))
 
             ->allow('member', 'plugin', 'edit', 
-                new PluginDir_Plugin_Edit_Assertion())
-            ->allow('member', 'plugin', 'delete', 
-                new PluginDir_Plugin_Delete_Assertion())
+                new PluginDir_Acl_Assert_Plugin_Edit())
+            ->allow('member', 'plugin', 'delete',
+                new PluginDir_Acl_Assert_Plugin_Delete())
             ->allow('member', 'plugin', array(
-                'copy', 'request_deploy', 'view_own', 'edit_own', 'delete_own'
+                'copy', 'request_deploy', 
+                'view_own', 'edit_own', 'delete_own',
+                'create', 'create_own'
             ))
 
             ->allow('editor', 'plugin', array(
-                'view_any', 'edit_sandbox', 'delete_sandbox', 'deploy'
+                'view_any', 'edit_sandbox', 'delete_sandbox', 
+                'deploy', 'create_sandbox'
             ))
 
             ->allow('member', 'profile', 'view_sandbox', 
-                new PluginDir_Sandbox_View_Assertion())
+                new PluginDir_Acl_Assert_Sandbox_View())
+            ->allow('member', 'profile', 'create_in_sandbox', 
+                new PluginDir_Acl_Assert_Sandbox_CreateIn())
             ->allow('member', 'profile', array( 
-                'view_sandbox_own' 
+                'view_sandbox_own', 'create_in_sandbox_own'
             ))
 
-            ->allow('editor', 'profile', 'view_sandbox_any')
+            ->allow('editor', 'profile', array(
+                'view_sandbox_any', 'create_in_sandbox_any'
+            ))
             ;
     }
 }
 
 /**
- * ACL assertion logic for profile view_sandbox privilege and subordinates.
+ * Overall ACL logic for sandbox operations
  */
-class PluginDir_Sandbox_View_Assertion implements Zend_Acl_Assert_Interface {
+class PluginDir_Acl_Assert_Sandbox implements Zend_Acl_Assert_Interface {
+    protected $base_priv = 'sandbox';
+
     public function assert(Zend_Acl $acl, Zend_Acl_Role_Interface $role = null, 
         Zend_Acl_Resource_Interface $resource = null, $privilege = null)
     {
-        if ($acl->isAllowed($role, $resource, 'view_sandbox_any')) {
+        if ($acl->isAllowed($role, $resource, $this->base_priv . '_any')) {
             return true;
         }
-        if ($acl->isAllowed($role, $resource, 'view_sandbox_own') &&
+        if ($acl->isAllowed($role, $resource, $this->base_priv . '_own') &&
                 !empty($role->id) &&  $resource->id == $role->id) {
             return true;
         }
@@ -80,26 +89,47 @@ class PluginDir_Sandbox_View_Assertion implements Zend_Acl_Assert_Interface {
     }
 }
 
-/**
- * ACL logic for plugin view
- */
-class PluginDir_Plugin_View_Assertion implements Zend_Acl_Assert_Interface {
+class PluginDir_Acl_Assert_Sandbox_View extends PluginDir_Acl_Assert_Sandbox {
+    protected $base_priv = 'view_sandbox';
+}
+class PluginDir_Acl_Assert_Sandbox_CreateIn extends PluginDir_Acl_Assert_Sandbox {
+    protected $base_priv = 'create_in_sandbox';
+
     public function assert(Zend_Acl $acl, Zend_Acl_Role_Interface $role = null, 
         Zend_Acl_Resource_Interface $resource = null, $privilege = null)
     {
-        if ($acl->isAllowed($role, $resource, 'view_any')) {
+        if (empty($resource->id) &&
+                $acl->isAllowed($role, $resource, 'create_in_public')) {
+            // Special case: If the resource is not a profile instance, assume 
+            // this is an attempt to create a new plugin in public.
             return true;
         }
-        if ($acl->isAllowed($role, $resource, 'view_own') &&
+        return parent::assert($acl, $role, $resource, $privilege);
+    }
+}
+ 
+/**
+ * Overall ACL logic for plugin operations
+ */
+class PluginDir_Acl_Assert_Plugin implements Zend_Acl_Assert_Interface {
+    protected $base_priv = 'plugin';
+
+    public function assert(Zend_Acl $acl, Zend_Acl_Role_Interface $role = null, 
+        Zend_Acl_Resource_Interface $resource = null, $privilege = null)
+    {
+        if ($acl->isAllowed($role, $resource, $this->base_priv . '_any')) {
+            return true;
+        }
+        if ($acl->isAllowed($role, $resource, $this->base_priv . '_own') &&
                 !empty($role->id) &&  
                 $resource->sandbox_profile_id == $role->id) {
             return true;
         }
-        if ($acl->isAllowed($role, $resource, 'view_public') &&
+        if ($acl->isAllowed($role, $resource, $this->base_priv . '_public') &&
                 !$resource->is_sandboxed()) {
             return true;
         }
-        if ($acl->isAllowed($role, $resource, 'view_sandbox') &&
+        if ($acl->isAllowed($role, $resource, $this->base_priv . '_sandbox') &&
                 $resource->is_sandboxed()) {
             return true;
         }
@@ -107,50 +137,14 @@ class PluginDir_Plugin_View_Assertion implements Zend_Acl_Assert_Interface {
     }
 }
 
-/**
- * ACL logic for plugin edit
- */
-class PluginDir_Plugin_Edit_Assertion implements Zend_Acl_Assert_Interface {
-    public function assert(Zend_Acl $acl, Zend_Acl_Role_Interface $role = null, 
-        Zend_Acl_Resource_Interface $resource = null, $privilege = null)
-    {
-        if ($acl->isAllowed($role, $resource, 'edit_any')) {
-            return true;
-        }
-        if ($acl->isAllowed($role, $resource, 'edit_own') &&
-                !empty($role->id) &&  
-                $resource->sandbox_profile_id == $role->id) {
-            return true;
-        }
-        if ($acl->isAllowed($role, $resource, 'edit_sandbox') &&
-                $resource->is_sandboxed()) {
-            return true;
-        }
-        return false;
-    }
+class PluginDir_Acl_Assert_Plugin_View extends PluginDir_Acl_Assert_Plugin {
+    protected $base_priv = 'view';
 }
-
-/**
- * ACL logic for plugin delete
- */
-class PluginDir_Plugin_Delete_Assertion implements Zend_Acl_Assert_Interface {
-    public function assert(Zend_Acl $acl, Zend_Acl_Role_Interface $role = null, 
-        Zend_Acl_Resource_Interface $resource = null, $privilege = null)
-    {
-        if ($acl->isAllowed($role, $resource, 'delete_any')) {
-            return true;
-        }
-        if ($acl->isAllowed($role, $resource, 'delete_own') &&
-                !empty($role->id) &&  
-                $resource->sandbox_profile_id == $role->id) {
-            return true;
-        }
-        if ($acl->isAllowed($role, $resource, 'delete_sandbox') &&
-                $resource->is_sandboxed()) {
-            return true;
-        }
-        return false;
-    }
+class PluginDir_Acl_Assert_Plugin_Edit extends PluginDir_Acl_Assert_Plugin {
+    protected $base_priv = 'edit';
+}
+class PluginDir_Acl_Assert_Plugin_Delete extends PluginDir_Acl_Assert_Plugin {
+    protected $base_priv = 'delete';
 }
 
 // Fire up the initialization on load.
