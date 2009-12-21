@@ -516,7 +516,6 @@ class Plugin_Model extends ORM_Resource {
         }
 
         $this->db
-            ->select($select)
             ->from('plugins')
             ->join('plugin_releases', 'plugin_releases.plugin_id', 'plugins.id')
             ->groupby('plugin_releases.id')
@@ -534,15 +533,20 @@ class Plugin_Model extends ORM_Resource {
             ;
 
         // Add sandbox criteria, if any.  Require non-sandboxed if none.
-        if (!empty($criteria['sandboxScreenName'])) {
+        if (empty($criteria['sandboxScreenName'])) {
+            $this->db->where('plugins.sandbox_profile_id IS NULL');
+        } else {
+            // Toss in the sandbox_profile_screen_name column
+            $select[] = 'profiles.screen_name as plugin_sandbox_profile_screen_name';
+            $cols["plugin_sandbox_profile_screen_name"] = 'sandbox_profile_screen_name';
+
+            // Add the sandbox criteria.
             $this->db
                 ->join('profiles', 'profiles.id', 'plugins.sandbox_profile_id', 'LEFT')
                 ->orwhere(array(
                     'profiles.screen_name' => $criteria['sandboxScreenName'], 
                     'plugins.sandbox_profile_id' => NULL
                 ));
-        } else {
-            $this->db->where('plugins.sandbox_profile_id IS NULL');
         }
 
         // Add client OS criteria to the SQL
@@ -574,6 +578,9 @@ class Plugin_Model extends ORM_Resource {
             ->join('mimes', 'mimes_plugins.mime_id', 'mimes.id')
             ->in('mimes.name', $mimetypes)
             ;
+
+        // Finally, roll in all the columns needed.
+        $this->db->select($select);
 
         /* 
          * Fetch all the rows and assemble the results.  

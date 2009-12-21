@@ -67,10 +67,23 @@ PluginDir.Index = (function () {
 
                     var pfs_id = (data.status == 'unknown') ? null : 
                             data.pfsInfo.releases.latest.pfs_id,
-                        plugin_url = (pfs_id) ? 
-                            PluginDir.base_url+'plugins/detail/'+pfs_id : '',
+                        latest = (!pfs_id) ? null :
+                            data.pfsInfo.releases.latest;
                         plugin = data.pluginInfo.raw,
                         version = Pfs.parseVersion(data.pluginInfo.plugin).join('.');
+
+                    // Build a URL for the plugin, including the profile 
+                    // sandbox path if the plugin is sandboxed.
+                    var plugin_url;
+                    if (pfs_id) {
+                        plugin_url = 'plugins/detail/' + pfs_id;
+                        if (latest.sandbox_profile_screen_name) {
+                            plugin_url = 
+                                'profiles/' + latest.sandbox_profile_screen_name +
+                                '/' + plugin_url;
+                        }
+                        plugin_url = PluginDir.base_url + plugin_url;
+                    }
                         
                     // Build a URL for use in linking to the contribution form,
                     // composed of detected plugin details and browser info.
@@ -86,17 +99,15 @@ PluginDir.Index = (function () {
                         mimetypes: data.pluginInfo.mimes.join("\n")
                     }, Pfs.UI.browserInfo()));
 
-                    var submit_url = PluginDir.base_url + 'plugins/submit?' + submit_params;
+                    var submit_url = PluginDir.base_url + 'plugins/submit?' + 
+                        submit_params;
 
                     var status_col = PluginDir.cloneTemplate(
                         // HACK: Use template named for status, fall back
                         // to unknown if not found.
-                        $($('#status_templates')
-                            .find('.'+data.status+',.unknown')[0]),
-                        { 
-                            '.version': ( 'unknown' !== data.status ) ? 
-                                data.pfsInfo.releases.latest.version : '' 
-                        }
+                        $($('#status_templates').find('.'+data.status+',.unknown')[0]),
+                        { '.version': ( 'unknown' !== data.status ) ? 
+                                data.pfsInfo.releases.latest.version : '' }
                     );
 
                     var row_data = {
