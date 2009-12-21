@@ -12,37 +12,37 @@
         <div id="main">
             <div class="header">
                 <h1 class="title">
-                    <a href="{{base_url}}">Mozilla Plugin Directory</a> :: 
+                    <a href="http://mozilla.com" class="mozilla">Mozilla</span> <a href="{{base_url}}" class="home">Plugin Directory</a> &raquo; 
                     {% display title %}
                 </h1>
                 <div class="secondary">
-                    <div class="auth">
+                    <ul class="auth clearfix">
                         {% if is_logged_in %}
-                            {{ authprofile.screen_name }} |
-                            <a href="{{base_url}}profiles/{{authprofile.screen_name|urlencode|e}}/plugins">sandbox</a> |
-                            <a href="{{base_url}}logout">logout</a> |
-                            <a href="{{base_url}}profiles/{{authprofile.screen_name|urlencode|e}}/settings">settings</a> |
+                            <li>{{ authprofile.screen_name }}</li>
+                            <li><a href="{{base_url}}profiles/{{authprofile.screen_name|urlencode|e}}/plugins">sandbox</a></li>
+                            <li><a href="{{base_url}}logout">logout</a></li>
+                            <li><a href="{{base_url}}profiles/{{authprofile.screen_name|urlencode|e}}/settings">settings</a></li>
                         {% else %}
-                            <a href="{{base_url}}login">login</a> |
-                            <a href="{{base_url}}register">register</a> |
+                            <li><a href="{{base_url}}login">login</a></li>
+                            <li><a href="{{base_url}}register">register</a></li>
                         {% endif %}
-                    </div>
-                    <div class="search">
-                        <form method="get" action="{{base_url}}search/results">
-                            <div id="simple_search">
-                                <input id="q" name="q" value="{{q|e}}" 
-                                    placeholder="search releases" />
-                                {#
-                                <span id="advanced_search_toggle">
-                                    <a href="#">Advanced</a> v
-                                </span>
-                                #}
-                            </div>
-                            <fieldset id="advanced_search">
-                                <legend>Advanced search</legend>
-                            </fieldset>
-                        </form>
-                    </div>
+                        <li class="search">
+                            <form method="get" action="{{base_url}}search/results">
+                                <div id="simple_search">
+                                    <input id="q" name="q" value="{{q|e}}" 
+                                        placeholder="search releases" />
+                                    {#
+                                    <span id="advanced_search_toggle">
+                                        <a href="#">Advanced</a> v
+                                    </span>
+                                    #}
+                                </div>
+                                <fieldset id="advanced_search">
+                                    <legend>Advanced search</legend>
+                                </fieldset>
+                            </form>
+                        </li>
+                    </ul>
                 </div>
             </div>
             <div class="content">

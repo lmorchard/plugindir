@@ -15,21 +15,39 @@
 <div class="index_home">
 
     <div class="intro">
-        <p>Intro copy. Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-        Cras vel velit sit amet dolor pharetra ullamcorper ac sit amet lectus.
-        Curabitur ut est ipsum, quis viverra odio. Suspendisse at lacinia
-        justo. Curabitur felis orci, iaculis in feugiat ut, rhoncus sit amet
-        lectus.</p>
+        <h2>Welcome to the Mozilla Plugin Directory</h2>
+        <p>
+            This site is an attempt to collect and provide information about
+            third-party browser plugins installed by people across the web.  
+        </p>
+        <p>
+            Using our plugin detection service, you can check to see if your
+            plugins are up to date (as far as we know) or if you may be
+            vulnerable to any problems or security issues.
+        </p>
+        <p>
+            We can also use your help:  If you are a plugin vendor, or simply
+            know something we don't know about a plugin, you can help us by
+            submitting suggested updates to this database along with information
+            we've detected about your browser and installed plugins.
+        </p>
+        <p>
+            If you want to get even more involved, you can sign up for a
+            profile.  This will give you access to a sandbox in which to 
+            edit plugin records, test them against our detection code in 
+            browsers, and submit changes to our editors for
+            approval and inclusion in the database.
+        </p>
     </div>
 
     <div class="listing">
 
-        <ul class="nav">
+        <ul class="nav clearfix">
 
             {% macro nav_item(base_url, name, label, selected, screen_name) %}
-                <li>
+                <li class="{{ (name == selected) ? 'selected' : '' }}">
                     {% if name == selected %}
-                        <span class="selected">{{label}}</span>
+                        <span>{{label}}</span>
                     {% else %}
                         {% if "sandbox" == name %}
                             <a href="{{base_url}}profiles/{{screen_name|urlencode|e}}/plugins">{{label}}</a>
@@ -50,7 +68,7 @@
 
         </ul>
 
-        {% block index_content %}{% endblock %}
+        <div class="listing_content">{% block index_content %}{% endblock %}</div>
 
     </div>
 

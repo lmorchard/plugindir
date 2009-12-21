@@ -3,7 +3,12 @@
 {% block index_content %}
     {% import "macros/platforms.html" as platforms %}
 
-    <ul class="platform_counts">
+    <p>
+        The following is a list of plugins by browser application, along with a
+        count of releases for each application.
+    </p>
+
+    <ul class="counts platform_counts">
         {% for platform in platform_counts %}
             <li>
                 <span class="count">({{platform.count|e}})</span>

@@ -1,7 +1,11 @@
 {% extends "index/index_shell.html" %}
 
 {% block index_content %}
-    <ul class="name_counts">
+    <p>
+        The following is a list of plugins by name, along with a count of
+        releases for each plugin.
+    </p>
+    <ul class="counts name_counts">
         {% for plugin in name_counts %}
             <li>
                 <span class="count">({{plugin.count|e}})</span>

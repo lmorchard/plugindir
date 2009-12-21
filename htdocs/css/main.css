@@ -1,10 +1,130 @@
 /**
  * Main styles
  */
+.clearfix:after {
+	content:".";
+	display:block;
+	height:0;
+	clear:both;
+	visibility:hidden;
+}
+.clearfix {display:inline-block;}
+/* Hide from IE Mac \*/
+	.clearfix {display:block;}
+/* End hide from IE Mac */
 .template, .templates { 
     display: none;
 }
+body {
+    font: 14px arial;
+    margin: 0 14px 0 14px;
+    padding: 0;
+    background: transparent url(../img/background-feature.jpg) repeat-x top left;
+}
 
+#main {
+    position: relative;
+}
+#main .header {
+    position: relative;
+    height: 2.5em;
+    margin: 0;
+    padding: 0 0 0 0;
+    background: transparent url(../img/header-bg.png) repeat top left;
+    height: 56px;
+    color: #fff;
+}
+#main .header a {
+    color: #fff;
+    text-decoration: none;
+}
+#main .header .title {
+    font-size: 145%;
+    margin: 0;
+    padding: 0;
+    height: 56px;
+    line-height: 64px;
+    font-weight: normal;
+}
+#main .header .title .mozilla {
+    background: transparent url(../img/mozilla-logo.png) no-repeat -5px 0;
+    width: 140px;
+    overflow: hidden;
+    text-indent: 145px;
+    height: 56px;
+    display: block; 
+    float: left;
+}
+#main .header .secondary {
+    position: absolute;
+    font-size: 85%;
+    top: 0;
+    right: 14px;
+    height: 56px;
+    line-height: 64px;
+}
+#main .header .secondary ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+#main .header .secondary ul li {
+    float: left;
+    margin: 0 0.25em 0 0.25em;
+    padding: 0 0.75em 0 0;
+    text-indent: 0;
+}
+#main .header .secondary ul li a {
+    font-weight: bold;
+}
+#main .header .secondary ul li a:hover {
+    text-decoration: underline;
+}
+#main .header .secondary ul li:after {
+    content: "";
+}
+#main .header .secondary ul li.search {
+    padding: 0 0 0 0;
+}
+#main .header .secondary ul li.search:after {
+    content: "";
+}
+#main .header .secondary .auth {
+    display: inline;
+}
+#main .header .secondary .search {
+    display: inline;
+}
+#main .header .secondary .search form {
+    display: inline;
+}
+#main .header .secondary #simple_search {
+    display: inline;
+}
+#main .header #advanced_search_toggle {
+    display: block;
+    width: 100%;
+    text-align: right;
+    padding: 0.25em;
+}
+#main .header #advanced_search {
+    display: none;
+    background: #fff;
+    width: 600px;
+    position: absolute;
+    top: 2.75em;
+    right: 0;
+}
+
+.content {
+    margin: 1em;
+}
+.content p {
+    margin: 0.75em 0 0.75em 0;
+}
+.content form fieldset {
+    border: 1px solid #666;
+}
 .content form fieldset ul.fields {
 }
 .content form fieldset ul.fields li {
@@ -51,86 +171,73 @@
     padding: 0;
 }
 
-#main {
-    position: relative;
-}
-#main .header {
-    position: relative;
-    height: 2.5em;
-}
-#main .header .title {
-    font-size: 125%;
-}
-#main .header .secondary {
-    position: absolute;
-    top: 0;
-    right: 0;
-}
-#main .header .secondary .auth {
-    display: inline;
-}
-#main .header .secondary .search {
-    display: inline;
-}
-#main .header .secondary .search form {
-    display: inline;
-}
-#main .header .secondary #simple_search {
-    display: inline;
-}
-#main .header #advanced_search_toggle {
-    display: block;
-    width: 100%;
-    text-align: right;
-    padding: 0.25em;
-}
-#main .header #advanced_search {
-    display: none;
-    background: #fff;
-    width: 600px;
-    position: absolute;
-    top: 2.75em;
-    right: 0;
-}
-
 .index_home .listing {
-    margin: 0.5em;
-    padding: 0.5em;
-    border: 1px solid #ccc;
+    margin: 1.5em 0 0 0;
+}
+.index_home .listing .listing_content {
+    padding: 0.75em 1.75em 0.75em 1.75em;
+    margin: 0 0 0 0;
+    background: #fff;
+    border-left: 1px solid #ccc;
+    border-right: 1px solid #ccc;
+    border-bottom: 1px solid #ccc;
+}
+.index_home .listing ul {
+    list-style: none;
 }
 .index_home .listing .count {
     float: left;
-    width: 5ex;
+    width: 4ex;
     text-align: right;
     padding-right: 0.5em;
 }
+.index_home .listing ul.counts li {
+    line-height: 1.75em;
+}
 .index_home .listing ul.nav {
     list-style: none;
-    margin: 0;
+    margin: 0 0 0 0;
     padding: 0;
-    height: 2em;
+    border-bottom: 1px solid #ccc;
 }
 .index_home .listing ul.nav li {
-    margin: 0 0.25em 0 0.25em;
     border: 1px solid #ccc;
     float: left;
 }
-.index_home .listing ul.nav li span.selected {
+.index_home .listing .counts li {
+    margin: 0 0 0 0;
+}
+.index_home .listing ul.nav li {
+    margin: 0 0.5em -1px 0;
+}
+.index_home .listing ul.nav li.selected {
+    border-bottom: 1px solid #fff;
+    background: #fff;
+}
+.index_home .listing ul.nav li.selected span {
     display: block;
-    padding: 0.125em 0.75em;
+    margin: 0 0 0 0;
+    padding: 0.25em 0.75em 0.25em 0.75em;
 }
 .index_home .listing ul.nav li a {
     display: block;
-    padding: 0.125em 0.75em;
-    background-color: #ddd;
+    padding: 0.25em 0.75em 0.25em 0.75em;
+    background-color: #eff7fa;
+    text-decoration: none;
+    color: #888;
+}
+.index_home .listing ul.nav li a:hover {
+    background-color: #fff;
+    color: #666;
 }
 .index_home .listing .installed_plugins {
-    margin: 0.5em 0em;
+    margin: 0 0 0 0;
+    padding: 0 0 0 0;
 }
-.index_home.noJS .listing .installed_plugins {
+.noJS .listing .installed_plugins {
     display: none; /* This will be overridden in JS */
 }
-.index_home.hasJS .listing .installed_plugins_warning {
+.hasJS .listing .installed_plugins_warning {
     display: none; /* This will be overridden in JS */
 }
 .index_home .listing .installed_plugins thead th {
@@ -141,7 +248,6 @@
     text-align: left;
     padding: 0.25em 0.5em 0.25em 0.5em;
 }
-
 .index_home .listing .installed_plugins tbody tr.from_sandbox td {
     background-color: #ddd;
 }

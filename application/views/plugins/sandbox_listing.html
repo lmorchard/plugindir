@@ -2,7 +2,7 @@
     <p>This sandbox is empty.</p>
 {% else %}
 
-    <ul class="sandbox_plugins">
+    <ul class="counts sandbox_plugins">
         {% for plugin in sandbox_plugins %}
             <li id="{{plugin.pfs_id|e}}">
                 [<a href="{{base_url}}profiles/{{profile.screen_name|e}}/plugins/detail/{{plugin.pfs_id|urlencode|e}};delete">delete</a>]

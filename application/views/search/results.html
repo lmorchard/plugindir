@@ -28,6 +28,10 @@
                     <td>{{oses.readable(release.os)}}</td>
                     <td>{{statuses.readable(release.status_code)}}</td>
                 </tr>
+            {% else %}
+                <tr><td colspan="5">
+                    <p>No search results, please change your search terms and try again.</p>
+                </td></tr>
             {% endfor %}
         </tbody>
     </table>
