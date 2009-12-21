@@ -15,7 +15,6 @@
 * Add release to plugin in editor
     * New release based in installed plugin
     * New release based on submitted reports
-    * New blank release
 * Add release via JSON API
 * HTTP basic auth in API (OAuth?)
 

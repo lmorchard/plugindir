@@ -182,6 +182,7 @@
     padding: 0.25em 0.5em 0.25em 0.5em;
 }
 
+
 #ctrl_plugins_act_edit fieldset {
     margin: 0.5em 0.5em 0.5em 1em;
     padding: 0.5em 0.5em 0.5em 0.75em;
@@ -193,6 +194,9 @@
     background: #eee;
     padding: 0.125em 0.5em;
     margin: 0 0 0 -0.825em;
+}
+#ctrl_plugins_act_edit fieldset.closed legend {
+    margin: 0 0 0 -0.25em;
 }
 #ctrl_plugins_act_edit fieldset legend:hover {
     background: #fff;
@@ -223,13 +227,22 @@
     padding: 0 0 0 0;
     margin: 0 0 0 0;
 }
-#ctrl_plugins_act_edit ul.fields li.controls {
+#ctrl_plugins_act_edit ul.controls {
     list-style-type: none;
     text-align: right;
-    padding: 0 0 0.5em 0;
-    margin: 0 0 1.25em 0;
+    padding: 0 0 0em 0;
+    margin: 0 0 0em 0;
     font-size: 0.85em;
-    border-bottom: 1px solid #ccc;
+    height: 1.5em;
+}
+#ctrl_plugins_act_edit .release ul.controls {
+    margin: 0 0 2em 0;
+}
+#ctrl_plugins_act_edit ul.controls li {
+    margin: 0 0 0 1em;
+    padding: 0.25em 0.5em;
+    border: 1px solid #ccc;
+    float: right;
 }
 #ctrl_plugins_act_edit ul.fields li.field {
     position: relative;

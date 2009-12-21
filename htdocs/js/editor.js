@@ -1,6 +1,7 @@
 /**
  * Main package for plugin editor
  */
+/*jslint laxbreak: true */
 PluginDir.Editor = (function () {
 
     var $this = {
@@ -17,9 +18,21 @@ PluginDir.Editor = (function () {
         save_inprogress: false, 
         // Time in milliseconds of idle time before save.
         save_delay: 2 * 1000, 
-
+        // Quick mapping of app_ids to readable versions for summaries.
         app_ids: {
             '{ec8030f7-c20a-464f-9b0e-13a3a9e97384}': 'Firefox'
+        },
+        // Defaults for a new empty release
+        property_defaults: {
+            status: 'latest',
+            version: '0.0.0',
+            platform: {
+                app_id: '*',
+                app_release: '*',
+                app_version: '*',
+                locale: '*'
+            },
+            os_name: '*'
         },
 
         /**
@@ -27,7 +40,7 @@ PluginDir.Editor = (function () {
          */
         init: function () {
             $(document).ready($this.ready);
-            return $this = this;
+            return this;
         },
 
         /**
@@ -53,10 +66,17 @@ PluginDir.Editor = (function () {
             });
 
             // Wire up a quick & dirty outline UI
-            $('form').click(function (ev) {
+            $('form#editor').click(function (ev) {
                 if ('legend' == ev.target.nodeName.toLowerCase()) {
                     $(ev.target).parent().toggleClass('closed');
                 }
+            });
+
+            // Wire up the add release button
+            $('form#editor #add_blank_release').click(function (ev) {
+                var release = $this.addRelease();
+                release.find('fieldset').removeClass('closed');
+                return false;
             });
 
             // If the server set a JSON URL for loading, do so.
@@ -68,6 +88,8 @@ PluginDir.Editor = (function () {
 
         /**
          * Update the status message.
+         *
+         * @param {string} msg Status message
          */
         updateStatusMessage: function (msg) {
             $('#save_message').text(msg);
@@ -76,6 +98,8 @@ PluginDir.Editor = (function () {
 
         /**
          * Load plugin JSON by URL
+         *
+         * @param {string} plugin_url URL for plugin JSON
          */
         loadPlugin: function (plugin_url) {
             $this.json_url = plugin_url;
@@ -86,7 +110,7 @@ PluginDir.Editor = (function () {
          * Save the current state of plugin edits.
          */
         savePlugin: function () {
-            if ($this.save_inprogress) return;
+            if ($this.save_inprogress) { return; }
             $this.save_inprogress = true;
 
             $this.updateStatusMessage("Saving at " + (new Date()));
@@ -122,9 +146,9 @@ PluginDir.Editor = (function () {
          */
         scheduleSavePlugin: function () {
             // Bail if autosave disabled.
-            if (!$this.autosave) return;
+            if (!$this.autosave) { return; }
             // Bail if a save is in progress.
-            if ($this.save_inprogress) return;
+            if ($this.save_inprogress) { return; }
             // If a save timer is already ticking, cancel it.
             if ($this.save_timer) {
                 clearTimeout($this.save_timer);
@@ -137,15 +161,18 @@ PluginDir.Editor = (function () {
 
         /**
          * Update the current definition from a JS data structure.
+         *
+         * @param {object} definition Plugin definition
          */
         updateFromDefinition: function (definition) {
             $this.definition = definition;
             $this.pfs_id = definition.meta.pfs_id;
 
             for (name in $this.definition.meta) {
-                if (!$this.definition.meta.hasOwnProperty(name)) continue;
-                var value = $this.definition.meta[name];
-                $('#meta-fields input[name='+name+']').val(value);
+                if ($this.definition.meta.hasOwnProperty(name)) { 
+                    var value = $this.definition.meta[name];
+                    $('#meta-fields input[name='+name+']').val(value);
+                }
             }
 
             $('#mimes')
@@ -180,14 +207,14 @@ PluginDir.Editor = (function () {
             
             $this.definition.aliases = {
                 literal: (''+$('#literal_aliases').val()).split("\n"),
-                regex: (''+$('#regex_aliases').val()).split("\n"),
+                regex: (''+$('#regex_aliases').val()).split("\n")
             };
 
             $this.definition.releases = [];
             $('ul#releases li.release ul.fields').each(function () {
                 var release = $this.extractPropertyFields($(this));
                 $this.definition.releases.push(release);
-            })
+            });
 
         },
 
@@ -199,10 +226,7 @@ PluginDir.Editor = (function () {
 
             var releases_parent = $('#releases').empty();
             $.each($this.definition.releases, function (idx, release_data) {
-                var release = $('.templates .releases .release')
-                        .clone().appendTo(releases_parent),
-                    fields = release.find('.fields');
-                $this.buildPropertyFields(fields);
+                $this.addRelease(release_data, true);
             });
         },
 
@@ -227,22 +251,20 @@ PluginDir.Editor = (function () {
          */
         updatePropertyFields: function (parent, data) {
             for (name in $this.plugin_properties) {
-                if (!$this.plugin_properties.hasOwnProperty(name)) continue;
-                
-                var prop = $this.plugin_properties[name],
-                    val = '';
-
-                // Allow one level of data structure depth, specified by
-                // 'parent' in property definition. (eg. platform')
-                if (prop.parent) {
-                    if (data[prop.parent]) {
-                        val = data[prop.parent][name];
+                if ($this.plugin_properties.hasOwnProperty(name)) { 
+                    var prop = $this.plugin_properties[name],
+                        val = '';
+                    // Allow one level of data structure depth, specified by
+                    // 'parent' in property definition. (eg. platform')
+                    if (prop.parent) {
+                        if (data[prop.parent]) {
+                            val = data[prop.parent][name];
+                        }
+                    } else {
+                        val = data[name];
                     }
-                } else {
-                    val = data[name];
+                    parent.find('*[name='+name+']').val(val);
                 }
-
-                parent.find('*[name='+name+']').val(val);
             }
         },
 
@@ -252,22 +274,20 @@ PluginDir.Editor = (function () {
         extractPropertyFields: function (parent) {
             var fields = { };
             for (name in $this.plugin_properties) {
-                if (!$this.plugin_properties.hasOwnProperty(name)) continue;
-                
-                var prop = $this.plugin_properties[name],
-                    val = parent.find('*[name='+name+']').val();
-
-                if ('' === val || 'undefined' == val) continue;
-
-                // Allow one level of data structure depth, specified by
-                // 'parent' in property definition. (eg. platform')
-                if (prop.parent) {
-                    if (!fields[prop.parent]) {
-                        fields[prop.parent] = {};
+                if ($this.plugin_properties.hasOwnProperty(name)) {
+                    var prop = $this.plugin_properties[name],
+                        val = parent.find('*[name='+name+']').val();
+                    if ('' === val || 'undefined' == val) { continue; }
+                    // Allow one level of data structure depth, specified by
+                    // 'parent' in property definition. (eg. platform')
+                    if (prop.parent) {
+                        if (!fields[prop.parent]) {
+                            fields[prop.parent] = {};
+                        }
+                        fields[prop.parent][name] = val;
+                    } else {
+                        fields[name] = val;
                     }
-                    fields[prop.parent][name] = val;
-                } else {
-                    fields[name] = val;
                 }
             }
             return fields;
@@ -326,35 +346,25 @@ PluginDir.Editor = (function () {
             // Clean out the contents before rebuild.
             parent.empty();
 
-            // Add and wire up the hide/show links for the property set.
-            $('.templates .fields .controls')
-                .clone().removeClass('template').appendTo(parent);
-                
-            parent.find('.controls .hide').click( function () {
-                $this.hideEmptyProperties(parent); return false;
-            });
-
-            parent.find('.controls .show').click( function () {
-                $this.showAllProperties(parent); return false;
-            });
-
             for (name in $this.plugin_properties) {
-                if (!$this.plugin_properties.hasOwnProperty(name)) continue;
-                if (is_meta && 'status' === name) continue;
-                //if (!is_meta && 'pfs_id' === name) continue;
-                if ('pfs_id' === name) continue;
+                if ($this.plugin_properties.hasOwnProperty(name)) {
+                    if (is_meta && 'status' === name) { continue; }
+                    //if (!is_meta && 'pfs_id' === name) continue;
+                    if ('pfs_id' === name) { continue; }
+                    if ('modified' === name) { continue; }
 
-                var spec = $this.plugin_properties[name];
+                    var spec = $this.plugin_properties[name];
 
-                $('.templates .fields .field.' + spec.type)
-                    .clone().removeClass('template')
-                    .find('label').text(name).end()
-                    .find('input,textarea,select')
-                        .attr('name', name)
-                        .change($this.fieldChanged)
-                    .end()
-                    .find('p.notes').text(spec.description).end()
-                    .appendTo(parent);
+                    $('.templates .fields .field.' + spec.type)
+                        .clone().removeClass('template')
+                        .find('label').text(name).end()
+                        .find('input,textarea,select')
+                            .attr('name', name)
+                            .change($this.fieldChanged)
+                        .end()
+                        .find('p.notes').text(spec.description).end()
+                        .appendTo(parent);
+                }
             }
 
             $this.hideEmptyProperties(parent);
@@ -364,7 +374,7 @@ PluginDir.Editor = (function () {
          * React to a changed field.
          */
         fieldChanged: function (ev) {
-            $this.updateReleaseSummary($(this).parent().parent().parent().parent());
+            $this.updateReleaseSummary($(this).parents('fieldset:first'));
             $this.scheduleSavePlugin();
         },
 
@@ -381,13 +391,61 @@ PluginDir.Editor = (function () {
             $.each(fields, function () {
                 var name = this,
                     val = release.find('*[name='+name+']').val();
-                console.log("NAME " + name);
                 if ('app_id' == name && $this.app_ids[val]) { 
                     val = $this.app_ids[val];
                 }
-                if ('*' !== val) parts.push(val);
+                if ('*' !== val) { parts.push(val); }
             });
             release.find('legend').text(parts.join(' - '));
+        },
+
+        /**
+         * Add a new release, with defaults.
+         *
+         * @param {object}  defaults Property defaults for release
+         * @param {boolean} append   Whether to append (true) or prepend (false)
+         *
+         * @return {object} The release element just added.
+         */
+        addRelease: function (defaults, append) {
+            var releases_parent = $('form#editor #releases'),
+                release = $('.templates .releases .release').clone()
+                    [append ? 'appendTo' : 'prependTo'](releases_parent);
+                fields = release.find('.fields');
+
+            if (!defaults) { 
+                defaults = $this.property_defaults;
+            }
+
+            // Build the fields, update values, hide empty ones, update the
+            // release summary.
+            $this.buildPropertyFields(fields);
+            $this.updatePropertyFields(release, defaults);
+            $this.hideEmptyProperties(release);
+            $this.updateReleaseSummary(release.find('fieldset'));
+
+            // Wire up controls.
+            release.find('.controls .hide').click( function () {
+                $this.hideEmptyProperties(release); return false;
+            });
+            release.find('.controls .show').click( function () {
+                $this.showAllProperties(release); return false;
+            });
+            release.find('.controls .delete').click( function () {
+                $this.deleteRelease(release); return false;
+            });
+
+            return release;
+        },
+
+        /**
+         * Delete an existing release.
+         */
+        deleteRelease: function (release) {
+            if (window.confirm('Delete this release?')) {
+                release.remove();
+                $this.scheduleSavePlugin();
+            }
         },
 
         EOF: null // I hate trailing comma errors

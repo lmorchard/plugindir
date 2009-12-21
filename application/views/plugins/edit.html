@@ -25,14 +25,18 @@
 
         <fieldset>
             <legend>Options</legend>
-            <button id="save">Save now</button>
-            <input type="checkbox" checked id="autosave" /><span>Autosave</span>
-            —
-            <span id="save_message"></span>
-            —
-            <a href="{{base_url}}plugins/detail/{{plugin.pfs_id}}.json" target="_new">Saved JSON data</a>
-            —
-            <a href="" id="json-out-link" target="_new">Current JSON data</a>
+            <ul class="fields">
+                <li>
+                    <button id="save">Save now</button>
+                    <input type="checkbox" checked id="autosave" /><span>Autosave</span>
+                    —
+                    <span id="save_message"></span>
+                    —
+                    <a href="{{base_url}}plugins/detail/{{plugin.pfs_id}}.json" target="_new">Saved JSON data</a>
+                    —
+                    <a href="" id="json-out-link" target="_new">Current JSON data</a>
+                </li>
+            </ul>
         </fieldset>
 
         <fieldset>
@@ -63,6 +67,9 @@
 
         <fieldset>
             <legend>Releases</legend>
+            <ul class="controls">
+                <li><a href="#" id="add_blank_release">[ + ] Add new release</a></li>
+            </ul>
             <ul id="releases">
             </ul>
         </fieldset>
@@ -75,18 +82,22 @@
             <li class="release">
                 <fieldset class="closed">
                     <legend>Release</legend>
+                    <ul class="controls">
+                        <li>
+                            <a href="#" class="delete">[ x ] Delete release</a>
+                        </li>
+                        <li>
+                            <a href="#" class="show">Show</a> /
+                            <a href="#" class="hide">Hide</a>
+                            empty properties.
+                        </li>
+                    </ul>
                     <ul class="fields"></ul>
                 </fieldset>
             </li>
         </ul>
 
         <ul class="fields">
-
-            <li class="controls">
-                <a href="#" class="show">Show</a> /
-                <a href="#" class="hide">Hide</a>
-                empty properties.
-            </li>
 
             <li class="field template text">
                 <label>...</label>

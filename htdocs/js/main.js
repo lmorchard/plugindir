@@ -56,49 +56,6 @@ PluginDir = (function () {
 
             var browser_plugins = Pfs.UI.browserPlugins(navigator.plugins);
 
-            // First, append rows for the plugins with undetected versions
-            $.each(Pfs.UI.unknownVersionPlugins, function () {
-                var submit_url, fake_pfs_id,
-                    mimes = [],
-                    plugin = this;
-
-                // Collect the mimetypes from the unknown plugin.
-                for (var i=0; i<plugin.length; i++) {
-                    mimes.push(plugin.item(i).type);
-                }
-
-                // Build a URL for use in linking to the contribution form,
-                // composed of detected plugin details and browser info.
-                submit_url = $this.base_url + 'plugins/submit?' +
-                    $.param($.extend({
-                        status: 'unknown',
-                        pfs_id: $this.inventPfsId(plugin),
-                        name: plugin.name,
-                        filename: plugin.filename,
-                        description: plugin.description,
-                        version: null,
-                        mimetypes: mimes.join("\n")
-                    }, Pfs.UI.browserInfo()));
-
-                // Add the table row from template.
-                $this.cloneTemplate(
-                    plugins_table.find('tr.template'),
-                    {
-                        ".name": plugin.name,
-                        ".description": plugin.description,
-                        ".version": 'Not detected (<a href="#">Any ideas?</a>)',
-                        '.status': $this.cloneTemplate(
-                            $('#status_templates').find('.unknown')
-                        ),
-                        '.feedback': $this.cloneTemplate(
-                            $('#feedback_templates').find('.unknown'),
-                            { '@href': submit_url }
-                        )
-                    }, 
-                    plugins_table
-                );
-            });
-
             // Next, run each of the plugins with detected versions though PFS2
             Pfs.findPluginInfos(Pfs.UI.browserInfo(), browser_plugins, 
                 function (data) {
@@ -154,6 +111,51 @@ PluginDir = (function () {
                     
                 },
                 function () {
+
+                    // After detection finished, append rows for the plugins
+                    // with undetected versions
+                    $.each(Pfs.UI.unknownVersionPlugins, function () {
+                        var submit_url, fake_pfs_id,
+                            mimes = [],
+                            plugin = this;
+
+                        // Collect the mimetypes from the unknown plugin.
+                        for (var i=0; i<plugin.length; i++) {
+                            mimes.push(plugin.item(i).type);
+                        }
+
+                        // Build a URL for use in linking to the contribution form,
+                        // composed of detected plugin details and browser info.
+                        submit_url = $this.base_url + 'plugins/submit?' +
+                            $.param($.extend({
+                                status: 'unknown',
+                                pfs_id: $this.inventPfsId(plugin),
+                                name: plugin.name,
+                                filename: plugin.filename,
+                                description: plugin.description,
+                                version: null,
+                                mimetypes: mimes.join("\n")
+                            }, Pfs.UI.browserInfo()));
+
+                        // Add the table row from template.
+                        $this.cloneTemplate(
+                            plugins_table.find('tr.template'),
+                            {
+                                ".name": plugin.name,
+                                ".description": plugin.description,
+                                ".version": 'Not detected (<a href="#">Any ideas?</a>)',
+                                '.status': $this.cloneTemplate(
+                                    $('#status_templates').find('.unknown')
+                                ),
+                                '.feedback': $this.cloneTemplate(
+                                    $('#feedback_templates').find('.unknown'),
+                                    { '@href': submit_url }
+                                )
+                            }, 
+                            plugins_table
+                        );
+                    });
+
                 }
             );
 
