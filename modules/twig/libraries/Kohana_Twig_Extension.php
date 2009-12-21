@@ -25,11 +25,10 @@ class Kohana_Twig_Extension extends Twig_Extension
      */
     public function getFilters()
     {
-        $filters = array();
-
-        $filters['phpeval']  = array('Kohana_Twig_Extension::filter_phpeval', false);
-        $filters['url_site'] = array('url::site', false );
-        $filters['url_base'] = array('Kohana_Twig_Extension::filter_urlBase', false);
+        $filters = array(
+            'phpeval'  => array('Kohana_Twig_Extension::filter_phpeval', false),
+            'json'     => array('Kohana_Twig_Extension::filter_json', false)
+        );
 
         return $filters;
     }
@@ -43,9 +42,12 @@ class Kohana_Twig_Extension extends Twig_Extension
         return eval($string);
     }
 
-    public static function filter_urlBase($string)
+    /**
+     * Convert a data structure into a JSON string.
+     */
+    public static function filter_json($data)
     {
-        return url::base() . $string;
+        return json_encode($data);
     }
 
 }

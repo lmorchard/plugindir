@@ -12,8 +12,11 @@
 
     <ul class="actions">
         <li><a href="#">Copy to Sandbox</a></li>
-        <li><a href="#">Edit Details</a></li>
-        <li><a href="#">View Original</a></li>
+        <li><a href="{{base_url}}plugins/detail/{{plugin.pfs_id}};edit">Edit Details</a></li>
+        {% if plugin.sandbox_profile_id %}
+            <li><a href="#">View Original</a></li>
+        {% endif %}
+        <li><a href="{{base_url}}plugins/detail/{{plugin.pfs_id}}.json">JSON export</a></li>
     </ul>
 
     <div class="meta">
@@ -45,7 +48,7 @@
                     </thead>
                     <tbody>
                         {% for release in version_releases %}
-                        <tr id="{{release.plugin.pfs_id}}-{{release.id}}">
+                            <tr id="{{release.plugin.pfs_id}}-{{release.id}}">
                                 <td>{{platforms.readable(release.platform)}}</td>
                                 <td>{{oses.readable(release.os)}}</td>
                                 <td>{{statuses.readable(release.status_code)}}</td>

@@ -24,15 +24,6 @@ class PluginRelease_Model extends ORM {
     );
 
     /**
-     *
-     */
-    public function search($criteria)
-    {
-
-
-    }
-
-    /**
      * Build an array full of the properties of this release - plus the 
      * properties of the associated plugin, platform, and OS.
      */

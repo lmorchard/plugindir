@@ -182,7 +182,51 @@
     padding: 0.25em 0.5em 0.25em 0.5em;
 }
 
-
-
-
+#ctrl_plugins_act_edit fieldset {
+    margin: 0.5em 0.5em 0.5em 1em;
+    padding: 0.5em 0.5em 0.5em 0.75em;
+}
+#ctrl_plugins_act_edit ul#releases {
+    padding: 0 0 0 0;
+    margin: 0 0 0 0;
+}
+#ctrl_plugins_act_edit ul#releases li.release {
+    list-style-type: none;
+}
+#ctrl_plugins_act_edit ul.fields {
+    padding: 0 0 0 0;
+    margin: 0 0 0 0;
+}
+#ctrl_plugins_act_edit ul.fields li.controls {
+    list-style-type: none;
+    text-align: right;
+    padding: 0 0 0.5em 0;
+    margin: 0 0 1.25em 0;
+    font-size: 0.85em;
+    border-bottom: 1px solid #ccc;
+}
+#ctrl_plugins_act_edit ul.fields li.field {
+    position: relative;
+    list-style-type: none;
+    height: 2.5em;
+}
+#ctrl_plugins_act_edit ul.fields li.field label {
+    display: block;
+    font-size: 1em;
+    width: 22ex;
+    padding: 0.125em 1em 0.125em 1em;
+    float: left;
+    text-align: right;    
+}
+#ctrl_plugins_act_edit ul.fields li.field input.text {
+    width: 55ex;
+}
+#ctrl_plugins_act_edit ul.fields li.field p.notes {
+    position: absolute;
+    font-size: 0.8em;
+    top: 0em;
+    left: 95ex;
+    padding: 0 0 0 0;
+    margin: 0 0 0 0;
+}
 

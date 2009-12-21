@@ -3,17 +3,16 @@
  */
 PluginDir = (function () {
 
-    //var pfs_endpoint = 'http://pfs2.mozilla.org/';
-    var pfs_endpoint = 'http://dev.plugindir.mozilla.org/api/v1/lookup';
-
     var $this = {
+
+        pfs_endpoint: 'http://dev.plugindir.mozilla.org/api/v1/lookup',
 
         /**
          * Initialize the package.
          */
         init: function () {
 
-            Pfs.endpoint = pfs_endpoint;
+            Pfs.endpoint = $this.pfs_endpoint;
 
             $(document).ready(function () {
 

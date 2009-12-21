@@ -1,0 +1,77 @@
+{% extends "layout.html" %}
+
+{% import "macros/platforms.html" as platforms %}
+{% import "macros/oses.html" as oses %}
+{% import "macros/statuses.html" as statuses %}
+
+{% block title %}
+    Plugin Editor :: {{plugin.name | e}}
+{% endblock %}
+
+{% block js_includes %}
+    {% parent %}
+    <script type="text/javascript" src="{{base_url}}js/editor.js"></script>
+{% endblock %}
+
+{% block js_defines %}
+    PluginDir.Editor.json_url = "{{base_url}}plugins/detail/{{plugin.pfs_id}}.json";
+    PluginDir.Editor.plugin_properties = {{ properties | json }};
+{% endblock %}
+
+{% block content %}
+
+    <form id="editor">
+
+        <fieldset>
+            <legend>Plugin metadata and release defaults</legend>
+            <ul id="meta-fields" class="fields"></ul>
+        </fieldset>
+
+        <fieldset>
+            <legend>Releases</legend>
+            <ul id="releases">
+            </ul>
+        </fieldset>
+
+    </form>
+
+    <div class="templates">
+
+        <ul class="releases">
+            <li class="release">
+                <fieldset>
+                    <ul class="fields"></ul>
+                </fieldset>
+            </li>
+        </ul>
+
+        <ul class="fields">
+
+            <li class="controls">
+                <a href="#" class="show">Show</a> /
+                <a href="#" class="hide">Hide</a>
+                empty properties.
+            </li>
+
+            <li class="field template text">
+                <label>...</label>
+                <input class="text" type="text" size="40" name="..." />
+                <p class="notes">...</p>
+            </li>
+
+            <li class="field template status">
+                <label>...</label>
+                <select name="...">
+                    <option value="" selected>--</option>
+                    <option value="latest">Latest</option>
+                    <option value="vulnerable">Vulnerable</option>
+                    <option value="outdated">Outdated</option>
+                </select>
+                <p class="description">...</p>
+            </li>
+
+        </ul>
+
+    </div>
+
+{% endblock %}

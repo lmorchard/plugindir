@@ -41,7 +41,7 @@ class Plugins_Controller extends Local_Controller {
     /**
      * Display plugin details.
      */
-    function detail($pfs_id, $format)
+    function detail($pfs_id, $format='html')
     {
         // Look for the plugin, throw a 404 if not found.
         $plugin = ORM::factory('plugin', $pfs_id);
@@ -50,11 +50,15 @@ class Plugins_Controller extends Local_Controller {
         }
 
         if ('json' == $format) {
+            // TODO: Allow authorized uploads via PUT / POST
+            
+            // Return the plugin data as an export in JSON
             $this->auto_render = FALSE;
             $out = $plugin->export();
             return json::render($out, $this->input->get('callback'));
         }
 
+        // Pass the plugin over to the template.
         $this->view->plugin = $plugin->as_array();
 
         // Collate the plugin releases by version.
@@ -72,6 +76,22 @@ class Plugins_Controller extends Local_Controller {
         $this->view->releases = $releases;
     }
 
+    /**
+     * Fire up the plugin editor.
+     */
+    function edit($pfs_id)
+    {
+        // Look for the plugin, throw a 404 if not found.
+        $plugin = ORM::factory('plugin', $pfs_id);
+        if (!$plugin->loaded) {
+            return Event::run('system.404');
+        }
+         
+        $this->view->set(array(
+            'plugin' => $plugin->as_array(),
+            'properties' => Plugin_Model::$properties
+        ));
+    }
 
     /**
      * Munge and compare two versions for sorting.
