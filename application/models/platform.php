@@ -25,7 +25,9 @@ class Platform_Model extends ORM {
         return $this->db->query("
             SELECT count(plugin_releases.id) AS count, platforms.*
             FROM platforms
-            JOIN plugin_releases WHERE platforms.id = plugin_releases.platform_id
+            JOIN plugin_releases ON platforms.id = plugin_releases.platform_id
+            JOIN plugins ON plugin_releases.plugin_id = plugins.id
+            WHERE plugins.sandbox_profile_id IS NULL
             GROUP BY platforms.id
             ORDER BY count DESC
         ")->result_array();

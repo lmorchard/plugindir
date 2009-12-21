@@ -20,7 +20,9 @@ class OS_Model extends ORM {
         return $this->db->query("
             SELECT count(plugin_releases.id) AS count, oses.id AS id, oses.name AS name
             FROM oses
-            JOIN plugin_releases WHERE oses.id = plugin_releases.os_id
+            JOIN plugin_releases ON oses.id = plugin_releases.os_id
+            JOIN plugins ON plugin_releases.plugin_id = plugins.id
+            WHERE plugins.sandbox_profile_id IS NULL
             GROUP BY oses.name
             ORDER BY count DESC
         ")->result_array();
