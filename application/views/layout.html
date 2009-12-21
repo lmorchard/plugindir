@@ -43,6 +43,9 @@
                 </div>
             </div>
             <div class="content">
+                {% if flash_message %}
+                    <p class="flash_message">{{ flash_message | e }}</p>
+                {% endif %}
                 {% block content %}{% endblock %}
             </div>
         </div>

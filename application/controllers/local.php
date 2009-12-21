@@ -28,6 +28,8 @@ class Local_Controller extends TwigRender_Controller {
             'form_data'         => form::$data,
             'form_errors'       => form::$errors,
 
+            'flash_message' => Session::instance()->get_once('message'),
+
             'is_logged_in' => authprofiles::is_logged_in(),
             'authprofile'  => $profile,
 

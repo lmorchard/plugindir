@@ -3,11 +3,11 @@
 {% import "macros/forms.html" as forms %}
 
 {% block title %}
-    Register
+    Edit details for {{authprofile.screen_name}}
 {% endblock %}
 
 {% block content %}
-    <form class="register" action="{{base_url}}register" method="post">
+    <form class="register" action="" method="post">
         {% set data, errors as form_data, form_errors %}
         {{ forms.fieldset('Login details', 'login') }}
             {# {{ forms.input(data, errors, 'text', 'screen_name', 'Screen name') }} #}
