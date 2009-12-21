@@ -18,9 +18,8 @@ class Local_Controller extends TwigRender_Controller {
 
     public function render() {
 
-        $profile = authprofiles::is_logged_in() ?
-            authprofiles::get_profile()->as_array() :
-            array();
+        $profile = authprofiles::get_profile();
+        if ($profile) $profile = $profile->as_array();
 
         View::set_global(array(
             'base_url'          => url::base(),
