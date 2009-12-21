@@ -85,9 +85,18 @@ class Plugin_Model_Test extends PHPUnit_Framework_TestCase
     {
         LMO_Utils_EnvConfig::apply('testing');
 
-        $this->plugin_model = ORM::factory('plugin');
-        $this->plugin_model->delete_all();
-        $this->plugin_model->import(self::$test_plugin);
+        // Clear out all model data, wipe caches, and stash instances.
+        $models = array(
+            'mimetype', 'os', 'platform', 'pluginalias', 'pluginrelease', 
+            'submission', 'plugin'
+        );
+        foreach ($models as $model) {
+            $this->{"{$model}_model"} = ORM::factory($model)
+                ->delete_all()
+                ->clear_cache();
+        }
+
+        Plugin_Model::import(self::$test_plugin);
     }
 
     /**
@@ -242,12 +251,11 @@ class Plugin_Model_Test extends PHPUnit_Framework_TestCase
                 )
             ),
             'aliases' => array(
-                'Super Happy Future Viewer',
                 'Foobar Corporation Viewer of Media',
             ),
             'mimes' => array(
                 'audio/x-foobar-audio',
-                'video/x-foobar-video'
+                'new-video/x-foobar-new-video'
             ),
             'releases' => array(
                 array(
@@ -309,7 +317,7 @@ class Plugin_Model_Test extends PHPUnit_Framework_TestCase
                 ),
             )
         );
-        $this->plugin_model->import($plugin_update);
+        Plugin_Model::import($plugin_update);
 
         foreach (array( 'Windows NT 5.1', 'Intel Mac OS X 10.5', 'React OS' ) as $os_name ) {
 
@@ -328,12 +336,6 @@ class Plugin_Model_Test extends PHPUnit_Framework_TestCase
 
             list($results, $result, $releases, $versions) = 
                 $this->lookupAndExtract($criteria);
-
-            /*
-            var_export(array(
-                $results, $result, $releases, $versions
-            ));
-             */
 
             switch ($os_name) {
                 case 'Windows NT 5.1':
@@ -363,6 +365,22 @@ class Plugin_Model_Test extends PHPUnit_Framework_TestCase
             $this->assertTrue( !empty($versions['99.9.9']),
                 'Release v99.9.9 of "foobar-media" should be returned');
             $this->assertEquals('vulnerable', $versions['99.9.9']['status']);
+
+            // Ensure that the missing alias no longer is associated with the 
+            // plugin.
+            $plugin = ORM::factory('plugin', 'foobar-media');
+            foreach ($plugin->pluginaliases as $alias) {
+                $this->assertTrue(
+                    $alias->alias != 'Super Happy Future Viewer',
+                    "There should no longer be a Super Happy Future Viewer alias"
+                );
+            } 
+            foreach ($plugin->mimetypes as $mimetype) {
+                $this->assertTrue(
+                    $mimetype->name != 'video/x-foobar-video',
+                    "There should no longer be a 'video/x-foobar-video' mimetype"
+                );
+            }
 
         }
     }
@@ -428,7 +446,7 @@ class Plugin_Model_Test extends PHPUnit_Framework_TestCase
                 ),
             )
         );
-        $this->plugin_model->import($plugin_update, FALSE);
+        Plugin_Model::import($plugin_update);
 
         $os_guid_map = array(
             'Windows 98'          => 'foobar-win-200.9.9',

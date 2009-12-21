@@ -179,7 +179,10 @@ PluginDir = (function () {
                 .replace(/\.plugin$/g, '')
                 .replace(/\.dll$/g, '')
                 .replace(/\.so$/g, '')
-                .replace(/\./g, '-');
+                .replace(/\d/g, '')
+                .replace(/\./g, '')
+                .replace(/-+$/, '')
+                ;
         },
 
         /**

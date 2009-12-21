@@ -7,7 +7,9 @@
  * @author     l.m.orchard <lorchard@mozilla.com>
  */
 class Plugin_Model extends ORM {
-    
+
+    // {{{ Relations
+
     public $has_and_belongs_to_many = array(
         'mimetypes'
     );
@@ -19,6 +21,9 @@ class Plugin_Model extends ORM {
     public $belongs_to = array(
         'sandbox_profile' => 'profile'
     );
+
+    // }}}
+    // {{{ Class constants
 
     public static $status_codes = array(
         'unknown'    => 0,
@@ -38,34 +43,45 @@ class Plugin_Model extends ORM {
         'uncertain'  => 'Uncertain',
     );
 
+    // }}}
+    // {{{ Plugin and release properties
+
     public static $properties = array(
         'pfs_id' => array( 
             'type' => 'text', 
             'description' => 'pfs_id of the plugin within PFS2'
         ),
+        'status' => array( 
+            'type' => 'status', 
+            'description' => 'Current status of the release, eg. latest, outdated, vulnerable'
+        ),
         'name' => array( 
             'type' => 'text', 
             'description' => 'Name of the plugin'
         ),
-        'description' => array( 
+        'version' => array( 
             'type' => 'text', 
+            'description' => 'A dot-separated normalized version for the plugin, may differ from official vendor versioning scheme in order to maintain internal consistency in PFS2'
+        ),
+        'detected_version' => array(
+            'type' => 'text',
+            'description' => 'Version detected in the client, can differ from vendor-intended version depending on capabilities of detection_type'
+        ),
+        'detection_type' => array(
+            'type' => 'text',
+            'description' => 'Detection scheme used in the client to derive the detected_version value'
+        ),
+        'description' => array( 
+            'type' => 'textarea', 
             'description' => 'More verbose description of the plugin'
         ),
         'vendor' => array( 
             'type' => 'text', 
             'description' => 'Name of the vendor providing the plugin'
         ),
-        'version' => array( 
-            'type' => 'text', 
-            'description' => 'A dot-separated normalized version for the plugin, may differ from official vendor versioning scheme in order to maintain internal consistency in PFS2'
-        ),
         'guid' => array( 
             'type' => 'text', 
             'description' => 'A GUID for the plugin release, may differ between releases and platforms (unlike pfs_id)'
-        ),
-        'status' => array( 
-            'type' => 'status', 
-            'description' => 'Current status of the release, eg. latest, outdated, vulnerable'
         ),
         'vulnerability_description' => array( 
             'type' => 'text', 
@@ -123,17 +139,25 @@ class Plugin_Model extends ORM {
             'type' => 'text', 
             'description' => '(Not sure, inherited from PFS1, need a description)'
         ),
+        'app_id' => array( 
+            'type' => 'text', 
+            'description' => 'Application ID for client app',
+            'parent' => 'platform'
+        ),
         'app_release' => array( 
             'type' => 'text', 
-            'description' => 'Client app release for which the plugin is intended (* is wildcard)'
+            'description' => 'Client app release for which the plugin is intended (* is wildcard)',
+            'parent' => 'platform'
         ),
         'app_version' => array( 
             'type' => 'text', 
-            'description' => 'Client app version for which the plugin is intended (* is wildcard)'
+            'description' => 'Client app version for which the plugin is intended (* is wildcard)',
+            'parent' => 'platform'
         ),
         'locale' => array( 
             'type' => 'text', 
-            'description' => 'Client app locale for which the plugin is intended (* is wildcard)'
+            'description' => 'Client app locale for which the plugin is intended (* is wildcard)',
+            'parent' => 'platform'
         ),
         'os_name' => array( 
             'type' => 'text', 
@@ -144,6 +168,8 @@ class Plugin_Model extends ORM {
             'description' => 'Timestamp when last the release record was modified' 
         )
     );
+
+    // }}}
 
     /**
      * Assemble a count of releases by plugin.
@@ -276,6 +302,7 @@ class Plugin_Model extends ORM {
                 if (is_string($mime_def)) {
                     $mime_def = array( 'name' => $mime_def );
                 }
+                if (!$mime_def['name']) continue;
                 $mime = ORM::find_or_insert(
                     'mimetype', $mime_def['name'], $mime_def
                 );
@@ -369,10 +396,12 @@ class Plugin_Model extends ORM {
         // Finally, create appropriate records to give the plugin aliases 
         // based on specified literal and regex names, as well as literal 
         // names accumulated from releases.
+        $alias_ids = array();
         foreach (array('literal', 'regex') as $kind) {
             $is_regex = ('regex' == $kind) ? 1 : 0;
             $a = array_unique($aliases[$kind]);
             foreach ($a as $alias) {
+                if (!$alias) continue;
                 $alias_data = array(
                     'plugin_id' => $plugin->id,
                     'alias'     => $alias,
@@ -381,12 +410,19 @@ class Plugin_Model extends ORM {
                 $alias = ORM::find_or_insert(
                     'pluginalias', $alias_data, $alias_data
                 );
+                $alias_ids[] = $alias->id;
             }
         }
 
-        // Delete plugin releases not included in this import, assuming 
-        // deletion by omission.
+        // Delete plugin aliases and releases not included in this import, 
+        // assuming deletion by omission.
         if (!$delete_first) {
+            $db->query(
+                "DELETE FROM plugin_aliases ".
+                "WHERE plugin_id=? AND ".
+                "id NOT IN (". join(',', $alias_ids).")",
+                $plugin->id
+            );
             $db->query(
                 "DELETE FROM plugin_releases ".
                 "WHERE plugin_id=? AND ".

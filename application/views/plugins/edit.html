@@ -14,6 +14,7 @@
 {% endblock %}
 
 {% block js_defines %}
+    {% parent %}
     PluginDir.Editor.json_url = "{{base_url}}plugins/detail/{{plugin.pfs_id}}.json";
     PluginDir.Editor.plugin_properties = {{ properties | json }};
 {% endblock %}
@@ -23,8 +24,41 @@
     <form id="editor">
 
         <fieldset>
+            <legend>Options</legend>
+            <button id="save">Save now</button>
+            <input type="checkbox" checked id="autosave" /><span>Autosave</span>
+            —
+            <span id="save_message"></span>
+            —
+            <a href="{{base_url}}plugins/detail/{{plugin.pfs_id}}.json" target="_new">Saved JSON data</a>
+            —
+            <a href="" id="json-out-link" target="_new">Current JSON data</a>
+        </fieldset>
+
+        <fieldset>
             <legend>Plugin metadata and release defaults</legend>
             <ul id="meta-fields" class="fields"></ul>
+        </fieldset>
+
+        <fieldset>
+            <legend>MIME types and aliases</legend>
+            <ul id="mimes_aliases" class="fields">
+                <li class="field textarea mimes">
+                    <label>MIME types</label>
+                    <textarea name="mimes" id="mimes"></textarea>
+                    <p class="notes">MIME types of content handled by this plugin</p>
+                </li>
+                <li class="field textarea literal_aliases">
+                    <label>Literal aliases</label>
+                    <textarea name="literal_aliases" id="literal_aliases"></textarea>
+                    <p class="notes">The literal names by which this plugin has been known</p>
+                </li>
+                <li class="field textarea regex_aliases">
+                    <label>Regex aliases</label>
+                    <textarea name="regex_aliases" id="regex_aliases"></textarea>
+                    <p class="notes">Regexes matching names by which this plugin has been known</p>
+                </li>
+            </ul>
         </fieldset>
 
         <fieldset>
@@ -59,15 +93,20 @@
                 <p class="notes">...</p>
             </li>
 
+            <li class="field template textarea">
+                <label>...</label>
+                <textarea name="..." class="textarea"></textarea>
+                <p class="notes">...</p>
+            </li>
+
             <li class="field template status">
                 <label>...</label>
-                <select name="...">
-                    <option value="" selected>--</option>
-                    <option value="latest">Latest</option>
-                    <option value="vulnerable">Vulnerable</option>
-                    <option value="outdated">Outdated</option>
+                <select name="..." class="select">
+                    {% for v,l in status_choices %}
+                        <option value="{{v|e}}">{{l|e}}</option>
+                    {% endfor %}
                 </select>
-                <p class="description">...</p>
+                <p class="notes">...</p>
             </li>
 
         </ul>

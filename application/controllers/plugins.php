@@ -39,7 +39,7 @@ class Plugins_Controller extends Local_Controller {
     }
 
     /**
-     * Display plugin details.
+     * Display plugin details, accept POST updates.
      */
     function detail($pfs_id, $format='html')
     {
@@ -50,7 +50,27 @@ class Plugins_Controller extends Local_Controller {
         }
 
         if ('json' == $format) {
-            // TODO: Allow authorized uploads via PUT / POST
+
+            if ('post' == request::method()) {
+
+                // Fetch and validate the incoming JSON.
+                $data = json_decode(file_get_contents('php://input'), true);
+                if (!$data || !isset($data['meta'])) {
+                    // TODO: Need some better validation of this data.
+                    header('HTTP/1.1 400 Bad Request');
+                    exit;
+                }
+
+                // Force the PFS ID to the one requested.
+                $data['meta']['pfs_id'] = $pfs_id;
+
+                // Import the plugin JSON.
+                Plugin_Model::import($data);
+
+                // Refresh the plugin after import.
+                $plugin = ORM::factory('plugin', $pfs_id);
+
+            }
             
             // Return the plugin data as an export in JSON
             $this->auto_render = FALSE;
@@ -89,6 +109,7 @@ class Plugins_Controller extends Local_Controller {
          
         $this->view->set(array(
             'plugin' => $plugin->as_array(),
+            'status_choices' => Plugin_Model::$status_choices,
             'properties' => Plugin_Model::$properties
         ));
     }
