@@ -14,12 +14,23 @@ class Local_Controller extends TwigRender_Controller {
     public function __construct() 
     {
         parent::__construct();
+
+        Event::add('system.403', array($this, 'show_forbidden'));
+        Event::add('system.forbidden', array($this, 'show_forbidden'));
+    }
+
+    /**
+     * In reaction to a 403 Forbidden event, throw up a forbidden view.
+     */
+    public function show_forbidden()
+    {
+        header('403 Forbidden');
+        $this->view->set_filename('forbidden');
+        $this->render();
+        exit();
     }
 
     public function render() {
-
-        $profile = authprofiles::get_profile();
-        if ($profile) $profile = $profile->as_array();
 
         View::set_global(array(
             'base_url'          => url::base(),
@@ -28,10 +39,10 @@ class Local_Controller extends TwigRender_Controller {
             'form_data'         => form::$data,
             'form_errors'       => form::$errors,
 
-            'flash_message' => Session::instance()->get_once('message'),
+            'flash_message'     => Session::instance()->get_once('message'),
 
-            'is_logged_in' => authprofiles::is_logged_in(),
-            'authprofile'  => $profile,
+            'is_logged_in'      => authprofiles::is_logged_in(),
+            'authprofile'       => authprofiles::get_profile(),
 
             // Dirty, but occasionally useful:
             '_POST' => $_POST,

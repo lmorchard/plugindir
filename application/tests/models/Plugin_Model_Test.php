@@ -13,7 +13,9 @@ class Plugin_Model_Test extends PHPUnit_Framework_TestCase
 {
     // {{{ Test data
 
-    public static $test_plugin = array(
+    public static $test_plugin = null;
+
+    public static $test_plugin_data = array(
         'meta' => array(
             'pfs_id'   => 'foobar-media',
             'name'     => 'Foobar Media Viewer',
@@ -96,7 +98,8 @@ class Plugin_Model_Test extends PHPUnit_Framework_TestCase
                 ->clear_cache();
         }
 
-        ORM::factory('plugin')->import(self::$test_plugin);
+        self::$test_plugin = 
+            ORM::factory('plugin')->import(self::$test_plugin_data);
     }
 
     /**
@@ -491,7 +494,7 @@ class Plugin_Model_Test extends PHPUnit_Framework_TestCase
         foreach (array(1, 2, 3) as $attempt) {
 
             $plugin = ORM::factory('plugin')
-                ->find(self::$test_plugin['meta']['pfs_id']);
+                ->find(self::$test_plugin_data['meta']['pfs_id']);
             
             $result_export = $plugin->export();
 
@@ -501,12 +504,12 @@ class Plugin_Model_Test extends PHPUnit_Framework_TestCase
                 "PFS ID should be non-empty");
             $this->assertEquals(
                 $result_export['meta']['pfs_id'],
-                self::$test_plugin['meta']['pfs_id'],
+                self::$test_plugin_data['meta']['pfs_id'],
                 "PFS ID of export should match test plugin"
             );
             $this->assertEquals(
                 count($result_export['releases']), 
-                count(self::$test_plugin['releases'])
+                count(self::$test_plugin_data['releases'])
             );
 
             /*
@@ -517,7 +520,7 @@ class Plugin_Model_Test extends PHPUnit_Framework_TestCase
              */
             $release_sets = array(
                 'expected' => array( 
-                    'releases' => self::$test_plugin['releases'], 
+                    'releases' => self::$test_plugin_data['releases'], 
                     'sigs' => array() 
                 ),
                 'result'   => array( 
@@ -548,6 +551,115 @@ class Plugin_Model_Test extends PHPUnit_Framework_TestCase
 
     }
     
+    /**
+     * Verify that the ACLs are working properly
+     */
+    public function testACL() {
+
+        $acl = authprofiles::$acls;
+
+        ORM::factory('profile')->delete_all();
+
+        $admin_profile = ORM::factory('profile')->set(array( 
+            'screen_name' => 'admin', 'role' => 'admin',
+        ))->save();
+
+        $editor_profile = ORM::factory('profile')->set(array( 
+            'screen_name' => 'editor', 'role' => 'editor',
+        ))->save();
+
+        $member1_profile = ORM::factory('profile')->set(array( 
+            'screen_name' => 'member1', 'role' => 'member',
+        ))->save();
+
+        $member2_profile = ORM::factory('profile')->set(array( 
+            'screen_name' => 'member2', 'role' => 'member',
+        ))->save();
+
+        $plugin = self::$test_plugin;
+
+        $privs = array( 
+            'view', 'edit', 'delete', 'copy', 'submit_plugin', 'deploy', 
+            'request_deploy'
+        );
+
+        $this->checkACL("Public plugin", $privs, $acl, $plugin, array(
+            array('guest',          true, false, false, false, true, false, false,),
+            array($member1_profile, true, false, false, true,  true, false, true,),
+            array($member2_profile, true, false, false, true,  true, false, true,),
+            array($editor_profile,  true, false, false, true,  true, true,  true,),
+            array($admin_profile,   true, true,  true,  true,  true, true,  true,),
+        ));
+
+        $plugin->set(array(
+            'sandbox_profile_id' => $member1_profile->id
+        ))->save();
+
+        $this->checkACL("member1 sandbox plugin", $privs, $acl, $plugin, array(
+            array('guest',          true, false, false, false, true, false, false,),
+            array($member1_profile, true, true,  true,  true,  true, false, true,),
+            array($member2_profile, true, false, false, true,  true, false, true,),
+            array($editor_profile,  true, true,  true,  true,  true, true,  true,),
+            array($admin_profile,   true, true,  true,  true,  true, true,  true,),
+        ));
+
+        $plugin->set(array(
+            'sandbox_profile_id' => $member2_profile->id
+        ))->save();
+
+        $this->checkACL("member1 sandbox plugin", $privs, $acl, $plugin, array(
+            array('guest',          true, false, false, false, true, false, false,),
+            array($member1_profile, true, false, false, true,  true, false, true,),
+            array($member2_profile, true, true,  true,  true,  true, false, true,),
+            array($editor_profile,  true, true,  true,  true,  true, true,  true,),
+            array($admin_profile,   true, true,  true,  true,  true, true,  true,),
+        ));
+
+    }
+
+
+    /**
+     * Test a set of roles and privs against the ACL.
+     */
+    function checkACL($msg, $privs, $acl, $resource, $cases)
+    {
+        foreach ($cases as $case) {
+            
+            $role = array_shift($case);
+
+            $role_name = is_string($role) ? 
+                $role : $role->screen_name;
+            
+            foreach ($case as $idx=>$expected) {
+                $priv = $privs[$idx];
+
+                $this->assertEquals(
+                    $expected, $acl->isAllowed($role, $resource, $priv),
+                    $msg . ': ' . $role_name . ' should' .
+                        ( $expected ? '' : ' not') . 
+                        ' be allowed to '. $priv
+                );
+
+                $this->assertEquals(
+                    $expected, $resource->is_allowed($role, $priv),
+                    $msg . ': ' . $role_name . ' should' .
+                        ( $expected ? '' : ' not') . 
+                        ' be allowed to '. $priv
+                );
+                
+                if (!is_string($role)) {
+                    $this->assertEquals(
+                        $expected, $role->is_allowed($resource, $priv),
+                        $msg . ': ' . $role_name . ' should' .
+                            ( $expected ? '' : ' not') . 
+                            ' be allowed to '. $priv
+                    );
+                }
+
+            }
+
+        }
+    }
 
     /**
      * Perform a PFS2 lookup and extract some frequently used info.

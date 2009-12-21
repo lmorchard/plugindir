@@ -6,7 +6,7 @@
  * @subpackage models
  * @author     l.m.orchard <l.m.orchard@pobox.com>
  */
-class Auth_Profile_Model extends ORM
+class Auth_Profile_Model extends ORM implements Zend_Acl_Role_Interface, Zend_Acl_Resource_Interface
 {
     // {{{ Model attributes
 
@@ -18,54 +18,13 @@ class Auth_Profile_Model extends ORM
         'full_name'      => 'Full name',
         'bio'            => 'Bio',
         'created'        => 'Created',
+        'role'           => 'Role',
         'last_login'     => 'Last login',
     );
 
-    public $has_and_belongs_to_many = array('logins','roles');
+    public $has_and_belongs_to_many = array('logins');
 
     // }}}
-
-    /**
-     * Check an individual privilege by nickname against variants including 
-     * *_own & etc.
-     */
-    public function checkPrivilege($priv, $profile_id=null)
-    {
-        if (null === $profile_id) {
-            $profile_id = authprofiles::get_profile('id');
-        }
-        $own = ( $profile_id == $this->id );
-
-        switch($priv) {
-
-            case 'view':
-                return
-                    authprofiles::is_allowed('profiles', 'view') ||
-                    ($own && authprofiles::is_allowed('profiles', 'view_own'));
-
-            case 'edit':
-                return
-                    authprofiles::is_allowed('profiles', 'edit') ||
-                    ($own && authprofiles::is_allowed('profiles', 'edit_own'));
-
-            default:
-                return authprofiles::is_allowed('profiles', $priv); 
-
-        }
-    }
-
-    /**
-     * Check multiple privileges, returning an array of indexed results.
-     */
-    public function checkPrivileges($privs, $profile_id=null)
-    {
-        $results = array();
-        foreach ($privs as $priv) {
-            $results[$priv] = $this->checkPrivilege($priv, $profile_id);
-        }
-        return $results;
-    }
-
 
     /**
      * Find the default login for this profile, usually the first registered.
@@ -88,9 +47,7 @@ class Auth_Profile_Model extends ORM
     {
         if (!is_array($role_name)) $role_name = array($role_name);
         return $this
-            ->join('profiles_roles', 'profiles_roles.profile_id', 'profiles.id')
-            ->join('roles', 'roles.id', 'profiles_roles.role_id')
-            ->in('roles.name', $role_name)
+            ->in('role', $role_name)
             ->find_all();
     }
 
@@ -236,62 +193,6 @@ class Auth_Profile_Model extends ORM
 
 
     /**
-     * Add a role by name.
-     *
-     * Looks up an existing record, or creates a new one if not found.
-     *
-     * @chainable
-     * @return Profile_Model
-     */
-    public function add_role($role_name)
-    {
-        if (!$this->loaded) return;
-
-        // Look for existing role by name, create a new one if not found.
-        $role = ORM::factory('role', $role_name);
-        if (!$role->loaded) {
-            $role = ORM::factory('role')->set(array(
-                'name' => $role_name
-            ))->save();
-        }
-
-        // Add the role, save it, done.
-        $this->add($role);
-        return $this;
-    }
-
-    /**
-     * Set roles for this profile.
-     *
-     * @chainable
-     * @return Profile_Model
-     */
-    public function add_roles($role_names)
-    {
-        if (!$this->loaded) return;
-        $this->clear_roles();
-        foreach ($role_names as $name) {
-            $this->add_role($name);
-        }
-    }
-
-    /**
-     * Remove all roles from this profile.
-     *
-     * @chainable
-     * @return Profile_Model
-     */
-    public function clear_roles()
-    {
-        if (!$this->loaded) return;
-        foreach ($this->roles as $role) {
-            $this->remove($role);
-        }
-        return $this;
-    }
-
-
-    /**
      * Set a profile attribute
      *
      * @param string Profile ID
@@ -385,6 +286,40 @@ class Auth_Profile_Model extends ORM
             $attribs[$row->name] = $row->value;
         }
         return $attribs;
+    }
+
+
+    /**
+     * Check if this profile has the given privilege for the given resource.
+     *
+     * @param  Zend_Acl_Resource_Interface|string $resource
+     * @param  string                             $privilege
+     * @return boolean
+     */
+    public function is_allowed($resource, $priv)
+    {
+        return authprofiles::$acls->isAllowed($this, $resource, $priv);
+    }
+
+    /**
+     * Get the role identifier for ACLs
+     *
+     * @return string
+     */
+    public function getRoleId() {
+        return empty($this->role) ? 
+            Kohana::config('auth_profiles.base_profile_role') :
+            $this->role;
+    }
+
+    /**
+     * Identify this model as a resource for Zend_ACL
+     *
+     * @return string
+     */
+    public function getResourceId()
+    {
+        return 'profile';
     }
 
 }

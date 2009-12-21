@@ -13,15 +13,27 @@
     <ul class="actions">
         {% if plugin.sandbox_profile_id %}
             {% set plugin_base as base_url ~ "profiles/" ~ screen_name|e ~ "/plugins/detail/" ~ plugin.pfs_id|urlencode|e %}
-            <li><a href="{{base_url}}plugins/detail/{{plugin.pfs_id|urlencode|e}}">View original</a></li>
-            <li><a href="{{plugin_base}};deploy">Push changes live</a></li>
+            {% if plugin.is_allowed(authprofile, 'view') %}
+                <li><a href="{{base_url}}plugins/detail/{{plugin.pfs_id|urlencode|e}}">View original</a></li>
+            {% endif %}
+            {% if plugin.is_allowed(authprofile, 'deploy') %}
+                <li><a href="{{plugin_base}};deploy">Push changes live</a></li>
+            {% endif %}
         {% else %}
             {% set plugin_base as base_url ~ "plugins/detail/" ~ plugin.pfs_id|urlencode|e %}
         {% endif %}
-        <li><a href="{{plugin_base}};copy">Copy to sandbox</a></li>
-        <li><a href="{{plugin_base}};edit">Edit details</a></li>
-        <li><a href="{{plugin_base}};delete">Delete plugin</a></li>
-        <li><a href="{{plugin_base}}.json">JSON export</a></li>
+        {% if plugin.is_allowed(authprofile, 'copy') %}
+            <li><a href="{{plugin_base}};copy">Copy to sandbox</a></li>
+        {% endif %}
+        {% if plugin.is_allowed(authprofile, 'edit') %}
+            <li><a href="{{plugin_base}};edit">Edit details</a></li>
+        {% endif %}
+        {% if plugin.is_allowed(authprofile, 'delete') %}
+            <li><a href="{{plugin_base}};delete">Delete plugin</a></li>
+        {% endif %}
+        {% if plugin.is_allowed(authprofile, 'view') %}
+            <li><a href="{{plugin_base}}.json">JSON export</a></li>
+        {% endif %}
     </ul>
 
     <div class="meta">

@@ -1,9 +1,3 @@
--- MySQL dump 10.13  Distrib 5.1.40, for apple-darwin10.0.0 (i386)
---
--- Host: 127.0.0.1    Database: plugindir
--- ------------------------------------------------------
--- Server version	5.1.40-log
-
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
@@ -141,40 +135,6 @@ CREATE TABLE `oses` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Table structure for table `permissions`
---
-
-DROP TABLE IF EXISTS `permissions`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `permissions` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `name` varchar(32) DEFAULT NULL,
-  `description` text,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Table structure for table `permissions_roles`
---
-
-DROP TABLE IF EXISTS `permissions_roles`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `permissions_roles` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `role_id` int(11) DEFAULT NULL,
-  `permission_id` int(11) DEFAULT NULL,
-  PRIMARY KEY (`id`),
-  KEY `permissions_roles_ibfk_1` (`permission_id`),
-  KEY `permissions_roles_ibfk_2` (`role_id`),
-  CONSTRAINT `permissions_roles_ibfk_1` FOREIGN KEY (`permission_id`) REFERENCES `permissions` (`id`) ON DELETE CASCADE,
-  CONSTRAINT `permissions_roles_ibfk_2` FOREIGN KEY (`role_id`) REFERENCES `roles` (`id`) ON DELETE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
 -- Table structure for table `platforms`
 --
 
@@ -307,6 +267,7 @@ DROP TABLE IF EXISTS `profiles`;
 CREATE TABLE `profiles` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `uuid` varchar(40) NOT NULL,
+  `role` varchar(32) NOT NULL,
   `screen_name` varchar(64) NOT NULL,
   `full_name` varchar(128) NOT NULL,
   `bio` text,
@@ -316,41 +277,6 @@ CREATE TABLE `profiles` (
   UNIQUE KEY `uuid` (`uuid`),
   UNIQUE KEY `screen_name` (`screen_name`)
 ) ENGINE=InnoDB CHARSET=utf8;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Table structure for table `profiles_roles`
---
-
-DROP TABLE IF EXISTS `profiles_roles`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `profiles_roles` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `profile_id` int(11) DEFAULT NULL,
-  `role_id` int(11) DEFAULT NULL,
-  PRIMARY KEY (`id`),
-  KEY `profiles_roles_ibfk_1` (`profile_id`),
-  KEY `profiles_roles_ibfk_2` (`role_id`),
-  CONSTRAINT `profiles_roles_ibfk_1` FOREIGN KEY (`profile_id`) REFERENCES `profiles` (`id`) ON DELETE CASCADE,
-  CONSTRAINT `profiles_roles_ibfk_2` FOREIGN KEY (`role_id`) REFERENCES `roles` (`id`) ON DELETE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Table structure for table `roles`
---
-
-DROP TABLE IF EXISTS `roles`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `roles` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `parent_role_id` int(11) DEFAULT NULL,
-  `name` varchar(32) DEFAULT NULL,
-  `description` text,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -393,5 +319,3 @@ CREATE TABLE `submissions` (
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
-
--- Dump completed on 2009-11-20 13:45:21

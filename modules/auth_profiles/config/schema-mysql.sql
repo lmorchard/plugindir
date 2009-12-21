@@ -55,6 +55,7 @@ DROP TABLE IF EXISTS `profiles`;
 CREATE TABLE `profiles` (
   `id` int(11) NOT NULL auto_increment,
   `uuid` varchar(40) NOT NULL,
+  `role` varchar(32) NOT NULL,
   `screen_name` varchar(64) NOT NULL,
   `full_name` varchar(128) NOT NULL,
   `bio` text,
@@ -98,60 +99,3 @@ CREATE TABLE `profile_attributes` (
 
 ALTER TABLE `profile_attributes`
     ADD CONSTRAINT `profile_attributes_ibfk_1` FOREIGN KEY (`profile_id`) REFERENCES `profiles` (`id`) ON DELETE CASCADE;
-
---
--- Table structure for table `roles`
---
-
-DROP TABLE IF EXISTS `roles`;
-CREATE TABLE `roles` (
-  `id` int(11) NOT NULL auto_increment,
-  `parent_role_id` int(11) default NULL,
-  `name` varchar(32) default NULL,
-  `description` text,
-  PRIMARY KEY  (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
---
--- Table structure for table `permissions`
---
-
-DROP TABLE IF EXISTS `permissions`;
-CREATE TABLE `permissions` (
-  `id` int(11) NOT NULL auto_increment,
-  `name` varchar(32) default NULL,
-  `description` text,
-  PRIMARY KEY  (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
---
--- Table structure for table `permissions_roles`
---
-
-DROP TABLE IF EXISTS `permissions_roles`;
-CREATE TABLE `permissions_roles` (
-  `id` int(11) NOT NULL auto_increment,
-  `role_id` int(11) default NULL,
-  `permission_id` int(11) default NULL,
-  PRIMARY KEY  (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
-ALTER TABLE `permissions_roles`
-    ADD CONSTRAINT `permissions_roles_ibfk_1` FOREIGN KEY (`permission_id`) REFERENCES `permissions` (`id`) ON DELETE CASCADE,
-    ADD CONSTRAINT `permissions_roles_ibfk_2` FOREIGN KEY (`role_id`) REFERENCES `roles` (`id`) ON DELETE CASCADE;
-
---
--- Table structure for table `profiles_roles`
---
-
-DROP TABLE IF EXISTS `profiles_roles`;
-CREATE TABLE `profiles_roles` (
-  `id` int(11) NOT NULL auto_increment,
-  `profile_id` int(11) default NULL,
-  `role_id` int(11) default NULL,
-  PRIMARY KEY  (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
-ALTER TABLE `profiles_roles`
-    ADD CONSTRAINT `profiles_roles_ibfk_1` FOREIGN KEY (`profile_id`) REFERENCES `profiles` (`id`) ON DELETE CASCADE,
-    ADD CONSTRAINT `profiles_roles_ibfk_2` FOREIGN KEY (`role_id`) REFERENCES `roles` (`id`) ON DELETE CASCADE;

@@ -1,12 +1,16 @@
 <?php
 /**
- * Plugin model
+ * Plugin model and ACL assertions
  *
  * @package    PluginDir
  * @subpackage models
  * @author     l.m.orchard <lorchard@mozilla.com>
  */
-class Plugin_Model extends ORM {
+
+/**
+ * Plugin model class.
+ */
+class Plugin_Model extends ORM_Resource {
 
     // {{{ Relations
 
@@ -729,4 +733,27 @@ class Plugin_Model extends ORM {
         return parent::unique_key($id);
     }
 
+
+    /**
+     * Determine whether this plugin is in a sandbox.
+     *
+     * @returns bool
+     */
+    public function is_sandboxed() 
+    {
+        return !empty($this->sandbox_profile_id);
+    }
+
+
+    /**
+     * Identify this model as a resource for Zend_ACL
+     *
+     * @return string
+     */
+    public function getResourceId()
+    {
+        return 'plugin';
+    }
+
 }
+

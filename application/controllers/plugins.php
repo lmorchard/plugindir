@@ -16,11 +16,15 @@ class Plugins_Controller extends Local_Controller {
         parent::__construct();
     }
 
+
     /**
      * Accept plugin data contributions.
      */
     function submit()
     {
+        if (!authprofiles::is_allowed('plugin', 'submit_plugin'))
+            return Event::run('system.forbidden');
+
         $this->view->status_choices = Plugin_Model::$status_choices;
 
         // Just display the populated form on GET.
@@ -51,9 +55,11 @@ class Plugins_Controller extends Local_Controller {
      */
     function sandbox($screen_name) {
         $profile = ORM::factory('profile', $screen_name);
-        if (!$profile->loaded) {
+        if (!$profile->loaded)
             return Event::run('system.404');
-        }
+        if (!authprofiles::is_allowed($profile, 'view_sandbox'))
+            return Event::run('system.forbidden');
+
         $this->view->profile = $profile->as_array();
 
         $this->view->sandbox_plugins = ORM::factory('plugin')
@@ -75,10 +81,14 @@ class Plugins_Controller extends Local_Controller {
     function detail($pfs_id, $format='html', $screen_name=null)
     {
         $plugin = $this->_find_plugin($pfs_id, $screen_name);
+        if (!authprofiles::is_allowed($plugin, 'view'))
+            return Event::run('system.forbidden');
 
         if ('json' == $format) {
 
             if ('post' == request::method()) {
+                if (!authprofiles::is_allowed($plugin, 'edit'))
+                    return Event::run('system.forbidden');
 
                 // Fetch and validate the incoming JSON.
                 $data = json_decode(file_get_contents('php://input'), true);
@@ -128,6 +138,8 @@ class Plugins_Controller extends Local_Controller {
     function copy($pfs_id, $screen_name=null)
     {
         $plugin = $this->_find_plugin($pfs_id, $screen_name);
+        if (!authprofiles::is_allowed($plugin, 'copy'))
+            return Event::run('system.forbidden');
 
         // Only perform the copy on POST.
         if ('post' == request::method()) {
@@ -158,12 +170,13 @@ class Plugins_Controller extends Local_Controller {
      * Deploy a sandbox plugin live.
      */
     function deploy($pfs_id, $screen_name=null) {
-        
         $plugin = $this->_find_plugin($pfs_id, $screen_name);
+        if (!authprofiles::is_allowed($plugin, 'deploy'))
+            return Event::run('system.forbidden');
 
         if (!$plugin->sandbox_profile_id) {
             // Only sandboxed plugins can be deployed.
-            return Event::run('system.403');
+            return Event::run('system.forbidden');
         }
 
         // Only perform the copy on POST.
@@ -191,6 +204,8 @@ class Plugins_Controller extends Local_Controller {
     function delete($pfs_id, $screen_name=null) 
     {
         $plugin = $this->_find_plugin($pfs_id, $screen_name);
+        if (!authprofiles::is_allowed($plugin, 'delete'))
+            return Event::run('system.forbidden');
 
         // Only perform the copy on POST.
         if ('post' == request::method()) {
@@ -209,6 +224,9 @@ class Plugins_Controller extends Local_Controller {
     function edit($pfs_id, $screen_name=null)
     {
         $plugin = $this->_find_plugin($pfs_id, $screen_name);
+        if (!authprofiles::is_allowed($plugin, 'edit'))
+            return Event::run('system.forbidden');
+
         $this->view->set(array(
             'status_choices' => Plugin_Model::$status_choices,
             'properties' => Plugin_Model::$properties
@@ -244,7 +262,7 @@ class Plugins_Controller extends Local_Controller {
             exit;
         }
 
-        $this->view->plugin = $plugin->as_array();
+        $this->view->plugin = $plugin;
         $this->view->screen_name = $screen_name;
 
         return $plugin;

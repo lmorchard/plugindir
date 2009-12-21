@@ -8,6 +8,7 @@
  */
 class authprofiles_Core
 {
+    public static $acls = null;
     public static $cookie_manager = null;
     public static $cookie_name = 'auth_profiles';
     public static $user_data = null;
@@ -203,33 +204,6 @@ class authprofiles_Core
     }
 
     /**
-     * Gather role names for current logged in profile.
-     *
-     * @return array List of role names
-     */
-    public static function get_roles($profile=null)
-    {
-        if (null == $profile)
-            $profile = self::get_profile();
-        if (empty($profile)) {
-            // Use the base anonymous role
-            return array(Kohana::config('auth_profiles.base_anonymous_role'));
-        }
-
-        if (!isset(self::$roles_cache[$profile->id])) {
-            // Start with base logged in role, then accumulate the rest of the 
-            // profile roles.
-            $roles = array(Kohana::config('auth_profiles.base_login_role'));
-            foreach ($profile->roles as $role) {
-                $roles[] = $role->name;
-            }
-            self::$roles_cache[$profile->id] = $roles;
-        }
-
-        return self::$roles_cache[$profile->id];
-    }
-
-    /**
      * Check whether the given resource and privilege is allowed for the 
      * current logged in profile, using default role if no login available.
      *
@@ -237,22 +211,17 @@ class authprofiles_Core
      * @param  string                             $privilege
      * @return boolean
      */
-    public static function is_allowed($resource=null, $privilege=null, $profile=null)
+    public static function is_allowed($resource=null, $privilege=null)
     {
-        $acls = Kohana::config('auth_profiles.acls');
-
         // Allow by default if no ACLs defined.
-        if (empty($acls)) return true;
+        if (empty(self::$acls)) return true;
 
-        // Iterate through the roles and return true for the first 
-        // allowed result.
-        foreach (self::get_roles($profile) as $role_name) {
-            if ($acls->isAllowed($role_name, $resource, $privilege)) {
-                return true;
-            }
-        }
+        // Use logged in profile, or anonymous role if no login
+        $role = self::is_logged_in() ? 
+            self::get_profile() : 
+            Kohana::config('auth_profiles.base_anonymous_role');
 
-        return false;
+        return self::$acls->isAllowed($role, $resource, $privilege);
     }
 
 }

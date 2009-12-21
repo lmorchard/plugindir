@@ -23,19 +23,21 @@ class Acl_Test extends PHPUnit_Framework_TestCase
         ORM::factory('login')->delete_all();
         ORM::factory('role')->delete_all();
 
-        $acls = new Zend_Acl();
+        authprofiles::$acls = $acls = new Zend_Acl();
         $acls
-            ->addRole(new Zend_Acl_Role('default'))
-            ->addRole(new Zend_Acl_Role('loggedin'))
-            ->addRole(new Zend_Acl_Role('admin'))
-            ->addRole(new Zend_Acl_Role('alpha'))
-            ->addRole(new Zend_Acl_Role('beta'), 'alpha')
-            ->addRole(new Zend_Acl_Role('gamma'))
-            ->addRole(new Zend_Acl_Role('delta'), 'gamma')
+            ->addRole('default')
+            ->addRole('loggedin')
+            ->addRole('admin')
+            ->addRole('alpha', 'loggedin')
+            ->addRole('beta', 'alpha')
+            ->addRole('gamma', 'loggedin')
+            ->addRole('delta', 'gamma')
+            ->addRole('alpha_gamma', array('alpha', 'gamma'))
+            ->addRole('beta_delta', array('beta', 'delta'))
 
-            ->add(new Zend_Acl_Resource('one'))
-            ->add(new Zend_Acl_Resource('two'))
-            ->add(new Zend_Acl_Resource('three'))
+            ->addResource('one')
+            ->addResource('two')
+            ->addResource('three')
 
             ->allow('admin')
             ->allow('alpha',    'one',   array('cut', 'spindle', 'fold'))
@@ -46,43 +48,31 @@ class Acl_Test extends PHPUnit_Framework_TestCase
             ->allow('loggedin', 'three', array('transplode'))
             ;
 
-        Kohana::config_set('auth_profiles.acls', $acls);
         Kohana::config_set('auth_profiles.base_anonymous_role', 'default');
-        Kohana::config_set('auth_profiles.base_login_role',     'loggedin');
+        Kohana::config_set('auth_profiles.base_profile_role',   'loggedin');
 
         $this->logins   = array();
         $this->profiles = array();
         $this->roles    = array();
 
-        $role_combos = array(
-            array('admin'),
-            array('alpha'),
-            array('beta'),
-            array('gamma'),
-            array('delta'),
-            array('alpha','gamma'),
-            array('beta','delta'),
+        $roles = array(
+            'admin', 'alpha', 'beta', 'gamma', 'delta', 'alpha_gamma', 'beta_delta',
         );
+        foreach ($roles as $idx=>$role) {
 
-        foreach ($role_combos as $idx=>$roles) {
+            $this->profiles[] = $profile = ORM::factory('profile')->set(array(
+                'screen_name' => "tester{$idx}",
+                'full_name'   => "Tess T. Err {$idx}",
+                'org_name'    => "Test Organization {$idx}",
+                'role'        => $role
+            ))->save();
 
             $this->logins[] = $login = ORM::factory('login')->set(array(
                 'login_name' => "tester{$idx}",
                 'email'      => "tester{$idx}@example.com",
             ))->save();
 
-            $this->profiles[] = $profile = ORM::factory('profile')->set(array(
-                'screen_name' => "tester{$idx}",
-                'full_name'   => "Tess T. Err {$idx}",
-                'org_name'    => "Test Organization {$idx}",
-            ))->save();
-
             $profile->add($login);
-            $profile->save();
-
-            foreach ($roles as $role_name) {
-                $profile->add_role($role_name);
-            }
             $profile->save();
 
         }
@@ -94,7 +84,7 @@ class Acl_Test extends PHPUnit_Framework_TestCase
      */
     public function testDefaultPermission()
     {
-        Kohana::config_set('auth_profiles.acls', false);
+        authprofiles::$acls = null;
         $this->assertTrue(
             authprofiles::is_allowed('foo', 'bar'),
             'Default permission with no ACLs should be allowed'
@@ -103,22 +93,20 @@ class Acl_Test extends PHPUnit_Framework_TestCase
 
     /**
      * Ensure profiles can be queried by role name
+     *
+     * TODO: This test has been broken by single role per profile. Need to 
+     * rework to actually account for hierarchical roles.
      */
     public function testFindProfileByRole()
     {
         $roles = array(
             'admin' => array( 'tester0' ), 
-            'alpha' => array( 'tester1', 'tester5' ), 
-            'beta'  => array( 'tester2', 'tester6' ), 
-            'gamma' => array( 'tester3', 'tester5' ),
-            'delta' => array( 'tester4', 'tester6' ),
-            
-            'alpha beta' => array( 
-                'tester1', 'tester5', 'tester2', 'tester6' 
-            ), 
-            'gamma delta' => array( 
-                'tester3', 'tester5', 'tester4', 'tester6' 
-            ),
+            'alpha' => array( 'tester1', ), 
+            'beta'  => array( 'tester2', ), 
+            'gamma' => array( 'tester3', ),
+            'delta' => array( 'tester4' ),
+            'alpha_gamma' => array( 'tester5' ),
+            'beta_delta'  => array( 'tester6' ),
         );
         foreach ($roles as $role_name => $expected_screen_names) {
             
@@ -142,7 +130,6 @@ class Acl_Test extends PHPUnit_Framework_TestCase
 
         }
     }
-
 
     /**
      * Exercise the is_allowed helper method against the configured ACLs.
@@ -195,7 +182,7 @@ class Acl_Test extends PHPUnit_Framework_TestCase
 
                 $result = authprofiles::is_allowed($resource, $privilege);
                 $this->assertEquals($expected, $result,
-                    "{$resource}::{$privilege} for {$profile->screen_name}");
+                    "{$resource}::{$privilege} for {$profile->screen_name} ({$profile->role})");
 
             }
         }
