@@ -1,0 +1,14 @@
+{% extends "index/index_shell.html" %}
+
+{% block index_content %}
+    {% import "macros/platforms.html" as platforms %}
+
+    <ul class="platform_counts">
+        {% for platform in platform_counts %}
+            <li>
+                <span class="count">({{platform.count|e}})</span>
+                <a href="{{base_url}}search/results?platform_id={{platform.id|urlencode|e}}">{{platforms.readable(platform)}}</a>
+            </li>
+        {% endfor %}
+    </ul>
+{% endblock %}

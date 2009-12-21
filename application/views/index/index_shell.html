@@ -1,0 +1,53 @@
+{% extends "layout.html" %}
+
+{% import "index/index_shell.html" as this %}
+
+{% block title %}
+    Home
+{% endblock %}
+
+{% block content %}
+<div class="index_home">
+
+    <div class="intro">
+        <p>Intro copy. Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+        Cras vel velit sit amet dolor pharetra ullamcorper ac sit amet lectus.
+        Curabitur ut est ipsum, quis viverra odio. Suspendisse at lacinia
+        justo. Curabitur felis orci, iaculis in feugiat ut, rhoncus sit amet
+        lectus.</p>
+    </div>
+
+    <div class="listing">
+
+        <ul class="nav">
+
+            {% macro nav_item(base_url, name, label, selected, screen_name) %}
+                <li>
+                    {% if name == selected %}
+                        <span class="selected">{{label}}</span>
+                    {% else %}
+                        {% if "sandbox" == name %}
+                            <a href="{{base_url}}profiles/{{screen_name|urlencode|e}}/plugins">{{label}}</a>
+                        {% else %}
+                            <a href="{{base_url}}?by={{name}}">{{label}}</a>
+                        {% endif %}
+                    {% endif %}
+                </li>
+            {% endmacro %}
+
+            {{ this.nav_item(base_url, 'installed', 'Your Installed Plugins', by_cat) }}
+            {% if is_logged_in %}
+                {{ this.nav_item(base_url, 'sandbox', 'Your Sandbox', by_cat, authprofile.screen_name) }}
+            {% endif %}
+            {{ this.nav_item(base_url, 'name', 'By Name', by_cat) }}
+            {{ this.nav_item(base_url, 'application', 'By Application', by_cat) }}
+            {{ this.nav_item(base_url, 'os', 'By Operating System', by_cat) }}
+
+        </ul>
+
+        {% block index_content %}{% endblock %}
+
+    </div>
+
+</div>
+{% endblock %}

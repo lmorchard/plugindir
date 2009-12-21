@@ -11,12 +11,17 @@
 {% block content %}
 
     <ul class="actions">
-        <li><a href="#">Copy to Sandbox</a></li>
-        <li><a href="{{base_url}}plugins/detail/{{plugin.pfs_id}};edit">Edit Details</a></li>
         {% if plugin.sandbox_profile_id %}
-            <li><a href="#">View Original</a></li>
+            {% set plugin_base as base_url ~ "profiles/" ~ screen_name|e ~ "/plugins/detail/" ~ plugin.pfs_id|urlencode|e %}
+            <li><a href="{{base_url}}plugins/detail/{{plugin.pfs_id|urlencode|e}}">View original</a></li>
+            <li><a href="{{plugin_base}};deploy">Push changes live</a></li>
+        {% else %}
+            {% set plugin_base as base_url ~ "plugins/detail/" ~ plugin.pfs_id|urlencode|e %}
         {% endif %}
-        <li><a href="{{base_url}}plugins/detail/{{plugin.pfs_id}}.json">JSON export</a></li>
+        <li><a href="{{plugin_base}};copy">Copy to sandbox</a></li>
+        <li><a href="{{plugin_base}};edit">Edit details</a></li>
+        <li><a href="{{plugin_base}};delete">Delete plugin</a></li>
+        <li><a href="{{plugin_base}}.json">JSON export</a></li>
     </ul>
 
     <div class="meta">

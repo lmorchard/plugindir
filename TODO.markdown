@@ -1,5 +1,6 @@
 # Plugin directory TODO
 
+* ACLs as static arrays in config, rather than object defs
 * Loading indicator for plugin editor
 * Advanced search pulldown
 * Search results

@@ -11,17 +11,15 @@ class Index_Controller extends Local_Controller {
     /**
      * Home page action
      */
-    function index()
+    function index($by_cat=null)
     {
-        $by_cat = $this->input->get('by');
+        if (!$by_cat) {
+            $by_cat = $this->input->get('by');
+        }
 
         $this->view->by_cat = $by_cat;
 
         switch ($by_cat) {
-            case 'sandbox':
-                // TODO
-                break;
-
             case 'name':
                 $this->view->name_counts = 
                     ORM::factory('plugin')->find_release_counts();
@@ -39,6 +37,8 @@ class Index_Controller extends Local_Controller {
                 $this->view->by_cat = 'installed';
                 break;
         }
+
+        $this->view->set_filename('index/index_by' . $this->view->by_cat);
     }
 
 }

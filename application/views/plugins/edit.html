@@ -15,11 +15,21 @@
 
 {% block js_defines %}
     {% parent %}
-    PluginDir.Editor.json_url = "{{base_url}}plugins/detail/{{plugin.pfs_id}}.json";
+    PluginDir.Editor.json_url = 
+    {% if plugin.sandbox_profile_id %}
+       "{{base_url}}profiles/{{screen_name|e}}/plugins/detail/{{plugin.pfs_id|e}}.json";
+    {% else %}
+       "{{base_url}}plugins/detail/{{plugin.pfs_id|e}}.json";
+    {% endif %}
     PluginDir.Editor.plugin_properties = {{ properties | json }};
 {% endblock %}
 
 {% block content %}
+    {% if plugin.sandbox_profile_id %}
+        {% set plugin_base as base_url ~ "profiles/" ~ screen_name|e ~ "/plugins/detail/" ~ plugin.pfs_id|urlencode|e %}
+    {% else %}
+        {% set plugin_base as base_url ~ "plugins/detail/" ~ plugin.pfs_id|urlencode|e %}
+    {% endif %}
 
     <form id="editor">
 
@@ -32,7 +42,9 @@
                     —
                     <span id="save_message"></span>
                     —
-                    <a href="{{base_url}}plugins/detail/{{plugin.pfs_id}}.json" target="_new">Saved JSON data</a>
+                    <a href="{{plugin_base}}" target="_new">Plugin details</a>
+                    —
+                    <a href="{{plugin_base}}.json" target="_new">Saved JSON data</a>
                     —
                     <a href="" id="json-out-link" target="_new">Current JSON data</a>
                 </li>

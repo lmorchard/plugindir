@@ -179,7 +179,8 @@ class Plugin_Model extends ORM {
         return $this->db->query("
             SELECT count(plugin_releases.id) AS count, plugins.*
             FROM plugins
-            JOIN plugin_releases WHERE plugins.id = plugin_releases.plugin_id
+            JOIN plugin_releases ON plugins.id = plugin_releases.plugin_id
+            WHERE sandbox_profile_id IS NULL
             GROUP BY plugins.id
             ORDER BY plugins.name ASC
         ")->result_array();
@@ -275,7 +276,7 @@ class Plugin_Model extends ORM {
     /**
      * Import a plugin into the database from data structure.
      */
-    public static function import($plugin_data, $delete_first=FALSE)
+    public function import($plugin_data, $delete_first=FALSE)
     {
         $db = Database::instance(Kohana::config('model.database'));
 
@@ -290,9 +291,18 @@ class Plugin_Model extends ORM {
         }
 
         // Find or update the main plugin record.
-        $plugin = ORM::find_or_insert(
-            'plugin', $meta['pfs_id'], $meta, true
-        );
+        if (empty($meta['sandbox_profile_id'])) {
+            $plugin = ORM::find_or_insert(
+                'plugin', $meta['pfs_id'], $meta, true
+            );
+        } else {
+            $plugin = ORM::find_or_insert(
+                'plugin', array(
+                    'pfs_id' => $meta['pfs_id'],
+                    'sandbox_profile_id' => $meta['sandbox_profile_id']
+                ), $meta, true
+            );
+        }
 
         // Get all the mimetypes handled by the plugin, adding to the DB first 
         // if necessary.
@@ -431,7 +441,7 @@ class Plugin_Model extends ORM {
             );
         }
 
-        return array($plugin, $releases);
+        return $plugin;
 
     }
 
@@ -446,18 +456,25 @@ class Plugin_Model extends ORM {
             'appID' => '',
             'appVersion' => '',
             'appRelease' => '',
-            'chromeLocale' => ''
+            'chromeLocale' => '',
+            'sandboxScreenName' => false
         ), $criteria);
 
         // Check to see if any of the other params are empty, causing a
         // shortcircuit straight to empty results.
         $req_empty = false;
         foreach ($criteria as $name => $value) {
+
+            // False values indicate empty is okay, not required.
+            if (false === $value) continue;
+
             // All params are required at present
             if (empty($value)) {
                 $req_empty = true; break;
             }
+
         }
+
         if ($req_empty) {
             // Missing required criteria, so punt.
             // TODO: Respond with an error someday?
@@ -499,6 +516,18 @@ class Plugin_Model extends ORM {
                 'platforms.app_release' => 'DESC',
             ))
             ;
+
+        // Add sandbox criteria, if any.  Require non-sandboxed if none.
+        if (!empty($criteria['sandboxScreenName'])) {
+            $this->db
+                ->join('profiles', 'profiles.id', 'plugins.sandbox_profile_id', 'LEFT')
+                ->orwhere(array(
+                    'profiles.screen_name' => $criteria['sandboxScreenName'], 
+                    'plugins.sandbox_profile_id' => NULL
+                ));
+        } else {
+            $this->db->where('plugins.sandbox_profile_id IS NULL');
+        }
 
         // Add client OS criteria to the SQL
         $criteria['clientOS'] = OS_Model::normalizeClientOS(@$criteria['clientOS']);
@@ -680,6 +709,9 @@ class Plugin_Model extends ORM {
                 }
             }
         }
+
+        // Sandboxed plugins are more relevant, if present.
+        if (!empty($row['sandbox_profile_id'])) $rel++;
 
         // TODO: Support lists of locales in the same way as OS
 

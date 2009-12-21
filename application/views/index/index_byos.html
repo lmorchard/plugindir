@@ -1,0 +1,14 @@
+{% extends "index/index_shell.html" %}
+
+{% block index_content %}
+    {% import "macros/oses.html" as oses %}
+
+    <ul class="os_counts">
+        {% for os in os_counts %}
+            <li>
+                <span class="count">({{os.count|e}})</span>
+                <a href="{{base_url}}search/results?os_id={{os.id|urlencode|e}}">{{oses.readable(os)}}</a>
+            </li>
+        {% endfor %}
+    </ul>
+{% endblock %}

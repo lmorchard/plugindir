@@ -1,0 +1,57 @@
+{% extends "index/index_shell.html" %}
+
+{% block index_content %}
+
+    <p>
+        The following is a list of plugins detected as installed
+        in your browser, along with the status of each with respect
+        to our plugin database.  Some of these plugins may not be
+        present in our database, and some may have incorrect details.
+        You can help us improve this directory by using the feedback
+        links next to each plugin.
+    </p>
+
+    <p class="installed_plugins_warning">
+        If you can see this message, we were unable to perform
+        plugin detection on your browser.  You may have JavaScript
+        disabled, which this site requires for many of its features.
+    </p>
+
+    <table class="installed_plugins">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Detected Version</th>
+                <!-- <th>Description</th> -->
+                <th>Installed Status</th>
+                <th>Have feedback?</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr class="template">
+                <td class="name"></td>
+                <td class="version"></td>
+                <!-- <td class="description"></td> -->
+                <td class="status"></td>
+                <td class="feedback"></td>
+            </tr>
+        </tbody>
+    </table>
+
+    <div id="status_templates" class="templates">
+        <span class="newer">Newer</span>
+        <span class="latest">Up to date</span>
+        <span class="vulnerable">Vulnerable</span>
+        <span class="outdated">Needs update</span>
+        <span class="unknown">Unknown</span>
+    </div>
+
+    <div id="feedback_templates" class="templates">
+        <a href="#" class="newer">Suggest update</a>
+        <a href="#" class="latest">Suggest correction</a>
+        <a href="#" class="vulnerable">Suggest correction</a>
+        <a href="#" class="outdated">Suggest correction</a>
+        <a href="#" class="unknown">Contribute new info</a>
+    </div>
+
+{% endblock %}

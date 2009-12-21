@@ -127,9 +127,7 @@ PluginDir.Editor = (function () {
             $this.updateDefinitionFromForm();
 
             var json = $this.buildJSON(),
-                url = PluginDir.base_url + 'plugins/detail/' +
-                    encodeURIComponent($this.definition.meta.pfs_id) + 
-                    '.json';
+                url  = $this.json_url;
 
             // Perform the actual save via POST.
             $.ajax({

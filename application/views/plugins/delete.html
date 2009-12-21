@@ -1,0 +1,20 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Delete plugin :: {{plugin.name | e}}
+{% endblock %}
+
+{% block content %}
+
+    <h2>{{plugin.name | e}}</h2>
+
+    <form action="" method="POST">
+        <p>Delete this plugin?</p>
+        <div>
+            <input type="submit" value="Delete plugin" />
+            |
+            <a href="{{base_url}}plugins/detail/{{plugin.pfs_id}}">Cancel</a>
+        </div>
+    </form>
+
+{% endblock %}

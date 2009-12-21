@@ -65,6 +65,7 @@ class Search_Controller extends Local_Controller {
             'appVersion' => '',
             'appRelease' => '',
             'chromeLocale' => '',
+            'sandboxScreenName' => false,
             'callback' => ''
         );
         foreach ($params as $name=>$default) {

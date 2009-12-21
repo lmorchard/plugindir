@@ -1,0 +1,15 @@
+{% if not sandbox_plugins %}
+    <p>This sandbox is empty.</p>
+{% else %}
+
+    <ul class="sandbox_plugins">
+        {% for plugin in sandbox_plugins %}
+            <li id="{{plugin.pfs_id|e}}">
+                [<a href="{{base_url}}profiles/{{profile.screen_name|e}}/plugins/detail/{{plugin.pfs_id|urlencode|e}};delete">delete</a>]
+                [<a href="{{base_url}}profiles/{{profile.screen_name|e}}/plugins/detail/{{plugin.pfs_id|urlencode|e}};edit">edit</a>]
+                <a href="{{base_url}}profiles/{{profile.screen_name|e}}/plugins/detail/{{plugin.pfs_id | urlencode | e}}">{{plugin.name | e}}</a>
+            </li>
+        {% endfor %}
+    </ul>
+
+{% endif %}

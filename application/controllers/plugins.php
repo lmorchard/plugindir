@@ -9,6 +9,14 @@
 class Plugins_Controller extends Local_Controller {
 
     /**
+     * Constructor, runs before any method.
+     */
+    public function __construct() 
+    {
+        parent::__construct();
+    }
+
+    /**
      * Accept plugin data contributions.
      */
     function submit()
@@ -39,15 +47,34 @@ class Plugins_Controller extends Local_Controller {
     }
 
     /**
-     * Display plugin details, accept POST updates.
+     * User's plugin sandbox
      */
-    function detail($pfs_id, $format='html')
-    {
-        // Look for the plugin, throw a 404 if not found.
-        $plugin = ORM::factory('plugin', $pfs_id);
-        if (!$plugin->loaded) {
+    function sandbox($screen_name) {
+        $profile = ORM::factory('profile', $screen_name);
+        if (!$profile->loaded) {
             return Event::run('system.404');
         }
+        $this->view->profile = $profile->as_array();
+
+        $this->view->sandbox_plugins = ORM::factory('plugin')
+            ->where('sandbox_profile_id', $profile->id)
+            ->orderby('modified','DESC')
+            ->find_all()->as_array();
+
+        if ($screen_name == authprofiles::get_profile('screen_name')) {
+            // HACK: Since this is using the index page shell, inform it which tab 
+            // to select.  This should probably be done all in the view.
+            $this->view->by_cat = 'sandbox';
+            $this->view->set_filename('plugins/sandbox_mine');
+        }
+    }
+
+    /**
+     * Display plugin details, accept POST updates.
+     */
+    function detail($pfs_id, $format='html', $screen_name=null)
+    {
+        $plugin = $this->_find_plugin($pfs_id, $screen_name);
 
         if ('json' == $format) {
 
@@ -61,15 +88,17 @@ class Plugins_Controller extends Local_Controller {
                     exit;
                 }
 
-                // Force the PFS ID to the one requested.
-                $data['meta']['pfs_id'] = $pfs_id;
-
-                // Import the plugin JSON.
-                Plugin_Model::import($data);
-
-                // Refresh the plugin after import.
-                $plugin = ORM::factory('plugin', $pfs_id);
-
+                // Force some significant details in export to match original plugin.
+                $force_names = array(
+                    'pfs_id', 'sandbox_profile_id', 'original_plugin_id'
+                );
+                foreach ($force_names as $name) {
+                    if (!empty($plugin->{$name})) {
+                        $data['meta'][$name] = $plugin->{$name};
+                    }
+                }
+                
+                $plugin = ORM::factory('plugin')->import($data);
             }
             
             // Return the plugin data as an export in JSON
@@ -77,9 +106,6 @@ class Plugins_Controller extends Local_Controller {
             $out = $plugin->export();
             return json::render($out, $this->input->get('callback'));
         }
-
-        // Pass the plugin over to the template.
-        $this->view->plugin = $plugin->as_array();
 
         // Collate the plugin releases by version.
         $releases = array();
@@ -97,21 +123,131 @@ class Plugins_Controller extends Local_Controller {
     }
 
     /**
+     * Copy a plugin to user's sandbox
+     */
+    function copy($pfs_id, $screen_name=null)
+    {
+        $plugin = $this->_find_plugin($pfs_id, $screen_name);
+
+        // Only perform the copy on POST.
+        if ('post' == request::method()) {
+
+            // Get an export of the original
+            $export = $plugin->export();
+
+            // Assign the export to the requesting user's sandbox.
+            $export['meta']['sandbox_profile_id'] = authprofiles::get_profile('id');
+            
+            // If not already set (eg. copy of a copy), assign the original 
+            // plugin ID
+            if (empty($export['meta']['original_plugin_id'])) {
+                $export['meta']['original_plugin_id'] = $plugin->id;
+            }
+            
+            // Create a new plugin from the export.
+            $new_plugin = ORM::factory('plugin')->import($export);
+
+            // Bounce over to sandbox.
+            $auth_screen_name = authprofiles::get_profile('screen_name');
+            url::redirect("profiles/{$auth_screen_name}/plugins");
+
+        }
+    }
+
+    /**
+     * Deploy a sandbox plugin live.
+     */
+    function deploy($pfs_id, $screen_name=null) {
+        
+        $plugin = $this->_find_plugin($pfs_id, $screen_name);
+
+        if (!$plugin->sandbox_profile_id) {
+            // Only sandboxed plugins can be deployed.
+            return Event::run('system.403');
+        }
+
+        // Only perform the copy on POST.
+        if ('post' == request::method()) {
+
+            // Get an export of the original
+            $export = $plugin->export();
+
+            // Discard sandbox details, which will replace the original.
+            unset($export['meta']['sandbox_profile_id']);
+            unset($export['meta']['original_plugin_id']);
+            
+            // Import the export to finish deployment.
+            $new_plugin = ORM::factory('plugin')->import($export);
+
+            // Bounce over to the deployed plugin
+            url::redirect("plugins/detail/{$new_plugin->pfs_id}");
+
+        }
+    }
+
+    /**
+     * Delete a plugin.
+     */
+    function delete($pfs_id, $screen_name=null) 
+    {
+        $plugin = $this->_find_plugin($pfs_id, $screen_name);
+
+        // Only perform the copy on POST.
+        if ('post' == request::method()) {
+
+            $plugin->delete();
+
+            // Bounce over to sandbox.
+            $auth_screen_name = authprofiles::get_profile('screen_name');
+            url::redirect("profiles/{$auth_screen_name}/plugins");
+        }
+    }
+
+    /**
      * Fire up the plugin editor.
      */
-    function edit($pfs_id)
+    function edit($pfs_id, $screen_name=null)
     {
-        // Look for the plugin, throw a 404 if not found.
-        $plugin = ORM::factory('plugin', $pfs_id);
-        if (!$plugin->loaded) {
-            return Event::run('system.404');
-        }
-         
+        $plugin = $this->_find_plugin($pfs_id, $screen_name);
         $this->view->set(array(
-            'plugin' => $plugin->as_array(),
             'status_choices' => Plugin_Model::$status_choices,
             'properties' => Plugin_Model::$properties
         ));
+    }
+
+
+    /**
+     * Try looking for plugin given PFS ID and optional screen name.
+     * Throws a 404 event if not found, and exits.
+     * Also shoves the plugin and screen name into the view variables.
+     */
+    function _find_plugin($pfs_id, $screen_name=null)
+    {
+        // Check for screen name if necessary
+        if (!$screen_name) {
+            $profile_id = null;
+        } else {
+            $profile = ORM::factory('profile', $screen_name);
+            if (!$profile->loaded) {
+                Event::run('system.404');
+                exit;
+            }
+            $profile_id = $profile->id;
+        }
+
+        // Look for the plugin, throw a 404 if not found.
+        $plugin = ORM::factory('plugin', array(
+            'pfs_id' => $pfs_id, 'sandbox_profile_id' => $profile_id
+        ));
+        if (!$plugin->loaded) {
+            Event::run('system.404');
+            exit;
+        }
+
+        $this->view->plugin = $plugin->as_array();
+        $this->view->screen_name = $screen_name;
+
+        return $plugin;
     }
 
     /**

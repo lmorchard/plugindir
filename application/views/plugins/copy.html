@@ -1,0 +1,18 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Copy plugin to sandbox :: {{plugin.name | e}}
+{% endblock %}
+
+{% block content %}
+
+    <form action="" method="POST">
+        <p>Copy this plugin to your sandbox?</p>
+        <div>
+            <input type="submit" value="Copy to Sandbox" />
+            |
+            <a href="{{base_url}}plugins/detail/{{plugin.pfs_id}}">Cancel</a>
+        </div>
+    </form>
+
+{% endblock %}

@@ -96,7 +96,7 @@ class Plugin_Model_Test extends PHPUnit_Framework_TestCase
                 ->clear_cache();
         }
 
-        Plugin_Model::import(self::$test_plugin);
+        ORM::factory('plugin')->import(self::$test_plugin);
     }
 
     /**
@@ -317,7 +317,7 @@ class Plugin_Model_Test extends PHPUnit_Framework_TestCase
                 ),
             )
         );
-        Plugin_Model::import($plugin_update);
+        ORM::factory('plugin')->import($plugin_update);
 
         foreach (array( 'Windows NT 5.1', 'Intel Mac OS X 10.5', 'React OS' ) as $os_name ) {
 
@@ -446,7 +446,7 @@ class Plugin_Model_Test extends PHPUnit_Framework_TestCase
                 ),
             )
         );
-        Plugin_Model::import($plugin_update);
+        ORM::factory('plugin')->import($plugin_update);
 
         $os_guid_map = array(
             'Windows 98'          => 'foobar-win-200.9.9',
@@ -543,7 +543,7 @@ class Plugin_Model_Test extends PHPUnit_Framework_TestCase
 
             // TODO: Need more tests here?
 
-            Plugin_Model::import($result_export);
+            ORM::factory('plugin')->import($result_export);
         }
 
     }

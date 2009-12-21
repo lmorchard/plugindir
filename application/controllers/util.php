@@ -43,10 +43,11 @@ class Util_Controller extends Local_Controller {
 
         foreach ($_SERVER['argv'] as $fn) {
             echo "Importing $fn...\n";
-            list($plugin, $releases) =
-                Plugin_Model::import(json_decode(file_get_contents($fn), true));
+            $plugin = ORM::factory('plugin')->import(
+                json_decode(file_get_contents($fn), true)
+            );
             echo "\t{$plugin->id}: ";
-            foreach ($releases as $release) echo "{$release->id} ";
+            foreach ($plugin->pluginreleases as $release) echo "{$release->id} ";
             echo "\n";
         }
     }

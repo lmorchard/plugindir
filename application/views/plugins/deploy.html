@@ -1,0 +1,18 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Push plugin changes :: {{plugin.name | e}}
+{% endblock %}
+
+{% block content %}
+
+    <form action="" method="POST">
+        <p>Push changes to this plugin live?</p>
+        <div>
+            <input type="submit" value="Push plugin changes live" />
+            |
+            <a href="{{base_url}}plugins/detail/{{plugin.pfs_id}}">Cancel</a>
+        </div>
+    </form>
+
+{% endblock %}
