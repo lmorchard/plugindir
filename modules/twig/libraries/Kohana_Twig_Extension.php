@@ -21,15 +21,26 @@ class Kohana_Twig_Extension extends Twig_Extension
     }
 
     /**
+     * Define the set of filters made available by this extension.
      */
     public function getFilters()
     {
         $filters = array();
 
+        $filters['phpeval']  = array('Kohana_Twig_Extension::filter_phpeval', false);
         $filters['url_site'] = array('url::site', false );
         $filters['url_base'] = array('Kohana_Twig_Extension::filter_urlBase', false);
 
         return $filters;
+    }
+
+    /**
+     * This is a nasty escape hatch for PHP one-liners in Twig templates.  When 
+     * used sparingly in macros, it's helpful for accessing Kohana helpers.
+     */
+    public static function filter_phpeval($string)
+    {
+        return eval($string);
     }
 
     public static function filter_urlBase($string)

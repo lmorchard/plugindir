@@ -99,18 +99,19 @@ class Twig_Node_Module extends Twig_Node implements Twig_NodeListInterface
     if (!is_null($this->extends))
     {
       $compiler
-        ->write('$this->load(')
+        ->write('$this->loadTemplate(')
         ->repr($this->extends)
         ->raw(");\n\n")
       ;
     }
 
     $compiler
-      ->write("/* $this->filename */\n")
-      ->write('class __TwigTemplate_'.md5($this->filename))
+      // if the filename contains */, add a blank to avoid a PHP parse error
+      ->write("/* ".str_replace('*/', '* /', $this->filename)." */\n")
+      ->write('class '.$compiler->getTemplateClass($this->filename))
     ;
 
-    $parent = null === $this->extends ? $compiler->getEnvironment()->getBaseTemplateClass() : '__TwigTemplate_'.md5($this->extends);
+    $parent = null === $this->extends ? $compiler->getEnvironment()->getBaseTemplateClass() : $compiler->getTemplateClass($this->extends);
 
     $compiler
       ->raw(" extends $parent\n")
@@ -206,7 +207,7 @@ class Twig_Node_Module extends Twig_Node implements Twig_NodeListInterface
 
     $compiler
       ->write("\n")
-      ->write('class __TwigMacro_'.md5($this->filename).' extends Twig_Macro'."\n")
+      ->write('class '.$compiler->getTemplateClass($this->filename).'_Macro extends Twig_Macro'."\n")
       ->write("{\n")
       ->indent()
     ;

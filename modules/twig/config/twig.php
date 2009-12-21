@@ -8,4 +8,6 @@
  */
 $config['extension'] = 'html';
 $config['template_path'] = APPPATH.'views';
-$config['compilation_cache'] = APPPATH.'cache/twig';
+$config['cache'] = APPPATH.'cache/twig';
+$config['auto_reload'] = TRUE;
+$config['trim_blocks'] = TRUE;

@@ -16,23 +16,19 @@
  * @author     Fabien Potencier <fabien.potencier@symfony-project.com>
  * @version    SVN: $Id$
  */
-class Twig_Loader_Array extends Twig_Loader
+class Twig_Loader_Array implements Twig_LoaderInterface
 {
   protected $templates;
 
   /**
    * Constructor.
    *
-   * @param array   $templates  An array of templates (keys are the names, and values are the source code)
-   * @param string  $cache      The compiler cache directory
-   * @param Boolean $autoReload Whether to reload the template is the original source changed
+   * @param array $templates An array of templates (keys are the names, and values are the source code)
    *
    * @see Twig_Loader
    */
-  public function __construct(array $templates, $cache = null)
+  public function __construct(array $templates)
   {
-    parent::__construct($cache);
-
     $this->templates = array();
     foreach ($templates as $name => $template)
     {
@@ -40,6 +36,13 @@ class Twig_Loader_Array extends Twig_Loader
     }
   }
 
+  /**
+   * Gets the source code of a template, given its name.
+   *
+   * @param  string $name string The name of the template to load
+   *
+   * @return string The template source code
+   */
   public function getSource($name)
   {
     if (!isset($this->templates[$name]))
@@ -47,6 +50,34 @@ class Twig_Loader_Array extends Twig_Loader
       throw new LogicException(sprintf('Template "%s" is not defined.', $name));
     }
 
-    return array($this->templates[$name], false);
+    return $this->templates[$name];
+  }
+
+  /**
+   * Gets the cache key to use for the cache for a given template name.
+   *
+   * @param  string $name string The name of the template to load
+   *
+   * @return string The cache key
+   */
+  public function getCacheKey($name)
+  {
+    if (!isset($this->templates[$name]))
+    {
+      throw new LogicException(sprintf('Template "%s" is not defined.', $name));
+    }
+
+    return $this->templates[$name];
+  }
+
+  /**
+   * Returns true if the template is still fresh.
+   *
+   * @param string    $name The template name
+   * @param timestamp $time The last modification time of the cached template
+   */
+  public function isFresh($name, $time)
+  {
+    return false;
   }
 }
