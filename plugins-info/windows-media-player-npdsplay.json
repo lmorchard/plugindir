@@ -1,0 +1,27 @@
+{
+    "meta": {
+        "pfs_id": "windows-media-player-npdsplay",
+        "name": "Windows Media Player Plug-in Dynamic Link Library",
+        "vendor": "Microsoft",
+        "platform": {
+            "app_id": "{ec8030f7-c20a-464f-9b0e-13a3a9e97384}"
+        },
+        "filename": "npdsplay.dll"
+    },
+    "aliases": {
+        "literal": [],
+        "regex": []
+    },
+    "mimes": [
+        "application/asx","video/x-ms-asf-plugin","application/x-mplayer2",
+        "video/x-ms-asf","video/x-ms-wm","audio/x-ms-wma","audio/x-ms-wax",
+        "video/x-ms-wmv","video/x-ms-wvx"
+    ],
+    "releases": [
+        {
+            "version": "3.0.2.629",
+            "os_name": "win",
+            "status": "latest"
+        }
+    ]
+}

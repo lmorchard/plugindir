@@ -1,0 +1,34 @@
+{
+    "meta": {
+        "pfs_id": "realplayer",
+        "name": "RealPlayer",
+        "vendor": "Real",
+        "platform": {
+            "app_id": "{ec8030f7-c20a-464f-9b0e-13a3a9e97384}"
+        },
+        "url": "http://www.real.com/realplayer/rp11free"
+    },
+    "aliases": {
+        "literal": [],
+        "regex": []
+    },
+    "mimes": [
+        "audio/x-pn-realaudio-plugin"
+    ],
+    "releases": [
+        {
+            "os_name": "win",
+            "version": "6.0.12.448",
+            "name": "RealPlayer Version Plugin",
+            "filename": "nprpjplug.dll",
+            "manual_installation_url": "http://software-download.real.com/26edeb6dd3ffcc2b7722/windows/installer/stubinst/stub/rp11/R41RD01/RealPlayer11GOLD.exe"
+        },
+        {
+            "os_name": "mac",
+            "version": "0.0.1d1",
+            "name": "RealPlayer Plugin.plugin",
+            "filename": "RealPlayer Plugin.plugin",
+            "manual_installation_url": "http://www.real.com/mac/realplayer"
+        }
+    ]
+}

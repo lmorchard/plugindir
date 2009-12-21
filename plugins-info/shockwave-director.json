@@ -1,0 +1,45 @@
+{
+    "meta": {
+        "pfs_id": "shockwave-director",
+        "name": "Shockwave for Director",
+        "description": "Adobe Shockwave for Director Netscape plug-in, version 11.5",
+        "vendor": "Adobe",
+        "platform": {
+            "app_id": "{ec8030f7-c20a-464f-9b0e-13a3a9e97384}"
+        },
+        "license_url": "http://www.adobe.com/products/eulas/players/shockwave",
+        "url": "http://get.adobe.com/shockwave/"
+    },
+    "aliases": {
+        "literal": ["Shockwave for Director"],
+        "regex": [".*Shockwave for Director.*"]
+    },
+    "mimes": [
+        "application/x-director"
+    ],
+    "releases": [
+        {
+            "os_name": "mac",
+            "version": "11.5.2",
+            "filename": "DirectorShockwave.plugin",
+            "manual_installation_url": "http://fpdownload.macromedia.com/get/shockwave/default/english/macosx/latest/Shockwave_Installer_Slim.dmg",            
+            "url": "http://www.adobe.com/products/shockwaveplayer/",
+            "status": "latest"
+        },
+        {
+            "os_name": "win",
+            "version": "11.5.2",
+            "filename": "np32dsw.dll",
+            "manual_installation_url": "http://fpdownload.macromedia.com/get/shockwave/default/english/win95nt/latest/Shockwave_Installer_Slim.exe",
+            "url": "http://www.adobe.com/products/shockwaveplayer/",
+            "status": "latest"
+        },
+        {
+            "os_name": "*",
+            "version": "11.5.1",
+            "status": "vulnerable",
+            "vulnerability_url": "http://www.mxlogic.com/securitynews/web-security/adobe-issues-critical-security-update-for-shockwave-player000.cfm",
+            "vulnerability_description": "Four separate vulnerabilities are addressed in the update, three of which are invalid index, pointer and string length vulnerabilities that could allow remote code execution. The other vulnerability is a boundary condition issue that could allow a Denial of Service (DOS)."
+        }
+    ]
+}

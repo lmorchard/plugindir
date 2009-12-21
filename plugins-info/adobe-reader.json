@@ -1,0 +1,30 @@
+{
+    "meta": {
+        "pfs_id": "adobe-reader",
+        "vendor": "Adobe",
+        "name": "Adobe Reader",
+        "description": "Adobe PDF Plug-In For Firefox and Netscape",
+        "platform": {
+            "app_id": "{ec8030f7-c20a-464f-9b0e-13a3a9e97384}"
+        },
+        "url": "http://get.adobe.com/reader/"
+    },
+    "aliases": {
+        "literal": [
+            "Adobe Acrobat"
+        ]
+    },
+    "mimes": [
+        "application/pdf", "application/vnd.adobe.pdfxml",
+        "application/vnd.adobe.x-mars", "application/vnd.fdf",
+        "application/vnd.adobe.xfdf", "application/vnd.adobe.xdp+xml",
+        "application/vnd.adobe.xfd+xml"
+    ],
+    "releases": [
+        {
+            "status": "latest",
+            "version": "9.1.0.163",
+            "os_name": "win"
+        }
+    ]
+}

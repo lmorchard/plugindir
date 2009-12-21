@@ -1,0 +1,36 @@
+{
+    "meta": {
+        "pfs_id": "telestream-flip4mac",
+        "name": "Flip4Mac Windows Media Plugin",
+        "description": "The Flip4Mac WMV Plugin allows you to view Windows Media content using QuickTime.",
+        "vendor": "Telestream",
+        "platform": {
+            "app_id": "{ec8030f7-c20a-464f-9b0e-13a3a9e97384}"
+        },
+        "url": "http://www.telestream.net/flip4mac-wmv/overview.htm"        
+    },
+    "aliases": {
+        "literal": ["Flip4Mac Windows Media Plugin"],
+        "regex": []
+    },
+    "mimes": [
+        "application/x-mplayer2"
+    ],
+    "releases": [
+        {
+            "os_name": "*",
+            "version": "2.2.3",
+            "status": "latest"
+        },
+        {
+            "os_name": "*",
+            "version": "2.2.1",
+            "status": "outdated"
+        },
+        {
+            "os_name": "*",
+            "version": "2.1.2",
+            "status": "outdated"
+        }
+    ]
+}

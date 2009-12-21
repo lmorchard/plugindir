@@ -1,0 +1,77 @@
+Plugin definitions in JSON
+==========================
+
+This directory contains plugin definitions expressed in JSON.
+
+The top level structure of these JSON files look like so:
+
+{
+    "meta": {
+    },
+    "aliases": {
+        "literal": [],
+        "regex": []
+    },
+    "mimes": [
+    ],
+    "releases": [
+    ]
+}
+
+The "meta" object is an overall description for the plugin across all of its
+releases.
+
+The "releases" array is a list of objects, each of which accepts all of the
+properties of the "meta" object.  The intention is that you can describe the
+overall properties of releases in "meta", and then override them with releases.
+
+In this way, each release can inherit and reuse the meta properties, but
+specify its own property values for version, installation URL, license,
+security violations, platform, OS, and etc.  
+
+And finally, the "mimes" list expect either a list of strings specifying the
+MIME types for which the plugin is responsible, or more verbose objects
+describing those types.  The objects under "mimes" should supply the following
+properties:
+
+* "name": identifier for the MIME type
+* "suffixes": well-known filename suffixes for the MIME type
+* "description": more verbose description for the MIME type
+
+The "meta" object, and each "releases" object, accepts the following properties:
+
+; "pfs_id": an arbitrary ID for the plugin, unique within PFS
+; "vendor": name of the vendor responsible for the plugin
+; "name": name of the plugin
+; "version": version of the plugin
+; "os_name": the OS for which the plugin is built, including values such as:
+* win
+* windows vista
+* windows nt 6.0
+* mac
+* mac os x
+* ppc mac os x
+* intel mac os x
+* linux
+* linux x86
+* linux x86_64
+* sunos
+* sunos sun4u
+; "platform": an object describing the appropriate platform for the plugin:
+* "app_id": the application for which the plugin is intended
+*** eg. Firefox is {ec8030f7-c20a-464f-9b0e-13a3a9e97384}
+* "app_release": the release number for the app, eg. 3.5 for Firefox 3.5
+* "app_version": the build version of the app, eg. navigator.buildID
+* "locale": the locale for the app, eg. navigator.language, en-US, ja-JP
+; "vulnerability_url": a URL pointing to a document describing vulnerabilities
+; "vulnerability_description": description of security vulnerabilities
+; "guid": GUID for the plugin
+; "description": a more verbose description of the plugin
+; "filename": filename of the plugin itself
+; "xpi_location": a URL to the XPI for installing the plugin
+; "installer_location": a URL to a non-XPI installer for the plugin
+; "installer_hash": a SHA1 hash of the installer for the plugin
+; "manual_installation_url": a URL to visit for manual download and installation
+; xpcomabi : '''''(Not sure, inherited from PFS1, need a description)'''''
+; min : '''''(Not sure, inherited from PFS1, need a description)'''''
+; max : '''''(Not sure, inherited from PFS1, need a description)'''''

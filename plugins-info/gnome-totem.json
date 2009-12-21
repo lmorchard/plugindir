@@ -1,0 +1,33 @@
+{
+    "meta": {
+        "pfs_id": "gnome-totem",
+        "name":"Totem",
+        "vendor": "The GNOME Project",
+        "platform": {
+            "app_id": "{ec8030f7-c20a-464f-9b0e-13a3a9e97384}"
+        },
+        "url": "http://projects.gnome.org/totem/"        
+    },
+    "aliases": {
+        "literal": ["Totem"],
+        "regex": [".*Totem.*"]
+    },
+    "mimes": [
+        "application/x-vlc-plugin", "application/vlc", "video/x-google-vlc-plugin", "application/x-ogg",
+        "application/ogg", "audio/ogg", "audio/x-ogg", "video/ogg", "video/x-ogg", "application/annodex",
+        "audio/annodex", "video/annodex", "video/mpeg", "audio/wav", "audio/x-wav", "audio/mpeg",
+        "application/x-nsv-vp3-mp3", "video/flv", "application/x-totem-plugin"
+    ],
+    "releases": [
+        {
+            "os_name": "linux",
+            "version": "2.26.3",
+            "status": "latest"
+        },
+        {
+            "os_name": "linux",
+            "version": "2.26.1",
+            "status": "outdated"
+        }
+    ]
+}

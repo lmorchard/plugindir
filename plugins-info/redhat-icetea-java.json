@@ -1,0 +1,25 @@
+{
+    "meta": {
+        "pfs_id": "redhat-icetea-java",
+        "name":"IcedTea Java Web Browser Plugin",
+        "vendor": "Redhat",
+        "platform": {
+            "app_id": "{ec8030f7-c20a-464f-9b0e-13a3a9e97384}"
+        },
+        "url": "http://icedtea.classpath.org/wiki/Main_Page"
+    },
+    "aliases": {
+        "literal": ["IcedTea Java Web Browser Plugin"],
+        "regex": []
+    },
+    "mimes": [
+         "application/x-java-vm", "application/x-java-applet"
+    ],
+    "releases": [
+        {
+            "os_name": "*",
+            "version": "1.6.0.0",
+            "status": "latest"
+        }
+    ]
+}

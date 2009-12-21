@@ -10,4 +10,8 @@
     * application/cache
     * application/cache/twig
 
+* Run this to import plugin definitions:
+    * `php htdocs/index.php util/import plugins-info/*json`
+    * You may need to do this as the Apache user, or another user in same group.
 
+## API Usage

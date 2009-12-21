@@ -1,0 +1,31 @@
+{
+    "meta": {
+        "pfs_id": "microsoft-silverlight",
+        "name":"Silverlight Plug-In",
+        "vendor": "Microsoft",
+        "platform": {
+            "app_id": "{ec8030f7-c20a-464f-9b0e-13a3a9e97384}"
+        },
+        "url": "http://www.microsoft.com/silverlight/get-started/install/default.aspx"
+    },
+    "aliases": {
+        "literal": [],
+        "regex": []
+    },
+    "mimes": [
+        "application/x-silverlight", "application/x-silverlight-2"
+    ],
+    "releases": [
+        {
+            "os_name": "win",
+            "version": "3.0.40818.0",
+            "filename": "npctrl.dll",
+            "manual_installation_url": "http://silverlight.dlservice.microsoft.com/download/C/5/B/C5BB5CD8-E871-49AC-8A40-61010E1FD1CF/Silverlight.exe"
+        },
+        {
+            "os_name": "mac",
+            "version": "3.0.40818.0",
+            "filename": "Silverlight.plugin"
+        }
+    ]
+}

@@ -1,0 +1,29 @@
+{
+    "meta": {
+        "pfs_id": "windows-media-player-np-mswmp",
+        "name":"Microsoft® Windows Media Player Firefox Plugin",
+        "vendor": "Microsoft",
+        "platform": {
+            "app_id": "{ec8030f7-c20a-464f-9b0e-13a3a9e97384}"
+        },
+        "filename": "np-mswmp.dll",
+        "url": "http://port25.technet.com/pages/windows-media-player-firefox-plugin-download.aspx"
+    },
+    "aliases": {
+        "literal": [],
+        "regex": []
+    },
+    "mimes": [
+        "application/x-ms-wmp","application/asx","video/x-ms-asf-plugin",
+        "application/x-mplayer2","video/x-ms-asf","video/x-ms-wm",
+        "audio/x-ms-wma","audio/x-ms-wax","video/x-ms-wmv","video/x-ms-wvx"
+    ],
+    "releases": [
+        {
+            "version": "1.0.0.8",
+            "manual_installation_url": "http://port25.technet.com/videos/downloads/wmpfirefoxplugin.exe",
+            "os_name": "win",
+            "status": "latest"
+        }
+    ]
+}

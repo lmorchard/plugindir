@@ -1,0 +1,27 @@
+{
+    "meta": {
+        "pfs_id": "metastream",
+        "name": "MetaStream 3 Plugin",
+        "description": "npViewpoint Plugin",
+        "vendor": "Viewpoint",
+        "platform": {
+            "app_id": "{ec8030f7-c20a-464f-9b0e-13a3a9e97384}"
+        },
+        "url": "http://www.viewpoint.com/technologies/viewpoint-media-player.shtml"
+    },
+    "aliases": {
+        "literal": [],
+        "regex": []
+    },
+    "mimes": [
+        "application/x-mtx"
+    ],
+    "releases": [
+        {
+            "os_name": "win",
+            "version": "3.6.0.59",
+            "filename": "npViewpoint.dll",
+            "manual_installation_url": "https://components.viewpoint.com/MTSInstallers/archive/vmp_full_installer_.exe"
+        }
+    ]
+}

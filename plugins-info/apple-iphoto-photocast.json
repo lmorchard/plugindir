@@ -1,0 +1,25 @@
+{
+    "meta": {
+        "pfs_id": "apple-iphoto-photocast",
+        "name":"iPhotoPhotocast",
+        "vendor": "Apple Computers",
+        "platform": {
+            "app_id": "{ec8030f7-c20a-464f-9b0e-13a3a9e97384}"
+        },
+        "url": "http://www.apple.com/ilife/iphoto/"
+    },
+    "aliases": {
+        "literal": ["iPhotoPhotocast"],
+        "regex": []
+    },
+    "mimes": [
+         "application/photo"
+    ],
+    "releases": [
+        {
+            "os_name": "*",
+            "version": "6",
+            "status": "latest"
+        }
+    ]
+}

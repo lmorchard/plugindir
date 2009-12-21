@@ -1,0 +1,26 @@
+{
+    "meta": {
+        "pfs_id": "realjukebox",
+        "name": "RealJukebox NS Plugin",
+        "description": "RealJukebox Netscape Plugin",
+        "vendor": "Real",
+        "platform": {
+            "app_id": "{ec8030f7-c20a-464f-9b0e-13a3a9e97384}"
+        },
+        "url": "http://www.real.com/realplayer/rp11free"
+    },
+    "aliases": {
+        "literal": [],
+        "regex": []
+    },
+    "mimes": [
+    ],
+    "releases": [
+        {
+            "os_name": "win",
+            "version": "1.0.3.448",
+            "filename": "nprjplug.dll",
+            "manual_installation_url": "http://software-download.real.com/26edeb6dd3ffcc2b7722/windows/installer/stubinst/stub/rp11/R41RD01/RealPlayer11GOLD.exe"
+        }
+    ]
+}
