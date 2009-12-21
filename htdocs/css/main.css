@@ -185,6 +185,32 @@
 #ctrl_plugins_act_edit fieldset {
     margin: 0.5em 0.5em 0.5em 1em;
     padding: 0.5em 0.5em 0.5em 0.75em;
+    border: 1px solid #666;
+}
+#ctrl_plugins_act_edit fieldset legend {
+    cursor: pointer;
+    border: 1px solid #333;
+    background: #eee;
+    padding: 0.125em 0.5em;
+    margin: 0 0 0 -0.825em;
+}
+#ctrl_plugins_act_edit fieldset legend:hover {
+    background: #fff;
+}
+#ctrl_plugins_act_edit fieldset legend:before {
+    content: '[ - ] ';
+}
+#ctrl_plugins_act_edit fieldset.closed legend:before {
+    content: '[ + ] ';
+}
+#ctrl_plugins_act_edit fieldset.closed {
+    padding: 0;
+}
+#ctrl_plugins_act_edit #releases fieldset.closed {
+    border: none;
+}
+#ctrl_plugins_act_edit fieldset.closed ul {
+    display: none;
 }
 #ctrl_plugins_act_edit ul#releases {
     padding: 0 0 0 0;

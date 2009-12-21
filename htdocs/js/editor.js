@@ -3,49 +3,67 @@
  */
 PluginDir.Editor = (function () {
 
-    // Static local package reference
-    var $this = null;
-
-    return {
+    var $this = {
 
         // JSON to load, should be set before document ready.
-        json_url: null,
-        plugin_properties: {},
+        json_url: null, 
+        // Description of plugin properties.
+        plugin_properties: {}, 
+        // Whether or not to autosave using idle timer.
+        autosave: true, 
+        // Idle timer used to save when user is inbetween edits.
+        save_timer: null, 
+        // Whether or not a save is in progress
+        save_inprogress: false, 
+        // Time in milliseconds of idle time before save.
+        save_delay: 2 * 1000, 
 
-        autosave: true,
-        save_timer: null,
-        save_inprogress: false,
-        save_delay: 3 * 1000,
+        app_ids: {
+            '{ec8030f7-c20a-464f-9b0e-13a3a9e97384}': 'Firefox'
+        },
 
         /**
          * Package initialization
          */
         init: function () {
+            $(document).ready($this.ready);
+            return $this = this;
+        },
 
-            // Set up the page on document ready.
-            $(document).ready(function () {
+        /**
+         * Page setup on DOM ready.
+         */
+        ready: function () {
 
-                $('#editor').submit(function () { return false; });
+            // Disable form submit for editor.
+            $('#editor').submit(function () { return false; });
 
-                $('#mimes, #literal_aliases, #regex_aliases')
-                    .change($this.scheduleSavePlugin);
+            // Wire up autosave on mime & alias changes.
+            $('#mimes, #literal_aliases, #regex_aliases')
+                .change($this.scheduleSavePlugin);
 
-                $('button#save').click($this.savePlugin);
+            // Wire up manual save button.
+            $('button#save').click($this.savePlugin);
 
-                $('#autosave').change(function () {
-                    $this.autosave = !$this.autosave;
-                    $this.updateStatusMessage("Autosave " + 
-                        (($this.autosave) ? 'enabled' : 'disabled'));
-                    console.log($(this).val());
-                });
-
-                if ($this.json_url) {
-                    $this.loadPlugin($this.json_url);
-                }
-
+            // Wire up autosave toggle box.
+            $('#autosave').change(function () {
+                $this.autosave = !$this.autosave;
+                $this.updateStatusMessage("Autosave " + 
+                    (($this.autosave) ? 'enabled' : 'disabled'));
             });
 
-            return $this = this;
+            // Wire up a quick & dirty outline UI
+            $('form').click(function (ev) {
+                if ('legend' == ev.target.nodeName.toLowerCase()) {
+                    $(ev.target).parent().toggleClass('closed');
+                }
+            });
+
+            // If the server set a JSON URL for loading, do so.
+            if ($this.json_url) {
+                $this.loadPlugin($this.json_url);
+            }
+
         },
 
         /**
@@ -101,17 +119,17 @@ PluginDir.Editor = (function () {
 
         /**
          * Schedule a save of the plugin using an idle timer.
-         *
-         * Repeat calls to this method, eg. from field changes, pushes the next
-         * save forward by a short delay.  Saves will also not be scheduled
-         * while a save is currently in progress.
          */
         scheduleSavePlugin: function () {
+            // Bail if autosave disabled.
             if (!$this.autosave) return;
+            // Bail if a save is in progress.
             if ($this.save_inprogress) return;
+            // If a save timer is already ticking, cancel it.
             if ($this.save_timer) {
                 clearTimeout($this.save_timer);
             }
+            // Start a save timer ticking.
             $this.save_timer = setTimeout(
                 $this.savePlugin, $this.save_delay
             );
@@ -127,13 +145,15 @@ PluginDir.Editor = (function () {
             for (name in $this.definition.meta) {
                 if (!$this.definition.meta.hasOwnProperty(name)) continue;
                 var value = $this.definition.meta[name];
-
                 $('#meta-fields input[name='+name+']').val(value);
             }
 
-            $('#mimes').val($this.definition.mimes.join("\n"));
-            $('#literal_aliases').val($this.definition.aliases.literal.join("\n"));
-            $('#regex_aliases').val($this.definition.aliases.regex.join("\n"));
+            $('#mimes')
+                .val($this.definition.mimes.join("\n"));
+            $('#literal_aliases')
+                .val($this.definition.aliases.literal.join("\n"));
+            $('#regex_aliases')
+                .val($this.definition.aliases.regex.join("\n"));
 
             $this.rebuildReleaseFieldsets();
             $this.updateReleaseFieldsets();
@@ -150,16 +170,17 @@ PluginDir.Editor = (function () {
          */
         updateDefinitionFromForm: function () {
 
-            $this.definition.meta = $this.extractPropertyFields($('#meta-fields'));
+            $this.definition.meta = 
+                $this.extractPropertyFields($('#meta-fields'));
 
             // Forcibly overwrite any edits to PFS ID with original value.
             $this.definition.meta.pfs_id = $this.pfs_id;
             
-            $this.definition.mimes = ('' + $('#mimes').val()).split("\n");
+            $this.definition.mimes = (''+$('#mimes').val()).split("\n");
             
             $this.definition.aliases = {
-                literal: ('' + $('#literal_aliases').val()).split("\n"),
-                regex: ('' + $('#regex_aliases').val()).split("\n"),
+                literal: (''+$('#literal_aliases').val()).split("\n"),
+                regex: (''+$('#regex_aliases').val()).split("\n"),
             };
 
             $this.definition.releases = [];
@@ -179,7 +200,7 @@ PluginDir.Editor = (function () {
             var releases_parent = $('#releases').empty();
             $.each($this.definition.releases, function (idx, release_data) {
                 var release = $('.templates .releases .release')
-                    .clone().appendTo(releases_parent),
+                        .clone().appendTo(releases_parent),
                     fields = release.find('.fields');
                 $this.buildPropertyFields(fields);
             });
@@ -197,6 +218,7 @@ PluginDir.Editor = (function () {
                 var parent  = $(this);
                 $this.updatePropertyFields(parent, release);
                 $this.hideEmptyProperties(parent);
+                $this.updateReleaseSummary(parent);
             });
         },
 
@@ -319,8 +341,8 @@ PluginDir.Editor = (function () {
             for (name in $this.plugin_properties) {
                 if (!$this.plugin_properties.hasOwnProperty(name)) continue;
                 if (is_meta && 'status' === name) continue;
-                // if (!is_meta && 'pfs_id' === name) continue;
-                // if ('pfs_id' === name) continue;
+                //if (!is_meta && 'pfs_id' === name) continue;
+                if ('pfs_id' === name) continue;
 
                 var spec = $this.plugin_properties[name];
 
@@ -329,8 +351,7 @@ PluginDir.Editor = (function () {
                     .find('label').text(name).end()
                     .find('input,textarea,select')
                         .attr('name', name)
-                        .attr('disabled', ('pfs_id' == name) ? 'true' : null)
-                        .change($this.scheduleSavePlugin)
+                        .change($this.fieldChanged)
                     .end()
                     .find('p.notes').text(spec.description).end()
                     .appendTo(parent);
@@ -339,7 +360,38 @@ PluginDir.Editor = (function () {
             $this.hideEmptyProperties(parent);
         },
 
+        /**
+         * React to a changed field.
+         */
+        fieldChanged: function (ev) {
+            $this.updateReleaseSummary($(this).parent().parent().parent().parent());
+            $this.scheduleSavePlugin();
+        },
+
+        /**
+         * Build a summary from some significant fields and update the legend
+         * for the release.
+         */
+        updateReleaseSummary: function (release) {
+            var parts = ['Release'],
+                fields = [
+                    'version', 'os_name', 'locale', 'app_id', 
+                    'app_release', 'app_version'
+                ];
+            $.each(fields, function () {
+                var name = this,
+                    val = release.find('*[name='+name+']').val();
+                console.log("NAME " + name);
+                if ('app_id' == name && $this.app_ids[val]) { 
+                    val = $this.app_ids[val];
+                }
+                if ('*' !== val) parts.push(val);
+            });
+            release.find('legend').text(parts.join(' - '));
+        },
+
         EOF: null // I hate trailing comma errors
     };
 
-}()).init();
+    return $this.init();
+}());
