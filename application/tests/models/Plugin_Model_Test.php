@@ -584,11 +584,11 @@ class Plugin_Model_Test extends PHPUnit_Framework_TestCase
         );
 
         $this->checkACL("Public plugin", $privs, $acl, $plugin, array(
-            array('guest',          true, false, false, false, true, false, false,),
-            array($member1_profile, true, false, false, true,  true, false, true,),
-            array($member2_profile, true, false, false, true,  true, false, true,),
-            array($editor_profile,  true, false, false, true,  true, true,  true,),
-            array($admin_profile,   true, true,  true,  true,  true, true,  true,),
+            array('guest',          true,  false, false, false, true, false, false,),
+            array($member1_profile, true,  false, false, true,  true, false, true,),
+            array($member2_profile, true,  false, false, true,  true, false, true,),
+            array($editor_profile,  true,  false, false, true,  true, true,  true,),
+            array($admin_profile,   true,  true,  true,  true,  true, true,  true,),
         ));
 
         $plugin->set(array(
@@ -596,23 +596,23 @@ class Plugin_Model_Test extends PHPUnit_Framework_TestCase
         ))->save();
 
         $this->checkACL("member1 sandbox plugin", $privs, $acl, $plugin, array(
-            array('guest',          true, false, false, false, true, false, false,),
-            array($member1_profile, true, true,  true,  true,  true, false, true,),
-            array($member2_profile, true, false, false, true,  true, false, true,),
-            array($editor_profile,  true, true,  true,  true,  true, true,  true,),
-            array($admin_profile,   true, true,  true,  true,  true, true,  true,),
+            array('guest',          false, false, false, false, true, false, false,),
+            array($member1_profile, true,  true,  true,  true,  true, false, true,),
+            array($member2_profile, false, false, false, true,  true, false, true,),
+            array($editor_profile,  true,  true,  true,  true,  true, true,  true,),
+            array($admin_profile,   true,  true,  true,  true,  true, true,  true,),
         ));
 
         $plugin->set(array(
             'sandbox_profile_id' => $member2_profile->id
         ))->save();
 
-        $this->checkACL("member1 sandbox plugin", $privs, $acl, $plugin, array(
-            array('guest',          true, false, false, false, true, false, false,),
-            array($member1_profile, true, false, false, true,  true, false, true,),
-            array($member2_profile, true, true,  true,  true,  true, false, true,),
-            array($editor_profile,  true, true,  true,  true,  true, true,  true,),
-            array($admin_profile,   true, true,  true,  true,  true, true,  true,),
+        $this->checkACL("member2 sandbox plugin", $privs, $acl, $plugin, array(
+            array('guest',          false, false, false, false, true, false, false,),
+            array($member1_profile, false, false, false, true,  true, false, true,),
+            array($member2_profile, true,  true,  true,  true,  true, false, true,),
+            array($editor_profile,  true,  true,  true,  true,  true, true,  true,),
+            array($admin_profile,   true,  true,  true,  true,  true, true,  true,),
         ));
 
     }

@@ -62,9 +62,8 @@ class Auth_Profiles_Controller extends Local_Controller
      */
     public function register()
     {
-        $form_data = form::validate(
-            $this, $this->profile_model, 
-            'validate_registration', 'form_errors_auth'
+        $form_data = $this->_validate(
+            $this->profile_model, 'validate_registration', 'form_errors_auth'
         );
         if (null===$form_data) return;
 
@@ -92,9 +91,8 @@ class Auth_Profiles_Controller extends Local_Controller
      */
     public function login()
     {
-        $form_data = form::validate(
-            $this, $this->login_model, 
-            'validate_login', 'form_errors_auth'
+        $form_data = $this->_validate(
+            $this->login_model, 'validate_login', 'form_errors_auth'
         );
         if (null===$form_data) return;
 
@@ -136,39 +134,33 @@ class Auth_Profiles_Controller extends Local_Controller
      */
     public function editprofile()
     {
-        $params = Router::get_params(array(
-            'screen_name' => null,
-        ));
-
-        $profile = ORM::factory('profile')->find($params['screen_name']);
-        if (!$profile->checkPrivilege('edit')) 
+        list($profile, $login) = $this->_find_profile_and_login();
+        if (!authprofiles::is_allowed($profile, 'edit'))
             return Event::run('system.403');
 
-        $this->view->profile = $profile;
-
-        if ($profile->checkPrivilege('edit_roles')) {
+        if (authprofiles::is_allowed($profile, 'edit_role')) {
+            $all_roles = authprofiles::$acls->getRegisteredRoles();
+            $role_choices = array();
+            foreach ($all_roles as $name=>$obj) {
+                $role_choices[$name] = $name;
+            }
             $this->view->set(array(
-                'roles' => $profile->roles,
-                'role_choices' => Kohana::config('auth_profiles.roles')
+                'role' => $profile->role,
+                'role_choices' => $role_choices
             ));
         }
 
-        $form_data = form::validate(
-            $this, $profile, 
-            'validate_update', 'form_errors_auth'
+        $form_data = $this->_validate(
+            $profile, 'validate_update', 'form_errors_auth'
         );
         if (null===$form_data) return;
 
-        $profile->set($form_data)->save();
-
-        if ($profile->checkPrivilege('edit_roles')) {
-            if (empty($form_data['roles'])) {
-                $profile->clear_roles();
-            } else {
-                $profile->add_roles($form_data['roles']); 
-            }
-            $profile->save();
+        if (!authprofiles::is_allowed($profile, 'edit_role')) {
+            // Ignore attempts to change role if not allowed.
+            unset($form_data['role']);
         }
+
+        $profile->set($form_data)->save();
 
         Session::instance()->set_flash(
             'message', 'Profile updated'
@@ -181,14 +173,17 @@ class Auth_Profiles_Controller extends Local_Controller
      */
     public function changeemail()
     {
-        $form_data = form::validate(
-            $this, $this->login_model, 
+        list($profile, $login) = $this->_find_profile_and_login();
+        if (!authprofiles::is_allowed($login, 'changeemail'))
+            return Event::run('system.403');
+
+        $form_data = $this->_validate(
+            $this->login_model, 
             'validate_change_email', 'form_errors_auth'
         );
         if (null===$form_data) return;
 
-        $token = ORM::factory('login', authprofiles::get_login('id'))
-            ->set_email_verification_token($form_data['new_email']);
+        $token = $login->set_email_verification_token($form_data['new_email']);
 
         $this->view->email_verification_token_set = true;
 
@@ -207,7 +202,7 @@ class Auth_Profiles_Controller extends Local_Controller
      */
     public function reverifyemail()
     {
-        $params = Router::get_params(array(
+        $params = $this->_get_params(array(
             'login_name' => null,
         ));
 
@@ -278,17 +273,14 @@ class Auth_Profiles_Controller extends Local_Controller
             $this->input->get('password_reset_token');
 
         if (empty($reset_token) && !authprofiles::is_logged_in()) {
-        
             // If no token and not logged in, jump to login.
             return authprofiles::redirect_login();
+        }
         
-        } elseif (empty($reset_token) && authprofiles::is_logged_in()) {
-        
-            // Logged in and no token, so use auth login details.
-            $login = ORM::factory('login', authprofiles::get_login('id')); 
-        
+        if (empty($reset_token)) {
+            // No reset token, so try figuring out the profile and login.
+            list($profile, $login) = $this->_find_profile_and_login();
         } else {
-            
             // Look up the login by token, and abort if not found.
             $login = ORM::factory('login')
                 ->find_by_password_reset_token($reset_token);
@@ -296,6 +288,7 @@ class Auth_Profiles_Controller extends Local_Controller
                 $this->view->invalid_reset_token = true;
                 return;
             }
+            $profile = $login->find_default_profile_for_login();
 
             // Use the found login ID and toss name into view.
             $this->view->forgot_password_login_name = $login->login_name;
@@ -303,15 +296,22 @@ class Auth_Profiles_Controller extends Local_Controller
             // Pre-emptively force logout in case current login and login 
             // associated with token differ.
             authprofiles::logout();
-
         }
+
+        if (!authprofiles::is_allowed($login, 'changepassword'))
+            return Event::run('system.403');
+        
+        $_POST['login_name'] = $login->login_name;
 
         // Now that we know who's trying to change a password, validate the 
         // form appropriately
-        $form_data = form::validate($this,
+        $form_data = $this->_validate(
             $this->login_model, 
             empty($reset_token) ? 
-                'validate_change_password' : 
+                ( (authprofiles::is_allowed($login, 'changepassword_any')) ?
+                    'validate_force_change_password' : 
+                    'validate_change_password'
+                ) :
                 'validate_change_password_with_token', 
             'form_errors_auth'
         );
@@ -332,9 +332,8 @@ class Auth_Profiles_Controller extends Local_Controller
      */
     public function forgotpassword() 
     {
-        $form_data = form::validate($this,
-            $this->login_model, 
-            'validate_forgot_password', 'form_errors_auth'
+        $form_data = $this->_validate(
+            $this->login_model, 'validate_forgot_password', 'form_errors_auth'
         );
         if (null===$form_data) return;
 
@@ -365,12 +364,8 @@ class Auth_Profiles_Controller extends Local_Controller
      */
     public function settings()
     {
-        $params = Router::get_params(array(
-            'screen_name' => null,
-        ));
-
-        $profile = ORM::factory('profile')->find($params['screen_name']);
-        if (!$profile->checkPrivilege('edit')) 
+        list($profile, $login) = $this->_find_profile_and_login();
+        if (!authprofiles::is_allowed($profile, 'edit')) 
             return Event::run('system.403');
 
         $u_name = rawurlencode($profile->screen_name);
@@ -429,8 +424,96 @@ class Auth_Profiles_Controller extends Local_Controller
         ));
 
         $this->view->set(array(
-            'sections' => $data['sections'],
-            'profile'  => $profile
+            'sections' => $data['sections']
         ));
     }
+
+    /**
+     * Perform model-based form POST data validation.
+     *
+     * @param  Model       model instance
+     * @param  string      name of model validation method
+     * @param  string      name of the error messages file
+     * @return Validation  validation object with data, or null on failure
+     */
+    public function _validate($model, $callback, $errors, $require_post=true) {
+
+        $this->view->form_data = array_merge(
+            $model->loaded ?
+                $model->as_array() : array(),
+            ('post' == request::method()) ? 
+                $this->input->post() : $this->input->get()
+        );
+        
+        if ($require_post && 'post' != request::method()) {
+            return;
+        }
+        
+        $is_valid = call_user_func_array(
+            array($model, $callback), 
+            array(&$this->view->form_data)
+        );
+
+        if (!$is_valid) {
+            $this->view->form_errors = 
+                $this->view->form_data->errors($errors);
+            return null;
+        }
+
+        return $this->view->form_data;
+
+    }
+
+    /**
+     * Convert the arguments in the route to name/value parameters.
+     *
+     * @return array Parameters based on current route.
+     */
+    public function _get_params($defaults=null, $wildcard='path')
+    {
+        $args = Router::$arguments;
+        $params = empty($defaults) ? array() : $defaults;
+        while (!empty($args)) {
+            $name = array_shift($args);
+            if ($wildcard == $name) {
+                $params[$name] = join('/', $args);
+                break;
+            } else {
+                $params[$name] = array_shift($args);
+            }
+        }
+        return $params;
+    }
+
+    /**
+     * Utility method to find profile and login objects from screen name in 
+     * URL, or failing that use the current user's profile / login
+     */
+    public function _find_profile_and_login()
+    {
+        $params = $this->_get_params(array(
+            'screen_name' => null,
+        ));
+        if (empty($params['screen_name'])) {
+            // Use current in profile and login.
+            $profile = authprofiles::get_profile();
+            $login = authprofiles::get_login(); 
+        } else {
+            // Look up profile from URL route param, find login.
+            $profile = ORM::factory('profile')->find($params['screen_name']);
+            if (authprofiles::get_profile('id') == $profile->id) {
+                // Use current login if profile lookup matches current.
+                $login = authprofiles::get_login();
+            } else {
+                // Otherwise, use the default.
+                // TODO: Login selection UI
+                $login = $profile->find_default_login_for_profile();
+            }
+        }
+        $this->view->set(array(
+            'profile' => $profile, 'login' => $login
+        ));
+        return array($profile, $login);
+    }
+
 } 

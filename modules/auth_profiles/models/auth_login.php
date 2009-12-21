@@ -6,7 +6,7 @@
  * @subpackage models
  * @author     l.m.orchard <l.m.orchard@pobox.com>
  */
-class Auth_Login_Model extends ORM
+class Auth_Login_Model extends ORM implements Zend_Acl_Resource_Interface
 {
     // {{{ Model attributes
 
@@ -331,6 +331,24 @@ class Auth_Login_Model extends ORM
 
     /**
      * Replace incoming data with change password validator and return whether 
+     * validation was successful, using old password.
+     *
+     * @param  array   Form data to validate
+     * @return boolean Validation success
+     */
+    public function validate_force_change_password(&$data)
+    {
+        $data = Validation::factory($data)
+            ->pre_filter('trim')
+            ->add_rules('new_password', 'required')
+            ->add_rules('new_password_confirm', 
+                'required', 'matches[new_password]')
+            ;
+        return $data->validate();
+    }
+
+    /**
+     * Replace incoming data with change password validator and return whether 
      * validation was successful, using forgot password token.
      *
      * @param  array   Form data to validate
@@ -472,6 +490,17 @@ class Auth_Login_Model extends ORM
                 $valid->add_error($field, 'default');
             }
         }
+    }
+
+
+    /**
+     * Identify this model as a resource for Zend_ACL
+     *
+     * @return string
+     */
+    public function getResourceId()
+    {
+        return 'login';
     }
 
 }

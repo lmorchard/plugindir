@@ -485,11 +485,14 @@ class Plugin_Model extends ORM_Resource {
             return array();
         }
 
-        // Consult the cache first before hitting the DB.
+        // Consult the cache first before hitting the DB, but only for 
+        // non-sandbox lookups.
         // TODO: Cache invalidation timestamp based on mimetypes & what else?
+        // TODO: Cache invalidation after the fact using a PFS ID timestamp in cache? (ie. stale-while-revalidate-ish)
         ksort($criteria);
         $cache_key = 'plugin_lookup_' . sha1(json_encode($criteria));
-        if ($cache_data = @$this->cache->get($cache_key)) {
+        if (empty($criteria['sandboxScreenName']) && 
+                ($cache_data = @$this->cache->get($cache_key))) {
             return $cache_data;
         }
 
@@ -768,4 +771,3 @@ class Plugin_Model extends ORM_Resource {
     }
 
 }
-

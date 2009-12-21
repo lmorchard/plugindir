@@ -29,14 +29,14 @@ class Plugins_Controller extends Local_Controller {
 
         // Just display the populated form on GET.
         if ('post' != request::method()) {
-            form::$data = $_GET;
+            $this->view->form_data = $_GET;
             return;
         }
 
         // The only requirement is that the captcha is valid.
         if (!Captcha::valid($this->input->post('captcha'))) {
-            form::$data = $_POST;
-            form::$errors = array(
+            $this->view->form_data = $_POST;
+            $this->view->form_errors = array(
                 'captcha' => 'Valid captcha response is required'
             );
             return;

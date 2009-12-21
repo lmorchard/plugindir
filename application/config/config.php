@@ -119,7 +119,5 @@ $config['modules'] = array
     MODPATH.'phpunit',
     MODPATH.'twig',
     MODPATH.'auth_profiles',
-    MODPATH.'lmo_forms',
     MODPATH.'lmo_email',
-    MODPATH.'lmo_router',
 );

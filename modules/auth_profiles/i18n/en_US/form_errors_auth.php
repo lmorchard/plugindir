@@ -77,7 +77,7 @@ $lang = array(
     ),
     'new_password' => array(
         'required'
-            => 'New passwords is required',
+            => 'New password is required',
     ),
     'new_password_confirm' => array(
         'required'
@@ -86,8 +86,10 @@ $lang = array(
             => 'Password and confirmation must match.'
     ),
     'new_email' => array(
-        'default' =>
-            'A valid new email is required'
+        'default' => 
+            'A valid new email is required',
+        'is_email_available' => 
+            'This email address is used by another login'
     ),
     'new_email_confirm' => array(
         'default' =>

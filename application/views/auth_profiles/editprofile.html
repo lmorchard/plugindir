@@ -3,16 +3,19 @@
 {% import "macros/forms.html" as forms %}
 
 {% block title %}
-    Edit details for {{authprofile.screen_name}}
+    Edit details for {{profile.screen_name}}
 {% endblock %}
 
 {% block content %}
     <form class="register" action="" method="post">
         {% set data, errors as form_data, form_errors %}
-        {{ forms.fieldset('Login details', 'login') }}
+        {{ forms.fieldset('Profile details', 'profile') }}
             {# {{ forms.input(data, errors, 'text', 'screen_name', 'Screen name') }} #}
             {{ forms.input(data, errors, 'text', 'full_name', 'Full name') }}
             {{ forms.textarea(data, errors, 'bio', 'Bio / About you') }}
+            {% if authprofile.is_allowed(profile, 'edit_role') %}
+                {{ forms.dropdown(data, errors, 'role', 'Role', role_choices) }}
+            {% endif %}
             {{ forms.submit('update', '', 'Update') }}
         {{ forms.endfieldset() }}
     </form>

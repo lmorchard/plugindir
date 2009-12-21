@@ -7,7 +7,7 @@
 {% endblock %}
 
 {% block content %}
-    <h3>Profile settings for <a href="{{base_url}}profiles/{{authprofile.screen_name|urlencode}}">{{authprofile.screen_name|e}}</a></h3>
+    <h3>Profile settings for <a href="{{base_url}}profiles/{{profile.screen_name|urlencode}}">{{profile.screen_name|e}}</a></h3>
     <ul class="sections">
         {% for section in sections %}
             <li class="section">

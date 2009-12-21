@@ -36,8 +36,6 @@ class Local_Controller extends TwigRender_Controller {
             'base_url'          => url::base(),
             'router_controller' => Router::$controller,
             'router_method'     => Router::$method,
-            'form_data'         => form::$data,
-            'form_errors'       => form::$errors,
 
             'flash_message'     => Session::instance()->get_once('message'),
 
