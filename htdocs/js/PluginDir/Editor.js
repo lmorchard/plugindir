@@ -63,6 +63,7 @@ PluginDir.Editor = (function () {
                 $this.autosave = !$this.autosave;
                 $this.updateStatusMessage("Autosave " + 
                     (($this.autosave) ? 'enabled' : 'disabled'));
+                return true;
             });
 
             // Wire up a quick & dirty outline UI
@@ -112,7 +113,43 @@ PluginDir.Editor = (function () {
          */
         loadPlugin: function (plugin_url) {
             $this.json_url = plugin_url;
-            $.getJSON($this.json_url, $this.updateFromDefinition);
+            $.getJSON($this.json_url, function (definition) {
+                $this.updateFromDefinition(definition);
+                $this.processQueryParams();
+            });
+        },
+
+        /**
+         * Process URL query params.  Mainly, add a new release if requested to
+         * do so.
+         */
+        processQueryParams: function () {
+            var qp = PluginDir.Utils.parseQueryString(location.href);
+            if (qp.add_release) {
+                var release = $this.addRelease({
+                    mimetypes: qp.mimetypes.split(' '),
+                    status: qp.status,
+                    name: qp.name,
+                    description: qp.description,
+                    vendor: qp.vendor,
+                    filename: qp.filename,
+                    detection: qp.detection,
+                    version: qp.version,
+                    os_name: qp.clientOS,
+                    platform: {
+                        app_id: qp.appID,
+                        app_release: qp.appRelease,
+                        app_version: qp.appVersion,
+                        locale: qp.chromeLocale
+                    }
+                });
+                release.find('fieldset').removeClass('closed');
+                /*
+                setTimeout(function () { 
+                    $.scrollTo(release); 
+                }, 10);
+                */
+            }
         },
 
         /**
@@ -164,6 +201,7 @@ PluginDir.Editor = (function () {
             $this.save_timer = setTimeout(
                 $this.savePlugin, $this.save_delay
             );
+            return true;
         },
 
         /**
@@ -383,6 +421,7 @@ PluginDir.Editor = (function () {
         fieldChanged: function (ev) {
             $this.updateReleaseSummary($(this).parents('fieldset:first'));
             $this.scheduleSavePlugin();
+            return true;
         },
 
         /**

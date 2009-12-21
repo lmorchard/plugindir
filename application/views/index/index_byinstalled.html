@@ -25,6 +25,9 @@
                 <!-- <th>Description</th> -->
                 <th>Installed Status</th>
                 <th>Have feedback?</th>
+                {% if is_logged_in %}
+                    <th>Add release to sandbox plugin</th>
+                {% endif %}
             </tr>
         </thead>
         <tbody>
@@ -34,6 +37,9 @@
                 <!-- <td class="description"></td> -->
                 <td class="status"></td>
                 <td class="feedback"></td>
+                {% if is_logged_in %}
+                    <td class="new_release"></td>
+                {% endif %}
             </tr>
         </tbody>
     </table>
@@ -52,6 +58,16 @@
         <a href="#" class="vulnerable">Suggest correction</a>
         <a href="#" class="outdated">Suggest correction</a>
         <a href="#" class="unknown">Contribute new info</a>
+    </div>
+
+    <div class="add_release template">
+        <select name="sandbox_plugins">
+            <option value="">-</option>
+            {% for plugin in sandbox_plugins %}
+                <option value="{{base_url}}profiles/{{authprofile.screen_name|urlencode}}/plugins/detail/{{plugin.pfs_id}};edit">{{plugin.name|e}}</option>
+            {% endfor %}
+        </select>
+        <button class="add_release_action">+</button>
     </div>
 
 {% endblock %}

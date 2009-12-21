@@ -6,6 +6,11 @@
     Home
 {% endblock %}
 
+{% block js_includes %}
+    {% parent %}
+    <script type="text/javascript" src="{{base_url}}js/PluginDir/Index.js"></script>
+{% endblock %}
+
 {% block content %}
 <div class="index_home">
 

@@ -53,7 +53,7 @@ class Plugins_Controller extends Local_Controller {
     /**
      * User's plugin sandbox
      */
-    function sandbox($screen_name) {
+    function sandbox($screen_name, $format='html') {
         $profile = ORM::factory('profile', $screen_name);
         if (!$profile->loaded)
             return Event::run('system.404');
@@ -62,10 +62,30 @@ class Plugins_Controller extends Local_Controller {
 
         $this->view->profile = $profile->as_array();
 
-        $this->view->sandbox_plugins = ORM::factory('plugin')
+        $this->view->sandbox_plugins = $plugins = ORM::factory('plugin')
             ->where('sandbox_profile_id', $profile->id)
             ->orderby('modified','DESC')
             ->find_all()->as_array();
+
+        if ('json' == $format) {
+            $this->auto_render = FALSE;
+            $out = array();
+            foreach ($plugins as $plugin) {
+                $base = url::site(
+                    'profiles/'.$profile->screen_name.
+                    '/plugins/detail/'.
+                    $plugin->pfs_id
+                );
+                $out[] = array(
+                    'pfs_id' => $plugin->pfs_id,
+                    'name'   => $plugin->name,
+                    'view'   => $base,
+                    'edit'   => $base . ';edit',
+                    'data'   => $base . '.json'
+                );
+            }
+            return json::render($out, $this->input->get('callback'));
+        }
 
         if ($screen_name == authprofiles::get_profile('screen_name')) {
             // HACK: Since this is using the index page shell, inform it which tab 

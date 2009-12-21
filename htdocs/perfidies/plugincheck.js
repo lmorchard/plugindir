@@ -45,15 +45,27 @@ Pfs.UI = {
      * Creates a navigatorInfo object from the browser's navigator object
      */
     browserInfo: function() {
-        var parts = navigator.userAgent.split('/');
-        var version = parts.length > 1 ? parts[parts.length - 1] : parts[0];
-        return {
-            appID: '{ec8030f7-c20a-464f-9b0e-13a3a9e97384}',
-            appRelease: version,
-            appVersion: navigator.buildID,
-            clientOS: navigator.oscpu,
-            chromeLocale: 'en-US'            
+        var detected = BrowserDetect.detect(),
+            appID, version_detection_scheme;
+
+        if ('Firefox' == detected.browser) {
+            appID = '{ec8030f7-c20a-464f-9b0e-13a3a9e97384}';
+        } else {
+            // TODO: More appIDs here?
+            appID = detected.browser;
         }
+
+        // TODO: invent more schemes here, eg. Firefox 3.6 has plugin versions
+        version_detection_scheme = 'original';
+
+        return {
+            appID:        appID,
+            appRelease:   detected.version,
+            appVersion:   detected.build,
+            clientOS:     navigator.oscpu || navigator.platform,
+            chromeLocale: navigator.language,
+            detection:    version_detection_scheme
+        };
     },
     /**
      * Cleans up the navigator.plugins object into a list of plugin2mimeTypes
@@ -219,7 +231,7 @@ Pfs.UI = {
                 }
             }
         }
-    },
+    }
 };
 (function(){
     
@@ -270,7 +282,7 @@ Pfs.UI = {
             $('body').append("<img src='" + Pfs.endpoint + status + "_plugin.gif?" + $.param(reportData) +
                              "' width='1' height='1' />");
         }           
-    }
+    };
     Pfs.reportPluginsFn = reportPlugins;
     var updateDisplayId = undefined;
     var showAll = false;
@@ -437,7 +449,7 @@ Pfs.UI = {
             }
             var copy = states[data.status];
             if (Pfs.CURRENT === data.status) {
-                copy.s = Pfs.parseVersion(data.pluginInfo.plugin).join('.');;
+                copy.s = Pfs.parseVersion(data.pluginInfo.plugin).join('.');
             }
             var plugin = data.pluginInfo.raw;                
             displayPlugins(plugin, copy, data.url, total);
@@ -505,5 +517,5 @@ Pfs.UI = {
         Pfs.UI.navInfo = Pfs.UI.browserInfo();
         browserPlugins = Pfs.UI.browserPlugins(navigator.plugins);
         Pfs.findPluginInfos(Pfs.UI.navInfo, browserPlugins, incrementalCallbackFn, finishedCallbackFn);
-    }
+    };
 })();
