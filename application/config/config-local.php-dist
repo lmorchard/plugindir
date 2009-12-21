@@ -1,0 +1,70 @@
+<?php
+$config['core.needs_installation'] = false;
+$config['core.site_domain'] = 'dev.plugindir.mozilla.org';
+$config['core.log_threshold'] = 4;
+$config['core.internal_cache'] = FALSE; //120;
+$config['core.display_errors'] = TRUE;
+$config['core.render_stats'] = TRUE;
+
+$config['model.database'] = 'default';
+
+$config['database.default'] = array
+(
+	'benchmark'     => TRUE,
+	'persistent'    => FALSE,
+	'connection'    => array
+	(
+		'type'     => 'mysql',
+		'user'     => 'plugindir',
+		'pass'     => 'plugindir',
+		'host'     => '127.0.0.1',
+		'port'     => FALSE,
+		'socket'   => FALSE,
+		'database' => 'plugindir'
+	),
+	'character_set' => 'utf8',
+	'table_prefix'  => '',
+	'object'        => TRUE,
+	'cache'         => TRUE,
+	'escape'        => TRUE
+);
+
+$config['cache.default'] = array(
+	'driver'   => 'file',
+	'params'   => APPPATH.'cache',
+	'lifetime' => 1800,
+	'requests' => 1000
+);
+
+/*
+$config['cache.default'] = array(
+	'driver'   => 'memcache',
+);
+
+$config['cache_memcache.servers'] = array(
+	array(
+		'host' => '127.0.0.1',
+		'port' => 11211,
+		'persistent' => FALSE,
+	)
+);
+$config['cache_memcache.compression'] = FALSE;
+*/
+
+$config['email.driver'] = 'native';
+
+/*
+$config['email.options'] = array(
+    'hostname'   => 'smtp.gmail.com',
+    'username'   => 'USER',
+    'password'   => 'PASS',
+    'port'       => '465',
+    'encryption' => 'tls'   
+);
+*/
+
+/*
+$config['recaptcha.domain_name'] = 'localhost';
+$config['recaptcha.public_key']  = '6Lcb7AYAAAAAAGlcMKBsAQiLlD3Z52UnoK873sjU ';
+$config['recaptcha.private_key'] = '6Lcb7AYAAAAAAMZy14GCGWjHzLU5ZAWrxnCwnDZF';
+ */
