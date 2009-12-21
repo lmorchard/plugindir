@@ -174,7 +174,7 @@ class Plugin_Model extends ORM_Resource {
     );
 
     // }}}
-
+    
     /**
      * Assemble a count of releases by plugin.
      */
@@ -485,6 +485,15 @@ class Plugin_Model extends ORM_Resource {
             return array();
         }
 
+        // Consult the cache first before hitting the DB.
+        // TODO: Cache invalidation timestamp based on mimetypes & what else?
+        ksort($criteria);
+        $cache_key = 'plugin_lookup_' . sha1(json_encode($criteria));
+        if ($cache_data = @$this->cache->get($cache_key)) {
+            return $cache_data;
+        }
+
+        // Turn mimetype into an array, if it's not one yet.
         if (!is_array($criteria['mimetype'])) {
             $criteria['mimetype'] = explode(' ', $criteria['mimetype']);
         }
@@ -595,6 +604,7 @@ class Plugin_Model extends ORM_Resource {
                 $row[$name] = $value;
             }
 
+            $row['fetched'] = date('c');
             $rows[] = $row;
         }
 
@@ -688,6 +698,8 @@ class Plugin_Model extends ORM_Resource {
 
         }
 
+        // Cache the data, return it.
+        $this->cache->set($cache_key, $flat);
         return $flat;
     }
     

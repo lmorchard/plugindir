@@ -38,15 +38,18 @@ $config['cache.default'] = array(
 
 /*
 $config['cache.default'] = array(
-	'driver'   => 'memcache',
+    'driver' => 'memcache',
+    'params' => array(),
+    'lifetime' => 1800,
+    'requests' => 1000
 );
 
 $config['cache_memcache.servers'] = array(
-	array(
-		'host' => '127.0.0.1',
-		'port' => 11211,
-		'persistent' => FALSE,
-	)
+    array(
+        'host' => '127.0.0.1',
+        'port' => 11211,
+        'persistent' => FALSE,
+    )
 );
 $config['cache_memcache.compression'] = FALSE;
 */

@@ -8,31 +8,35 @@
  */
 class ORM extends ORM_Core {
 
+    // Cache instance for this object
+    protected $cache;
+
     /**
      * Initialize the object with a configured database.
      */
-	public function __initialize()
-	{
-		if (!is_object($this->db)) {
+    public function __initialize()
+    {
+        $this->cache = Cache::instance();
+        if (!is_object($this->db)) {
             $this->db = Database::instance(
                 Kohana::config('model.database')
             );
         }
         parent::__initialize();
-	}
+    }
 
     /**
      * Attempt to fetch the record for the given model and ID, creating a new 
      * one using the supplied data if none found.
      *
-	 * @chainable
-	 * @param   string  model name
-	 * @param   mixed   parameter for find()
+     * @chainable
+     * @param   string  model name
+     * @param   mixed   parameter for find()
      * @param   array   model data for insert
-	 * @return  ORM
+     * @return  ORM
      */
     public static function find_or_insert($model, $id_or_terms, $data, $save=false) {
-        
+
         if (is_string($id_or_terms)) {
             $obj = ORM::factory($model, $id_or_terms);
         } else {
@@ -50,10 +54,10 @@ class ORM extends ORM_Core {
     }
 
     /**
-	 * Sets object values from an array.
-	 *
-	 * @chainable
-	 * @return  ORM
+     * Sets object values from an array.
+     *
+     * @chainable
+     * @return  ORM
      */
     public function set($arr=null)
     {
@@ -69,8 +73,8 @@ class ORM extends ORM_Core {
      * Before saving, update created/modified timestamps and generate a UUID if 
      * necessary.
      *
-	 * @chainable
-	 * @return  ORM
+     * @chainable
+     * @return  ORM
      */
     public function save()
     {
