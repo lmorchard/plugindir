@@ -4,6 +4,7 @@
 /*jslint laxbreak: true */
 PluginDir = (function () {
 
+    var $ = window.$ = jQuery.noConflict();
     var $this = {
 
         pfs_endpoint: 'http://dev.plugindir.mozilla.org/pfs/v2',

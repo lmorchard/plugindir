@@ -174,7 +174,8 @@ Pfs = {
             findPluginQueue: [],
             // A plugin2mimeTypes
             currentPlugin: null,
-            currentMime: -1,            
+            currentMime: -1,
+            running: true,
            /**
             * The user supplied callback for when finding plugin information is complete            
             */
@@ -182,7 +183,7 @@ Pfs = {
             incrementalCallbackFn: incrementalCallback,
             startFindingNextPlugin: function() {
                 //Note unknown plugins before we start the next one
-                if (this.findPluginQueue.length > 0) {
+                if (this.running && this.findPluginQueue.length > 0) {
                     this.currentPlugin = this.findPluginQueue.pop();
                     this.currentMime = 0;
                     
@@ -199,15 +200,28 @@ Pfs = {
                 this.callPfs2(mime, function(){ that.pfs2Success.apply(that, arguments);},                                
                                     function(){ that.pfs2Error.apply(that, arguments);});  
             },
+            /**
+             * Stops the finder from continuing to work it's way through plugins in the queue
+             * 
+             * Added to support web badges, where we are only interested in making PFS2 calls
+             * until we hit our first "bad" plugin. Then we stop making calls.
+             *
+             * Once this method has been called, the callee will still receive a completed callback
+             * @public
+             * @void
+             */
+            stopFindingPluginInfos: function() {
+               this.running = false;
+            },
             /************* PFS2 below *************/
             callPfs2: function(mimeType, successFn, errorFn) {
                 if (Pfs.endpoint == "error set me before using") {                    
                     Pfs.e("You must configure Pfs.endpoint before using this library");
                     return false;
                 }
-                var args = $.extend({}, {mimetype: mimeType}, navigatorInfo);
+                var args = Pfs.$.extend({}, {mimetype: mimeType}, navigatorInfo);
                 
-                $.jsonp({
+                Pfs.$.jsonp({
                     cache: true,
                     callbackParameter: "callback",
                     data: args,
@@ -286,7 +300,7 @@ Pfs = {
                         for(var j=0; searchingPluginInfo && j < pfsInfo.aliases.literal.length; j++) {
                             var litName = pfsInfo.aliases.literal[j];
                             
-                            if ($.trim(currentPluginName) == $.trim(litName)) {
+                            if (Pfs.$.trim(currentPluginName) == Pfs.$.trim(litName)) {
                                 searchingResults = false;
                                 searchingPluginInfo = false;
                                 pluginMatch = true;
@@ -351,7 +365,7 @@ Pfs = {
                                     break;
                             }                    
                         }                        
-                        if (searchPluginRelease && pfsInfo.releases.others) {
+                        if (this.running && searchPluginRelease && pfsInfo.releases.others) {
                             var others = pfsInfo.releases.others;
                             for (var k=0; searchPluginRelease && k < others.length; k++) {                                 
                                 if (! others[k].version) {
@@ -405,7 +419,7 @@ Pfs = {
                     } 
                     
                 }//for over the pfs2 JSON data
-                if (pluginMatch) {
+                if (this.running === false || pluginMatch) {
                     searchingResults = false;
                     
                     this.startFindingNextPlugin();    
@@ -422,9 +436,9 @@ Pfs = {
                 xhr.retry = xhr.retry -1;
                 if (xhr.retry >= 0) {
                     Pfs.e("Error Type [", textStatus, "] retrying on mime/plugin ", xhr, textStatus, errorThrown, this.currentPlugin.mimes[this.currentMime], this.currentPlugin);
-                    $.jsonp(xhr);
+                    Pfs.$.jsonp(xhr);
                 } else {
-                    $('table.status').replaceWith($('#error-panel').show());
+                    Pfs.$('table.status').replaceWith(Pfs.$('#error-panel').show());
                     Pfs.e("Doh failed on mime/plugin ", xhr, textStatus, errorThrown, this.currentPlugin.mimes[this.currentMime], this.currentPlugin);    
                 }
             }            
@@ -508,7 +522,7 @@ Pfs = {
         }
         
         for(var i=0; i < tokens.length; i++){
-            var token = $.trim(tokens[i]);
+            var token = Pfs.$.trim(tokens[i]);
             if (token.length === 0) {
                 continue;
             }
@@ -584,7 +598,7 @@ Pfs = {
      * @private
      */
     shouldSkipPluginNamed: function(name) {
-        return this.skipPluginsNamed.indexOf($.trim(name)) >= 0;
+        return this.skipPluginsNamed.indexOf(Pfs.$.trim(name)) >= 0;
     },
      
     /**
@@ -623,3 +637,6 @@ Pfs = {
      */
     i: function(msg) {if (window.console) {console.info.apply(console, arguments);}}
 };
+//Bug#535030 - All PFS scripts will use Pfs.$ to access jQuery, so that additional inclusions of
+// jQuery or a conflicting  library won't break jQuery or it's plugins
+Pfs.$ = jQuery.noConflict();

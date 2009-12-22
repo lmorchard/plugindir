@@ -4,6 +4,7 @@
 /*jslint laxbreak: true */
 PluginDir.Utils = (function () {
 
+    var $ = jQuery.noConflict();
     var $this = {
 
         /**

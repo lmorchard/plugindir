@@ -4,6 +4,7 @@
 /*jslint laxbreak: true */
 PluginDir.Editor = (function () {
 
+    var $ = jQuery.noConflict();
     var $this = {
 
         // JSON to load, should be set before document ready.
