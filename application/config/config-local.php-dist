@@ -10,30 +10,50 @@ $config['model.database'] = 'default';
 
 $config['database.default'] = array
 (
-	'benchmark'     => TRUE,
-	'persistent'    => FALSE,
-	'connection'    => array
-	(
-		'type'     => 'mysql',
-		'user'     => 'plugindir',
-		'pass'     => 'plugindir',
-		'host'     => '127.0.0.1',
-		'port'     => FALSE,
-		'socket'   => FALSE,
-		'database' => 'plugindir'
-	),
-	'character_set' => 'utf8',
-	'table_prefix'  => '',
-	'object'        => TRUE,
-	'cache'         => TRUE,
-	'escape'        => TRUE
+    'read_shadow'   => 'shadow',
+    'benchmark'     => TRUE,
+    'persistent'    => FALSE,
+    'connection'    => array
+    (
+        'type'     => 'mysql',
+        'user'     => 'plugindir',
+        'pass'     => 'plugindir',
+        'host'     => '127.0.0.1',
+        'port'     => FALSE,
+        'socket'   => FALSE,
+        'database' => 'plugindir'
+    ),
+    'character_set' => 'utf8',
+    'table_prefix'  => '',
+    'object'        => TRUE,
+    'cache'         => TRUE,
+    'escape'        => TRUE
+);
+$config['database.shadow'] = array(
+    'benchmark'     => TRUE,
+    'persistent'    => FALSE,
+    'connection'    => array
+    (
+        'type'     => 'mysql',
+        'user'     => 'plugindir',
+        'pass'     => 'plugindir',
+        'host'     => '127.0.0.1',
+        'port'     => FALSE,
+        'socket'   => FALSE,
+        'database' => 'plugindir'
+    ),
+    'character_set' => 'utf8',
+    'table_prefix'  => '',
+    'object'        => TRUE,
+    'cache'         => TRUE,
+    'escape'        => TRUE
 );
 
 $config['cache.default'] = array(
-	'driver'   => 'file',
-	'params'   => APPPATH.'cache',
-	'lifetime' => 1800,
-	'requests' => 1000
+    'driver'   => 'file',
+    'params'   => APPPATH.'cache',
+    'lifetime' => 1800,
+    'requests' => 1000
 );
 
 /*

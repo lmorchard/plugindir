@@ -17,6 +17,11 @@ class Util_Controller extends Local_Controller {
     {
         parent::__construct();
 
+        if (!isset($_SERVER['argc'])) {
+            echo "For command line use only.";
+            die;
+        }
+
         $this->db = Database::instance(
             Kohana::config('model.database')
         );

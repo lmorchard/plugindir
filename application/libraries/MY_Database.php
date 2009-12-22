@@ -8,6 +8,25 @@
  */
 class Database extends Database_Core {
 
+    /** Global flag whether or not to use shadow DB for reads */
+    public static $enable_shadow = true;
+
+    /**
+     * Globally disable use of the shadow database for reads
+     */
+    public static function disable_read_shadow()
+    {
+        self::$enable_shadow = false;
+    }
+
+    /**
+     * Globally enable use of the shadow database for reads
+     */
+    public static function enable_read_shadow()
+    {
+        self::$enable_shadow = true;
+    }
+
     /**
      * Runs a query into the driver and returns the result.
      *
@@ -18,9 +37,13 @@ class Database extends Database_Core {
     {
         if ($sql == '') return FALSE;
 
-        if (!preg_match('#\b(?:INSERT|UPDATE|REPLACE|SET|DELETE|TRUNCATE)\b#i', $sql))
-        {
-            // Use shadow read database
+        // If read shadow is enabled, and defined in config, and this 
+        // particular SQL query is not a write, try using the shadow DB 
+        // instance.
+        if (self::$enable_shadow && isset($this->config['read_shadow']) && 
+                !preg_match('#\b(?:INSERT|UPDATE|REPLACE|SET|DELETE|TRUNCATE)\b#i', $sql)) {
+            $shadow_db = Database::instance($this->config['read_shadow']);
+            return $shadow_db->query($sql);
         }
 
         // No link? Connect!

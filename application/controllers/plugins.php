@@ -62,6 +62,7 @@ class Plugins_Controller extends Local_Controller {
             if ($this->input->post('seen')) {
                 // Mark selected submissions as seen on 'seen' POST.
                 $selected = $this->input->post('selected');
+                Database::disable_read_shadow();
                 Database::instance(Kohana::config('model.database'))
                     ->from('submissions')
                     ->set('seen', 1)
@@ -104,6 +105,7 @@ class Plugins_Controller extends Local_Controller {
             return Event::run('system.404');
 
         if ('post' == request::method()) {
+            Database::disable_read_shadow();
             if ($this->input->post('unseen')) {
                 $submission->set(array('seen' => 0))->save();
             }

@@ -293,6 +293,7 @@ class Plugin_Model extends ORM_Resource {
      */
     public function import($plugin_data, $delete_first=FALSE)
     {
+        Database::disable_read_shadow();
         $db = Database::instance(Kohana::config('model.database'));
 
         // Grab the overall metadata for the plugin.
@@ -456,8 +457,8 @@ class Plugin_Model extends ORM_Resource {
             );
         }
 
+        Database::enable_read_shadow();
         return $plugin;
-
     }
 
     /**
