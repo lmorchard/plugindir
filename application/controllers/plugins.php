@@ -60,9 +60,10 @@ class Plugins_Controller extends Local_Controller {
 
         if ('post' == request::method()) {
             if ($this->input->post('seen')) {
+                // Disable shadow so modifications are immediately available.
+                Database::disable_read_shadow();
                 // Mark selected submissions as seen on 'seen' POST.
                 $selected = $this->input->post('selected');
-                Database::disable_read_shadow();
                 Database::instance(Kohana::config('model.database'))
                     ->from('submissions')
                     ->set('seen', 1)
@@ -105,7 +106,6 @@ class Plugins_Controller extends Local_Controller {
             return Event::run('system.404');
 
         if ('post' == request::method()) {
-            Database::disable_read_shadow();
             if ($this->input->post('unseen')) {
                 $submission->set(array('seen' => 0))->save();
             }
@@ -130,7 +130,11 @@ class Plugins_Controller extends Local_Controller {
             "appRelease"       => $submission->appRelease,
             "appVersion"       => $submission->appVersion,
             "clientOS"         => $submission->clientOS,
-            "chromeLocale"     => $submission->chromeLocale
+            "chromeLocale"     => $submission->chromeLocale,
+            "vulnerability_description" => 
+                $submission->vulnerability_description,
+            "vulnerability_url" => 
+                $submission->vulnerability_url,
         ));
 
         $this->view->sandbox_plugins = ORM::factory('plugin')

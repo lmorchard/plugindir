@@ -22,6 +22,10 @@ class Util_Controller extends Local_Controller {
             die;
         }
 
+        // Clear out the htdocs.php and util/foo
+        array_shift($_SERVER['argv']);
+        array_shift($_SERVER['argv']);
+
         $this->db = Database::instance(
             Kohana::config('model.database')
         );
@@ -36,6 +40,61 @@ class Util_Controller extends Local_Controller {
     }
 
     /**
+     * Create a user with name, email, and role.
+     */
+    function createlogin()
+    {
+        if (!isset($_SERVER['argv']) || 3 != count($_SERVER['argv'])) {
+            echo "Usage: createlogin {screen name} {email} {role}\n";
+            die;
+        }
+
+        list($login_name, $email, $role) = $_SERVER['argv'];
+
+        Database::disable_read_shadow();
+
+        $user = ORM::factory('login', $login_name);
+        if ($user->loaded) {
+            echo "Login '{$login_name}' already exists.\n";
+            die;
+        }
+
+        $password = $this->_rand_string(7);
+
+        if (!ORM::factory('profile')->register_with_login(array(
+                'screen_name' => $login_name,
+                'login_name' => $login_name,
+                'email' => $email,
+                'password' => $password
+            ), true)) {  
+            echo "Problem creating new profile!";
+            die;
+        };
+
+        $new_profile = ORM::factory('profile', $login_name);
+        $new_profile->role = $role;
+        $new_profile->save();
+
+        echo "Profile ID {$new_profile->id} created for '{$login_name}'\n"; 
+        echo "Password: {$password}\n";
+    }
+
+    /**
+     * Generate a random string.
+     * see: http://www.php.net/manual/en/function.mt-rand.php#76658
+     */
+    function _rand_string($len, $chars = 'abcdefghijklmnopqrstuvwxyz0123456789')
+    {
+        $string = '';
+        for ($i = 0; $i < $len; $i++)
+        {
+            $pos = rand(0, strlen($chars)-1);
+            $string .= $chars{$pos};
+        }
+        return $string;
+    }
+
+    /**
      * Import one or more JSON files as plugins in the database.
      */
     function import()
@@ -43,8 +102,6 @@ class Util_Controller extends Local_Controller {
         if (!isset($_SERVER['argv'])) {
             return $this->index();
         }
-        array_shift($_SERVER['argv']);
-        array_shift($_SERVER['argv']);
 
         foreach ($_SERVER['argv'] as $fn) {
             echo "Importing $fn...\n";

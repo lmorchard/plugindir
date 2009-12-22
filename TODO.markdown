@@ -1,12 +1,8 @@
 # Plugin directory TODO
 
-## v0.0.1
+## v0.2.0
 
-* Additional SQL to seed an admin account on install
 * Request pull from sandbox
-
-## v0.0.2
-
 * Prettier plugin release page
 * Merge changes between plugins
     * eg. Update sandbox plugin from live

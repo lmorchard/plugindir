@@ -9,10 +9,10 @@
 
 ## Install
 
-* Create a MySQL database using application/config/sql/current.sql as schema
+* Note: In general, files ending in "-dist" are meant to be copied to a local version
+without "-dist" and modified for your installation.
 
-* In general, files ending in "-dist" are meant to be copied to a local version
-without the "-dist" and modified for your installation.
+* Create a MySQL database using application/config/sql/current.sql as schema
 
 * Copy htdocs/htaccess-dist to htdocs/.htaccess
     * Edit htdocs/.htaccess to adjust RewriteBase if site base URL path is not '/'
@@ -35,12 +35,19 @@ without the "-dist" and modified for your installation.
         </VirtualHost>
 
 * Copy application/config/config-local.php-dist to application/config/config-local.php
-    * Modify $config['database.default'] to reflect your database details
     * Change $config['core.site_protocol'] to 'http' or 'https', accordingly.
     * Change $config['core.site_domain'] to match installation domain and base path.
+        * eg. if the site lives at http://dev.plugindir.mozilla.org/~lorchard/plugindir, change core.site_domain to dev.plugindir.mozilla.org/~lorchard/plugindir
+    * Modify $config['database.default'] to reflect your primary database connection
+    * Modify $config['database.shadow'] to reflect your read shadow database connection
+        * If there's no read shadow, delete the 'read_shadow' setting from the primary database config. 
+    * If memcached is available:
+        * Delete the existing $config['cache.default']
+        * Uncomment the following $config['cache.default'] settings and associated memcache configurations settings.
+        * Modify the memcache settings accordingly
     * For production / staging make these changes:
-        * core.internal_cache = TRUE
-        * core.internal_cache_key = (pick some random key)
+        * core.internal_cache = 60
+        * core.internal_cache_key = (pick some random key, eg 'abs%^&27Abh11@')
         * core.log_threshold = 0
         * core.display_errors = FALSE
         * core.render_stats = FALSE
@@ -55,7 +62,17 @@ without the "-dist" and modified for your installation.
         * You may need to do this as the Apache user, or another user in same group.
         * This will attempt to write to the same logs, caches, etc as the web app.
 
-* To run tests (requires PHP CLI):
+* Creating the initial admin user:
+    * `php htdocs/index.php util/createlogin admin lorchard@mozilla.com admin`
+        * First argument is the login name (ie. 'admin')
+        * Second argument is a valid email address (ie. 'lorchard@mozilla.com')
+        * Third argument is the access role for the user (ie. admin, editor, member)
+    * Note the password generated and displayed on a successful new login creation:
+
+        Profile ID 10 created for 'admin4'
+        Password: wxg3qav
+
+* (optional) To run tests (requires PHP CLI):
     * Create another MySQL database just for tests
     * Copy config-testing.php-dist to config-testing.php
     * Modify config-testing.php as above, substituting test database details

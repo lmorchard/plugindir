@@ -147,6 +147,8 @@ PluginDir.Editor = (function () {
                     detection: qp.detection,
                     version: qp.version,
                     os_name: qp.clientOS,
+                    vulnerability_description: qp.vulnerability_description,
+                    vulnerability_url: qp.vulnerability_url,
                     platform: {
                         app_id: qp.appID,
                         app_release: qp.appRelease,
@@ -155,11 +157,11 @@ PluginDir.Editor = (function () {
                     }
                 });
                 release.find('fieldset').removeClass('closed');
-                /*
+
                 setTimeout(function () { 
                     $.scrollTo(release); 
                 }, 10);
-                */
+                
             }
         },
 

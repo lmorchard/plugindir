@@ -2,7 +2,8 @@
 $config['core.needs_installation'] = false;
 $config['core.site_domain'] = 'dev.plugindir.mozilla.org';
 $config['core.log_threshold'] = 4;
-$config['core.internal_cache'] = FALSE; //120;
+$config['core.internal_cache'] = FALSE; //60;
+$config['core.internal_cache_key'] = '8675309'; //120;
 $config['core.display_errors'] = TRUE;
 $config['core.render_stats'] = TRUE;
 
@@ -11,8 +12,6 @@ $config['model.database'] = 'default';
 $config['database.default'] = array
 (
     'read_shadow'   => 'shadow',
-    'benchmark'     => TRUE,
-    'persistent'    => FALSE,
     'connection'    => array
     (
         'type'     => 'mysql',
@@ -23,15 +22,15 @@ $config['database.default'] = array
         'socket'   => FALSE,
         'database' => 'plugindir'
     ),
-    'character_set' => 'utf8',
     'table_prefix'  => '',
+    'character_set' => 'utf8',
+    'benchmark'     => FALSE,
+    'persistent'    => FALSE,
     'object'        => TRUE,
     'cache'         => TRUE,
     'escape'        => TRUE
 );
 $config['database.shadow'] = array(
-    'benchmark'     => TRUE,
-    'persistent'    => FALSE,
     'connection'    => array
     (
         'type'     => 'mysql',
@@ -42,8 +41,10 @@ $config['database.shadow'] = array(
         'socket'   => FALSE,
         'database' => 'plugindir'
     ),
-    'character_set' => 'utf8',
     'table_prefix'  => '',
+    'character_set' => 'utf8',
+    'benchmark'     => FALSE,
+    'persistent'    => FALSE,
     'object'        => TRUE,
     'cache'         => TRUE,
     'escape'        => TRUE
