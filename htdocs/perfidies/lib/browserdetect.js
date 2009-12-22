@@ -84,6 +84,12 @@ BrowserDetect = {
             identity: "Firefox"
         },
         {
+            string: navigator.userAgent,
+            subString: "Minefield",
+            identity: "Minefield",
+            versionSearch: "Minefield"
+        },
+        {
             string: navigator.vendor,
             subString: "Camino",
             identity: "Camino"
