@@ -112,12 +112,12 @@ PluginDir.Index = (function () {
                     var version_col = (!has_pfs_match) ? version :
                         '<a href="'+plugin_url+'#'+version+'">' + version + '</a>';
 
-                    var status_col = PluginDir.cloneTemplate(
+                    var status_col = PluginDir.Utils.cloneTemplate(
                         $('#status_templates').find('.'+data.status+',.unknown').eq(0),
                         { '.version': (!has_pfs_match) ? '' : latest.version }
                     );
 
-                    var feedback_col = PluginDir.cloneTemplate(
+                    var feedback_col = PluginDir.Utils.cloneTemplate(
                         $('#feedback_templates').find('.'+data.status+',.unknown').eq(0),
                         { '@href': PluginDir.base_url+'plugins/submit?'+submit_params }
                     );
@@ -128,7 +128,7 @@ PluginDir.Index = (function () {
                         $this.buildSandboxActions(data, plugin_url, submit_params);
 
                     // Finally, build and add the new table row.
-                    var row = PluginDir.cloneTemplate(
+                    var row = PluginDir.Utils.cloneTemplate(
                         plugins_table.find('tr.template'), 
                         {
                             '.name': name_col,
@@ -179,10 +179,10 @@ PluginDir.Index = (function () {
                             ".description": plugin.description,
                             // TODO: Need a bugzilla URL or something here for detection ideas
                             ".version": 'Not detected (<a href="#">Any ideas?</a>)',
-                            '.status': PluginDir.cloneTemplate(
+                            '.status': PluginDir.Utils.cloneTemplate(
                                 $('#status_templates').find('.unknown')
                             ),
-                            '.feedback': PluginDir.cloneTemplate(
+                            '.feedback': PluginDir.Utils.cloneTemplate(
                                 $('#feedback_templates').find('.unknown'),
                                 { '@href': submit_url }
                             ),
@@ -190,7 +190,7 @@ PluginDir.Index = (function () {
                         };
 
                         // Add the table row from template.
-                        PluginDir.cloneTemplate(
+                        PluginDir.Utils.cloneTemplate(
                             plugins_table.find('tr.template'),
                             row_data, plugins_table
                         );
@@ -222,7 +222,7 @@ PluginDir.Index = (function () {
             var latest = (!has_pfs_match) ? null : data.pfsInfo.releases.latest;
             var pfs_id = (!has_pfs_match) ? null : latest.pfs_id;
 
-            var add_release = PluginDir.cloneTemplate($('.add_release'));
+            var add_release = PluginDir.Utils.cloneTemplate($('.add_release'));
             var select = $(add_release).find('select')[0];
 
             if (has_pfs_match && !latest.sandbox_profile_screen_name) {
