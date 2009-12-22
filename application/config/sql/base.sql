@@ -288,6 +288,7 @@ DROP TABLE IF EXISTS `submissions`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `submissions` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
+  `seen` tinyint(1) DEFAULT '0',
   `screen_name` varchar(255) DEFAULT NULL,
   `pfs_id` varchar(255) DEFAULT NULL,
   `status` varchar(255) DEFAULT NULL,
