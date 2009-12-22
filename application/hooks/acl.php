@@ -43,15 +43,18 @@ class PluginDir_ACL_Setup
                 new PluginDir_Acl_Assert_Plugin_Edit())
             ->allow('member', 'plugin', 'delete',
                 new PluginDir_Acl_Assert_Plugin_Delete())
+            ->allow('member', 'plugin', 'requestpush',
+                new PluginDir_Acl_Assert_Plugin_RequestPush())
             ->allow('member', 'plugin', array(
                 'copy', 'request_deploy', 
                 'view_own', 'edit_own', 'delete_own',
-                'create', 'create_own'
+                'create', 'create_own', 'requestpush_own'
             ))
 
             ->allow('editor', 'plugin', array(
                 'view_any', 'edit_sandbox', 'delete_sandbox', 
-                'deploy', 'create_sandbox', 'view_submissions'
+                'deploy', 'create_sandbox', 'requestpush_sandbox',
+                'view_submissions'
             ))
 
             ->allow('member', 'profile', 'view_sandbox', 
@@ -92,6 +95,7 @@ class PluginDir_Acl_Assert_Sandbox implements Zend_Acl_Assert_Interface {
 class PluginDir_Acl_Assert_Sandbox_View extends PluginDir_Acl_Assert_Sandbox {
     protected $base_priv = 'view_sandbox';
 }
+
 class PluginDir_Acl_Assert_Sandbox_CreateIn extends PluginDir_Acl_Assert_Sandbox {
     protected $base_priv = 'create_in_sandbox';
 
@@ -145,6 +149,9 @@ class PluginDir_Acl_Assert_Plugin_Edit extends PluginDir_Acl_Assert_Plugin {
 }
 class PluginDir_Acl_Assert_Plugin_Delete extends PluginDir_Acl_Assert_Plugin {
     protected $base_priv = 'delete';
+}
+class PluginDir_Acl_Assert_Plugin_RequestPush extends PluginDir_Acl_Assert_Plugin {
+    protected $base_priv = 'requestpush';
 }
 
 // Fire up the initialization on load.

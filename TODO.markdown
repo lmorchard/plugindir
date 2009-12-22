@@ -2,7 +2,6 @@
 
 ## v0.2.0
 
-* Request pull from sandbox
 * Prettier plugin release page
 * Merge changes between plugins
     * eg. Update sandbox plugin from live

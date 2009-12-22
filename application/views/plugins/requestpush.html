@@ -1,0 +1,19 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Request approval for changes :: {{plugin.name | e}}
+{% endblock %}
+
+{% block content %}
+
+    <form action="" method="POST">
+        <p>Request approval for changes?</p>
+        <div>
+            <input type="submit" value="Request approval" />
+            |
+            <a href="{{base_url}}plugins/detail/{{plugin.pfs_id}}">Cancel</a>
+        </div>
+    </form>
+
+{% endblock %}
+

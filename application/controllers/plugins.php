@@ -407,6 +407,45 @@ class Plugins_Controller extends Local_Controller {
         ));
     }
 
+    /**
+     * Request review of plugin changes to be pushed live.
+     */
+    function requestpush($pfs_id, $screen_name=null) 
+    {
+        $plugin = $this->_find_plugin($pfs_id, $screen_name);
+        if (!authprofiles::is_allowed($plugin, 'requestpush'))
+            return Event::run('system.forbidden');
+
+        // Only perform the delete on POST.
+        if ('post' == request::method()) {
+
+            $emails = array();
+            $watchers = ORM::factory('profile')
+                ->find_all_by_role(array('editor', 'admin'));
+            foreach ($watchers as $profile) {
+                $emails[] = $profile->find_default_login_for_profile()->email;
+            }
+
+            email::send_view(
+                array( 
+                    'to' => $emails 
+                ),
+                'plugins/requestpush_email',
+                array(
+                    'plugin' => $plugin,
+                    'screen_name' => $screen_name
+                )
+            );
+
+            Session::instance()
+                ->set_flash('message', 'Approval requested');
+
+            // Bounce over to sandbox.
+            $auth_screen_name = authprofiles::get_profile('screen_name');
+            url::redirect("profiles/{$auth_screen_name}/plugins/detail/{$plugin->pfs_id}");
+        }
+    }
+
 
     /**
      * Try looking for plugin given PFS ID and optional screen name.

@@ -6,10 +6,12 @@
 
 {% block title %}
     Plugin Detail :: {{plugin.name | e}}
+    {% if plugin.sandbox_profile_id %}
+        ({{ screen_name | e }} sandbox)
+    {% endif %}
 {% endblock %}
 
 {% block content %}
-
     <ul class="actions">
         {% if plugin.sandbox_profile_id %}
             {% set plugin_base as base_url ~ "profiles/" ~ screen_name|e ~ "/plugins/detail/" ~ plugin.pfs_id|urlencode|e %}
@@ -18,6 +20,9 @@
             {% endif %}
             {% if plugin.is_allowed(authprofile, 'deploy') %}
                 <li><a href="{{plugin_base}};deploy">Push changes live</a></li>
+            {% endif %}
+            {% if plugin.is_allowed(authprofile, 'requestpush') %}
+                <li><a href="{{plugin_base}};requestpush">Request approval for changes</a></li>
             {% endif %}
         {% else %}
             {% set plugin_base as base_url ~ "plugins/detail/" ~ plugin.pfs_id|urlencode|e %}
