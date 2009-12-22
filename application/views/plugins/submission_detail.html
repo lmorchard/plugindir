@@ -14,6 +14,7 @@
                 <input type="submit" name="seen" value="Mark as seen" />
             {% endif %}
             <ul>
+                <li><a href="{{base_url}}plugins/submissions">Back to submissions</a></li>
                 <li><a href="{{base_url}}profiles/{{authprofile.screen_name|urlencode|e}}/plugins;create?{{submit_params|e}}">Create a new sandbox release</a></li>
                 {% for plugin in sandbox_plugins %}
                     <li><a href="{{base_url}}profiles/{{authprofile.screen_name|urlencode|e}}/plugins/detail/{{ plugin.pfs_id | e }};edit?add_release=1&amp;{{submit_params|e}}">Create a new release in {{ plugin.name | e }}</a></li>
