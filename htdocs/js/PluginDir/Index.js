@@ -179,7 +179,7 @@ PluginDir.Index = (function () {
                             ".name": plugin.name,
                             ".description": plugin.description,
                             // TODO: Need a bugzilla URL or something here for detection ideas
-                            ".version": 'Not detected (<a href="#">Any ideas?</a>)',
+                            ".version": 'Not detected (<a href="https://bugzilla.mozilla.org/show_bug.cgi?id=536394" target="_new">Any ideas?</a>)',
                             '.status': PluginDir.Utils.cloneTemplate(
                                 $('#status_templates').find('.unknown')
                             ),

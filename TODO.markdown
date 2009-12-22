@@ -2,11 +2,8 @@
 
 ## v0.0.1
 
-* Fix detection for Fx nightly
 * Shadow database for reads
 * Request pull from sandbox
-* Upstream changes to Perfidies
-* Page / bugzilla bug for soliciting ideas on detecting undetected versions
 
 ## v0.0.2
 
