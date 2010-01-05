@@ -4,6 +4,7 @@
 
 * Apache
 * PHP 5.2+
+** mcrypt
 * MySQL 5+
 * Memcached (optional)
 
