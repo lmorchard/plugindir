@@ -120,7 +120,7 @@ class Auth_Profile_Model extends ORM implements Zend_Acl_Role_Interface, Zend_Ac
             ->add_rules('screen_name',      
                 'required', 'length[3,64]', 'valid::alpha_dash', 
                 array($this, 'is_screen_name_available'))
-            ->add_rules('full_name', 'required', 'valid::standard_text')
+            ->add_rules('full_name', 'required')
             ->add_rules('captcha', 'required', 'Captcha::valid')
             ;
         return $data->validate();
