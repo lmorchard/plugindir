@@ -17,17 +17,19 @@
  * @author     Fabien Potencier <fabien.potencier@symfony-project.com>
  * @version    SVN: $Id$
  */
-class Twig_Node_Include extends Twig_Node
+class Twig_Node_Include extends Twig_Node implements Twig_NodeListInterface
 {
   protected $expr;
   protected $sandboxed;
+  protected $variables;
 
-  public function __construct(Twig_Node_Expression $expr, $sandboxed, $lineno, $tag = null)
+  public function __construct(Twig_Node_Expression $expr, $sandboxed, $variables, $lineno, $tag = null)
   {
     parent::__construct($lineno, $tag);
 
     $this->expr = $expr;
     $this->sandboxed = $sandboxed;
+    $this->variables = $variables;
   }
 
   public function __toString()
@@ -35,11 +37,52 @@ class Twig_Node_Include extends Twig_Node
     return get_class($this).'('.$this->expr.')';
   }
 
+  public function getNodes()
+  {
+    if (null === $this->variables)
+    {
+      return array(new Twig_Node_Text('', -1));
+    }
+    else
+    {
+      return array($this->variables);
+    }
+
+    return $this->variables->getNodes();
+  }
+
+  public function setNodes(array $nodes)
+  {
+    if (isset($nodes[0]) && -1 === $nodes[0]->getLine())
+    {
+      $this->variables = null;
+    }
+    else
+    {
+      $this->variables = $nodes[0];
+    }
+  }
+
+  public function getIncludedFile()
+  {
+    return $this->expr;
+  }
+
+  public function isSandboxed()
+  {
+    return $this->sandboxed;
+  }
+
+  public function getVariables()
+  {
+    return $this->variables;
+  }
+
   public function compile($compiler)
   {
     if (!$compiler->getEnvironment()->hasExtension('sandbox') && $this->sandboxed)
     {
-      throw new Twig_SyntaxError('Unable to use the sanboxed attribute on an include if the sandbox extension is not enabled.');
+      throw new Twig_SyntaxError('Unable to use the sanboxed attribute on an include if the sandbox extension is not enabled.', $this->lineno);
     }
 
     $compiler->addDebugInfo($this);
@@ -56,8 +99,19 @@ class Twig_Node_Include extends Twig_Node
     $compiler
       ->write('$this->env->loadTemplate(')
       ->subcompile($this->expr)
-      ->raw(')->display($context);'."\n")
+      ->raw(')->display(')
     ;
+
+    if (null === $this->variables)
+    {
+      $compiler->raw('$context');
+    }
+    else
+    {
+      $compiler->subcompile($this->variables);
+    }
+
+    $compiler->raw(");\n");
 
     if ($this->sandboxed)
     {

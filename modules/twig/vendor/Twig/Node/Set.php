@@ -1,6 +1,6 @@
 <?php
 
-class Twig_Node_Set extends Twig_Node
+class Twig_Node_Set extends Twig_Node implements Twig_NodeListInterface
 {
   protected $names;
   protected $values;
@@ -13,6 +13,38 @@ class Twig_Node_Set extends Twig_Node
     $this->isMultitarget = $isMultitarget;
     $this->names = $names;
     $this->values = $values;
+  }
+
+  public function __toString()
+  {
+    $repr = array(get_class($this).'('.($this->isMultitarget ? implode(', ', $this->names) : $this->names).',');
+    foreach ($this->isMultitarget ? $this->values : array($this->values) as $node)
+    {
+      foreach (explode("\n", $node->__toString()) as $line)
+      {
+        $repr[] = '  '.$line;
+      }
+    }
+    $repr[] = ')';
+
+    return implode("\n", $repr);
+  }
+
+  public function getNodes()
+  {
+    if ($this->isMultitarget)
+    {
+      return $this->values;
+    }
+    else
+    {
+      return array($this->values);
+    }
+  }
+
+  public function setNodes(array $nodes)
+  {
+    $this->values = $this->isMultitarget ? $nodes : $nodes[0];
   }
 
   public function compile($compiler)
@@ -68,5 +100,10 @@ class Twig_Node_Set extends Twig_Node
     }
 
     $compiler->raw(";\n");
+  }
+
+  public function getNames()
+  {
+    return $this->names;
   }
 }

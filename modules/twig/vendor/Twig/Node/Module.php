@@ -63,6 +63,16 @@ class Twig_Node_Module extends Twig_Node implements Twig_NodeListInterface
     return implode("\n", $repr);
   }
 
+  public function getFilename()
+  {
+    return $this->filename;
+  }
+
+  public function getBody()
+  {
+    return $this->body;
+  }
+
   public function getNodes()
   {
     return array_merge(array($this->body), $this->blocks);
@@ -191,6 +201,17 @@ class Twig_Node_Module extends Twig_Node implements Twig_NodeListInterface
         ->write("}\n\n")
       ;
     }
+
+    // original template name
+    $compiler
+      ->write("public function getName()\n", "{\n")
+      ->indent()
+      ->write('return ')
+      ->string($this->filename)
+      ->raw(";\n")
+      ->outdent()
+      ->write("}\n\n")
+    ;
 
     $compiler
       ->outdent()
