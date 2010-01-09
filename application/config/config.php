@@ -117,6 +117,7 @@ $config['extension_prefix'] = 'MY_';
 $config['modules'] = array
 (
     MODPATH.'phpunit',
+    MODPATH.'gettext',
     MODPATH.'twig',
     MODPATH.'auth_profiles',
     MODPATH.'lmo_email',

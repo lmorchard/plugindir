@@ -3,7 +3,7 @@
 {% import "index/index_shell.html" as this %}
 
 {% block title %}
-    Home
+    {% trans "Home" %}
 {% endblock %}
 
 {% block js_includes %}
@@ -15,29 +15,29 @@
 <div class="index_home">
 
     <div class="intro">
-        <h2>Welcome to the Mozilla Plugin Directory</h2>
-        <p>
+        <h2>{% trans "Welcome to the Mozilla Plugin Directory" %}</h2>
+        <p>{% blocktrans %}
             This site is an attempt to collect and provide information about
             third-party browser plugins installed by people across the web.  
-        </p>
-        <p>
+        {% endblocktrans %}</p>
+        <p>{% blocktrans %}
             Using our plugin detection service, you can check to see if your
             plugins are up to date (as far as we know) or if you may be
             vulnerable to any problems or security issues.
-        </p>
-        <p>
+        {% endblocktrans %}</p>
+        <p>{% blocktrans %}
             We can also use your help:  If you are a plugin vendor, or simply
             know something we don't know about a plugin, you can help us by
             submitting suggested updates to this database along with information
             we've detected about your browser and installed plugins.
-        </p>
-        <p>
+        {% endblocktrans %}</p>
+        <p>{% blocktrans %}
             If you want to get even more involved, you can sign up for a
             profile.  This will give you access to a sandbox in which to 
             edit plugin records, test them against our detection code in 
             browsers, and submit changes to our editors for
             approval and inclusion in the database.
-        </p>
+        {% endblocktrans %}</p>
     </div>
 
     <div class="listing">

@@ -2,6 +2,8 @@
 
 ## v0.2.0
 
+* Compile all templates and run xgettext
+
 * Prettier plugin release page
 * Merge changes between plugins
     * eg. Update sandbox plugin from live
