@@ -1,14 +1,14 @@
 {% extends "layout.html" %}
 
 {% block title %}
-    Register (verify)
+    {% trans "Register (verify)" %}
 {% endblock %}
 
 {% block content %}
     {% if email_sent %}
-        <p>Account activation email sent.</p>
+        <p>{% trans "Account activation email sent." %}</p>
     {% endif %}
     <form action="{{base_url}}reverifyemail/{{login.login_name|urlencode}}" method="POST">
-        <input type="submit" value="Re-send verification email" />
+        <input type="submit" value="{% trans "Re-send verification email" %}" />
     </form>
 {% endblock %}

@@ -1,10 +1,10 @@
 {% extends "index/index_shell.html" %}
 
 {% block index_content %}
-    <p>
+    <p>{% blocktrans %}
         The following is a list of plugins by name, along with a count of
         releases for each plugin.
-    </p>
+    {% endblocktrans %}</p>
     <ul class="counts name_counts">
         {% for plugin in name_counts %}
             <li>

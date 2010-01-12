@@ -5,9 +5,12 @@
 {% import "macros/statuses.html" as statuses %}
 
 {% block title %}
-    Plugin Detail :: {{plugin.name | e}}
+    {% set plugin_name_e as plugin.name | e %}
+    {% set screen_name_e as screen_name | e %}
     {% if plugin.sandbox_profile_id %}
-        ({{ screen_name | e }} sandbox)
+        {% blocktrans %}Plugin Detail :: {{plugin_name_e}} ({{ screen_name_e }} sandbox){% endblocktrans %}
+    {% else %}
+        {% blocktrans %}Plugin Detail :: {{plugin_name_e}}{% endblocktrans %}
     {% endif %}
 {% endblock %}
 
@@ -16,40 +19,40 @@
         {% if plugin.sandbox_profile_id %}
             {% set plugin_base as base_url ~ "profiles/" ~ screen_name|e ~ "/plugins/detail/" ~ plugin.pfs_id|urlencode|e %}
             {% if plugin.is_allowed(authprofile, 'view') %}
-                <li><a href="{{base_url}}plugins/detail/{{plugin.pfs_id|urlencode|e}}">View original</a></li>
+                <li><a href="{{base_url}}plugins/detail/{{plugin.pfs_id|urlencode|e}}">{% trans "View original" %}</a></li>
             {% endif %}
             {% if plugin.is_allowed(authprofile, 'deploy') %}
-                <li><a href="{{plugin_base}};deploy">Push changes live</a></li>
+                <li><a href="{{plugin_base}};deploy">{% trans "Push changes live" %}</a></li>
             {% endif %}
             {% if plugin.is_allowed(authprofile, 'requestpush') %}
-                <li><a href="{{plugin_base}};requestpush">Request approval for changes</a></li>
+                <li><a href="{{plugin_base}};requestpush">{% trans "Request approval for changes" %}</a></li>
             {% endif %}
         {% else %}
             {% set plugin_base as base_url ~ "plugins/detail/" ~ plugin.pfs_id|urlencode|e %}
         {% endif %}
         {% if not plugin.sandbox_profile_id and plugin.is_allowed(authprofile, 'copy') %}
-            <li><a href="{{plugin_base}};copy">Copy to sandbox</a></li>
+            <li><a href="{{plugin_base}};copy">{% trans "Copy to sandbox" %}</a></li>
         {% endif %}
         {% if plugin.is_allowed(authprofile, 'edit') %}
-            <li><a href="{{plugin_base}};edit">Edit details</a></li>
+            <li><a href="{{plugin_base}};edit">{% trans "Edit details" %}</a></li>
         {% endif %}
         {% if plugin.is_allowed(authprofile, 'delete') %}
-            <li><a href="{{plugin_base}};delete">Delete plugin</a></li>
+            <li><a href="{{plugin_base}};delete">{% trans "Delete plugin" %}</a></li>
         {% endif %}
         {% if plugin.is_allowed(authprofile, 'view') %}
-            <li><a href="{{plugin_base}}.json">JSON export</a></li>
+            <li><a href="{{plugin_base}}.json">{% trans "JSON export" %}</a></li>
         {% endif %}
     </ul>
 
     <div class="meta">
         {% if plugin.icon_url %}
             <div class="icon">
-                <img src="{{plugin.icon_url}}" alt="Plugin icon" />
+                <img src="{{plugin.icon_url}}" alt="{% trans "Plugin icon" %}" />
             </div>
         {% endif %}
         {% if plugin.description %}
             <div>
-                <h2>Description:</h2>
+                <h2>{% trans "Description:" %}</h2>
                 <p>{{plugin.description}}</p>
             </div>
         {% endif %}
@@ -62,10 +65,10 @@
                 <table class="version_releases">
                     <thead>
                         <tr>
-                            <th>Platform</th>
-                            <th>OS</th>
-                            <th>Status</th>
-                            <th>URL</th>
+                            <th>{% trans "Platform" %}</th>
+                            <th>{% trans "OS" %}</th>
+                            <th>{% trans "Status" %}</th>
+                            <th>{% trans "URL" %}</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -74,7 +77,7 @@
                                 <td>{{platforms.readable(release.platform)}}</td>
                                 <td>{{oses.readable(release.os)}}</td>
                                 <td>{{statuses.readable(release.status_code)}}</td>
-                                <td><a href="{{release.url}}">Download / Details</a>
+                                <td><a href="{{release.url}}">{% trans "Download / Details" %}</a>
                             </tr>
                         {% endfor %}
                     </tbody>

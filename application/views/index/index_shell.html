@@ -8,7 +8,7 @@
 
 {% block js_includes %}
     {% parent %}
-    <script type="text/javascript" src="{{base_url}}js/PluginDir/Index.js"></script>
+    <script type="text/javascript" src="{{media_url}}js/PluginDir/Index.js"></script>
 {% endblock %}
 
 {% block content %}
@@ -54,16 +54,16 @@
                 </li>
             {% endmacro %}
 
-            {{ this.nav_item(base_url, 'installed', '?by=installed', 'Your Installed Plugins', by_cat) }}
+            {{ this.nav_item(base_url, 'installed', '?by=installed', 'Your Installed Plugins'|trans, by_cat) }}
             {% if is_logged_in %}
-                {{ this.nav_item(base_url, 'sandbox', 'profiles/' ~ authprofile.screen_name|urlencode|e ~ '/plugins', 'Your Sandbox', by_cat, authprofile.screen_name) }}
+                {{ this.nav_item(base_url, 'sandbox', 'profiles/' ~ authprofile.screen_name|urlencode|e ~ '/plugins', 'Your Sandbox'|trans, by_cat, authprofile.screen_name) }}
             {% endif %}
             {% if authprofile.is_allowed('plugin', 'view_submissions') %}
-                {{ this.nav_item(base_url, 'submissions', 'plugins/submissions', 'Submissions', by_cat) }}
+                {{ this.nav_item(base_url, 'submissions', 'plugins/submissions', 'Submissions'|trans, by_cat) }}
             {% endif %}
-            {{ this.nav_item(base_url, 'name', '?by=name', 'By Name', by_cat) }}
-            {{ this.nav_item(base_url, 'application', '?by=application', 'By Application', by_cat) }}
-            {{ this.nav_item(base_url, 'os', '?by=os', 'By Operating System', by_cat) }}
+            {{ this.nav_item(base_url, 'name', '?by=name', 'By Name'|trans, by_cat) }}
+            {{ this.nav_item(base_url, 'application', '?by=application', 'By Application'|trans, by_cat) }}
+            {{ this.nav_item(base_url, 'os', '?by=os', 'By Operating System'|trans, by_cat) }}
         </ul>
 
         <div class="listing_content">{% block index_content %}{% endblock %}</div>

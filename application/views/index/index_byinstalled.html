@@ -2,31 +2,31 @@
 
 {% block index_content %}
 
-    <p>
+    <p>{% blocktrans %}
         The following is a list of plugins detected as installed
         in your browser, along with the status of each with respect
         to our plugin database.  Some of these plugins may not be
         present in our database, and some may have incorrect details.
         You can help us improve this directory by using the feedback
         links next to each plugin.
-    </p>
+    {% endblocktrans %}</p>
 
-    <p class="installed_plugins_warning">
+    <p class="installed_plugins_warning">{% blocktrans %}
         If you can see this message, we were unable to perform
         plugin detection on your browser.  You may have JavaScript
         disabled, which this site requires for many of its features.
-    </p>
+    {% endblocktrans %}</p>
 
     <table class="installed_plugins">
         <thead>
             <tr>
-                <th>Name</th>
-                <th>Detected Version</th>
-                <!-- <th>Description</th> -->
-                <th>Installed Status</th>
-                <th>Have feedback?</th>
+                <th>{% trans "Name" %}</th>
+                <th>{% trans "Detected Version" %}</th>
+                <!-- <th>{% trans "Description" %}</th> -->
+                <th>{% trans "Installed Status" %}</th>
+                <th>{% trans "Have feedback?" %}</th>
                 {% if is_logged_in %}
-                    <th>Sandbox actions</th>
+                <th>{% trans "Sandbox actions" %}</th>
                 {% endif %}
             </tr>
         </thead>
@@ -45,19 +45,19 @@
     </table>
 
     <div id="status_templates" class="templates">
-        <span class="newer">Newer</span>
-        <span class="latest">Up to date</span>
-        <span class="vulnerable">Vulnerable (<span class="version">###</span> available)</span>
-        <span class="outdated">Needs update (<span class="version">###</span> available)</span>
-        <span class="unknown">Unknown</span>
+        <span class="newer">{% trans "Newer" %}</span>
+        <span class="latest">{% trans "Up to date" %}</span>
+        <span class="vulnerable">{% trans "Vulnerable" %} (<span class="version">###</span> available)</span>
+        <span class="outdated">{% trans "Needs update" %} (<span class="version">###</span> available)</span>
+        <span class="unknown">{% trans "Unknown" %}</span>
     </div>
 
     <div id="feedback_templates" class="templates">
-        <a href="#" class="newer">Suggest update</a>
-        <a href="#" class="latest">Suggest correction</a>
-        <a href="#" class="vulnerable">Suggest correction</a>
-        <a href="#" class="outdated">Suggest correction</a>
-        <a href="#" class="unknown">Contribute new info</a>
+        <a href="#" class="newer">{% trans "Suggest update" %}</a>
+        <a href="#" class="latest">{% trans "Suggest correction" %}</a>
+        <a href="#" class="vulnerable">{% trans "Suggest correction" %}</a>
+        <a href="#" class="outdated">{% trans "Suggest correction" %}</a>
+        <a href="#" class="unknown">{% trans "Contribute new info" %}</a>
     </div>
 
     <div class="add_release template">

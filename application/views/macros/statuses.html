@@ -1,11 +1,11 @@
 {% macro readable(status) %}
     {% if 10 == status %} 
-        Latest
+        {% trans "Latest" %}
     {% elseif 20 == status %} 
-        Outdated
+        {% trans "Outdated" %}
     {% elseif 30 == status %} 
-        Vulnerable
+        {% trans "Vulnerable" %}
     {% else %}
-        Unknown
+        {% trans "Unknown" %}
     {% endif %}
 {% endmacro %}

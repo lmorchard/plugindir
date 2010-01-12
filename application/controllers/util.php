@@ -17,7 +17,7 @@ class Util_Controller extends Local_Controller {
     {
         parent::__construct();
 
-        if (!isset($_SERVER['argc'])) {
+        if (PHP_SAPI !== 'cli') {
             echo "For command line use only.";
             die;
         }
@@ -127,6 +127,59 @@ class Util_Controller extends Local_Controller {
         $q = $this->db->query( 
             "DELETE FROM plugins WHERE pfs_id=?", $pfs_id
         );
+    }
+
+    /**
+     * Compile all Twig templates and copy the resulting PHP source files from 
+     * the cache into temporary files named for the original Twig source files.
+     *
+     * This helps with l10n message extraction by providing appropriate filename
+     * context.
+     */
+    function compiletemplates() {
+        $files = array();
+        $dirs = array();
+        $this->_find_templates(APPPATH . 'views', $files, $dirs);
+
+        // Create the temporary directory structure.
+        $tmp_dir = 'tmp/l10n/views/';
+        if (!is_dir($tmp_dir)) { mkdir($tmp_dir, 0777, true); }
+        foreach ($dirs as $dn) {
+            if (!is_dir($tmp_dir.$dn)) { mkdir($tmp_dir.$dn, 0777, true); }
+        }
+
+        echo "Compiling templates...\n";
+        foreach ($files as $fn) {
+            // Load and compile the template
+            $tmpl = twigutil::loadTemplate($fn);
+            // Find the filename for the compiled template PHP
+            $tmpl_name = $tmpl->getName();
+            $cache_fn  = twigutil::getEnv()->getCacheFilename($tmpl_name);
+            // Copy the compiled PHP to the temporary directory structure
+            copy($cache_fn, "$tmp_dir/$tmpl_name");
+            echo "\t$tmpl_name\n";
+        }
+    }
+
+    /**
+     * Recursively search for HTML templates under views.
+     */
+    function _find_templates($root, &$files, &$dirs, $prefix='') {
+        $dh = opendir($root);
+        while ( false !== ( $fn = readdir($dh) ) ) {
+            if ('.' === $fn || '..' === $fn) { continue; }
+            $full_fn = "$root/$fn";
+            $pre_fn = $prefix ? "$prefix/$fn" : $fn;
+            if (is_dir($full_fn)) {
+                if (!in_array($pre_fn, $dirs)) {
+                    $dirs[] = $pre_fn;
+                }
+                $this->_find_templates($full_fn, $files, $dirs, $pre_fn);
+            } else if (preg_match('/\.html$/', $fn)) {
+                $files[] = $pre_fn;
+            }
+        }
+        closedir($dh);
     }
 
 }

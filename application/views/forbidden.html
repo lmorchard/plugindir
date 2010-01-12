@@ -1,10 +1,10 @@
 {% extends "layout.html" %}
 
 {% block title %}
-    Access denied
+    {% trans "Access denied" %}
 {% endblock %}
 
 {% block content %}
-    <h1>Access denied</h1>
-    <p>Sorry, that action is not allowed.</p>
+    <h1>{% trans "Access denied" %}</h1>
+    <p>{% trans "Sorry, that action is not allowed." %}</p>
 {% endblock %}

@@ -3,7 +3,8 @@
 {% import "macros/forms.html" as forms %}
 
 {% block title %}
-    Edit details for {{profile.screen_name}}
+    {% set profile_screen_name_e as profile.screen_name|e %}
+    {% blocktrans %}Edit details for {{profile_screen_name_e}}{% endblocktrans %}
 {% endblock %}
 
 {% block content %}
@@ -11,12 +12,12 @@
         {% set data, errors as form_data, form_errors %}
         {{ forms.fieldset('Profile details', 'profile') }}
             {# {{ forms.input(data, errors, 'text', 'screen_name', 'Screen name') }} #}
-            {{ forms.input(data, errors, 'text', 'full_name', 'Full name') }}
-            {{ forms.textarea(data, errors, 'bio', 'Bio / About you') }}
+            {{ forms.input(data, errors, 'text', 'full_name', 'Full name'|trans) }}
+            {{ forms.textarea(data, errors, 'bio', 'Bio / About you'|trans) }}
             {% if authprofile.is_allowed(profile, 'edit_role') %}
-                {{ forms.dropdown(data, errors, 'role', 'Role', role_choices) }}
+                {{ forms.dropdown(data, errors, 'role', 'Role'|trans, role_choices) }}
             {% endif %}
-            {{ forms.submit('update', '', 'Update') }}
+            {{ forms.submit('update', '', 'Update'|trans) }}
         {{ forms.endfieldset() }}
     </form>
 {% endblock %}

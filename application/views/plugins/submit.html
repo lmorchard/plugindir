@@ -6,12 +6,12 @@
 {% import "macros/forms.html" as forms %}
 
 {% block title %}
-    Submit plugin info
+    {% trans "Submit plugin info" %}
 {% endblock %}
 
 {% block content %}
     {% if saved %}
-        <p>Your plugin data submission has been accepted, thank you!</p>
+        <p>{% trans "Your plugin data submission has been accepted, thank you!" %}</p>
     {% else %}
 
         <form class="contribute" action="{{base_url}}plugins/submit" method="post">
@@ -19,30 +19,29 @@
 
             {{ forms.hidden(data, errors, 'detected_version', _GET.version) }}
             
-            {{ forms.fieldset('Plugin details', 'plugin_details') }}
+            {{ forms.fieldset('Plugin details'|trans, 'plugin_details') }}
         
-                <li><p>
-                    This form will {{ is_logged_in ? '' : 'anonymously' }}
-                    submit details detected about this plugin and your browser,
+                <li><p>{% blocktrans %}
+                    This form will submit details detected about this plugin and your browser,
                     along with the following fields that you may modify to suggest
                     corrections.
-                </p></li>
+                {% endblocktrans %}</p></li>
 
-                {{ forms.dropdown(data, errors, 'status', 'Status', status_choices) }}
-                {{ forms.input(data, errors, 'text', 'vulnerability_url', 'Vulnerability URL') }}
-                {{ forms.textarea(data, errors, 'vulnerability_description', 'Vulnerability description') }}
-                {{ forms.input(data, errors, 'text', 'vendor', 'Vendor') }}
-                {{ forms.input(data, errors, 'text', 'name', 'Name') }}
-                {{ forms.input(data, errors, 'text', 'version', 'Version') }}
-                {{ forms.textarea(data, errors, 'description', 'Description') }}
-                {{ forms.textarea(data, errors, 'comments', 'Comments') }}
+                {{ forms.dropdown(data, errors, 'status', 'Status'|trans, status_choices) }}
+                {{ forms.input(data, errors, 'text', 'vulnerability_url', 'Vulnerability URL'|trans) }}
+                {{ forms.textarea(data, errors, 'vulnerability_description', 'Vulnerability description'|trans) }}
+                {{ forms.input(data, errors, 'text', 'vendor', 'Vendor'|trans) }}
+                {{ forms.input(data, errors, 'text', 'name', 'Name'|trans) }}
+                {{ forms.input(data, errors, 'text', 'version', 'Version'|trans) }}
+                {{ forms.textarea(data, errors, 'description', 'Description'|trans) }}
+                {{ forms.textarea(data, errors, 'comments', 'Comments'|trans) }}
 
-                {{ forms.captcha(data, errors, 'captcha', 'Captcha') }}
+                {{ forms.captcha(data, errors, 'captcha', 'Captcha'|trans) }}
                 
-                {{ forms.submit('submit', '', 'Submit') }}
+                {{ forms.submit('submit', '', 'Submit'|trans) }}
 
                 <li>
-                    <p>Also submitting the following additional information:</p>
+                <p>{% trans "Also submitting the following additional information:" %}</p>
                     <dl>
                         {% if is_logged_in %}
                             <dt>screen_name</dt>

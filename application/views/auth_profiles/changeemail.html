@@ -3,18 +3,19 @@
 {% import "macros/forms.html" as forms %}
 
 {% block title %}
-    Change email address for {{profile.screen_name|e}}
+    {% set profile_screen_name_e as profile.screen_name|e %}
+    {% blocktrans %}Change email address for {{profile_screen_name_e}}{% endblocktrans %}
 {% endblock %}
 
 {% block content %}
     {% if email_verification_token_set %}
-        <p>Check your inbox for a link to verify this new email address.</p>
+    <p>{% trans "Check your inbox for a link to verify this new email address." %}</p>
     {% else %}
         <form class="changeemail" action="" method="post">
             {% set data, errors as form_data, form_errors %}
-            {{ forms.fieldset('Login details', 'login') }}
-                {{ forms.input(data, errors, 'text', 'new_email', 'New email') }}
-                {{ forms.submit('change', '', 'Change email') }}
+            {{ forms.fieldset('Login details', 'login'|trans) }}
+                {{ forms.input(data, errors, 'text', 'new_email', 'New email'|trans) }}
+                {{ forms.submit('change', '', 'Change email'|trans) }}
             {{ forms.endfieldset() }}
         </form>
     {% endif %}

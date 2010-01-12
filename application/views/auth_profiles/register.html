@@ -3,22 +3,22 @@
 {% import "macros/forms.html" as forms %}
 
 {% block title %}
-    Register
+    {% trans "Register" %}
 {% endblock %}
 
 {% block content %}
     <form class="register" action="{{base_url}}register" method="post">
         {% set data, errors as form_data, form_errors %}
-        {{ forms.fieldset('Login details', 'login') }}
-            {{ forms.input(data, errors, 'text', 'login_name', 'Login name') }}
-            {{ forms.input(data, errors, 'text', 'full_name', 'Full name') }}
-            {{ forms.textarea(data, errors, 'bio', 'Bio / About you') }}
-            {{ forms.input(data, errors, 'text', 'email', 'Email') }}
-            {{ forms.input(data, errors, 'text', 'email_confirm', 'Email (confirm)') }}
-            {{ forms.input(data, errors, 'password', 'password', 'Password') }}
-            {{ forms.input(data, errors, 'password', 'password_confirm', 'Password (confirm)') }}
-            {{ forms.captcha(data, errors, 'captcha', 'Captcha') }}
-            {{ forms.submit('register', '', 'Register') }}
+        {{ forms.fieldset('Login details'|trans, 'login') }}
+            {{ forms.input(data, errors, 'text', 'login_name', 'Login name'|trans) }}
+            {{ forms.input(data, errors, 'text', 'full_name', 'Full name'|trans) }}
+            {{ forms.textarea(data, errors, 'bio', 'Bio / About you'|trans) }}
+            {{ forms.input(data, errors, 'text', 'email', 'Email'|trans) }}
+            {{ forms.input(data, errors, 'text', 'email_confirm', 'Email (confirm)'|trans) }}
+            {{ forms.input(data, errors, 'password', 'password', 'Password'|trans) }}
+            {{ forms.input(data, errors, 'password', 'password_confirm', 'Password (confirm)'|trans) }}
+            {{ forms.captcha(data, errors, 'captcha', 'Captcha'|trans) }}
+            {{ forms.submit('register', '', 'Register'|trans) }}
         {{ forms.endfieldset() }}
     </form>
 {% endblock %}

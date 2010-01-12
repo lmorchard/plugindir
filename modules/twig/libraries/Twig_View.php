@@ -60,18 +60,7 @@ class Twig_View_Core extends View {
         // Merge global and local data, local overrides global with the same name
         $data = array_merge(Twig_View::$kohana_global_data, $this->kohana_local_data);
 
-        // Load and render the Twig template
-        $loader = new Twig_Loader_Filesystem(
-            Kohana::config('twig.template_path')
-        );
-        $twig = new Twig_Environment($loader, array(
-            'cache' => Kohana::config('twig.cache'),
-            'auto_reload' => Kohana::config('twig.auto_reload'),
-            'trim_blocks' => Kohana::config('twig.trimb_locks'),
-        ));
-        $twig->addExtension(new Kohana_Twig_Extension());
-
-        $template = $twig->loadTemplate($this->kohana_filename);
+        $template = twigutil::loadTemplate($this->kohana_filename);
         $output   = $template->render($data); 
 
         if ($renderer !== FALSE AND is_callable($renderer, TRUE)) {

@@ -9,6 +9,14 @@
 class Index_Controller extends Local_Controller {
 
     /**
+     * Bounce visitors to the site root over to their current language path.
+     */
+    function locale_redirect()
+    {
+        return url::redirect(Gettext_Main::$current_language, 301);
+    }
+
+    /**
      * Home page action
      */
     function index($by_cat=null)

@@ -1,12 +1,12 @@
 {% extends "layout.html" %}
 
+{% set profile_screen_name_e as profile.screen_name|e %}
+
 {% block title %}
-    Plugin Sandbox for {{profile.screen_name|e}}
+    {% blocktrans %}Plugin Sandbox for {{profile_screen_name_e}}{% endblocktrans %}
 {% endblock %}
 
 {% block content %}
-
-    <h2>Plugin Sandbox for {{profile.screen_name|e}}</h2>
+    <h2>{% blocktrans %}Plugin Sandbox for {{profile_screen_name_e}}{% endblocktrans %}</h2>
     {% include 'plugins/sandbox_listing.html' %}
-
 {% endblock %}

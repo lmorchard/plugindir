@@ -33,7 +33,8 @@ class Local_Controller extends TwigRender_Controller {
     public function render() {
 
         View::set_global(array(
-            'base_url'          => url::base(),
+            'media_url'         => url::base(),
+            'base_url'          => url::site(Gettext_Main::$current_language, '') . '/',
             'router_controller' => Router::$controller,
             'router_method'     => Router::$method,
 

@@ -1,17 +1,17 @@
 {% extends "layout.html" %}
 
 {% block title %}
-    Register (verified)
+    {% trans "Register (verified)" %}
 {% endblock %}
 
 {% block content %}
     {% if invalid_token %}
-        <p>Invalid email verification token.</p>
+        <p>{% trans "Invalid email verification token." %}</p>
     {% else %}
         <p>
-            New email address verified.  
+            {% trans "New email address verified." %}  
             {% if not is_logged_in %}
-                <a href="{{base_url}}login">Login?</a>
+                <a href="{{base_url}}login">{% trans "Login?" %}</a>
             {% endif %}
         </p>
     {% endif %}

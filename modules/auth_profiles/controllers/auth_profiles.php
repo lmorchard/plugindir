@@ -376,23 +376,23 @@ class Auth_Profiles_Controller extends Local_Controller
             'controller' => $this, 
             'sections'   => array(
                 array(
-                    'title' => 'Basics',
+                    'title' => _('Basics'),
                     'priority' => 999,
                     'items' => array(
                         array(
                             'url' => "profiles/{$u_name}/settings/basics/changepassword",
-                            'title' => 'Change login password',
-                            'description' => 'change current login password'
+                            'title' => _('Change login password'),
+                            'description' => _('change current login password')
                         ),
                         array(
                             'url' => "profiles/{$u_name}/settings/basics/changeemail",
-                            'title' => 'Change login email',
-                            'description' => 'change current login email'
+                            'title' => _('Change login email'),
+                            'description' => _('change current login email')
                         ),
                         array(
                             'url' => "profiles/{$u_name}/settings/basics/details",
-                            'title' => 'Edit profile details',
-                            'description' => 'change screen name, bio, etc.'
+                            'title' => _('Edit profile details'),
+                            'description' => _('change screen name, bio, etc.')
                         ),
                         /*
                         array(

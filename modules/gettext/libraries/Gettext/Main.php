@@ -20,9 +20,18 @@ class Gettext_Main {
     public static function init()
     {
         if (extension_loaded('gettext')) {
-            self::set_domain();
-            self::set_language();
+            Event::add('system.post_routing', 
+                array(get_class(), 'handle_post_routing'));
         }
+    }
+
+    /**
+     * After routing is ready, pick up the current language.
+     */
+    public static function handle_post_routing()
+    {
+        self::set_domain();
+        self::set_language();
     }
     
     /**
@@ -36,7 +45,7 @@ class Gettext_Main {
         if (null===$domain)
             $domain = self::$default_domain;
         if (null===$path)
-            $path = APPPATH . 'i18n';
+            $path = APPPATH . 'locale';
 
         self::$domain = $domain;
         self::$domain_path = $path;
@@ -57,8 +66,11 @@ class Gettext_Main {
         // default language.
         if (null===$langs)
             $langs = array();
+        if (!empty(Router::$segments))
+            $langs[] = Router::$segments[0];
         if (!empty($_GET['lang']))
             $langs[] = $_GET['lang'];
+
         $langs = array_merge($langs, Kohana::user_agent('languages'));
         $langs[] = self::$default_language;
 

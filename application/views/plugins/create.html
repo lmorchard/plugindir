@@ -6,17 +6,17 @@
 {% import "macros/forms.html" as forms %}
 
 {% block title %}
-    Create new 
+    {% set screen_name_e as profile.screen_name|e %}
     {% if profile %}
-        sandbox plugin for {{profile.screen_name|e}}
+        {% blocktrans %}Create new sandbox plugin for {{screen_name_e}}{% endblocktrans %}
     {% else %}
-        public plugin
+        {% blocktrans %}Create new public plugin{% endblocktrans %}
     {% endif %}
 {% endblock %}
 
 {% block content %}
     {% if saved %}
-        <p>Your plugin data submission has been accepted, thank you!</p>
+        <p>{% blocktrans %}Your plugin data submission has been accepted, thank you!{% endblocktrans %}</p>
     {% else %}
 
         <form class="contribute" action="" method="post">
@@ -26,13 +26,13 @@
             
             {{ forms.fieldset('New plugin details', 'plugin_details') }}
         
-                <li><p>
+                <li><p>{% blocktrans %}
                     Use this form to provide details to create a new plugin
                     and an initial release.  Some or all of these details may
                     have already been filled in from data detected about your
                     browser and an installed plugin, so you may not need to
                     modify these values.
-                </p></li>
+                {% endblocktrans %}</p></li>
 
                 {{ forms.input(data, errors, 'text', 'pfs_id', 'PFS ID') }}
                 {{ forms.dropdown(data, errors, 'status', 'Status', status_choices) }}

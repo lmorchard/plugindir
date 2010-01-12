@@ -82,7 +82,18 @@ without "-dist" and modified for your installation.
     * Try running the plugin model tests:
         * `php htdocs/index.php phpunit/group/models.plugindir.plugin`
 
-## Search API Usage
+## Developer Notes
+
+### Localization
+
+* To update locales after code / template changes:
+    * `php htdocs/index.php util/compiletemplates`
+    * `./bin/extract-po.sh`
+
+* To compile messages after localization work:
+    * `./bin/compile-mo.sh`
+
+### Search API Usage
 
 * See: https://wiki.mozilla.org/PFS2#Request_Parameters
 * Example query:

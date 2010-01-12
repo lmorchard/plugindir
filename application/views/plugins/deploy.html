@@ -1,17 +1,18 @@
 {% extends "layout.html" %}
 
 {% block title %}
-    Push plugin changes :: {{plugin.name | e}}
+    {% set plugin_name_e as plugin.name|e %}
+    {% blocktrans %}Push plugin changes for "{{plugin_name_e}}"{% endblocktrans %}
 {% endblock %}
 
 {% block content %}
 
     <form action="" method="POST">
-        <p>Push changes to this plugin live?</p>
+        <p>{% trans "Push changes to this plugin live?" %}</p>
         <div>
-            <input type="submit" value="Push plugin changes live" />
+            <input type="submit" value="{% trans "Push plugin changes live" %}" />
             |
-            <a href="{{base_url}}plugins/detail/{{plugin.pfs_id}}">Cancel</a>
+            <a href="{{base_url}}plugins/detail/{{plugin.pfs_id}}">{% trans "Cancel" %}</a>
         </div>
     </form>
 

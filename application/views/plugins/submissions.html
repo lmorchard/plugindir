@@ -5,19 +5,19 @@
 <form method="POST">
 
     <div class="controls">
-        <input type="submit" name="seen" value="Mark as seen" />
+        <input type="submit" name="seen" value="{% trans "Mark as seen" %}" />
     </div>
 
     <table class="submissions toggle_all">
         <thead>
             <tr>
                 <th><input type="checkbox" class="toggler" /></th>
-                <th>Date</th>
-                <th>Name</th>
-                <th>Version</th>
-                <th>Status</th>
-                <th>OS</th>
-                <th>Platform</th>
+                <th>{% trans "Date" %}</th>
+                <th>{% trans "Name" %}</th>
+                <th>{% trans "Version" %}</th>
+                <th>{% trans "Status" %}</th>
+                <th>{% trans "OS" %}</th>
+                <th>{% trans "Platform" %}</th>
             </tr>
         </thead>
         <tbody>
@@ -39,7 +39,7 @@
                 </tr>
             {% else %}
                 <tr>
-                    <td colspan="7">No submissions.</td>
+                    <td colspan="7">{% trans "No submissions." %}</td>
                 </tr>
             {% endfor %}
             
@@ -47,7 +47,7 @@
     </table>
     
     <div class="controls">
-        <input type="submit" name="seen" value="Mark as seen" />
+        <input type="submit" name="seen" value="{% trans "Mark as seen" %}" />
     </div>
 
 </form>

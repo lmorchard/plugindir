@@ -3,10 +3,10 @@
 {% block index_content %}
     {% import "macros/platforms.html" as platforms %}
 
-    <p>
+    <p>{% blocktrans %}
         The following is a list of plugins by browser application, along with a
         count of releases for each application.
-    </p>
+    {% endblocktrans %}</p>
 
     <ul class="counts platform_counts">
         {% for platform in platform_counts %}

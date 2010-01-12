@@ -3,10 +3,10 @@
 {% block index_content %}
     {% import "macros/oses.html" as oses %}
 
-    <p>
+    <p>{% blocktrans %}
         The following is a list of plugins by operating system, along with a
         count of releases for each OS.
-    </p>
+    {% endblocktrans %}</p>
 
     <ul class="counts os_counts">
         {% for os in os_counts %}

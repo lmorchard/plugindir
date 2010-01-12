@@ -1,26 +1,26 @@
 {% macro readable(os) %}
     {% if '*' == os.name %}
-        Any
+        {% trans "Any" %}
     {% elseif 'win' == os.name %}
-        Windows
+        {% trans "Windows" %}
     {% elseif 'windows nt 6.0' == os.name %}
-        Windows Vista
+        {% trans "Windows Vista" %}
     {% elseif 'intel mac os x 10.6' == os.name %}
-        Intel Mac OS X 10.6
+        {% trans "Intel Mac OS X 10.6" %}
     {% elseif 'intel mac os x' == os.name %}
-        Intel Mac OS X
+        {% trans "Intel Mac OS X" %}
     {% elseif 'ppc mac os x' == os.name %}
-        PPC Mac OS X
+        {% trans "PPC Mac OS X" %}
     {% elseif 'mac os x' == os.name %}
-        Mac OS X
+        {% trans "Mac OS X" %}
     {% elseif 'mac' == os.name %}
-        Mac
+        {% trans "Mac" %}
     {% elseif 'linux' == os.name %}
-        Linux
+        {% trans "Linux" %}
     {% elseif 'sunos' == os.name %}
-        SunOS
+        {% trans "SunOS" %}
     {% elseif 'sunos sun4u' == os.name %}
-        SunOS (sun4u)
+        {% trans "SunOS (sun4u)" %}
     {% else %}
         {{os.name | e}}
     {% endif %}

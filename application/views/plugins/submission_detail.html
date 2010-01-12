@@ -1,7 +1,7 @@
 {% extends "layout.html" %}
 
 {% block title %}
-    Submissions :: {{ submission.id | e }}
+    {% trans "Submissions" %} :: {{ submission.id | e }}
 {% endblock %}
 
 {% block content %}
@@ -9,15 +9,16 @@
 
         <div class="controls">
             {% if submission.seen %}
-                <input type="submit" name="unseen" value="Mark as unseen" />
+                <input type="submit" name="unseen" value="{% trans "Mark as unseen" %}" />
             {% else %}
-                <input type="submit" name="seen" value="Mark as seen" />
+                <input type="submit" name="seen" value="{% trans "Mark as seen" %}" />
             {% endif %}
             <ul>
-                <li><a href="{{base_url}}plugins/submissions">Back to submissions</a></li>
-                <li><a href="{{base_url}}profiles/{{authprofile.screen_name|urlencode|e}}/plugins;create?{{submit_params|e}}">Create a new sandbox release</a></li>
+                <li><a href="{{base_url}}plugins/submissions">{% trans "Back to submissions" %}</a></li>
+                <li><a href="{{base_url}}profiles/{{authprofile.screen_name|urlencode|e}}/plugins;create?{{submit_params|e}}">{% trans "Create a new sandbox release" %}</a></li>
                 {% for plugin in sandbox_plugins %}
-                    <li><a href="{{base_url}}profiles/{{authprofile.screen_name|urlencode|e}}/plugins/detail/{{ plugin.pfs_id | e }};edit?add_release=1&amp;{{submit_params|e}}">Create a new release in {{ plugin.name | e }}</a></li>
+                    {% set plugin_name_e as plugin.name | e %}
+                    <li><a href="{{base_url}}profiles/{{authprofile.screen_name|urlencode|e}}/plugins/detail/{{ plugin.pfs_id | e }};edit?add_release=1&amp;{{submit_params|e}}">{% blocktrans %}Create a new release in {{ plugin_name_e }}{% endblocktrans %}</a></li>
                 {% endfor %}
             </ul>
         </div>

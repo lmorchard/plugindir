@@ -12,6 +12,7 @@ for sourcedir in $SOURCE_DIRS; do \
         --keyword=___ \
         --keyword=n___:1,2 \
         --keyword="pgettext:1c,2" \
+        --keyword="npgettext:1c,2,3" \
         --force-po \
         --omit-header \
         --join-existing \

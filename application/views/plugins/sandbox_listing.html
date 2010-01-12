@@ -1,12 +1,12 @@
 {% if not sandbox_plugins %}
-    <p>This sandbox is empty.</p>
+    <p>{% trans "This sandbox is empty." %}</p>
 {% else %}
 
     <ul class="counts sandbox_plugins">
         {% for plugin in sandbox_plugins %}
             <li id="{{plugin.pfs_id|e}}">
-                [<a href="{{base_url}}profiles/{{profile.screen_name|e}}/plugins/detail/{{plugin.pfs_id|urlencode|e}};delete">delete</a>]
-                [<a href="{{base_url}}profiles/{{profile.screen_name|e}}/plugins/detail/{{plugin.pfs_id|urlencode|e}};edit">edit</a>]
+                [<a href="{{base_url}}profiles/{{profile.screen_name|e}}/plugins/detail/{{plugin.pfs_id|urlencode|e}};delete">{% trans "delete" %}</a>]
+                [<a href="{{base_url}}profiles/{{profile.screen_name|e}}/plugins/detail/{{plugin.pfs_id|urlencode|e}};edit">{% trans "edit" %}</a>]
                 <a href="{{base_url}}profiles/{{profile.screen_name|e}}/plugins/detail/{{plugin.pfs_id | urlencode | e}}">{{plugin.name | e}}</a>
             </li>
         {% endfor %}

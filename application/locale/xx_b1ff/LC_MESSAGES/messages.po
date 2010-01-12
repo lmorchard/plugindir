@@ -1,0 +1,1060 @@
+# File: views/plugins/edit.html, line: 251
+msgid   "                            <a href=\"#\" class=\"show\">Show</a> /\n"
+        "                            <a href=\"#\" class=\"hide\">Hide</a>\n"
+        "                            empty properties.\n"
+        "                        "
+msgstr  "                            <a href=\"#\" class=\"show\">5HOW</a> /\n"
+        "                            <a href=\"#\" class=\"hide\">H1D3</a>\n"
+        "                            EMPTY PROPERTYS.\n"
+        "                        "
+#
+# File: views/plugins/edit.html, line: 173
+msgid   "                    <a href=\"#\" class=\"show\">Show</a> /\n"
+        "                    <a href=\"#\" class=\"hide\">Hide</a>\n"
+        "                    empty properties.\n"
+        "                "
+msgstr  "                    <a href=\"#\" class=\"show\">SHOW</a> /\n"
+        "                    <a href=\"#\" class=\"hide\">HIDE</a>\n"
+        "                    EMPTY PROPERTYS.\n"
+        "                "
+#
+# File: views/plugins/submit.html, line: 91
+msgid   "                    This form will submit details detected about "
+        "this plugin and your browser,\n"
+        "                    along with the following fields that you may "
+        "modify to suggest\n"
+        "                    corrections.\n"
+        "                "
+msgstr  "                    THIS FERM W1LL 5UBMIT DETA1LS DETECTED ABOUT "
+        "THI5 PLUG1N & YOU'RE BROWSER,\n"
+        "                    ALONG W1TH THE FOLLOWING F1ELDS THAT U MAY "
+        "MOD1FY 2 5UGGEST\n"
+        "                    CERRECSHUNS!!\n"
+        "                "
+#
+# File: views/plugins/create.html, line: 106
+msgid   "                    Use this form to provide details to create a new "
+        "plugin\n"
+        "                    and an initial release.  Some or all of these "
+        "details may\n"
+        "                    have already been filled in from data detected "
+        "about your\n"
+        "                    browser and an installed plugin, so you may not "
+        "need to\n"
+        "                    modify these values.\n"
+        "                "
+msgstr  "                    USE TH15 FORM 2 PROVIDE DETA1LS 2 CREETE A NEW "
+        "PLUG1N\n"
+        "                    & AN 1NIT1AL RELEE5E!!  SOM3 OR ALL OF THE5E "
+        "DETA1LS MAY\n"
+        "                    HAVE ALREEDY BEEN FILED IN FROM DATA DETECTED "
+        "ABOUT YOU'RE\n"
+        "                    BROWSER & AN 1N5TALLLED PLUGIN, 5O U MAY NOT "
+        "NEED 2\n"
+        "                    MOD1FY THE5E VALUE5.\n"
+        "                "
+#
+# File: views/index/index_shell.html, line: 84
+msgid   "            If you want to get even more involved, you can sign up "
+        "for a\n"
+        "            profile.  This will give you access to a sandbox in "
+        "which to \n"
+        "            edit plugin records, test them against our detection "
+        "code in \n"
+        "            browsers, and submit changes to our editors for\n"
+        "            approval and inclusion in the database.\n"
+        "        "
+msgstr  "            IF U WANT 2 GET EVEN MORE 1NVOLVED, U CAN 51GN UP 4 A\n"
+        "            PROF1EL.  THIS W1L G1VE U ACCE55 2 A 5&BOX IN WHICH 2 \n"
+        "            ED1T PLUGIN RECORD5, TE5T THEM AGA1NST OUR DETECSHUN "
+        "COD3 IN \n"
+        "            BROWSERS, & SUBM1T CHANGE5 2 OUR ED1TOR5 4\n"
+        "            APPROVAL & 1NCLU51ON IN THE DATABA5E.\n"
+        "        "
+#
+# File: views/index/index_shell.html, line: 60
+msgid   "            This site is an attempt to collect and provide "
+        "information about\n"
+        "            third-party browser plugins installed by people across "
+        "the web.  \n"
+        "        "
+msgstr  "            TH1S SITE IS AN ATTEMPT 2 COLLECT & PROV1DE INFERMASHUN "
+        "ABOUT\n"
+        "            TH1RD-PARTY BROW5ER PLUGINS INSTALLED BUY PEOPEL ACRO5S "
+        "THE WEB!!  \n"
+        "        "
+#
+# File: views/index/index_shell.html, line: 67
+msgid   "            Using our plugin detection service, you can check to see "
+        "if your\n"
+        "            plugins are up to date (as far as we know) or if you may "
+        "be\n"
+        "            vulnerable to any problems or security issues.\n"
+        "        "
+msgstr  "            U5ING OUR PLUG1N DETECSHUN 5ERV1CE, U CAN CHECK 2 C  1F "
+        "YOU'RE\n"
+        "            PLUG1N5 R UP 2 DATE (AS FRE AS WE KNOW) OR 1F U MAY BE\n"
+        "            VULNERABEL 2 ANY PROBLEM5 OR 5ECURITY I5SUE5.\n"
+        "        "
+#
+# File: views/index/index_shell.html, line: 75
+msgid   "            We can also use your help:  If you are a plugin vendor, "
+        "or simply\n"
+        "            know something we don't know about a plugin, you can "
+        "help us by\n"
+        "            submitting suggested updates to this database along with "
+        "information\n"
+        "            we've detected about your browser and installed "
+        "plugins.\n"
+        "        "
+msgstr  "            W3 CAN ALSO U5E YOU'RE HELP:  IF U R A PLUG1N VENDOR, OR "
+        "SIMPLY\n"
+        "            KNOW SUMTHING W3 DON\"T KNOW ABOUT A PLUGIN, U CAN HELP "
+        "U5 BUY\n"
+        "            SUBMITT1NG 5UGGE5TED UPDATES 2 TH15 DATABASE ALONG WITH "
+        "1NFERMASHUN\n"
+        "            WE\"VE DETECTED ABOUT YOU'RE BROW5ER & 1NSTALLED "
+        "PLUGINS!!\n"
+        "        "
+#
+# File: views/index/index_byinstalled.html, line: 32
+msgid   "        If you can see this message, we were unable to perform\n"
+        "        plugin detection on your browser.  You may have JavaScript\n"
+        "        disabled, which this site requires for many of its "
+        "features.\n"
+        "    "
+msgstr  "        IF U CAN C  THIS ME5SAGE, W3 WERE UNABEL 2 PERFORM\n"
+        "        PLUG1N DETECSHUN ON YOU'RE BROWSER!!  YOU MAY HAVE "
+        "JAVASCRIPT\n"
+        "        DI5ABLED, WHICH THI5 SITE REQUIRE5 4 MANY OF 1TS FEETURES!!\n"
+        "    "
+#
+# File: views/index/index_byapplication.html, line: 29
+msgid   "        The following is a list of plugins by browser application, "
+        "along with a\n"
+        "        count of releases for each application.\n"
+        "    "
+msgstr  "        TH3 FOLOWING IS A LIST OF PLUGIN5 BUY BROWSER APPL1CASHUN, "
+        "ALONG WITH A\n"
+        "        COUNT OF RELEE5ES 4 EECH APPLICASHUN!!\n"
+        "    "
+#
+# File: views/index/index_byname.html, line: 19
+msgid   "        The following is a list of plugins by name, along with a "
+        "count of\n"
+        "        releases for each plugin.\n"
+        "    "
+msgstr  "        THE FOLLOW1NG IS A LIST OF PLUG1N5 BUY NAME, ALONG W1TH A "
+        "COUNT OF\n"
+        "        RELEESES 4 EECH PLUGIN!!\n"
+        "    "
+#
+# File: views/index/index_byos.html, line: 29
+msgid   "        The following is a list of plugins by operating system, "
+        "along with a\n"
+        "        count of releases for each OS.\n"
+        "    "
+msgstr  "        TH3 FOLOWING IS A LIST OF PLUGIN5 BUY OPERAT1NG SY5TEM, "
+        "ALONG WITH A\n"
+        "        COUNT OF RELEESE5 4 EECH OS.\n"
+        "    "
+#
+# File: views/index/index_byinstalled.html, line: 20
+msgid   "        The following is a list of plugins detected as installed\n"
+        "        in your browser, along with the status of each with respect\n"
+        "        to our plugin database.  Some of these plugins may not be\n"
+        "        present in our database, and some may have incorrect "
+        "details.\n"
+        "        You can help us improve this directory by using the "
+        "feedback\n"
+        "        links next to each plugin.\n"
+        "    "
+msgstr  "        THE FOLLLOW1NG I5 A LIST OF PLUG1N5 DETECTED A5 1NSTALLLED\n"
+        "        IN YOU'RE BROW5ER, ALONG WITH TH3 STATU5 OF EECH W1TH "
+        "RESPECT\n"
+        "        2 OUR PLUG1N DATABASE.  5OM3 OF THESE PLUG1NS MAY NOT BE\n"
+        "        PRE5ENT IN OUR DATABA53, & SUM MAY HAVE 1NCORRECT DETA1LS!!\n"
+        "        YOU CAN HELP US IMPRUV  THI5 D1RECTORY BUY U51NG TH3 "
+        "FEEDBACK\n"
+        "        LINK5 NEXT 2 EECH PLUG1N!!\n"
+        "    "
+#
+# File: views/plugins/sandbox_mine.html, line: 24
+msgid   "+ Create new sandbox plugin"
+msgstr  "+ CREETE NEW S&BOX PLUGIN"
+#
+# File: auth_profiles/i18n/en_US/form_errors_auth.php, line: 28
+msgid   "A login has already been registered using this email address."
+msgstr  "A LOGIN HAS ALREEDY BEEN REG1STERED U5ING THIS EMA1L ADDRE55."
+#
+# File: auth_profiles/i18n/en_US/form_errors_auth.php, line: 96
+msgid   "A valid new email confirmation is required"
+msgstr  "A VAL1D NEW EMAIL CONF1RMASHUN I5 REQUIRED"
+#
+# File: auth_profiles/i18n/en_US/form_errors_auth.php, line: 90
+msgid   "A valid new email is required"
+msgstr  "A VALID NEW EMA1L 1S REQUIRED"
+#
+# File: views/forbidden.html, line: 19
+# File: views/forbidden.html, line: 27
+msgid   "Access denied"
+msgstr  "ACCES5 DEN1ED"
+#
+# File: views/auth_profiles/reverifyemail.html, line: 31
+msgid   "Account activation email sent."
+msgstr  "ACCOUNT ACTIVASHUN EMA1L SENT."
+#
+# File: views/layout.html, line: 117
+msgid   "Advanced search"
+msgstr  "ADVANCED SEERCH"
+#
+# File: views/plugins/submit.html, line: 144
+msgid   "Also submitting the following additional information:"
+msgstr  "AL5O 5UBM1TTING THE FOLLLOW1NG ADDISHUNAL INFERMASHUN:"
+#
+# File: views/macros/oses.html, line: 32
+msgid   "Any"
+msgstr  "ANY"
+#
+# File: views/plugins/edit.html, line: 138
+msgid   "Autosave"
+msgstr  "AUTO5AVE"
+#
+# File: views/plugins/submission_detail.html, line: 57
+msgid   "Back to submissions"
+msgstr  "BACK 2 SUBM1SS1ONS"
+#
+# File: auth_profiles/controllers/auth_profiles.php, line: 379
+msgid   "Basics"
+msgstr  "BA5ICS"
+#
+# File: views/auth_profiles/editprofile.html, line: 54
+# File: views/auth_profiles/register.html, line: 54
+msgid   "Bio / About you"
+msgstr  "B1O / ABOUT U"
+#
+# File: views/index/index_shell.html, line: 133
+msgid   "By Application"
+msgstr  "BY APPLICASHUN"
+#
+# File: views/index/index_shell.html, line: 129
+msgid   "By Name"
+msgstr  "BY NAME"
+#
+# File: views/index/index_shell.html, line: 137
+msgid   "By Operating System"
+msgstr  "BY OPERATING SYSTEM"
+#
+# File: views/plugins/copy.html, line: 47
+# File: views/plugins/delete.html, line: 52
+# File: views/plugins/deploy.html, line: 47
+# File: views/plugins/requestpush.html, line: 47
+msgid   "Cancel"
+msgstr  "CANCEL"
+#
+# File: views/auth_profiles/register.html, line: 74
+# File: views/plugins/submit.html, line: 133
+msgid   "Captcha"
+msgstr  "CAPTCHA"
+#
+# File: views/auth_profiles/changeemail.html, line: 64
+msgid   "Change email"
+msgstr  "CHANGE EMA1L"
+#
+#. i18n: %1$s = profile_screen_name_e
+# File: views/auth_profiles/changeemail.html, line: 31
+#, php-format
+msgid   "Change email address for %1$s"
+msgstr  "CHANGE EMA1L ADDRES5 4 %1$S"
+#
+# File: auth_profiles/controllers/auth_profiles.php, line: 389
+msgid   "Change login email"
+msgstr  "CHANGE LOG1N EMAIL"
+#
+# File: auth_profiles/controllers/auth_profiles.php, line: 384
+msgid   "Change login password"
+msgstr  "CHANGE LOG1N PAS5WERD"
+#
+# File: views/auth_profiles/changepassword.html, line: 107
+# File: views/auth_profiles/changepassword.html, line: 130
+msgid   "Change password"
+msgstr  "CHANGE PAS5WERD"
+#
+#. i18n: %1$s = forgot_password_login_name
+#. i18n: %1$s = profile_screen_name_e
+# File: views/auth_profiles/changepassword.html, line: 32
+# File: views/auth_profiles/changepassword.html, line: 44
+#, php-format
+msgid   "Change password for %1$s"
+msgstr  "CHANGE PA5SWORD 4 %1$5"
+#
+# File: views/auth_profiles/register_success.html, line: 27
+msgid   "Check your email to verify your address before login."
+msgstr  "CHECK YOU'RE EMA1L 2 VER1FY YOU'RE ADDRESS B4 LOG1N."
+#
+# File: views/auth_profiles/forgotpassword.html, line: 39
+msgid   "Check your inbox for a link to change your password."
+msgstr  "CHECK YOU'RE INBOX 4 A LINK 2 CHANGE YOU'RE PA5SWERD."
+#
+# File: views/auth_profiles/changeemail.html, line: 43
+msgid   "Check your inbox for a link to verify this new email address."
+msgstr  "CHECK YOU'RE 1NBOX 4 A L1NK 2 VER1FY TH1S NEW EMA1L ADDRES5."
+#
+# File: views/plugins/submit.html, line: 128
+msgid   "Comments"
+msgstr  "COMMENT5"
+#
+# File: views/index/index_byinstalled.html, line: 136
+msgid   "Contribute new info"
+msgstr  "CONTR1BUT3 NEW 1NFO"
+#
+#. i18n: %1$s = plugin_name_e
+# File: views/plugins/copy.html, line: 23
+#, php-format
+msgid   "Copy plugin \"%1$s\" to sandbox"
+msgstr  "COPY PLUGIN \"%1$5\" 2 S&BOX"
+#
+# File: views/plugins/copy.html, line: 33
+msgid   "Copy this plugin to your sandbox?"
+msgstr  "COPY TH1S PLUG1N 2 YOU'RE S&BOX?"
+#
+# File: views/plugins/copy.html, line: 38
+msgid   "Copy to Sandbox"
+msgstr  "COPY 2 5&BOX"
+#
+# File: views/plugins/detail.html, line: 140
+msgid   "Copy to sandbox"
+msgstr  "COPY 2 S&BOX"
+#
+#. i18n: %1$s = plugin_name_e
+# File: views/plugins/submission_detail.html, line: 100
+#, php-format
+msgid   "Create a new release in %1$s"
+msgstr  "CREETE A NEW RELEESE 1N %1$S"
+#
+# File: views/plugins/submission_detail.html, line: 67
+msgid   "Create a new sandbox release"
+msgstr  "CREETE A NEW S&BOX RELEE5E"
+#
+# File: views/plugins/create.html, line: 67
+msgid   "Create new public plugin"
+msgstr  "CREETE NEW PUBLIK PLUG1N"
+#
+#. i18n: %1$s = screen_name_e
+# File: views/plugins/create.html, line: 59
+#, php-format
+msgid   "Create new sandbox plugin for %1$s"
+msgstr  "CREETE NEW S&BOX PLUGIN 4 %1$S"
+#
+# File: views/plugins/edit.html, line: 159
+msgid   "Current JSON data"
+msgstr  "CURRENT J5ON DATA"
+#
+# File: views/plugins/submissions.html, line: 33
+msgid   "Date"
+msgstr  "DATE"
+#
+# File: views/plugins/delete.html, line: 43
+# File: views/plugins/detail.html, line: 166
+msgid   "Delete plugin"
+msgstr  "DELETE PLUGIN"
+#
+#. i18n: %1$s = plugin_name_e
+# File: views/plugins/delete.html, line: 23
+#, php-format
+msgid   "Delete plugin \"%1$s\""
+msgstr  "DELET3 PLUG1N \"%1$S\""
+#
+# File: views/plugins/delete.html, line: 38
+msgid   "Delete this plugin?"
+msgstr  "DELETE THI5 PLUG1N?"
+#
+# File: views/index/index_byinstalled.html, line: 52
+# File: views/plugins/submit.html, line: 124
+msgid   "Description"
+msgstr  "DESCR1PSHUN"
+#
+# File: views/plugins/detail.html, line: 209
+msgid   "Description:"
+msgstr  "DE5CRIPSHUN:"
+#
+# File: views/index/index_byinstalled.html, line: 48
+msgid   "Detected Version"
+msgstr  "DETECTED VERS1ON"
+#
+# File: views/plugins/detail.html, line: 307
+msgid   "Download / Details"
+msgstr  "DOWNLOAD / DETAIL5"
+#
+# File: views/plugins/detail.html, line: 153
+msgid   "Edit details"
+msgstr  "ED1T DETA1LS"
+#
+#. i18n: %1$s = profile_screen_name_e
+# File: views/auth_profiles/editprofile.html, line: 31
+#, php-format
+msgid   "Edit details for %1$s"
+msgstr  "EDIT DETA1L5 4 %1$S"
+#
+# File: auth_profiles/controllers/auth_profiles.php, line: 394
+msgid   "Edit profile details"
+msgstr  "ED1T PROFIEL DETA1LS"
+#
+# File: views/auth_profiles/forgotpassword.html, line: 64
+# File: views/auth_profiles/register.html, line: 58
+msgid   "Email"
+msgstr  "EMAIL"
+#
+# File: views/auth_profiles/register.html, line: 62
+msgid   "Email (confirm)"
+msgstr  "EMA1L (CONFIRM)"
+#
+# File: auth_profiles/i18n/en_US/form_errors_auth.php, line: 38
+msgid   "Email confirmation does not match email."
+msgstr  "EMAIL CONF1RMASHUN DUZ NOT MATCH EMAIL."
+#
+# File: auth_profiles/i18n/en_US/form_errors_auth.php, line: 34
+msgid   "Email confirmation is required."
+msgstr  "EMA1L CONFIRMASHUN 1S REQUIRED."
+#
+# File: auth_profiles/i18n/en_US/form_errors_auth.php, line: 24
+msgid   "Email is required."
+msgstr  "EMAIL 15 REQU1RED."
+#
+# File: views/macros/platforms.html, line: 32
+msgid   "Firefox"
+msgstr  "F1REFOX"
+#
+# File: views/auth_profiles/forgotpassword.html, line: 68
+msgid   "Forgot password"
+msgstr  "FORGOT PA55WERD"
+#
+# File: views/auth_profiles/login.html, line: 99
+msgid   "Forgot password?"
+msgstr  "FERGOT PASSWERD?"
+#
+# File: views/auth_profiles/editprofile.html, line: 50
+# File: views/auth_profiles/register.html, line: 50
+msgid   "Full name"
+msgstr  "FULL NAME"
+#
+# File: auth_profiles/i18n/en_US/form_errors_auth.php, line: 64
+msgid   "Full name is required"
+msgstr  "FULLL NAM3 I5 REQUIRED"
+#
+# File: auth_profiles/i18n/en_US/form_errors_auth.php, line: 66
+msgid   "Full name must contain only alphanumeric characters"
+msgstr  "FULL NAME MU5T CONTANE ONLY ALFANUMERIK CHARACTERS"
+#
+# File: views/index/index_byinstalled.html, line: 60
+msgid   "Have feedback?"
+msgstr  "HAV3 FEEDBACK?"
+#
+# File: views/index/index_shell.html, line: 27
+msgid   "Home"
+msgstr  "HOME"
+#
+# File: views/index/index_byinstalled.html, line: 56
+msgid   "Installed Status"
+msgstr  "1NSTALLLED 5TATU5"
+#
+# File: views/macros/oses.html, line: 64
+msgid   "Intel Mac OS X"
+msgstr  "INTEL MAC OS X"
+#
+# File: views/macros/oses.html, line: 56
+msgid   "Intel Mac OS X 10.6"
+msgstr  "1NTEL MAC O5 X 10!!6"
+#
+# File: views/auth_profiles/verifyemail.html, line: 31
+msgid   "Invalid email verification token."
+msgstr  "INVAL1D EMAIL VER1FICASHUN TOKEN."
+#
+# File: views/auth_profiles/changepassword.html, line: 72
+msgid   "Invalid password reset attempt."
+msgstr  "1NVALID PASSWORD RE5ET ATTEMPT."
+#
+# File: views/plugins/detail.html, line: 179
+msgid   "JSON export"
+msgstr  "J5ON EXPERT"
+#
+# File: views/macros/statuses.html, line: 33
+msgid   "Latest"
+msgstr  "LATEST"
+#
+# File: views/macros/oses.html, line: 96
+msgid   "Linux"
+msgstr  "LINUX"
+#
+# File: views/plugins/edit.html, line: 203
+msgid   "Literal aliases"
+msgstr  "L1TERAL ALIASES"
+#
+# File: views/auth_profiles/logout.html, line: 27
+msgid   "Logged out."
+msgstr  "LOGGED OUT."
+#
+# File: views/auth_profiles/login.html, line: 27
+# File: views/auth_profiles/login.html, line: 81
+# File: views/auth_profiles/login.html, line: 93
+msgid   "Login"
+msgstr  "LOG1N"
+#
+# File: views/auth_profiles/logout.html, line: 31
+msgid   "Login again?"
+msgstr  "LOGIN AGANE?"
+#
+# File: views/auth_profiles/register.html, line: 42
+msgid   "Login details"
+msgstr  "LOG1N DETAIL5"
+#
+# File: views/auth_profiles/forgotpassword.html, line: 60
+# File: views/auth_profiles/login.html, line: 85
+# File: views/auth_profiles/register.html, line: 46
+msgid   "Login name"
+msgstr  "LOGIN NAME"
+#
+# File: auth_profiles/i18n/en_US/form_errors_auth.php, line: 18
+msgid   "Login name is not available."
+msgstr  "LOG1N NAME I5 NOT AVA1LABEL."
+#
+# File: auth_profiles/i18n/en_US/form_errors_auth.php, line: 12
+msgid   "Login name is required."
+msgstr  "LOGIN NAME I5 REQU1RED."
+#
+# File: auth_profiles/i18n/en_US/form_errors_auth.php, line: 14
+msgid   "Login name must be between 3 and 64 characters in length"
+msgstr  "LOG1N NAME MU5T BE BETWEEN 3 & 64 CHARACTERS 1N LENGTH"
+#
+# File: auth_profiles/i18n/en_US/form_errors_auth.php, line: 16
+msgid   "Login name must contain only alphanumeric characters"
+msgstr  "LOGIN NAME MU5T CONTANE ONLY ALFANUMERIK CHARACTERS"
+#
+# File: views/auth_profiles/changepassword.html, line: 63
+# File: views/auth_profiles/verifyemail.html, line: 51
+msgid   "Login?"
+msgstr  "LOG1N?"
+#
+# File: views/auth_profiles/logout.html, line: 19
+msgid   "Logout"
+msgstr  "LOGOUT"
+#
+# File: views/plugins/edit.html, line: 192
+msgid   "MIME types"
+msgstr  "M1ME TYPES"
+#
+# File: views/plugins/edit.html, line: 186
+msgid   "MIME types and aliases"
+msgstr  "MIME TYPE5 & ALIASES"
+#
+# File: views/plugins/edit.html, line: 197
+msgid   "MIME types of content handled by this plugin"
+msgstr  "M1ME TYPES OF CONTENT H&LED BUY THI5 PLUG1N"
+#
+# File: views/macros/oses.html, line: 88
+msgid   "Mac"
+msgstr  "MAC"
+#
+# File: views/macros/oses.html, line: 80
+msgid   "Mac OS X"
+msgstr  "MAC OS X"
+#
+# File: views/plugins/submission_detail.html, line: 47
+# File: views/plugins/submissions.html, line: 23
+# File: views/plugins/submissions.html, line: 154
+msgid   "Mark as seen"
+msgstr  "MARK A5 5EEN"
+#
+# File: views/plugins/submission_detail.html, line: 38
+msgid   "Mark as unseen"
+msgstr  "MARK AS UN5EEN"
+#
+# File: views/layout.html, line: 40
+msgid   "Mozilla"
+msgstr  "MO2ILLA"
+#
+# File: views/layout.html, line: 169
+msgid   "Mozilla Plugin Directory"
+msgstr  "MOZILLA PLUGIN D1RECTERY"
+#
+# File: views/index/index_byinstalled.html, line: 44
+# File: views/plugins/submissions.html, line: 37
+# File: views/plugins/submit.html, line: 116
+# File: views/search/results.html, line: 53
+msgid   "Name"
+msgstr  "NAME"
+#
+# File: views/index/index_byinstalled.html, line: 109
+msgid   "Needs update"
+msgstr  "NEEDS UPDATE"
+#
+# File: views/auth_profiles/changepassword.html, line: 122
+msgid   "New Password"
+msgstr  "NEW PA55WORD"
+#
+# File: views/auth_profiles/changepassword.html, line: 126
+msgid   "New Password (confirm)"
+msgstr  "NEW PAS5WORD (CONFIRM)"
+#
+# File: views/auth_profiles/changeemail.html, line: 60
+msgid   "New email"
+msgstr  "NEW EMAIL"
+#
+# File: views/auth_profiles/verifyemail.html, line: 41
+msgid   "New email address verified."
+msgstr  "NEW EMA1L ADDRES5 VERIF1ED."
+#
+# File: auth_profiles/i18n/en_US/form_errors_auth.php, line: 84
+msgid   "New password confirmation required"
+msgstr  "NEW PA55WORD CONF1RMASHUN REQU1RED"
+#
+# File: auth_profiles/i18n/en_US/form_errors_auth.php, line: 80
+msgid   "New password is required"
+msgstr  "NEW PASSWORD IS REQU1RED"
+#
+# File: views/index/index_byinstalled.html, line: 97
+msgid   "Newer"
+msgstr  "NUR"
+#
+# File: views/search/results.html, line: 139
+msgid   "No search results, please change your search terms and try again."
+msgstr  "NO SEERCH RESULT5, PLEEZ! CHANGE YOU'RE SEERCH TERMS & TRY AGANE."
+#
+# File: views/plugins/submissions.html, line: 140
+msgid   "No submissions."
+msgstr  "NO 5UBMI5S1ONS."
+#
+# File: views/plugins/detail.html, line: 255
+# File: views/plugins/submissions.html, line: 49
+# File: views/search/results.html, line: 65
+msgid   "OS"
+msgstr  "OS"
+#
+# File: views/auth_profiles/changepassword.html, line: 115
+msgid   "Old Password"
+msgstr  "OLD PA55WERD"
+#
+# File: auth_profiles/i18n/en_US/form_errors_auth.php, line: 74
+msgid   "Old password is invalid."
+msgstr  "OLD PASSWERD I5 INVAL1D."
+#
+# File: auth_profiles/i18n/en_US/form_errors_auth.php, line: 76
+msgid   "Old password is required"
+msgstr  "OLD PA55WERD IS REQUIRED"
+#
+# File: views/plugins/edit.html, line: 128
+msgid   "Options"
+msgstr  "OPSHUNS"
+#
+# File: views/macros/statuses.html, line: 42
+msgid   "Outdated"
+msgstr  "OUTDATED"
+#
+# File: views/macros/oses.html, line: 72
+msgid   "PPC Mac OS X"
+msgstr  "PPC MAC OS X"
+#
+# File: views/auth_profiles/login.html, line: 89
+# File: views/auth_profiles/register.html, line: 66
+msgid   "Password"
+msgstr  "PA55WERD"
+#
+# File: views/auth_profiles/register.html, line: 70
+msgid   "Password (confirm)"
+msgstr  "PASSWERD (CONFIRM)"
+#
+# File: auth_profiles/i18n/en_US/form_errors_auth.php, line: 50
+# File: auth_profiles/i18n/en_US/form_errors_auth.php, line: 86
+msgid   "Password and confirmation must match."
+msgstr  "PA5SWERD & CONF1RMASHUN MU5T MATCH."
+#
+# File: views/auth_profiles/changepassword.html, line: 58
+msgid   "Password changed."
+msgstr  "PAS5WERD CHANGED."
+#
+# File: auth_profiles/i18n/en_US/form_errors_auth.php, line: 48
+msgid   "Password confirmation is required."
+msgstr  "PA5SWERD CONF1RMASHUN I5 REQUIRED."
+#
+# File: auth_profiles/i18n/en_US/form_errors_auth.php, line: 42
+msgid   "Password is invalid."
+msgstr  "PAS5WERD I5 INVALID."
+#
+# File: auth_profiles/i18n/en_US/form_errors_auth.php, line: 44
+msgid   "Password is required."
+msgstr  "PA5SWERD 15 REQUIRED."
+#
+# File: views/plugins/detail.html, line: 251
+# File: views/plugins/submissions.html, line: 53
+# File: views/search/results.html, line: 61
+msgid   "Platform"
+msgstr  "PLATFERM"
+#
+#. i18n: %1$s = plugin_name_e
+# File: views/plugins/detail.html, line: 64
+#, php-format
+msgid   "Plugin Detail :: %1$s"
+msgstr  "PLUGIN DETA1L :: %1$S"
+#
+#. i18n: %1$s = plugin_name_e
+#. i18n: %2$s = screen_name_e
+# File: views/plugins/detail.html, line: 55
+#, php-format
+msgid   "Plugin Detail :: %1$s (%2$s sandbox)"
+msgstr  "PLUG1N DETAIL :: %1$S (%2$5 5&BOX)"
+#
+# File: views/layout.html, line: 42
+msgid   "Plugin Directory"
+msgstr  "PLUGIN DIRECTERY"
+#
+#. i18n: %1$s = profile_screen_name_e
+# File: views/plugins/sandbox.html, line: 20
+# File: views/plugins/sandbox.html, line: 29
+#, php-format
+msgid   "Plugin Sandbox for %1$s"
+msgstr  "PLUG1N S&BOX 4 %1$S"
+#
+# File: views/plugins/edit.html, line: 147
+# File: views/plugins/submit.html, line: 86
+msgid   "Plugin details"
+msgstr  "PLUGIN DETAILS"
+#
+# File: views/plugins/detail.html, line: 196
+msgid   "Plugin icon"
+msgstr  "PLUG1N 1CON"
+#
+# File: views/plugins/edit.html, line: 168
+msgid   "Plugin metadata and release defaults"
+msgstr  "PLUGIN METADATA & RELEE5E DEFAULTS"
+#
+#. i18n: %1$s = base_url
+#. i18n: %2$s = profile_screen_name_url
+#. i18n: %3$s = profile_screen_name
+# File: views/auth_profiles/settings.html, line: 49
+#, php-format
+msgid   "Profile settings for <a href=\"%1$sprofiles/%2$s\">%3$s</a>"
+msgstr  "PROF1EL SETT1NG5 4 <a href=\"%1$sprofiles/%2$s\">%3$5</a>"
+#
+# File: views/plugins/detail.html, line: 103
+msgid   "Push changes live"
+msgstr  "PU5H CHANGE5 L1VE"
+#
+# File: views/plugins/deploy.html, line: 33
+msgid   "Push changes to this plugin live?"
+msgstr  "PUSH CHANGES 2 TH15 PLUGIN LIVE?"
+#
+#. i18n: %1$s = plugin_name_e
+# File: views/plugins/deploy.html, line: 23
+#, php-format
+msgid   "Push plugin changes for \"%1$s\""
+msgstr  "PU5H PLUG1N CHANGES 4 \"%1$S\""
+#
+# File: views/plugins/deploy.html, line: 38
+msgid   "Push plugin changes live"
+msgstr  "PUSH PLUGIN CHANGES LIVE"
+#
+# File: views/auth_profiles/login.html, line: 61
+msgid   "Re-send Account Activation Information"
+msgstr  "RE-SEND ACCOUNT ACT1VASHUN 1NFORMASHUN"
+#
+# File: views/auth_profiles/register_success.html, line: 36
+# File: views/auth_profiles/reverifyemail.html, line: 44
+msgid   "Re-send verification email"
+msgstr  "RE-SEND VERIFICASHUN EMAIL"
+#
+#. i18n: %1$s = forgot_password_login_name
+# File: views/auth_profiles/changepassword.html, line: 92
+#, php-format
+msgid   "Recovering password for %1$s"
+msgstr  "RECUV RING PASSWERD 4 %1$5"
+#
+# File: views/plugins/edit.html, line: 214
+msgid   "Regex aliases"
+msgstr  "REGEX AL1A5ES"
+#
+# File: views/plugins/edit.html, line: 219
+msgid   "Regexes matching names by which this plugin has been known"
+msgstr  "REGEXE5 MATCH1NG NAMES BUY WH1CH THI5 PLUGIN HAS BEEN KNOWN"
+#
+# File: views/auth_profiles/forgotpassword.html, line: 27
+# File: views/auth_profiles/register.html, line: 27
+# File: views/auth_profiles/register.html, line: 78
+msgid   "Register"
+msgstr  "REG15TER"
+#
+# File: views/auth_profiles/verifyemail.html, line: 19
+msgid   "Register (verified)"
+msgstr  "REGI5TER (VER1FIED)"
+#
+# File: views/auth_profiles/register_success.html, line: 19
+# File: views/auth_profiles/reverifyemail.html, line: 19
+msgid   "Register (verify)"
+msgstr  "REG1STER (VER1FY)"
+#
+# File: views/plugins/edit.html, line: 246
+msgid   "Release"
+msgstr  "RELEE5E"
+#
+# File: views/plugins/requestpush.html, line: 38
+msgid   "Request approval"
+msgstr  "REQUEST APPROVAL"
+#
+# File: views/plugins/detail.html, line: 116
+msgid   "Request approval for changes"
+msgstr  "REQUE5T APPROVAL 4 CHANGE5"
+#
+#. i18n: %1$s = plugin_name_e
+# File: views/plugins/requestpush.html, line: 23
+#, php-format
+msgid   "Request approval for changes to \"%1$s\""
+msgstr  "REQUEST APPROVAL 4 CHANGES 2 \"%1$S\""
+#
+# File: views/plugins/requestpush.html, line: 33
+msgid   "Request approval for changes?"
+msgstr  "REQUE5T APPROVAL 4 CHANGE5?"
+#
+# File: views/auth_profiles/editprofile.html, line: 62
+msgid   "Role"
+msgstr  "ROLE"
+#
+# File: views/index/index_byinstalled.html, line: 68
+msgid   "Sandbox actions"
+msgstr  "5&BOX ACSHUNS"
+#
+# File: views/plugins/edit.html, line: 134
+msgid   "Save now"
+msgstr  "SAVE NOW"
+#
+# File: views/plugins/edit.html, line: 154
+msgid   "Saved JSON data"
+msgstr  "5AVED JSON DATA"
+#
+# File: auth_profiles/i18n/en_US/form_errors_auth.php, line: 60
+msgid   "Screen name is not available."
+msgstr  "SCREEN NAME 15 NOT AVA1LABEL."
+#
+# File: auth_profiles/i18n/en_US/form_errors_auth.php, line: 54
+msgid   "Screen name is required."
+msgstr  "5CREEN NAM3 IS REQU1RED."
+#
+# File: auth_profiles/i18n/en_US/form_errors_auth.php, line: 56
+msgid   "Screen name must be between 3 and 64 characters in length"
+msgstr  "SCREEN NAME MUST BE BETWEEN 3 & 64 CHARACTERS 1N LENGTH"
+#
+# File: auth_profiles/i18n/en_US/form_errors_auth.php, line: 58
+msgid   "Screen name must contain only alphanumeric characters"
+msgstr  "5CREEN NAM3 MU5T CONTANE ONLY ALFANUMERIK CHARACTERS"
+#
+#. i18n: %1$s = authprofile_screen_name_e
+# File: views/auth_profiles/settings.html, line: 31
+#, php-format
+msgid   "Settings for %1$s"
+msgstr  "SETTINGS 4 %1$5"
+#
+# File: views/forbidden.html, line: 31
+msgid   "Sorry, that action is not allowed."
+msgstr  "5ORRY, THAT ACSHUN 15 NOT ALLOWED."
+#
+# File: views/auth_profiles/login.html, line: 39
+msgid   "Sorry, that login has been disabled."
+msgstr  "SERRY, THAT LOG1N HAS BEEN D1SABLED."
+#
+# File: views/auth_profiles/login.html, line: 51
+msgid   "Sorry, the email address for that login has not yet been verified."
+msgstr  "5ORRY, THE EMAIL ADDRESS 4 THAT LOG1N HA5 NOT YET BEEN VERIF1ED."
+#
+# File: views/plugins/detail.html, line: 259
+# File: views/plugins/submissions.html, line: 45
+# File: views/plugins/submit.html, line: 100
+# File: views/search/results.html, line: 69
+msgid   "Status"
+msgstr  "STATUS"
+#
+# File: views/index/index_shell.html, line: 122
+# File: views/plugins/submission_detail.html, line: 19
+msgid   "Submissions"
+msgstr  "5UBMIS5IONS"
+#
+# File: views/plugins/submit.html, line: 138
+msgid   "Submit"
+msgstr  "SUBM1T"
+#
+# File: views/plugins/submit.html, line: 51
+msgid   "Submit plugin info"
+msgstr  "5UBMIT PLUG1N INFO"
+#
+# File: views/index/index_byinstalled.html, line: 124
+# File: views/index/index_byinstalled.html, line: 128
+# File: views/index/index_byinstalled.html, line: 132
+msgid   "Suggest correction"
+msgstr  "SUGGEST CERRECSHUN"
+#
+# File: views/index/index_byinstalled.html, line: 120
+msgid   "Suggest update"
+msgstr  "5UGGEST UPDATE"
+#
+# File: views/macros/oses.html, line: 104
+msgid   "SunOS"
+msgstr  "SUNO5"
+#
+# File: views/macros/oses.html, line: 112
+msgid   "SunOS (sun4u)"
+msgstr  "5UNOS (SUN4U)"
+#
+# File: views/auth_profiles/forgotpassword.html, line: 56
+msgid   "Supply either of these pieces of information to recover your "
+        "password:"
+msgstr  "SUPPLY EITHER OF THESE P1ECES OF 1NFERMASHUN 2 RECUV R YOU'RE "
+        "PASSWERD:"
+#
+# File: views/plugins/edit.html, line: 208
+msgid   "The literal names by which this plugin has been known"
+msgstr  "THE L1TERAL NAMES BUY WHICH TH1S PLUG1N HAS BEEN KNOWN"
+#
+# File: auth_profiles/i18n/en_US/form_errors_auth.php, line: 92
+msgid   "This email address is used by another login"
+msgstr  "TH15 EMA1L ADDRE5S 1S USED BUY ANOTHER LOG1N"
+#
+# File: views/plugins/sandbox_listing.html, line: 13
+msgid   "This sandbox is empty."
+msgstr  "THIS S&BOX IS EMPTY."
+#
+# File: views/auth_profiles/changepassword.html, line: 78
+msgid   "Try again?"
+msgstr  "TRY AGANE?"
+#
+# File: views/plugins/detail.html, line: 263
+msgid   "URL"
+msgstr  "URL"
+#
+# File: views/index/index_byinstalled.html, line: 113
+# File: views/macros/statuses.html, line: 59
+msgid   "Unknown"
+msgstr  "UNKNOWN"
+#
+# File: views/index/index_byinstalled.html, line: 101
+msgid   "Up to date"
+msgstr  "UP 2 DATE"
+#
+# File: views/auth_profiles/editprofile.html, line: 69
+msgid   "Update"
+msgstr  "UPDATE"
+#
+# File: auth_profiles/i18n/en_US/form_errors_auth.php, line: 70
+msgid   "Valid captcha response is required."
+msgstr  "VALID CAPTCHA RE5PON53 I5 REQU1RED."
+#
+# File: auth_profiles/i18n/en_US/form_errors_auth.php, line: 32
+# File: auth_profiles/i18n/en_US/form_errors_auth.php, line: 36
+msgid   "Valid email confirmation is required."
+msgstr  "VAL1D EMA1L CONF1RMASHUN 15 REQUIRED."
+#
+# File: auth_profiles/i18n/en_US/form_errors_auth.php, line: 22
+# File: auth_profiles/i18n/en_US/form_errors_auth.php, line: 26
+msgid   "Valid email is required."
+msgstr  "VALID EMAIL IS REQU1RED."
+#
+# File: auth_profiles/i18n/en_US/form_errors_auth.php, line: 10
+msgid   "Valid login name is required."
+msgstr  "VAL1D LOG1N NAM3 I5 REQUIRED."
+#
+# File: views/plugins/submit.html, line: 112
+msgid   "Vendor"
+msgstr  "VENDOR"
+#
+# File: views/plugins/submissions.html, line: 41
+# File: views/plugins/submit.html, line: 120
+# File: views/search/results.html, line: 57
+msgid   "Version"
+msgstr  "VERSION"
+#
+# File: views/plugins/detail.html, line: 90
+msgid   "View original"
+msgstr  "VIEW OR1GINAL"
+#
+# File: views/plugins/submit.html, line: 104
+msgid   "Vulnerability URL"
+msgstr  "VULNERAB1LITY URL"
+#
+# File: views/plugins/submit.html, line: 108
+msgid   "Vulnerability description"
+msgstr  "VULNERABIL1TY DE5CR1PSHUN"
+#
+# File: views/index/index_byinstalled.html, line: 105
+# File: views/macros/statuses.html, line: 51
+msgid   "Vulnerable"
+msgstr  "VULNERABLE"
+#
+# File: views/index/index_shell.html, line: 56
+msgid   "Welcome to the Mozilla Plugin Directory"
+msgstr  "WELCOME 2 THE MOZILLA PLUG1N DIRECTERY"
+#
+# File: views/macros/oses.html, line: 40
+msgid   "Windows"
+msgstr  "W1NDOW5"
+#
+# File: views/macros/oses.html, line: 48
+msgid   "Windows Vista"
+msgstr  "WINDOW5 VISTA"
+#
+# File: views/index/index_shell.html, line: 103
+msgid   "Your Installed Plugins"
+msgstr  "YOUR 1NSTALLLED PLUGIN5"
+#
+# File: views/index/index_shell.html, line: 111
+msgid   "Your Sandbox"
+msgstr  "YOUR 5&BOX"
+#
+# File: views/plugins/create.html, line: 81
+# File: views/plugins/submit.html, line: 63
+msgid   "Your plugin data submission has been accepted, thank you!"
+msgstr  "YOUR PLUG1N DATA SUBM1S5ION HA5 BEEN ACCEPTED, THANK U!"
+#
+# File: views/plugins/edit.html, line: 230
+msgid   "[ + ] Add new release"
+msgstr  "[ + ] ADD NEW RELEE5E"
+#
+# File: views/plugins/edit.html, line: 260
+msgid   "[ x ] Delete release"
+msgstr  "[ X ] DELET3 RELEESE"
+#
+# File: auth_profiles/controllers/auth_profiles.php, line: 390
+msgid   "change current login email"
+msgstr  "CHANGE CURRENT LOGIN EMAIL"
+#
+# File: auth_profiles/controllers/auth_profiles.php, line: 385
+msgid   "change current login password"
+msgstr  "CHANG3 CURRENT LOG1N PAS5WORD"
+#
+# File: auth_profiles/controllers/auth_profiles.php, line: 395
+msgid   "change screen name, bio, etc."
+msgstr  "CHANGE SCREEN NAME, B1O, ETC."
+#
+# File: views/plugins/sandbox_listing.html, line: 51
+msgid   "delete"
+msgstr  "DELETE"
+#
+# File: views/plugins/sandbox_listing.html, line: 61
+msgid   "edit"
+msgstr  "EDIT"
+#
+# File: views/auth_profiles/changeemail.html, line: 56
+# File: views/layout.html, line: 85
+msgid   "login"
+msgstr  "LOG1N"
+#
+# File: views/layout.html, line: 74
+msgid   "logout"
+msgstr  "LOGOUT"
+#
+# File: views/layout.html, line: 91
+msgid   "register"
+msgstr  "REG15TER"
+#
+# File: views/layout.html, line: 108
+msgid   "search releases"
+msgstr  "5EERCH RELEESE5"
+#
+# File: views/layout.html, line: 68
+msgid   "settings"
+msgstr  "SETTINGS"

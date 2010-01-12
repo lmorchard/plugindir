@@ -34,52 +34,52 @@
     <form id="editor">
 
         <fieldset>
-            <legend>Options</legend>
+            <legend>{% trans "Options" %}</legend>
             <ul class="fields">
                 <li>
-                    <button id="save">Save now</button>
-                    <input type="checkbox" checked id="autosave" /><span>Autosave</span>
+                    <button id="save">{% trans "Save now" %}</button>
+                    <input type="checkbox" checked id="autosave" /><span>{% trans "Autosave" %}</span>
                     —
                     <span id="save_message"></span>
                     —
-                    <a href="{{plugin_base}}" target="_new">Plugin details</a>
+                    <a href="{{plugin_base}}" target="_new">{% trans "Plugin details" %}</a>
                     —
-                    <a href="{{plugin_base}}.json" target="_new">Saved JSON data</a>
+                    <a href="{{plugin_base}}.json" target="_new">{% trans "Saved JSON data" %}</a>
                     —
-                    <a href="" id="json-out-link" target="_new">Current JSON data</a>
+                    <a href="" id="json-out-link" target="_new">{% trans "Current JSON data" %}</a>
                 </li>
             </ul>
         </fieldset>
 
         <fieldset>
-            <legend>Plugin metadata and release defaults</legend>
+            <legend>{% trans "Plugin metadata and release defaults" %}</legend>
             <ul class="controls">
-                <li>
+                <li>{% blocktrans %}
                     <a href="#" class="show">Show</a> /
                     <a href="#" class="hide">Hide</a>
                     empty properties.
-                </li>
+                {% endblocktrans %}</li>
             </ul>
             <ul id="meta-fields" class="fields"></ul>
         </fieldset>
 
         <fieldset>
-            <legend>MIME types and aliases</legend>
+            <legend>{% trans "MIME types and aliases" %}</legend>
             <ul id="mimes_aliases" class="fields">
                 <li class="field textarea mimes">
-                    <label>MIME types</label>
+                    <label>{% trans "MIME types" %}</label>
                     <textarea name="mimes" id="mimes"></textarea>
-                    <p class="notes">MIME types of content handled by this plugin</p>
+                    <p class="notes">{% trans "MIME types of content handled by this plugin" %}</p>
                 </li>
                 <li class="field textarea literal_aliases">
-                    <label>Literal aliases</label>
+                    <label>{% trans "Literal aliases" %}</label>
                     <textarea name="literal_aliases" id="literal_aliases"></textarea>
-                    <p class="notes">The literal names by which this plugin has been known</p>
+                    <p class="notes">{% trans "The literal names by which this plugin has been known" %}</p>
                 </li>
                 <li class="field textarea regex_aliases">
-                    <label>Regex aliases</label>
+                    <label>{% trans "Regex aliases" %}</label>
                     <textarea name="regex_aliases" id="regex_aliases"></textarea>
-                    <p class="notes">Regexes matching names by which this plugin has been known</p>
+                    <p class="notes">{% trans "Regexes matching names by which this plugin has been known" %}</p>
                 </li>
             </ul>
         </fieldset>
@@ -87,7 +87,7 @@
         <fieldset>
             <legend>Releases</legend>
             <ul class="controls">
-                <li><a href="#" id="add_blank_release">[ + ] Add new release</a></li>
+                <li><a href="#" id="add_blank_release">{% trans "[ + ] Add new release" %}</a></li>
             </ul>
             <ul id="releases">
             </ul>
@@ -100,15 +100,15 @@
         <ul class="releases">
             <li class="release">
                 <fieldset class="closed">
-                    <legend>Release</legend>
+                    <legend>{% trans "Release" %}</legend>
                     <ul class="controls">
-                        <li>
+                        <li>{% blocktrans %}
                             <a href="#" class="show">Show</a> /
                             <a href="#" class="hide">Hide</a>
                             empty properties.
-                        </li>
+                        {% endblocktrans %}</li>
                         <li>
-                            <a href="#" class="delete">[ x ] Delete release</a>
+                        <a href="#" class="delete">{% trans "[ x ] Delete release" %}</a>
                         </li>
                     </ul>
                     <ul class="fields"></ul>

@@ -3,11 +3,16 @@
 {% import "macros/forms.html" as forms %}
 
 {% block title %}
-    Settings for {{authprofile.screen_name|e}}
+    {% set authprofile_screen_name_e as authprofile.screen_name|e %}
+    {% blocktrans %}Settings for {{authprofile_screen_name_e}}{% endblocktrans %}
 {% endblock %}
 
 {% block content %}
-    <h3>Profile settings for <a href="{{base_url}}profiles/{{profile.screen_name|urlencode}}">{{profile.screen_name|e}}</a></h3>
+    <h3>
+        {% set profile_screen_name_url as profile.screen_name|urlencode %}
+        {% set profile_screen_name as profile.screen_name|e %}
+        {% blocktrans %}Profile settings for <a href="{{base_url}}profiles/{{profile_screen_name_url}}">{{profile_screen_name}}</a>{% endblocktrans %}
+    </h3>
     <ul class="sections">
         {% for section in sections %}
             <li class="section">
