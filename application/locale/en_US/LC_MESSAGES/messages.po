@@ -1,4 +1,4 @@
-#: views/plugins/edit.html:251
+#: views/plugins/edit.html:254
 msgid   "                            <a href=\"#\" class=\"show\">Show</a> /\n"
         "                            <a href=\"#\" class=\"hide\">Hide</a>\n"
         "                            empty properties.\n"
@@ -136,9 +136,33 @@ msgstr  "        The following is a list of plugins detected as installed\n"
         "        links next to each plugin.\n"
         "    "
 
+#: models/plugin.php:758
+msgid   "(0/1) whether or not the OS needs to restart after plugin installation"
+msgstr  "(0/1) whether or not the OS needs to restart after plugin installation"
+
+#: models/plugin.php:754
+msgid   "(0/1) whether or not the installer displays a user interface"
+msgstr  "(0/1) whether or not the installer displays a user interface"
+
+#: models/plugin.php:762 models/plugin.php:766 models/plugin.php:770
+msgid   "(Not sure, inherited from PFS1, need a description)"
+msgstr  "(Not sure, inherited from PFS1, need a description)"
+
 #: views/plugins/sandbox_mine.html:24
 msgid   "+ Create new sandbox plugin"
 msgstr  "+ Create new sandbox plugin"
+
+#: models/plugin.php:714
+msgid   "A GUID for the plugin release, may differ between releases and platforms (unlike pfs_id)"
+msgstr  "A GUID for the plugin release, may differ between releases and platforms (unlike pfs_id)"
+
+#: models/plugin.php:694
+msgid   "A dot-separated normalized version for the plugin, may differ from official vendor versioning scheme in order to maintain internal consistency in PFS2"
+msgstr  "A dot-separated normalized version for the plugin, may differ from official vendor versioning scheme in order to maintain internal consistency in PFS2"
+
+#: models/plugin.php:750
+msgid   "A hash of the installer contents for verifying its integrity"
+msgstr  "A hash of the installer contents for verifying its integrity"
 
 #: auth_profiles/i18n/en_US/form_errors_auth.php:28
 msgid   "A login has already been registered using this email address."
@@ -176,6 +200,10 @@ msgstr  "Also submitting the following additional information:"
 #: views/macros/oses.html:32
 msgid   "Any"
 msgstr  "Any"
+
+#: models/plugin.php:774
+msgid   "Application ID for client app"
+msgstr  "Application ID for client app"
 
 #: views/plugins/edit.html:138
 msgid   "Autosave"
@@ -254,6 +282,22 @@ msgstr  "Check your inbox for a link to change your password."
 msgid   "Check your inbox for a link to verify this new email address."
 msgstr  "Check your inbox for a link to verify this new email address."
 
+#: models/plugin.php:794
+msgid   "Client app OS for which the plugin is intended (* is wildcard)"
+msgstr  "Client app OS for which the plugin is intended (* is wildcard)"
+
+#: models/plugin.php:789
+msgid   "Client app locale for which the plugin is intended (* is wildcard)"
+msgstr  "Client app locale for which the plugin is intended (* is wildcard)"
+
+#: models/plugin.php:779
+msgid   "Client app release for which the plugin is intended (* is wildcard)"
+msgstr  "Client app release for which the plugin is intended (* is wildcard)"
+
+#: models/plugin.php:784
+msgid   "Client app version for which the plugin is intended (* is wildcard)"
+msgstr  "Client app version for which the plugin is intended (* is wildcard)"
+
 #: views/plugins/submit.html:128
 msgid   "Comments"
 msgstr  "Comments"
@@ -308,6 +352,10 @@ msgstr  "Create new sandbox plugin for %1$s"
 msgid   "Current JSON data"
 msgstr  "Current JSON data"
 
+#: models/plugin.php:686
+msgid   "Current status of the release, eg. latest, outdated, vulnerable"
+msgstr  "Current status of the release, eg. latest, outdated, vulnerable"
+
 #: views/plugins/submissions.html:33
 msgid   "Date"
 msgstr  "Date"
@@ -326,6 +374,10 @@ msgstr  "Delete plugin \"%1$s\""
 msgid   "Delete this plugin?"
 msgstr  "Delete this plugin?"
 
+#: PluginDir/Editor.js:504
+msgid   "Delete this release?"
+msgstr  "Delete this release?"
+
 #: views/index/index_byinstalled.html:52 views/plugins/submit.html:124
 msgid   "Description"
 msgstr  "Description"
@@ -337,6 +389,10 @@ msgstr  "Description:"
 #: views/index/index_byinstalled.html:48
 msgid   "Detected Version"
 msgstr  "Detected Version"
+
+#: models/plugin.php:702
+msgid   "Detection scheme used in the client to derive the detected_version value"
+msgstr  "Detection scheme used in the client to derive the detected_version value"
 
 #: views/plugins/detail.html:307
 msgid   "Download / Details"
@@ -380,9 +436,21 @@ msgstr  "Email confirmation is required."
 msgid   "Email is required."
 msgstr  "Email is required."
 
-#: views/macros/platforms.html:32
+#: models/plugin.php:726
+msgid   "Filename of the plugin as installed"
+msgstr  "Filename of the plugin as installed"
+
+#: views/macros/platforms.html:32 PluginDir/Editor.js:24
 msgid   "Firefox"
 msgstr  "Firefox"
+
+#: models/plugin.php:722
+msgid   "For status vulnerable, a URL detailing security vulnerabilities for the plugin release"
+msgstr  "For status vulnerable, a URL detailing security vulnerabilities for the plugin release"
+
+#: models/plugin.php:718
+msgid   "For status vulnerable, a short description of security vulnerabilities for the plugin release"
+msgstr  "For status vulnerable, a short description of security vulnerabilities for the plugin release"
 
 #: views/auth_profiles/forgotpassword.html:68
 msgid   "Forgot password"
@@ -441,7 +509,7 @@ msgstr  "JSON export"
 msgid   "Last saved at %1$s"
 msgstr  "Last saved at %1$s"
 
-#: views/macros/statuses.html:33
+#: views/macros/statuses.html:33 models/plugin.php:672
 msgid   "Latest"
 msgstr  "Latest"
 
@@ -452,6 +520,11 @@ msgstr  "Linux"
 #: views/plugins/edit.html:203
 msgid   "Literal aliases"
 msgstr  "Literal aliases"
+
+#: PluginDir/Editor.js:247
+#, c-format
+msgid   "Loaded at %1$s"
+msgstr  "Loaded at %1$s"
 
 #: views/auth_profiles/logout.html:27
 msgid   "Logged out."
@@ -525,6 +598,10 @@ msgstr  "Mark as seen"
 msgid   "Mark as unseen"
 msgstr  "Mark as unseen"
 
+#: models/plugin.php:706
+msgid   "More verbose description of the plugin"
+msgstr  "More verbose description of the plugin"
+
 #: views/layout.html:40
 msgid   "Mozilla"
 msgstr  "Mozilla"
@@ -536,6 +613,14 @@ msgstr  "Mozilla Plugin Directory"
 #: views/index/index_byinstalled.html:44 views/plugins/submissions.html:37 views/plugins/submit.html:116 views/search/results.html:53
 msgid   "Name"
 msgstr  "Name"
+
+#: models/plugin.php:690
+msgid   "Name of the plugin"
+msgstr  "Name of the plugin"
+
+#: models/plugin.php:710
+msgid   "Name of the vendor providing the plugin"
+msgstr  "Name of the vendor providing the plugin"
 
 #: views/index/index_byinstalled.html:109
 msgid   "Needs update"
@@ -565,7 +650,7 @@ msgstr  "New password confirmation required"
 msgid   "New password is required"
 msgstr  "New password is required"
 
-#: views/index/index_byinstalled.html:97
+#: views/index/index_byinstalled.html:97 models/plugin.php:675
 msgid   "Newer"
 msgstr  "Newer"
 
@@ -601,7 +686,7 @@ msgstr  "Old password is required"
 msgid   "Options"
 msgstr  "Options"
 
-#: views/macros/statuses.html:42
+#: views/macros/statuses.html:42 models/plugin.php:673
 msgid   "Outdated"
 msgstr  "Outdated"
 
@@ -736,9 +821,13 @@ msgstr  "Register (verified)"
 msgid   "Register (verify)"
 msgstr  "Register (verify)"
 
-#: views/plugins/edit.html:246
+#: views/plugins/edit.html:249 PluginDir/Editor.js:445
 msgid   "Release"
 msgstr  "Release"
+
+#: views/plugins/edit.html:228
+msgid   "Releases"
+msgstr  "Releases"
 
 #: views/plugins/requestpush.html:38
 msgid   "Request approval"
@@ -866,6 +955,10 @@ msgstr  "This email address is used by another login"
 msgid   "This sandbox is empty."
 msgstr  "This sandbox is empty."
 
+#: models/plugin.php:798
+msgid   "Timestamp when last the release record was modified"
+msgstr  "Timestamp when last the release record was modified"
+
 #: views/auth_profiles/changepassword.html:78
 msgid   "Try again?"
 msgstr  "Try again?"
@@ -874,7 +967,31 @@ msgstr  "Try again?"
 msgid   "URL"
 msgstr  "URL"
 
-#: views/index/index_byinstalled.html:113 views/macros/statuses.html:59
+#: models/plugin.php:738
+msgid   "URL for a manually-launched executable installer for the plugin"
+msgstr  "URL for a manually-launched executable installer for the plugin"
+
+#: models/plugin.php:742
+msgid   "URL for an XPI-based installer for the plugin"
+msgstr  "URL for an XPI-based installer for the plugin"
+
+#: models/plugin.php:746
+msgid   "URL for an executable installer for the plugin (mainly for Windows)"
+msgstr  "URL for an executable installer for the plugin (mainly for Windows)"
+
+#: models/plugin.php:734
+msgid   "URL where the license for using the plugin may be found"
+msgstr  "URL where the license for using the plugin may be found"
+
+#: models/plugin.php:730
+msgid   "URL with details describing the plugin"
+msgstr  "URL with details describing the plugin"
+
+#: models/plugin.php:676
+msgid   "Uncertain"
+msgstr  "Uncertain"
+
+#: views/index/index_byinstalled.html:113 views/macros/statuses.html:59 models/plugin.php:671
 msgid   "Unknown"
 msgstr  "Unknown"
 
@@ -910,6 +1027,10 @@ msgstr  "Vendor"
 msgid   "Version"
 msgstr  "Version"
 
+#: models/plugin.php:698
+msgid   "Version detected in the client, can differ from vendor-intended version depending on capabilities of detection_type"
+msgstr  "Version detected in the client, can differ from vendor-intended version depending on capabilities of detection_type"
+
 #: views/plugins/detail.html:90
 msgid   "View original"
 msgstr  "View original"
@@ -922,7 +1043,7 @@ msgstr  "Vulnerability URL"
 msgid   "Vulnerability description"
 msgstr  "Vulnerability description"
 
-#: views/index/index_byinstalled.html:105 views/macros/statuses.html:51
+#: views/index/index_byinstalled.html:105 views/macros/statuses.html:51 models/plugin.php:674
 msgid   "Vulnerable"
 msgstr  "Vulnerable"
 
@@ -950,11 +1071,11 @@ msgstr  "Your Sandbox"
 msgid   "Your plugin data submission has been accepted, thank you!"
 msgstr  "Your plugin data submission has been accepted, thank you!"
 
-#: views/plugins/edit.html:230
+#: views/plugins/edit.html:233
 msgid   "[ + ] Add new release"
 msgstr  "[ + ] Add new release"
 
-#: views/plugins/edit.html:260
+#: views/plugins/edit.html:263
 msgid   "[ x ] Delete release"
 msgstr  "[ x ] Delete release"
 
@@ -985,6 +1106,10 @@ msgstr  "login"
 #: views/layout.html:74
 msgid   "logout"
 msgstr  "logout"
+
+#: models/plugin.php:682
+msgid   "pfs_id of the plugin within PFS2"
+msgstr  "pfs_id of the plugin within PFS2"
 
 #: views/layout.html:91
 msgid   "register"

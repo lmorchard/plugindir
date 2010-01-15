@@ -10,7 +10,7 @@
 
 {% block js_includes %}
     {% parent %}
-    <script type="text/javascript" src="{{base_url}}js/PluginDir/Editor.js"></script>
+    <script type="text/javascript" src="{{media_url}}js/PluginDir/Editor.js"></script>
 {% endblock %}
 
 {% block js_defines %}
@@ -85,7 +85,7 @@
         </fieldset>
 
         <fieldset>
-            <legend>Releases</legend>
+            <legend>{% trans "Releases" %}</legend>
             <ul class="controls">
                 <li><a href="#" id="add_blank_release">{% trans "[ + ] Add new release" %}</a></li>
             </ul>

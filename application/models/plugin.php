@@ -38,142 +38,12 @@ class Plugin_Model extends ORM_Resource {
         'uncertain'  => 50,
     );
 
-    public static $status_choices = array(
-        'unknown'    => 'Unknown',
-        'latest'     => 'Latest',
-        'outdated'   => 'Outdated',
-        'vulnerable' => 'Vulnerable',
-        'newer'      => 'Newer',
-        'uncertain'  => 'Uncertain',
-    );
+    // HACK: The contents of these two arrays are defined at the end of the file.
+    public static $status_choices = array();
+    public static $properties = array();
 
     // }}}
-    // {{{ Plugin and release properties
 
-    public static $properties = array(
-        'pfs_id' => array( 
-            'type' => 'text', 
-            'description' => 'pfs_id of the plugin within PFS2'
-        ),
-        'status' => array( 
-            'type' => 'status', 
-            'description' => 'Current status of the release, eg. latest, outdated, vulnerable'
-        ),
-        'name' => array( 
-            'type' => 'text', 
-            'description' => 'Name of the plugin'
-        ),
-        'version' => array( 
-            'type' => 'text', 
-            'description' => 'A dot-separated normalized version for the plugin, may differ from official vendor versioning scheme in order to maintain internal consistency in PFS2'
-        ),
-        'detected_version' => array(
-            'type' => 'text',
-            'description' => 'Version detected in the client, can differ from vendor-intended version depending on capabilities of detection_type'
-        ),
-        'detection_type' => array(
-            'type' => 'text',
-            'description' => 'Detection scheme used in the client to derive the detected_version value'
-        ),
-        'description' => array( 
-            'type' => 'textarea', 
-            'description' => 'More verbose description of the plugin'
-        ),
-        'vendor' => array( 
-            'type' => 'text', 
-            'description' => 'Name of the vendor providing the plugin'
-        ),
-        'guid' => array( 
-            'type' => 'text', 
-            'description' => 'A GUID for the plugin release, may differ between releases and platforms (unlike pfs_id)'
-        ),
-        'vulnerability_description' => array( 
-            'type' => 'text', 
-            'description' => 'For status vulnerable, a short description of security vulnerabilities for the plugin release'
-        ),
-        'vulnerability_url' => array( 
-            'type' => 'text', 
-            'description' => 'For status vulnerable, a URL detailing security vulnerabilities for the plugin release'
-        ),
-        'filename' => array( 
-            'type' => 'text', 
-            'description' => 'Filename of the plugin as installed'
-        ),
-        'url' => array( 
-            'type' => 'text', 
-            'description' => 'URL with details describing the plugin'
-        ),
-        'license_url' => array( 
-            'type' => 'text', 
-            'description' => 'URL where the license for using the plugin may be found'
-        ),
-        'manual_installation_url' => array( 
-            'type' => 'text', 
-            'description' => 'URL for a manually-launched executable installer for the plugin'
-        ),
-        'xpi_location' => array( 
-            'type' => 'text', 
-            'description' => 'URL for an XPI-based installer for the plugin'
-        ),
-        'installer_location' => array( 
-            'type' => 'text', 
-            'description' => 'URL for an executable installer for the plugin (mainly for Windows)'
-        ),
-        'installer_hash' => array( 
-            'type' => 'text', 
-            'description' => 'A hash of the installer contents for verifying its integrity'
-        ),
-        'installer_shows_ui' => array( 
-            'type' => 'text', 
-            'description' => '(0/1) whether or not the installer displays a user interface'
-        ),
-        'needs_restart' => array( 
-            'type' => 'text', 
-            'description' => '(0/1) whether or not the OS needs to restart after plugin installation'
-        ),
-        'xpcomabi' => array( 
-            'type' => 'text', 
-            'description' => '(Not sure, inherited from PFS1, need a description)'
-        ),
-        'min' => array( 
-            'type' => 'text', 
-            'description' => '(Not sure, inherited from PFS1, need a description)'
-        ),
-        'max' => array( 
-            'type' => 'text', 
-            'description' => '(Not sure, inherited from PFS1, need a description)'
-        ),
-        'app_id' => array( 
-            'type' => 'text', 
-            'description' => 'Application ID for client app',
-            'parent' => 'platform'
-        ),
-        'app_release' => array( 
-            'type' => 'text', 
-            'description' => 'Client app release for which the plugin is intended (* is wildcard)',
-            'parent' => 'platform'
-        ),
-        'app_version' => array( 
-            'type' => 'text', 
-            'description' => 'Client app version for which the plugin is intended (* is wildcard)',
-            'parent' => 'platform'
-        ),
-        'locale' => array( 
-            'type' => 'text', 
-            'description' => 'Client app locale for which the plugin is intended (* is wildcard)',
-            'parent' => 'platform'
-        ),
-        'os_name' => array( 
-            'type' => 'text', 
-            'description' => 'Client app OS for which the plugin is intended (* is wildcard)'
-        ),
-        'modified' => array( 
-            'type' => 'text', 
-            'description' => 'Timestamp when last the release record was modified' 
-        )
-    );
-
-    // }}}
     
     /**
      * Assemble a count of releases by plugin.
@@ -790,3 +660,143 @@ class Plugin_Model extends ORM_Resource {
     }
 
 }
+
+// {{{ Plugin and release properties
+
+/** 
+ * HACK: Defined here because PHP doesn't like using _() function calls in the 
+ * class definition.
+ */
+Plugin_Model::$status_choices = array(
+    "unknown"    => _("Unknown"),
+    "latest"     => _("Latest"),
+    "outdated"   => _("Outdated"),
+    "vulnerable" => _("Vulnerable"),
+    "newer"      => _("Newer"),
+    "uncertain"  => _("Uncertain"),
+);
+
+Plugin_Model::$properties = array(
+    'pfs_id' => array( 
+        'type' => 'text', 
+        'description' => _("pfs_id of the plugin within PFS2")
+    ),
+    'status' => array( 
+        'type' => 'status', 
+        'description' => _("Current status of the release, eg. latest, outdated, vulnerable")
+    ),
+    'name' => array( 
+        'type' => 'text', 
+        'description' => _("Name of the plugin")
+    ),
+    'version' => array( 
+        'type' => 'text', 
+        'description' => _("A dot-separated normalized version for the plugin, may differ from official vendor versioning scheme in order to maintain internal consistency in PFS2")
+    ),
+    'detected_version' => array(
+        'type' => 'text',
+        'description' => _("Version detected in the client, can differ from vendor-intended version depending on capabilities of detection_type")
+    ),
+    'detection_type' => array(
+        'type' => 'text',
+        'description' => _("Detection scheme used in the client to derive the detected_version value")
+    ),
+    'description' => array( 
+        'type' => 'textarea', 
+        'description' => _("More verbose description of the plugin")
+    ),
+    'vendor' => array( 
+        'type' => 'text', 
+        'description' => _("Name of the vendor providing the plugin")
+    ),
+    'guid' => array( 
+        'type' => 'text', 
+        'description' => _("A GUID for the plugin release, may differ between releases and platforms (unlike pfs_id)")
+    ),
+    'vulnerability_description' => array( 
+        'type' => 'text', 
+        'description' => _("For status vulnerable, a short description of security vulnerabilities for the plugin release")
+    ),
+    'vulnerability_url' => array( 
+        'type' => 'text', 
+        'description' => _("For status vulnerable, a URL detailing security vulnerabilities for the plugin release")
+    ),
+    'filename' => array( 
+        'type' => 'text', 
+        'description' => _("Filename of the plugin as installed")
+    ),
+    'url' => array( 
+        'type' => 'text', 
+        'description' => _("URL with details describing the plugin")
+    ),
+    'license_url' => array( 
+        'type' => 'text', 
+        'description' => _("URL where the license for using the plugin may be found")
+    ),
+    'manual_installation_url' => array( 
+        'type' => 'text', 
+        'description' => _("URL for a manually-launched executable installer for the plugin")
+    ),
+    'xpi_location' => array( 
+        'type' => 'text', 
+        'description' => _("URL for an XPI-based installer for the plugin")
+    ),
+    'installer_location' => array( 
+        'type' => 'text', 
+        'description' => _("URL for an executable installer for the plugin (mainly for Windows)")
+    ),
+    'installer_hash' => array( 
+        'type' => 'text', 
+        'description' => _("A hash of the installer contents for verifying its integrity")
+    ),
+    'installer_shows_ui' => array( 
+        'type' => 'text', 
+        'description' => _("(0/1) whether or not the installer displays a user interface")
+    ),
+    'needs_restart' => array( 
+        'type' => 'text', 
+        'description' => _("(0/1) whether or not the OS needs to restart after plugin installation")
+    ),
+    'xpcomabi' => array( 
+        'type' => 'text', 
+        'description' => _("(Not sure, inherited from PFS1, need a description)")
+    ),
+    'min' => array( 
+        'type' => 'text', 
+        'description' => _("(Not sure, inherited from PFS1, need a description)")
+    ),
+    'max' => array( 
+        'type' => 'text', 
+        'description' => _("(Not sure, inherited from PFS1, need a description)")
+    ),
+    'app_id' => array( 
+        'type' => 'text', 
+        'description' => _("Application ID for client app"),
+        'parent' => 'platform'
+    ),
+    'app_release' => array( 
+        'type' => 'text', 
+        'description' => _("Client app release for which the plugin is intended (* is wildcard)"),
+        'parent' => 'platform'
+    ),
+    'app_version' => array( 
+        'type' => 'text', 
+        'description' => _("Client app version for which the plugin is intended (* is wildcard)"),
+        'parent' => 'platform'
+    ),
+    'locale' => array( 
+        'type' => 'text', 
+        'description' => _("Client app locale for which the plugin is intended (* is wildcard)"),
+        'parent' => 'platform'
+    ),
+    'os_name' => array( 
+        'type' => 'text', 
+        'description' => _("Client app OS for which the plugin is intended (* is wildcard)")
+    ),
+    'modified' => array( 
+        'type' => 'text', 
+        'description' => _("Timestamp when last the release record was modified") 
+    )
+);
+
+// }}}

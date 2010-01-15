@@ -93,7 +93,9 @@ PluginDir.Utils = (function () {
 
 }());
 
-// Global alias for PluginDir.Utils.gettext()
+/** 
+ * Global alias for PluginDir.Utils.gettext()
+ */
 function _(str) { 
     return PluginDir.Utils.gettext(str); 
 }

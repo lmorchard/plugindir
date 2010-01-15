@@ -21,7 +21,7 @@ PluginDir.Editor = (function () {
         save_delay: 2 * 1000, 
         // Quick mapping of app_ids to readable versions for summaries.
         app_ids: {
-            '{ec8030f7-c20a-464f-9b0e-13a3a9e97384}': 'Firefox'
+            '{ec8030f7-c20a-464f-9b0e-13a3a9e97384}': _("Firefox")
         },
         // Defaults for a new empty release
         property_defaults: {
@@ -244,7 +244,7 @@ PluginDir.Editor = (function () {
             $this.updateReleaseFieldsets();
 
             $this.buildJSON();
-            $this.updateStatusMessage("Loaded at " + (new Date()));
+            $this.updateStatusMessage(sprintf(_("Loaded at %1$s"), ''+new Date()));
         },
 
         /**
@@ -442,7 +442,7 @@ PluginDir.Editor = (function () {
          * for the release.
          */
         updateReleaseSummary: function (release) {
-            var parts = ['Release'],
+            var parts = [_("Release")],
                 fields = [
                     'version', 'os_name', 'locale', 'app_id', 
                     'app_release', 'app_version'
@@ -501,7 +501,7 @@ PluginDir.Editor = (function () {
          * Delete an existing release.
          */
         deleteRelease: function (release) {
-            if (window.confirm('Delete this release?')) {
+            if (window.confirm(_("Delete this release?"))) {
                 release.remove();
                 $this.scheduleSavePlugin();
             }

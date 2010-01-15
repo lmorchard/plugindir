@@ -226,7 +226,8 @@ class Plugins_Controller extends Local_Controller {
             $out = array();
             foreach ($plugins as $plugin) {
                 $base = url::site(
-                    'profiles/'.$profile->screen_name.
+                    Gettext_Main::$current_language .
+                    '/profiles/'.$profile->screen_name.
                     '/plugins/detail/'.
                     $plugin->pfs_id
                 );

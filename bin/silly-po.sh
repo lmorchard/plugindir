@@ -4,7 +4,7 @@
 # http://www.hyperrealm.com/main.php?s=talkfilters
 
 echo "Generating teh silly...";
-for fn in chef b1ff pirate warez cockney austro postmodern valspeak; do 
+for fn in chef b1ff pirate warez; do 
     dn=xx_${fn};
     echo -n "    $fn";
     mkdir -p application/locale/$dn/LC_MESSAGES; 

@@ -1,8 +1,10 @@
 # Plugin directory TODO
 
-## v0.2.0
+## 1.2.0
 
-* Compile all templates and run xgettext
+* Minimize strings included in l10n/mo_json to just those needed by JS
+
+## 1.5.0
 
 * Prettier plugin release page
 * Merge changes between plugins
@@ -16,10 +18,4 @@
 * Offer a switch to use sandbox or not on front page
 * Detect plugins on sandbox page?
 * Add release via JSON API
-
-* Localization
-    * How to mark up Twig templates for l10n?
-        * Use filters to run text through _()
-        * Run gettext over generated PHP to find _() functions?
-        * Custom script to scrape localizable strings out of templates.
 

@@ -13,13 +13,9 @@ $config['valid_languages'] = array(
     'en_US' => 'English/United States', 
 
     // Silly talks, see bin/silly-po.sh
-    'xx_austro'     => 'Silly/Austro', 
     'xx_b1ff'       => 'Silly/B1FF', 
     'xx_chef'       => 'Silly/Chef', 
-    'xx_cockney'    => 'Silly/Cockney',
     'xx_pirate'     => 'Silly/Pirate', 
-    'xx_postmodern' => 'Silly/Postmodern', 
-    'xx_valspeak'   => 'Silly/Valspeak', 
     'xx_warez'      => 'Silly/Warez',
 );
 
