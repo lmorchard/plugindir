@@ -196,10 +196,16 @@ class Plugins_Controller extends Local_Controller {
 
         // Bounce over to the created plugin
         if ($new_plugin->sandbox_profile_id) {
-            url::redirect("profiles/{$profile->screen_name}/plugins".
-                "/detail/{$new_plugin->pfs_id};edit");
+            url::redirect(
+                Gettext_Main::$current_language .
+                "/profiles/{$profile->screen_name}/plugins".
+                "/detail/{$new_plugin->pfs_id};edit"
+            );
         } else {
-            url::redirect("plugins/detail/{$new_plugin->pfs_id};edit");
+            url::redirect(
+                Gettext_Main::$current_language .
+                "/plugins/detail/{$new_plugin->pfs_id};edit"
+            );
         }
 
     }
@@ -336,7 +342,10 @@ class Plugins_Controller extends Local_Controller {
 
             // Bounce over to sandbox.
             $auth_screen_name = authprofiles::get_profile('screen_name');
-            url::redirect("profiles/{$auth_screen_name}/plugins");
+            url::redirect(
+                Gettext_Main::$current_language .
+                "/profiles/{$auth_screen_name}/plugins"
+            );
 
         }
     }
@@ -368,7 +377,10 @@ class Plugins_Controller extends Local_Controller {
             $new_plugin = ORM::factory('plugin')->import($export);
 
             // Bounce over to the deployed plugin
-            url::redirect("plugins/detail/{$new_plugin->pfs_id}");
+            url::redirect(
+                Gettext_Main::$current_language .
+                "/plugins/detail/{$new_plugin->pfs_id}"
+            );
 
         }
     }
@@ -389,7 +401,10 @@ class Plugins_Controller extends Local_Controller {
 
             // Bounce over to sandbox.
             $auth_screen_name = authprofiles::get_profile('screen_name');
-            url::redirect("profiles/{$auth_screen_name}/plugins");
+            url::redirect(
+                Gettext_Main::$current_language .
+                "/profiles/{$auth_screen_name}/plugins"
+            );
         }
     }
 
@@ -443,7 +458,10 @@ class Plugins_Controller extends Local_Controller {
 
             // Bounce over to sandbox.
             $auth_screen_name = authprofiles::get_profile('screen_name');
-            url::redirect("profiles/{$auth_screen_name}/plugins/detail/{$plugin->pfs_id}");
+            url::redirect(
+                Gettext_Main::$current_language .
+                "/profiles/{$auth_screen_name}/plugins/detail/{$plugin->pfs_id}"
+            );
         }
     }
 
