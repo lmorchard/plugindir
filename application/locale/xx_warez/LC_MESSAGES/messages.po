@@ -1,1071 +1,1485 @@
 # File: views/plugins/edit.html, line: 251
+#: views/plugins/edit.html:251
 msgid   "                            <a href=\"#\" class=\"show\">Show</a> /\n"
         "                            <a href=\"#\" class=\"hide\">Hide</a>\n"
         "                            empty properties.\n"
         "                        "
-msgstr  "                            <a href=\"#\" class=\"show\">SH0W</a> /\n"
-        "                            <a href=\"#\" class=\"hide\">h1D3</a>\n"
-        "                            emptY Pr0p3rT!3Z.\n"
+msgstr  "                            <a href=\"#\" class=\"show\">5]-[oW</a> /\n"
+        "                            <a href=\"#\" class=\"hide\">]-[||)3</a>\n"
+        "                            3Mpty PR0P3RT13z.\n"
         "                        "
+
 #
 # File: views/plugins/edit.html, line: 173
+#: views/plugins/edit.html:173
 msgid   "                    <a href=\"#\" class=\"show\">Show</a> /\n"
         "                    <a href=\"#\" class=\"hide\">Hide</a>\n"
         "                    empty properties.\n"
         "                "
-msgstr  "                    <a href=\"#\" class=\"show\">z]-[0w</a> /\n"
-        "                    <a href=\"#\" class=\"hide\">HIDe</a>\n"
-        "                    EMp7y PROp3r7|ez.\n"
+msgstr  "                    <a href=\"#\" class=\"show\">Zh0w</a> /\n"
+        "                    <a href=\"#\" class=\"hide\">hi|)3</a>\n"
+        "                    3mpTY Pr()pER7Ie5.\n"
         "                "
+
 #
 # File: views/plugins/submit.html, line: 91
-msgid   "                    This form will submit details detected about "
-        "this plugin and your browser,\n"
-        "                    along with the following fields that you may "
-        "modify to suggest\n"
+#: views/plugins/submit.html:91
+msgid   "                    This form will submit details detected about this plugin and your browser,\n"
+        "                    along with the following fields that you may modify to suggest\n"
         "                    corrections.\n"
         "                "
-msgstr  "                    TH1s F0rM W|1l 5U8M17 dE74!1S detEcTE|) 4b0uT 7]-"
-        "[|Z plU61n 4|\\|d j00R brOws3R,\n"
-        "                    @10ng wYtH d4 ph0l1OWiN6 f13Ldz 7HaT j00 mAy "
-        "M0DYfY t0 sUG63Z7\n"
-        "                    C0rr3C7|0]\\[5.\n"
+msgstr  "                    th|z foRm WiLl 5u8mY7 d3T4!1S |)373ct3D a8OUt T]-[Y5 P1ug!N 4gnD j00r br0Ws3r,\n"
+        "                    aLONg \\/\\/ItH d4 phol1()w!ng ph!3Lds th@t j00 m@Y m()DiphY t0 ZUgGE5T\n"
+        "                    corR3c7!0n5.\n"
         "                "
+
 #
 # File: views/plugins/create.html, line: 106
-msgid   "                    Use this form to provide details to create a new "
-        "plugin\n"
-        "                    and an initial release.  Some or all of these "
-        "details may\n"
-        "                    have already been filled in from data detected "
-        "about your\n"
-        "                    browser and an installed plugin, so you may not "
-        "need to\n"
+#: views/plugins/create.html:106
+msgid   "                    Use this form to provide details to create a new plugin\n"
+        "                    and an initial release.  Some or all of these details may\n"
+        "                    have already been filled in from data detected about your\n"
+        "                    browser and an installed plugin, so you may not need to\n"
         "                    modify these values.\n"
         "                "
-msgstr  "                    usE THIZ ph0rm 70 PROvYd3 |)e7aYlZ 7() cRe@73 4 "
-        "n3w pLUGIN\n"
-        "                    aNd 4n |Ni714L RelE4ze.  S0]\\/[E ()R alL oF "
-        "Th3Ze |)374YLZ M4Y\n"
-        "                    H@\\/e @1re@Dy b3eN f1LlEd i]\\[ fr()m d4T4 "
-        "d3t3k73|) 4bOUt j00r\n"
-        "                    8r0wser a|\\|D 4gn IgnzTALLeD p1U6!n, s0 j00 "
-        "maY ]\\[()7 |\\|Eed T0\n"
-        "                    ]\\/[O|)1fY ThES3 v@lueZ.\n"
+msgstr  "                    Us3 th!z F()R]\\/[ T0 pR()vidE |)3T4i1z 7o cRe4T3 A N3\\/\\/ plU6!N\n"
+        "                    4nD 4n ||\\|ItY@1 R3le4ze.  s()m3 0R al1 ()ph tHEz3 |)eT@Yls m4y\n"
+        "                    h4\\/3 41R34dY 8een FiL1E|) in fr()m d47A d3T3C73D abOuT j00R\n"
+        "                    br()wSeR a|\\|d 4]\\[ In5talL3D PLUg!]\\[, S0 j00 mAY NOt ne3d 70\n"
+        "                    ]\\/[()d|FY 7]-[3S3 V4LuEs.\n"
         "                "
+
 #
 # File: views/index/index_shell.html, line: 84
-msgid   "            If you want to get even more involved, you can sign up "
-        "for a\n"
-        "            profile.  This will give you access to a sandbox in "
-        "which to \n"
-        "            edit plugin records, test them against our detection "
-        "code in \n"
+#: views/index/index_shell.html:84
+msgid   "            If you want to get even more involved, you can sign up for a\n"
+        "            profile.  This will give you access to a sandbox in which to \n"
+        "            edit plugin records, test them against our detection code in \n"
         "            browsers, and submit changes to our editors for\n"
         "            approval and inclusion in the database.\n"
         "        "
-msgstr  "            |ph j00 W4Nt 7O 63T e\\/3N ]\\/[Or3 1gnvol\\/3d, j00 ca]"
-        "\\[ ZYgn Up f0r 4\n"
-        "            PR()f!l3.  7hIs wYll 61v3 j00 akcEzz t0 a 54ndb()X I]"
-        "\\[ WH|ch 7o \n"
-        "            3|)1T PLug!n R3c0r|)Z, t3ST 7h3m agaY]\\[zT 0UR "
-        "D37ec7Y0n ko|)E !gn \n"
-        "            8rowZ3RS, @|\\|d ZU8]\\/[IT k]-[4ng35 t() oUr 3|)It0R5 "
-        "ph0R\n"
-        "            4ppROV4L Agn|) INcLU5IOgn !n d4 D474BaZE.\n"
+msgstr  "            Yph j00 \\/\\/@nt T0 63T 3Ven m0r3 YNv()1vEd, j00 CaN Z!gn up ph0R A\n"
+        "            pr0phIlE.  th|z WY11 6iv3 j00 akCEzS T0 a S@|\\|db()x !|\\| Wh|ch To \n"
+        "            Edi7 PlugYn r3c0R|)5, tE5T T]-[3m 4gA!nST ()ur |)3t3c7i0n C0De |N \n"
+        "            bR0wZ3rS, an|) SUb]\\/[Y7 k]-[4]\\[GEz T0 0UR 3D!t()R5 FOR\n"
+        "            aPProVAl agn|) !]\\[C1US1oN in d4 |)ataba53.\n"
         "        "
+
 #
 # File: views/index/index_shell.html, line: 60
-msgid   "            This site is an attempt to collect and provide "
-        "information about\n"
-        "            third-party browser plugins installed by people across "
-        "the web.  \n"
+#: views/index/index_shell.html:60
+msgid   "            This site is an attempt to collect and provide information about\n"
+        "            third-party browser plugins installed by people across the web.  \n"
         "        "
-msgstr  "            7HYz z!7e IZ agn 4TT3mP7 to C0113C7 4Nd PROVid3 I]"
-        "\\[ph0Rma7|()n @b0uT\n"
-        "            7H|Rd-par7y bR0Wzer PlUg1nS Yns7aLlEd BY pe()pl3 4Cr0Ss "
-        "d4 W3b.  \n"
+msgstr  "            ThYZ z!T3 !Z @gn a7temPt T0 c0ll3c7 4nd PR0\\/||)3 inf()rmAtYOn 4B0ut\n"
+        "            tH1Rd-P4r7y bRow53R P1U6inS insT@ll3d bY pEOPle aCrosz d4 WeB.  \n"
         "        "
+
 #
 # File: views/index/index_shell.html, line: 67
-msgid   "            Using our plugin detection service, you can check to see "
-        "if your\n"
-        "            plugins are up to date (as far as we know) or if you may "
-        "be\n"
+#: views/index/index_shell.html:67
+msgid   "            Using our plugin detection service, you can check to see if your\n"
+        "            plugins are up to date (as far as we know) or if you may be\n"
         "            vulnerable to any problems or security issues.\n"
         "        "
-msgstr  "            US|n6 oUr pLUg!|\\| deT3C7|0]\\[ ZERv1kE, j00 Ca|\\| c]-"
-        "[3cK 70 C |ph j00R\n"
-        "            pLuG!nz r Up tO Da73 (@S ph4R az wE kgnOW) 0r !ph j00 "
-        "M4Y bE\n"
-        "            \\/uLN3R4bl3 70 anY Pr08L3]\\/[5 0R z3CUr|7y iz5u3Z.\n"
+msgstr  "            uS|nG oUr plUg1N d3t3CtI0n sERv1c3, j00 Can chEkk To C Yf j00R\n"
+        "            pluGiNS r up t0 dat3 (@s ph4R @S \\/\\/3 cnow) 0R !ph j00 m4y b3\n"
+        "            \\/uLNERabLE t() 4ny PR0bL3]\\/[S ()r zEcUr!7Y 1S5UE5.\n"
         "        "
+
 #
 # File: views/index/index_shell.html, line: 75
-msgid   "            We can also use your help:  If you are a plugin vendor, "
-        "or simply\n"
-        "            know something we don't know about a plugin, you can "
-        "help us by\n"
-        "            submitting suggested updates to this database along with "
-        "information\n"
-        "            we've detected about your browser and installed "
-        "plugins.\n"
+#: views/index/index_shell.html:75
+msgid   "            We can also use your help:  If you are a plugin vendor, or simply\n"
+        "            know something we don't know about a plugin, you can help us by\n"
+        "            submitting suggested updates to this database along with information\n"
+        "            we've detected about your browser and installed plugins.\n"
         "        "
-msgstr  "            \\/\\/e c@gn 4LsO US3 j00r h3lp:  !F j00 r @ Plu6IN "
-        "vendoR, 0r zimPlY\n"
-        "            kn()w z()]\\/[37H|N6 W3 D0]\\['7 c]\\[OW @b0ut A P1Ug!n, "
-        "j00 c4N h3LP U5 by\n"
-        "            zUbM17Tign6 Zug6est3d Upd4TES T() t]-[IZ DaTa8AS3 4L0ng "
-        "Wi7]-[ |]\\[ph0RmaT|0]\\[\n"
-        "            WE'V3 |)ETekt3d 4B()U7 j00r bRowsEr 4nd 1nST4l1eD "
-        "Plugin5.\n"
+msgstr  "            We Ca]\\[ ALZ() Uze j00R hELp:  iF j00 r a PlUgiN \\/3NdoR, oR Z|]\\/[pLy\n"
+        "            K|\\|0W Som37]-[||\\|g W3 D0gn'T KN0w 4b()U7 A PLU6!|\\|, j00 c4N ]-[3Lp us bY\n"
+        "            sUBmYT7||\\|6 ZuG63ZTed uP|)4T3s TO This D@t@b453 A10ng wITh !gnForM4t1O|\\|\n"
+        "            We'V3 dET3cT3|) 4b()Ut j00r 8rowZ3R a|\\|d !nS74l13|) PlU6YnZ.\n"
         "        "
+
 #
 # File: views/index/index_byinstalled.html, line: 32
+#: views/index/index_byinstalled.html:32
 msgid   "        If you can see this message, we were unable to perform\n"
         "        plugin detection on your browser.  You may have JavaScript\n"
-        "        disabled, which this site requires for many of its "
-        "features.\n"
+        "        disabled, which this site requires for many of its features.\n"
         "    "
-msgstr  "        |ph j00 C4N C t]-[Is ]\\/[Ess@ge, W3 WeRe Ugnabl3 t0 "
-        "P3Rform\n"
-        "        Plug!n det3C7Ion 0N j00r 8r0wSeR.  U maY HAv3 J@vA5krYP7\n"
-        "        |)i5abLED, Wh!ch 7]-[!Z zYt3 requ|R3Z FOR m4]\\[y 0f |7Z "
-        "FEa7Ur35.\n"
+msgstr  "        Yph j00 k@n C t]-[Ys m355463, \\/\\/3 W3r3 Un4B13 7O P3rf0r]\\/[\n"
+        "        pLUgIN dETEct|0N 0n j00r 8R0Wser.  U ]\\/[@y h4VE jav4zkR1p7\n"
+        "        |)!S@B13|), w]-[!ch t]-[YZ z|T3 r3QUIREz phOR ]\\/[anY Oph Itz F3atUR3Z.\n"
         "    "
+
 #
 # File: views/index/index_byapplication.html, line: 29
-msgid   "        The following is a list of plugins by browser application, "
-        "along with a\n"
+#: views/index/index_byapplication.html:29
+msgid   "        The following is a list of plugins by browser application, along with a\n"
         "        count of releases for each application.\n"
         "    "
-msgstr  "        D4 ph01l0\\/\\/!n6 iS 4 1IzT Oph P1UgYnZ BY bR0Wzer aPPLIcat!"
-        "On, 4L()ng WYT]-[ a\n"
-        "        C0UnT of r3leaZ3s f0r 34cH apPL!k@tYOn.\n"
+msgstr  "        D4 pholLoW|nG iz A L1S7 0f plUg|nZ 8Y 8R()Ws3R aPPlic471()N, 41OnG W1Th a\n"
+        "        k0UNt 0ph Rel3453Z ph0r 34cH 4PPLIC@t|()N.\n"
         "    "
+
 #
 # File: views/index/index_byname.html, line: 19
-msgid   "        The following is a list of plugins by name, along with a "
-        "count of\n"
+#: views/index/index_byname.html:19
+msgid   "        The following is a list of plugins by name, along with a count of\n"
         "        releases for each plugin.\n"
         "    "
-msgstr  "        D4 F()L1OW!n6 iS 4 L1S7 Of P1U6ignS bY |\\|am3, aloNg w|7h A "
-        "k()unt ()F\n"
-        "        R3L3@z3Z F0R E@ch pLu6Ygn.\n"
+msgstr  "        D4 f0Ll0W|gng 1Z @ 1isT of Plugins BY n@m3, 41()ng WIth @ k()unt 0ph\n"
+        "        rEL3@z35 phoR E4C]-[ P1ugiN.\n"
         "    "
+
 #
 # File: views/index/index_byos.html, line: 29
-msgid   "        The following is a list of plugins by operating system, "
-        "along with a\n"
+#: views/index/index_byos.html:29
+msgid   "        The following is a list of plugins by operating system, along with a\n"
         "        count of releases for each OS.\n"
         "    "
-msgstr  "        D4 ph01l0\\/\\/!n6 iS 4 1IzT Oph P1UgYnZ BY 0P3R@TInG "
-        "sYstEM, @1onG w!Th a\n"
-        "        k0U]\\[T oph rele@5eS F0R 34ch ()5.\n"
+msgstr  "        D4 F01L()w|]\\[g 1Z 4 l!57 Oph Plu6Ynz 8y 0P3R4TY]\\[g SystEm, 4LOnG W1th @\n"
+        "        c0U|\\|t Oph R3l34z3z phor eak]-[ 0S.\n"
         "    "
+
 #
 # File: views/index/index_byinstalled.html, line: 20
+#: views/index/index_byinstalled.html:20
 msgid   "        The following is a list of plugins detected as installed\n"
         "        in your browser, along with the status of each with respect\n"
         "        to our plugin database.  Some of these plugins may not be\n"
-        "        present in our database, and some may have incorrect "
-        "details.\n"
-        "        You can help us improve this directory by using the "
-        "feedback\n"
+        "        present in our database, and some may have incorrect details.\n"
+        "        You can help us improve this directory by using the feedback\n"
         "        links next to each plugin.\n"
         "    "
-msgstr  "        D4 ph0l10\\/\\/I]\\[g Is a lYs7 0F p1Ug!gn5 d3teCte|) 4z "
-        "iN5t4Ll3D\n"
-        "        IN j00r 8R0\\/\\/z3R, 4lOn6 W|7h d4 ZT4TUs ()ph 34ch W1th "
-        "R35pEkt\n"
-        "        70 ()ur plUgYn daTaB@zE.  Z0]\\/[3 0f tHEz3 PLUG|n5 ]\\/[aY "
-        "n0t 83\n"
-        "        PrEs3nt Yn oUr dA74b@ZE, an|) Z0]\\/[3 m4Y h4ve !NcOrREc7 "
-        "d37Ail5.\n"
-        "        U ca|\\| ]-[3LP Uz ImproVE T]-[I5 d|rEc7()Ry 8y Us1n6 d4 "
-        "f3e|)BakK\n"
-        "        l!nKz n3kzt TO e4cH pLUG1|\\|.\n"
+msgstr  "        D4 f0Ll0W|gng 1Z @ 1isT of Plugins |)3TEkted @z |nsta1L3D\n"
+        "        Y]\\[ j00r Br0WZ3r, 4L0]\\[G \\/\\/1t]-[ d4 st47Uz 0F e@k]-[ W!t]-[ RESP3CT\n"
+        "        70 ()ur PLU6Ign D47AB4se.  50mE 0F Th3S3 p1ug|]\\[5 mAY n0t 83\n"
+        "        Pr3z3Nt !n oUR d4tab4ze, A|\\|D 50M3 May ]-[4Ve InC0RRect |)3Ta!ls.\n"
+        "        U C4n helP Us 1]\\/[pRo\\/e Th|S |)|R3k70Ry bY uS!nG d4 phE3d8acK\n"
+        "        L1gnCS gnEkz7 t() 34kh PlUGiN.\n"
         "    "
+
 #
 # File: views/plugins/sandbox_mine.html, line: 24
+#: views/plugins/sandbox_mine.html:24
 msgid   "+ Create new sandbox plugin"
-msgstr  "+ cR3473 gn3W 54ND8oX PlU6YN"
+msgstr  "+ Cr3473 n3W SandBOx pLUgIgn"
+
 #
 # File: auth_profiles/i18n/en_US/form_errors_auth.php, line: 28
+#: auth_profiles/i18n/en_US/form_errors_auth.php:28
 msgid   "A login has already been registered using this email address."
-msgstr  "a l()6|n ha5 41r3ADY b33N R3g|5t3ReD Us|gng tHiZ 3]\\/[@|l 4|)dr3SS."
+msgstr  "a Log|n ]-[4z a1r3a|)Y B3egn r3GIs73REd UsYng THIz em4!l 4DDRESZ."
+
 #
 # File: auth_profiles/i18n/en_US/form_errors_auth.php, line: 96
+#: auth_profiles/i18n/en_US/form_errors_auth.php:96
 msgid   "A valid new email confirmation is required"
-msgstr  "a \\/@l!|) gn3W 3m@I1 cognfirmaT!()n !Z r3qUiRED"
+msgstr  "a v4L!|) n3W Em4|L c()gnph|rmAt10|\\| 1z R3QU|rED"
+
 #
 # File: auth_profiles/i18n/en_US/form_errors_auth.php, line: 90
+#: auth_profiles/i18n/en_US/form_errors_auth.php:90
 msgid   "A valid new email is required"
-msgstr  "a \\/@l!|) gn3W 3m@I1 i5 R3QuYR3|)"
+msgstr  "a \\/4l||) N3w 3m@1l |z R3Qu1r3d"
+
 #
 # File: views/forbidden.html, line: 19
 # File: views/forbidden.html, line: 27
+#: views/forbidden.html:19 views/forbidden.html:27
 msgid   "Access denied"
-msgstr  "akC3sz d3NIe|)"
+msgstr  "akc3S5 |)3]\\[13d"
+
 #
 # File: views/auth_profiles/reverifyemail.html, line: 31
+#: views/auth_profiles/reverifyemail.html:31
 msgid   "Account activation email sent."
-msgstr  "akC0UgnT akTI\\/47iogn 3m4YL zEn7."
+msgstr  "akk0UnT akt|VatY0]\\[ 3m4I1 5eNT."
+
+#
+# File: PluginDir/Index.js, line: 257
+#: PluginDir/Index.js:257
+#, c-format
+msgid   "Add release to %1$s"
+msgstr  "adD R3l3az3 TO %1$5"
+
 #
 # File: views/layout.html, line: 117
+#: views/layout.html:117
 msgid   "Advanced search"
-msgstr  "a|)V4nc3D s34RCh"
+msgstr  "adv@nc3d s34rcH"
+
 #
 # File: views/plugins/submit.html, line: 144
+#: views/plugins/submit.html:144
 msgid   "Also submitting the following additional information:"
-msgstr  "al50 zUBmItT|gn6 d4 fO1l()wing ad|)!7|0]\\[@l Inph0RMa7Y()N:"
+msgstr  "alZo zUB]\\/[!tTIN6 d4 ph()1L0\\/\\/|ng 4dd|7i()]\\[@L |nFor]\\/[4T!0|\\|:"
+
 #
 # File: views/macros/oses.html, line: 32
+#: views/macros/oses.html:32
 msgid   "Any"
-msgstr  "aNy"
+msgstr  "a|\\|Y"
+
 #
 # File: views/plugins/edit.html, line: 138
+#: views/plugins/edit.html:138
 msgid   "Autosave"
-msgstr  "aut0z4\\/e"
+msgstr  "aUtozA\\/3"
+
 #
 # File: views/plugins/submission_detail.html, line: 57
+#: views/plugins/submission_detail.html:57
 msgid   "Back to submissions"
-msgstr  "84cc T() zu8m|zsIOgns"
+msgstr  "bakk 7o Zu8m|55Y0]\\[S"
+
 #
 # File: auth_profiles/controllers/auth_profiles.php, line: 379
+#: auth_profiles/controllers/auth_profiles.php:379
 msgid   "Basics"
-msgstr  "8451cS"
+msgstr  "baZicZ"
+
 #
 # File: views/auth_profiles/editprofile.html, line: 54
 # File: views/auth_profiles/register.html, line: 54
+#: views/auth_profiles/editprofile.html:54 views/auth_profiles/register.html:54
 msgid   "Bio / About you"
-msgstr  "8Y0 / @B()Ut j00"
+msgstr  "b|o / aB0UT j00"
+
 #
 # File: views/index/index_shell.html, line: 133
+#: views/index/index_shell.html:133
 msgid   "By Application"
-msgstr  "8y apPl!k4t|0gn"
+msgstr  "by 4PPL|c47IOgn"
+
 #
 # File: views/index/index_shell.html, line: 129
+#: views/index/index_shell.html:129
 msgid   "By Name"
-msgstr  "8y ]\\[@]\\/[E"
+msgstr  "bY ]\\[a]\\/[e"
+
 #
 # File: views/index/index_shell.html, line: 137
+#: views/index/index_shell.html:137
 msgid   "By Operating System"
-msgstr  "8Y OpeR4Tin6 sySt3m"
+msgstr  "by 0PERatYn6 zYzT3M"
+
 #
 # File: views/plugins/copy.html, line: 47
 # File: views/plugins/delete.html, line: 52
 # File: views/plugins/deploy.html, line: 47
 # File: views/plugins/requestpush.html, line: 47
+#: views/plugins/copy.html:47 views/plugins/delete.html:52 views/plugins/deploy.html:47 views/plugins/requestpush.html:47
 msgid   "Cancel"
-msgstr  "c@NCeL"
+msgstr  "cA]\\[kEL"
+
 #
 # File: views/auth_profiles/register.html, line: 74
 # File: views/plugins/submit.html, line: 133
+#: views/auth_profiles/register.html:74 views/plugins/submit.html:133
 msgid   "Captcha"
-msgstr  "c@p7k]-[4"
+msgstr  "CAptk]-[a"
+
 #
 # File: views/auth_profiles/changeemail.html, line: 64
+#: views/auth_profiles/changeemail.html:64
 msgid   "Change email"
-msgstr  "c]-[@|\\|G3 3MaI1"
+msgstr  "c]-[4NGe 3]\\/[411"
+
 #
-#. i18n: %1$s = profile_screen_name_e
 # File: views/auth_profiles/changeemail.html, line: 31
+#. i18n: %1$s = profile_screen_name_e
+#: views/auth_profiles/changeemail.html:31
 #, php-format
 msgid   "Change email address for %1$s"
-msgstr  "c]-[@|\\|G3 3MaI1 @DdR3Sz ph0r %1$Z"
+msgstr  "Ch4]\\[g3 Em411 4d|)r35S ph0r %1$s"
+
 #
 # File: auth_profiles/controllers/auth_profiles.php, line: 389
+#: auth_profiles/controllers/auth_profiles.php:389
 msgid   "Change login email"
-msgstr  "c]-[@|\\|G3 1OgIn eMaiL"
+msgstr  "chanG3 L06in 3M4Y1"
+
 #
 # File: auth_profiles/controllers/auth_profiles.php, line: 384
+#: auth_profiles/controllers/auth_profiles.php:384
 msgid   "Change login password"
-msgstr  "c]-[@|\\|G3 1OgIn P4S5w0Rd"
+msgstr  "khAng3 L0Gin pa5SW0Rd"
+
 #
 # File: views/auth_profiles/changepassword.html, line: 107
 # File: views/auth_profiles/changepassword.html, line: 130
+#: views/auth_profiles/changepassword.html:107 views/auth_profiles/changepassword.html:130
 msgid   "Change password"
-msgstr  "c]-[@|\\|G3 pas5W0rd"
+msgstr  "chanG3 Pas5w0rD"
+
 #
-#. i18n: %1$s = forgot_password_login_name
-#. i18n: %1$s = profile_screen_name_e
 # File: views/auth_profiles/changepassword.html, line: 32
 # File: views/auth_profiles/changepassword.html, line: 44
+#. i18n: %1$s = forgot_password_login_name
+#. i18n: %1$s = profile_screen_name_e
+#: views/auth_profiles/changepassword.html:32 views/auth_profiles/changepassword.html:44
 #, php-format
 msgid   "Change password for %1$s"
-msgstr  "k]-[4]\\[6E PAz5w0rd foR %1$Z"
+msgstr  "khAng3 PazZwORd ph()r %1$z"
+
 #
 # File: views/auth_profiles/register_success.html, line: 27
+#: views/auth_profiles/register_success.html:27
 msgid   "Check your email to verify your address before login."
-msgstr  "k]-[3Ck j00r 3Ma!l t0 v3RiFy j00r 4|)drezz Bef0rE log|n."
+msgstr  "chEcC j00R 3maiL t0 V3rYFy j00r 4d|)rESZ b3foR3 106i]\\[."
+
 #
 # File: views/auth_profiles/forgotpassword.html, line: 39
+#: views/auth_profiles/forgotpassword.html:39
 msgid   "Check your inbox for a link to change your password."
-msgstr  "k]-[3Ck j00r inb()kz F0R 4 Lignc t0 ch4NG3 j00R p4ss\\/\\/ORD."
+msgstr  "kh3CK j00R |nBokz ph0r a LYNk T0 ch4]\\[63 j00r P4Zsw0Rd."
+
 #
 # File: views/auth_profiles/changeemail.html, line: 43
+#: views/auth_profiles/changeemail.html:43
 msgid   "Check your inbox for a link to verify this new email address."
-msgstr  "k]-[3Ck j00r inb()kz F0R 4 Lignc t0 \\/ErifY 7his nEW 3Mail 4dDrezZ."
+msgstr  "chEcC j00R |N8okz f0r a 1Y|\\|k tO v3rYphy 7HIZ n3w Em4YL ADDReSz."
+
 #
 # File: views/plugins/submit.html, line: 128
+#: views/plugins/submit.html:128
 msgid   "Comments"
-msgstr  "komm3|\\|t5"
+msgstr  "koM]\\/[3nTZ"
+
 #
 # File: views/index/index_byinstalled.html, line: 136
+#: views/index/index_byinstalled.html:136
 msgid   "Contribute new info"
-msgstr  "ko]\\[tr1buT3 n3w |npho"
+msgstr  "c0]\\[TR|BU73 New info"
+
 #
-#. i18n: %1$s = plugin_name_e
 # File: views/plugins/copy.html, line: 23
+#. i18n: %1$s = plugin_name_e
+#: views/plugins/copy.html:23
 #, php-format
 msgid   "Copy plugin \"%1$s\" to sandbox"
-msgstr  "koPY p1UgIn \"%1$5\" t0 54ndb0X"
+msgstr  "C0pY PLUgYn \"%1$Z\" T0 zA|\\|DB0x"
+
 #
 # File: views/plugins/copy.html, line: 33
+#: views/plugins/copy.html:33
 msgid   "Copy this plugin to your sandbox?"
-msgstr  "koPY Thi5 pLU61gn 7o j00R Z4nDB()X?"
+msgstr  "c0PY T]-[|Z plug1N T0 j00R 54gndbokz?"
+
 #
 # File: views/plugins/copy.html, line: 38
+#: views/plugins/copy.html:38
 msgid   "Copy to Sandbox"
-msgstr  "kOPY 7O Z4ND80kz"
+msgstr  "C0pY 7o S4]\\[d8Okz"
+
 #
 # File: views/plugins/detail.html, line: 140
+# File: PluginDir/Index.js, line: 232
+#: views/plugins/detail.html:140 PluginDir/Index.js:232
 msgid   "Copy to sandbox"
-msgstr  "kOPY 7O Z4ND80kz"
+msgstr  "c0PY T0 54nD80x"
+
 #
-#. i18n: %1$s = plugin_name_e
 # File: views/plugins/submission_detail.html, line: 100
+#. i18n: %1$s = plugin_name_e
+#: views/plugins/submission_detail.html:100
 #, php-format
 msgid   "Create a new release in %1$s"
-msgstr  "krea73 4 N3W rEl34ZE i|\\| %1$z"
+msgstr  "Cr3473 a ]\\[3\\/\\/ r3l3AZ3 |gn %1$s"
+
 #
 # File: views/plugins/submission_detail.html, line: 67
+#: views/plugins/submission_detail.html:67
 msgid   "Create a new sandbox release"
-msgstr  "krea73 4 N3W Sagndb0x R3lE4ze"
+msgstr  "cR3aTe 4 gn3W Z@ndB0X rele4ze"
+
 #
 # File: views/plugins/create.html, line: 67
+#: views/plugins/create.html:67
 msgid   "Create new public plugin"
-msgstr  "krea73 n3w pu8l!C pLUg1n"
+msgstr  "Cr3473 n3W pu8l!c PlUg1n"
+
 #
-#. i18n: %1$s = screen_name_e
+# File: PluginDir/Index.js, line: 250
+#: PluginDir/Index.js:250
+msgid   "Create new sandbox plugin"
+msgstr  "crE@73 gn3W 54nDb0X plugIn"
+
+#
 # File: views/plugins/create.html, line: 59
+#. i18n: %1$s = screen_name_e
+#: views/plugins/create.html:59
 #, php-format
 msgid   "Create new sandbox plugin for %1$s"
-msgstr  "krea73 n3w sAndb0x PlUg!N for %1$5"
+msgstr  "kR3at3 N3w Z@gn|)8ox pLug|n FOR %1$Z"
+
 #
 # File: views/plugins/edit.html, line: 159
+#: views/plugins/edit.html:159
 msgid   "Current JSON data"
-msgstr  "kuRRENt j50gn da74"
+msgstr  "cuRr3nT json Data"
+
 #
 # File: views/plugins/submissions.html, line: 33
+#: views/plugins/submissions.html:33
 msgid   "Date"
-msgstr  "d4Te"
+msgstr  "dat3"
+
 #
 # File: views/plugins/delete.html, line: 43
 # File: views/plugins/detail.html, line: 166
+#: views/plugins/delete.html:43 views/plugins/detail.html:166
 msgid   "Delete plugin"
-msgstr  "d3l3TE PluG|N"
+msgstr  "DEl373 P1ug|n"
+
 #
-#. i18n: %1$s = plugin_name_e
 # File: views/plugins/delete.html, line: 23
+#. i18n: %1$s = plugin_name_e
+#: views/plugins/delete.html:23
 #, php-format
 msgid   "Delete plugin \"%1$s\""
-msgstr  "d3l3TE PluG|N \"%1$5\""
+msgstr  "del3t3 PLUG|gn \"%1$5\""
+
 #
 # File: views/plugins/delete.html, line: 38
+#: views/plugins/delete.html:38
 msgid   "Delete this plugin?"
-msgstr  "d3l3TE tHI5 P1ug1n?"
+msgstr  "DEl373 ThY5 PlugY]\\[?"
+
 #
 # File: views/index/index_byinstalled.html, line: 52
 # File: views/plugins/submit.html, line: 124
+#: views/index/index_byinstalled.html:52 views/plugins/submit.html:124
 msgid   "Description"
-msgstr  "d3zCr1PtI()n"
+msgstr  "deZCR!PT!on"
+
 #
 # File: views/plugins/detail.html, line: 209
+#: views/plugins/detail.html:209
 msgid   "Description:"
-msgstr  "d3zCr1PtI()n:"
+msgstr  "DEsCR|p710]\\[:"
+
 #
 # File: views/index/index_byinstalled.html, line: 48
+#: views/index/index_byinstalled.html:48
 msgid   "Detected Version"
-msgstr  "d3t3C73D V3RZ10n"
+msgstr  "d3t3ctEd v3R51O]\\["
+
 #
 # File: views/plugins/detail.html, line: 307
+#: views/plugins/detail.html:307
 msgid   "Download / Details"
-msgstr  "dow]\\[10AD / D3T@1lz"
+msgstr  "DoWNl04D / Detai1s"
+
 #
 # File: views/plugins/detail.html, line: 153
+#: views/plugins/detail.html:153
 msgid   "Edit details"
-msgstr  "e|)it dEtAIL5"
+msgstr  "3dit |)3T4|1Z"
+
 #
-#. i18n: %1$s = profile_screen_name_e
 # File: views/auth_profiles/editprofile.html, line: 31
+#. i18n: %1$s = profile_screen_name_e
+#: views/auth_profiles/editprofile.html:31
 #, php-format
 msgid   "Edit details for %1$s"
-msgstr  "Ed|t d3t4ilS ph0R %1$Z"
+msgstr  "e|)!T deT41lZ For %1$s"
+
+#
+# File: PluginDir/Index.js, line: 240
+#: PluginDir/Index.js:240
+msgid   "Edit in sandbox"
+msgstr  "3dit !N S4gndbox"
+
 #
 # File: auth_profiles/controllers/auth_profiles.php, line: 394
+#: auth_profiles/controllers/auth_profiles.php:394
 msgid   "Edit profile details"
-msgstr  "Ed|t proFilE d3741LS"
+msgstr  "e|)!T PROph1l3 |)e74!lS"
+
 #
 # File: views/auth_profiles/forgotpassword.html, line: 64
 # File: views/auth_profiles/register.html, line: 58
+#: views/auth_profiles/forgotpassword.html:64 views/auth_profiles/register.html:58
 msgid   "Email"
-msgstr  "Emai1"
+msgstr  "3maYL"
+
 #
 # File: views/auth_profiles/register.html, line: 62
+#: views/auth_profiles/register.html:62
 msgid   "Email (confirm)"
-msgstr  "Emai1 (coNfYrm)"
+msgstr  "3M4YL (COnf|rm)"
+
 #
 # File: auth_profiles/i18n/en_US/form_errors_auth.php, line: 38
+#: auth_profiles/i18n/en_US/form_errors_auth.php:38
 msgid   "Email confirmation does not match email."
-msgstr  "Emai1 coNfYrma710n d()3S N0t M47c]-[ 3MaIl."
+msgstr  "3M4YL COnf|rmA7YoN do35 N()T ]\\/[aTkh 3]\\/[4Yl."
+
 #
 # File: auth_profiles/i18n/en_US/form_errors_auth.php, line: 34
+#: auth_profiles/i18n/en_US/form_errors_auth.php:34
 msgid   "Email confirmation is required."
-msgstr  "Emai1 coNfYrma710n i5 rEQuir3d."
+msgstr  "3M4YL COnf|rmA7YoN YZ R3QU|R3d."
+
 #
 # File: auth_profiles/i18n/en_US/form_errors_auth.php, line: 24
+#: auth_profiles/i18n/en_US/form_errors_auth.php:24
 msgid   "Email is required."
-msgstr  "Emai1 IZ r3quYR3D."
+msgstr  "3M4YL !z r3QuiRED."
+
 #
 # File: views/macros/platforms.html, line: 32
+#: views/macros/platforms.html:32
 msgid   "Firefox"
-msgstr  "phIRephOX"
+msgstr  "fIR3ph()kz"
+
 #
 # File: views/auth_profiles/forgotpassword.html, line: 68
+#: views/auth_profiles/forgotpassword.html:68
 msgid   "Forgot password"
-msgstr  "fOrg07 p45zW0rd"
+msgstr  "fOR6o7 pa5swoRD"
+
 #
 # File: views/auth_profiles/login.html, line: 99
+#: views/auth_profiles/login.html:99
 msgid   "Forgot password?"
-msgstr  "fOrg07 p45zW0rd?"
+msgstr  "fOR6o7 pa5swoRD?"
+
 #
 # File: views/auth_profiles/editprofile.html, line: 50
 # File: views/auth_profiles/register.html, line: 50
+#: views/auth_profiles/editprofile.html:50 views/auth_profiles/register.html:50
 msgid   "Full name"
-msgstr  "fu1l n4m3"
+msgstr  "fuL1 NaMe"
+
 #
 # File: auth_profiles/i18n/en_US/form_errors_auth.php, line: 64
+#: auth_profiles/i18n/en_US/form_errors_auth.php:64
 msgid   "Full name is required"
-msgstr  "fu1l n4m3 Iz R3qU|r3d"
+msgstr  "fUl1 n4ME |5 R3quYR3d"
+
 #
 # File: auth_profiles/i18n/en_US/form_errors_auth.php, line: 66
+#: auth_profiles/i18n/en_US/form_errors_auth.php:66
 msgid   "Full name must contain only alphanumeric characters"
-msgstr  "fu1l n4m3 mUZ7 k()gntA1n 0]\\[lY 4lP]-[4nU]\\/[3ric kh4R4cT3r5"
+msgstr  "fUl1 n4ME muZt kO]\\[t4Ign 0n1y a1ph4|\\|UmeR|c kHaR4c73R5"
+
 #
 # File: views/index/index_byinstalled.html, line: 60
+#: views/index/index_byinstalled.html:60
 msgid   "Have feedback?"
-msgstr  "h4v3 phE3d8aCc?"
+msgstr  "hav3 f3Edb4CK?"
+
 #
 # File: views/index/index_shell.html, line: 27
+#: views/index/index_shell.html:27
 msgid   "Home"
-msgstr  "hOm3"
+msgstr  "hom3"
+
 #
 # File: views/index/index_byinstalled.html, line: 56
+#: views/index/index_byinstalled.html:56
 msgid   "Installed Status"
-msgstr  "INS74L13d zTaTUS"
+msgstr  "inStallEd 5ta7u5"
+
 #
 # File: views/macros/oses.html, line: 64
+#: views/macros/oses.html:64
 msgid   "Intel Mac OS X"
-msgstr  "Y|\\|7el m4c 0Z kz"
+msgstr  "int3L mak 05 X"
+
 #
 # File: views/macros/oses.html, line: 56
+#: views/macros/oses.html:56
 msgid   "Intel Mac OS X 10.6"
-msgstr  "Y|\\|7el m4c 0Z kz 10.6"
+msgstr  "int3L mak 05 X 10.6"
+
 #
 # File: views/auth_profiles/verifyemail.html, line: 31
+#: views/auth_profiles/verifyemail.html:31
 msgid   "Invalid email verification token."
-msgstr  "Y|\\|Val|d 3MaIl v3R!FIkat|on 7oC3n."
+msgstr  "inv4LiD Em4il VeriFIk47YOgn tOkE|\\|."
+
 #
 # File: views/auth_profiles/changepassword.html, line: 72
+#: views/auth_profiles/changepassword.html:72
 msgid   "Invalid password reset attempt."
-msgstr  "Y|\\|Val|d paZz\\/\\/ord R3ZE7 4TtEmP7."
+msgstr  "!n\\/4L!D paszW0rD R353t at7e]\\/[pT."
+
 #
 # File: views/plugins/detail.html, line: 179
+#: views/plugins/detail.html:179
 msgid   "JSON export"
-msgstr  "js0|\\| 3kzPOr7"
+msgstr  "jz0n exp0RT"
+
+#
+# File: PluginDir/Editor.js, line: 190
+#: PluginDir/Editor.js:190
+#, c-format
+msgid   "Last saved at %1$s"
+msgstr  "l4zt saVe|) 4t %1$Z"
+
 #
 # File: views/macros/statuses.html, line: 33
+#: views/macros/statuses.html:33
 msgid   "Latest"
-msgstr  "147ezT"
+msgstr  "l4T3s7"
+
 #
 # File: views/macros/oses.html, line: 96
+#: views/macros/oses.html:96
 msgid   "Linux"
-msgstr  "1!nUx"
+msgstr  "lInuX"
+
 #
 # File: views/plugins/edit.html, line: 203
+#: views/plugins/edit.html:203
 msgid   "Literal aliases"
-msgstr  "1!7eR@l Al!aS35"
+msgstr  "lIT3Ral aL|4Z3S"
+
 #
 # File: views/auth_profiles/logout.html, line: 27
+#: views/auth_profiles/logout.html:27
 msgid   "Logged out."
-msgstr  "1O6gE|) 0UT."
+msgstr  "lOG6e|) Ou7."
+
 #
 # File: views/auth_profiles/login.html, line: 27
 # File: views/auth_profiles/login.html, line: 81
 # File: views/auth_profiles/login.html, line: 93
+#: views/auth_profiles/login.html:27 views/auth_profiles/login.html:81 views/auth_profiles/login.html:93
 msgid   "Login"
-msgstr  "1O6!n"
+msgstr  "lOGYN"
+
 #
 # File: views/auth_profiles/logout.html, line: 31
+#: views/auth_profiles/logout.html:31
 msgid   "Login again?"
-msgstr  "1O6!n 464I|\\|?"
+msgstr  "logYn 4g4|]\\[?"
+
 #
 # File: views/auth_profiles/register.html, line: 42
+#: views/auth_profiles/register.html:42
 msgid   "Login details"
-msgstr  "1O6!n |)374!lZ"
+msgstr  "logYn dEt4Yl5"
+
 #
 # File: views/auth_profiles/forgotpassword.html, line: 60
 # File: views/auth_profiles/login.html, line: 85
 # File: views/auth_profiles/register.html, line: 46
+#: views/auth_profiles/forgotpassword.html:60 views/auth_profiles/login.html:85 views/auth_profiles/register.html:46
 msgid   "Login name"
-msgstr  "1O6!n |\\|4m3"
+msgstr  "logYn Name"
+
 #
 # File: auth_profiles/i18n/en_US/form_errors_auth.php, line: 18
+#: auth_profiles/i18n/en_US/form_errors_auth.php:18
 msgid   "Login name is not available."
-msgstr  "1O6!n |\\|4m3 !Z |\\|O7 4vA1l4bl3."
+msgstr  "logYn Name YZ N0T 4v4Il4b13."
+
 #
 # File: auth_profiles/i18n/en_US/form_errors_auth.php, line: 12
+#: auth_profiles/i18n/en_US/form_errors_auth.php:12
 msgid   "Login name is required."
-msgstr  "1O6!n |\\|4m3 !Z reQUYR3d."
+msgstr  "logYn Name YZ RequiReD."
+
 #
 # File: auth_profiles/i18n/en_US/form_errors_auth.php, line: 14
+#: auth_profiles/i18n/en_US/form_errors_auth.php:14
 msgid   "Login name must be between 3 and 64 characters in length"
-msgstr  "1O6!n |\\|4m3 mUZT bE 837w3egn 3 4ND 64 k]-[4r4ctER5 Y|\\| lengTH"
+msgstr  "logYn Name mU57 b3 b3TWeEn 3 4gnd 64 ch4r4CTER5 |]\\[ 13NG7h"
+
 #
 # File: auth_profiles/i18n/en_US/form_errors_auth.php, line: 16
+#: auth_profiles/i18n/en_US/form_errors_auth.php:16
 msgid   "Login name must contain only alphanumeric characters"
-msgstr  "1()g!n N4M3 muSt c0|\\|T4Yn only alPHAnuMErYc ch4RaC7ErS"
+msgstr  "logYn Name mU57 k0nTaI|\\| 0nly 4lph4NumERYk chAR4C7Erz"
+
 #
 # File: views/auth_profiles/changepassword.html, line: 63
 # File: views/auth_profiles/verifyemail.html, line: 51
+#: views/auth_profiles/changepassword.html:63 views/auth_profiles/verifyemail.html:51
 msgid   "Login?"
-msgstr  "1()g!n?"
+msgstr  "logYn?"
+
 #
 # File: views/auth_profiles/logout.html, line: 19
+#: views/auth_profiles/logout.html:19
 msgid   "Logout"
-msgstr  "1()g()UT"
+msgstr  "lOG0U7"
+
 #
 # File: views/plugins/edit.html, line: 192
+#: views/plugins/edit.html:192
 msgid   "MIME types"
-msgstr  "m!Me 7YP3Z"
+msgstr  "mI]\\/[3 tYpe5"
+
 #
 # File: views/plugins/edit.html, line: 186
+#: views/plugins/edit.html:186
 msgid   "MIME types and aliases"
-msgstr  "m!Me 7YP3Z agnD @l|4Z3S"
+msgstr  "mI]\\/[3 tYpe5 4Nd AlYaz3Z"
+
 #
 # File: views/plugins/edit.html, line: 197
+#: views/plugins/edit.html:197
 msgid   "MIME types of content handled by this plugin"
-msgstr  "m!Me 7YP3Z ()f konT3gnT ha]\\[|)lEd bY 7]-[|Z pLu6in"
+msgstr  "mI]\\/[3 tYpe5 0f C0nt3Nt h4gndLe|) bY 7hYS p1ugIn"
+
 #
 # File: views/macros/oses.html, line: 88
+#: views/macros/oses.html:88
 msgid   "Mac"
 msgstr  "m4c"
+
 #
 # File: views/macros/oses.html, line: 80
+#: views/macros/oses.html:80
 msgid   "Mac OS X"
-msgstr  "m4c ()z kz"
+msgstr  "m4c 0s x"
+
 #
 # File: views/plugins/submission_detail.html, line: 47
 # File: views/plugins/submissions.html, line: 23
 # File: views/plugins/submissions.html, line: 154
+#: views/plugins/submission_detail.html:47 views/plugins/submissions.html:23 views/plugins/submissions.html:154
 msgid   "Mark as seen"
-msgstr  "mark 4S CN"
+msgstr  "m4Rk AZ Cgn"
+
 #
 # File: views/plugins/submission_detail.html, line: 38
+#: views/plugins/submission_detail.html:38
 msgid   "Mark as unseen"
-msgstr  "mark 4S unZEen"
+msgstr  "m4Rk AZ un5e3n"
+
 #
 # File: views/layout.html, line: 40
+#: views/layout.html:40
 msgid   "Mozilla"
-msgstr  "m0zYll@"
+msgstr  "moZYLla"
+
 #
 # File: views/layout.html, line: 169
+#: views/layout.html:169
 msgid   "Mozilla Plugin Directory"
-msgstr  "m0zYll@ PlUg1N D!R3kt0RY"
+msgstr  "moZYLla Plugi|\\| DYR3kT0ry"
+
 #
 # File: views/index/index_byinstalled.html, line: 44
 # File: views/plugins/submissions.html, line: 37
 # File: views/plugins/submit.html, line: 116
 # File: views/search/results.html, line: 53
+#: views/index/index_byinstalled.html:44 views/plugins/submissions.html:37 views/plugins/submit.html:116 views/search/results.html:53
 msgid   "Name"
-msgstr  "]\\[ame"
+msgstr  "Nam3"
+
 #
 # File: views/index/index_byinstalled.html, line: 109
+#: views/index/index_byinstalled.html:109
 msgid   "Needs update"
-msgstr  "]\\[e3d5 up|)ATe"
+msgstr  "N3Edz Upd4t3"
+
 #
 # File: views/auth_profiles/changepassword.html, line: 122
+#: views/auth_profiles/changepassword.html:122
 msgid   "New Password"
-msgstr  "]\\[eW p4S5\\/\\/ORd"
+msgstr  "N3\\/\\/ pa5S\\/\\/0rd"
+
 #
 # File: views/auth_profiles/changepassword.html, line: 126
+#: views/auth_profiles/changepassword.html:126
 msgid   "New Password (confirm)"
-msgstr  "]\\[eW p4S5\\/\\/ORd (c0nph!Rm)"
+msgstr  "N3\\/\\/ pa5S\\/\\/0rd (c0gnfiRm)"
+
 #
 # File: views/auth_profiles/changeemail.html, line: 60
+#: views/auth_profiles/changeemail.html:60
 msgid   "New email"
-msgstr  "ne\\/\\/ 3M4Y1"
+msgstr  "N3\\/\\/ 3]\\/[4Il"
+
 #
 # File: views/auth_profiles/verifyemail.html, line: 41
+#: views/auth_profiles/verifyemail.html:41
 msgid   "New email address verified."
-msgstr  "ne\\/\\/ 3M4Y1 4Ddr3Z5 V3r1f|ed."
+msgstr  "N3\\/\\/ 3]\\/[4Il 4ddRes5 v3rIph13D."
+
 #
 # File: auth_profiles/i18n/en_US/form_errors_auth.php, line: 84
+#: auth_profiles/i18n/en_US/form_errors_auth.php:84
 msgid   "New password confirmation required"
-msgstr  "ne\\/\\/ PazZW0rd C0nfIrm47|()n r3qu!R3|)"
+msgstr  "n3w pAZzW()Rd C0nfiRmAtIo|\\| REqU1R3|)"
+
 #
 # File: auth_profiles/i18n/en_US/form_errors_auth.php, line: 80
+#: auth_profiles/i18n/en_US/form_errors_auth.php:80
 msgid   "New password is required"
-msgstr  "ne\\/\\/ PazZW0rd 15 R3quYr3|)"
+msgstr  "n3w pAZzW()Rd i5 r3QUYR3D"
+
 #
 # File: views/index/index_byinstalled.html, line: 97
+#: views/index/index_byinstalled.html:97
 msgid   "Newer"
-msgstr  "ne\\/\\/3r"
+msgstr  "n3w3R"
+
 #
 # File: views/search/results.html, line: 139
+#: views/search/results.html:139
 msgid   "No search results, please change your search terms and try again."
-msgstr  "no S3arCh r3Zu175, p134zE kha]\\[g3 j00R s34RC]-[ T3Rm5 4N|) 7rY a6a!"
-        "n."
+msgstr  "nO z3ARcH RezUl7z, PL3AZ3 k]-[ang3 j00r Z34rkH T3RMZ agnD TRY 46aY|\\|."
+
 #
 # File: views/plugins/submissions.html, line: 140
+#: views/plugins/submissions.html:140
 msgid   "No submissions."
-msgstr  "no SUbmYsS1On5."
+msgstr  "nO zuB]\\/[Is5|0n5."
+
+#
+# File: PluginDir/Index.js, line: 182
+#: PluginDir/Index.js:182
+msgid   "Not detected (<a href=\"https://bugzilla.mozilla.org/show_bug.cgi?id=536394\" target=\"_new\">Any ideas?</a>)"
+msgstr  "nOT de73k7ed (<a href=\"https://bugzilla.mozilla.org/show_bug.cgi?id=536394\" target=\"_new\">4ny Yd34Z?</a>)"
+
 #
 # File: views/plugins/detail.html, line: 255
 # File: views/plugins/submissions.html, line: 49
 # File: views/search/results.html, line: 65
+#: views/plugins/detail.html:255 views/plugins/submissions.html:49 views/search/results.html:65
 msgid   "OS"
-msgstr  "0s"
+msgstr  "()z"
+
 #
 # File: views/auth_profiles/changepassword.html, line: 115
+#: views/auth_profiles/changepassword.html:115
 msgid   "Old Password"
-msgstr  "0ld p4S5\\/\\/ORd"
+msgstr  "()l|) pAZzW()Rd"
+
 #
 # File: auth_profiles/i18n/en_US/form_errors_auth.php, line: 74
+#: auth_profiles/i18n/en_US/form_errors_auth.php:74
 msgid   "Old password is invalid."
-msgstr  "0ld p4S5\\/\\/ORd 1s 1|\\|vA1id."
+msgstr  "0ld pasSw0rd 15 IN\\/411D."
+
 #
 # File: auth_profiles/i18n/en_US/form_errors_auth.php, line: 76
+#: auth_profiles/i18n/en_US/form_errors_auth.php:76
 msgid   "Old password is required"
-msgstr  "0ld p4S5\\/\\/ORd 1s rEQUIR3|)"
+msgstr  "0ld pasSw0rd 15 r3Qu1red"
+
 #
 # File: views/plugins/edit.html, line: 128
+#: views/plugins/edit.html:128
 msgid   "Options"
-msgstr  "0p7YOn5"
+msgstr  "0P71()|\\|S"
+
 #
 # File: views/macros/statuses.html, line: 42
+#: views/macros/statuses.html:42
 msgid   "Outdated"
-msgstr  "0u7d473|)"
+msgstr  "0U7Da7Ed"
+
 #
 # File: views/macros/oses.html, line: 72
+#: views/macros/oses.html:72
 msgid   "PPC Mac OS X"
-msgstr  "ppC m4k 0S kz"
+msgstr  "PPc Mak 05 kz"
+
 #
 # File: views/auth_profiles/login.html, line: 89
 # File: views/auth_profiles/register.html, line: 66
+#: views/auth_profiles/login.html:89 views/auth_profiles/register.html:66
 msgid   "Password"
-msgstr  "paZsw0r|)"
+msgstr  "P45ZW0Rd"
+
 #
 # File: views/auth_profiles/register.html, line: 70
+#: views/auth_profiles/register.html:70
 msgid   "Password (confirm)"
-msgstr  "paZsw0r|) (C0gnf|r]\\/[)"
+msgstr  "P45ZW0Rd (COnphirm)"
+
 #
 # File: auth_profiles/i18n/en_US/form_errors_auth.php, line: 50
 # File: auth_profiles/i18n/en_US/form_errors_auth.php, line: 86
+#: auth_profiles/i18n/en_US/form_errors_auth.php:50 auth_profiles/i18n/en_US/form_errors_auth.php:86
 msgid   "Password and confirmation must match."
-msgstr  "paSzWOrd 4nd C0nfIrm47|()n Muz7 ]\\/[A7k]-[."
+msgstr  "P45ZW0Rd 4nd koNF|rmA7!0n muS7 ]\\/[4Tkh."
+
 #
 # File: views/auth_profiles/changepassword.html, line: 58
+#: views/auth_profiles/changepassword.html:58
 msgid   "Password changed."
-msgstr  "paSzWOrd kH4n63|)."
+msgstr  "P4Z5W()RD c]-[angeD."
+
 #
 # File: auth_profiles/i18n/en_US/form_errors_auth.php, line: 48
+#: auth_profiles/i18n/en_US/form_errors_auth.php:48
 msgid   "Password confirmation is required."
-msgstr  "paSzWOrd k0NFYR]\\/[a7Y0n |s requ1Re|)."
+msgstr  "P4Z5W()RD c()|\\|f1rM4tI0n 1z r3Qu|r3|)."
+
 #
 # File: auth_profiles/i18n/en_US/form_errors_auth.php, line: 42
+#: auth_profiles/i18n/en_US/form_errors_auth.php:42
 msgid   "Password is invalid."
-msgstr  "paSzWOrd 1Z Inv4LId."
+msgstr  "P4Z5W()RD YS !nV4l|D."
+
 #
 # File: auth_profiles/i18n/en_US/form_errors_auth.php, line: 44
+#: auth_profiles/i18n/en_US/form_errors_auth.php:44
 msgid   "Password is required."
-msgstr  "paSzWOrd 1Z r3qU!r3d."
+msgstr  "P4Z5W()RD YS R3qu1Red."
+
 #
 # File: views/plugins/detail.html, line: 251
 # File: views/plugins/submissions.html, line: 53
 # File: views/search/results.html, line: 61
+#: views/plugins/detail.html:251 views/plugins/submissions.html:53 views/search/results.html:61
 msgid   "Platform"
-msgstr  "pL4TFOrm"
+msgstr  "Platph()RM"
+
 #
-#. i18n: %1$s = plugin_name_e
 # File: views/plugins/detail.html, line: 64
+#. i18n: %1$s = plugin_name_e
+#: views/plugins/detail.html:64
 #, php-format
 msgid   "Plugin Detail :: %1$s"
-msgstr  "pLuG1n De74Il :: %1$5"
+msgstr  "PlUg1|\\| d3tA!l :: %1$Z"
+
 #
+# File: views/plugins/detail.html, line: 55
 #. i18n: %1$s = plugin_name_e
 #. i18n: %2$s = screen_name_e
-# File: views/plugins/detail.html, line: 55
+#: views/plugins/detail.html:55
 #, php-format
 msgid   "Plugin Detail :: %1$s (%2$s sandbox)"
-msgstr  "pLuG1n De74Il :: %1$5 (%2$Z 5and80kz)"
+msgstr  "PlUg1|\\| d3tA!l :: %1$Z (%2$s z4Ndbox)"
+
 #
 # File: views/layout.html, line: 42
+#: views/layout.html:42
 msgid   "Plugin Directory"
-msgstr  "plug|n |)Yr3kTOry"
+msgstr  "PlUg1|\\| d1rEc70ry"
+
 #
-#. i18n: %1$s = profile_screen_name_e
 # File: views/plugins/sandbox.html, line: 20
 # File: views/plugins/sandbox.html, line: 29
+#. i18n: %1$s = profile_screen_name_e
+#: views/plugins/sandbox.html:20 views/plugins/sandbox.html:29
 #, php-format
 msgid   "Plugin Sandbox for %1$s"
-msgstr  "plug|n z4gndb0kz phOr %1$s"
+msgstr  "PlUg!|\\| S4gndb0X FoR %1$S"
+
 #
 # File: views/plugins/edit.html, line: 147
 # File: views/plugins/submit.html, line: 86
+#: views/plugins/edit.html:147 views/plugins/submit.html:86
 msgid   "Plugin details"
-msgstr  "plug|n |)eT4|Ls"
+msgstr  "PlUg!|\\| d3Tail5"
+
 #
 # File: views/plugins/detail.html, line: 196
+#: views/plugins/detail.html:196
 msgid   "Plugin icon"
-msgstr  "plug|n !kOn"
+msgstr  "PlUg!|\\| |c0n"
+
 #
 # File: views/plugins/edit.html, line: 168
+#: views/plugins/edit.html:168
 msgid   "Plugin metadata and release defaults"
-msgstr  "plug|n ]\\/[eT4d4TA agnd R313aS3 d3F4U1tz"
+msgstr  "PlUg!|\\| m3Tad4t4 ANd r3l3a53 DEph4Ul7S"
+
 #
+# File: views/auth_profiles/settings.html, line: 49
 #. i18n: %1$s = base_url
 #. i18n: %2$s = profile_screen_name_url
 #. i18n: %3$s = profile_screen_name
-# File: views/auth_profiles/settings.html, line: 49
+#: views/auth_profiles/settings.html:49
 #, php-format
 msgid   "Profile settings for <a href=\"%1$sprofiles/%2$s\">%3$s</a>"
-msgstr  "pr0f|l3 sEtT|gn6z fOR <a href=\"%1$sprofiles/%2$s\">%3$Z</a>"
+msgstr  "PR()F!1E 53Tt1N6Z fOr <a href=\"%1$sprofiles/%2$s\">%3$5</a>"
+
 #
 # File: views/plugins/detail.html, line: 103
+#: views/plugins/detail.html:103
 msgid   "Push changes live"
-msgstr  "pu5H ch@n63S LIv3"
+msgstr  "PU5H kh4gng3S liv3"
+
 #
 # File: views/plugins/deploy.html, line: 33
+#: views/plugins/deploy.html:33
 msgid   "Push changes to this plugin live?"
-msgstr  "pu5H ch@n63S TO ThIs Plug|]\\[ 1I\\/3?"
+msgstr  "PU5H kh4gng3S 7o Th|S plug1n lIvE?"
+
 #
-#. i18n: %1$s = plugin_name_e
 # File: views/plugins/deploy.html, line: 23
+#. i18n: %1$s = plugin_name_e
+#: views/plugins/deploy.html:23
 #, php-format
 msgid   "Push plugin changes for \"%1$s\""
-msgstr  "pUZH PLugin k]-[4|\\|g3S for \"%1$S\""
+msgstr  "PU5H P1U6|n kH4Ng3S ph0r \"%1$Z\""
+
 #
 # File: views/plugins/deploy.html, line: 38
+#: views/plugins/deploy.html:38
 msgid   "Push plugin changes live"
-msgstr  "pUZH PLugin k]-[4|\\|g3S livE"
+msgstr  "PuZh plUgYn cH4|\\|g3s 1|\\/3"
+
 #
 # File: views/auth_profiles/login.html, line: 61
+#: views/auth_profiles/login.html:61
 msgid   "Re-send Account Activation Information"
-msgstr  "re-Z3n|) 4ckOuNT act|va7Yon !nph()RMaT!on"
+msgstr  "R3-Z3nd aCc()Un7 4cTYv@t1()N i|\\|f0rmAtiO]\\["
+
 #
 # File: views/auth_profiles/register_success.html, line: 36
 # File: views/auth_profiles/reverifyemail.html, line: 44
+#: views/auth_profiles/register_success.html:36 views/auth_profiles/reverifyemail.html:44
 msgid   "Re-send verification email"
-msgstr  "re-Z3n|) v3RIph|Cati0n Em4iL"
+msgstr  "R3-Z3nd v3r!f1C47|0gn E]\\/[a!1"
+
 #
-#. i18n: %1$s = forgot_password_login_name
 # File: views/auth_profiles/changepassword.html, line: 92
+#. i18n: %1$s = forgot_password_login_name
+#: views/auth_profiles/changepassword.html:92
 #, php-format
 msgid   "Recovering password for %1$s"
-msgstr  "reC0\\/3rIN6 p@ZSwoRd ph0r %1$Z"
+msgstr  "R3CoV3R1NG P@Zsw0rd phor %1$z"
+
 #
 # File: views/plugins/edit.html, line: 214
+#: views/plugins/edit.html:214
 msgid   "Regex aliases"
-msgstr  "reg3x A1Ia5es"
+msgstr  "R3G3x al1aS3z"
+
 #
 # File: views/plugins/edit.html, line: 219
+#: views/plugins/edit.html:219
 msgid   "Regexes matching names by which this plugin has been known"
-msgstr  "reg3x3z MaTk]-[I|\\|g namEz 8Y w]-[!kh tH1S PLU6YN h4Z bEe]\\[ c|\\|"
-        "0wn"
+msgstr  "R3G3x3z Ma7cH1|\\|g gnAmEZ 8Y \\/\\/h!c]-[ 7h|z P1Ug||\\| ]-[a5 8Een Cn0wN"
+
 #
 # File: views/auth_profiles/forgotpassword.html, line: 27
 # File: views/auth_profiles/register.html, line: 27
 # File: views/auth_profiles/register.html, line: 78
+#: views/auth_profiles/forgotpassword.html:27 views/auth_profiles/register.html:27 views/auth_profiles/register.html:78
 msgid   "Register"
-msgstr  "reg1sT3r"
+msgstr  "R3Gis73r"
+
 #
 # File: views/auth_profiles/verifyemail.html, line: 19
+#: views/auth_profiles/verifyemail.html:19
 msgid   "Register (verified)"
-msgstr  "re61z73r (v3R|phI3D)"
+msgstr  "R3Gis73r (VER1F13|))"
+
 #
 # File: views/auth_profiles/register_success.html, line: 19
 # File: views/auth_profiles/reverifyemail.html, line: 19
+#: views/auth_profiles/register_success.html:19 views/auth_profiles/reverifyemail.html:19
 msgid   "Register (verify)"
-msgstr  "re61z73r (v3R|phy)"
+msgstr  "R3g1s7Er (v3R1fy)"
+
 #
 # File: views/plugins/edit.html, line: 246
+#: views/plugins/edit.html:246
 msgid   "Release"
-msgstr  "re134S3"
+msgstr  "R3l3asE"
+
 #
 # File: views/plugins/requestpush.html, line: 38
+#: views/plugins/requestpush.html:38
 msgid   "Request approval"
-msgstr  "requ3S7 4pPR0vA1"
+msgstr  "R3QuesT 4PpR0\\/4l"
+
 #
 # File: views/plugins/detail.html, line: 116
+#: views/plugins/detail.html:116
 msgid   "Request approval for changes"
-msgstr  "requ3S7 4pPR0vA1 fOR Ch@ng3Z"
+msgstr  "R3QuesT 4PpR0\\/4l fOr cH4n635"
+
 #
-#. i18n: %1$s = plugin_name_e
 # File: views/plugins/requestpush.html, line: 23
+#. i18n: %1$s = plugin_name_e
+#: views/plugins/requestpush.html:23
 #, php-format
 msgid   "Request approval for changes to \"%1$s\""
-msgstr  "requ3S7 4pPR0vA1 fOR Ch@ng3Z t() \"%1$s\""
+msgstr  "R3QuesT 4PpR0\\/4l fOr cH4n635 t0 \"%1$Z\""
+
 #
 # File: views/plugins/requestpush.html, line: 33
+#: views/plugins/requestpush.html:33
 msgid   "Request approval for changes?"
-msgstr  "requ3S7 4pPR0vA1 fOR Ch@ng3Z?"
+msgstr  "R3QuesT 4PpR0\\/4l fOr cH4n635?"
+
 #
 # File: views/auth_profiles/editprofile.html, line: 62
+#: views/auth_profiles/editprofile.html:62
 msgid   "Role"
-msgstr  "r013"
+msgstr  "R()l3"
+
 #
 # File: views/index/index_byinstalled.html, line: 68
+#: views/index/index_byinstalled.html:68
 msgid   "Sandbox actions"
-msgstr  "5@NDB0kz akTI0NS"
+msgstr  "s4|\\|Db0kz 4CTi0NZ"
+
+#
+# File: PluginDir/Editor.js, line: 195
+#: PluginDir/Editor.js:195
+#, c-format
+msgid   "Save failed at %1$s"
+msgstr  "S4\\/3 pha|l3|) a7 %1$Z"
+
 #
 # File: views/plugins/edit.html, line: 134
+#: views/plugins/edit.html:134
 msgid   "Save now"
-msgstr  "5@V3 n0w"
+msgstr  "S4\\/3 n()w"
+
 #
 # File: views/plugins/edit.html, line: 154
+#: views/plugins/edit.html:154
 msgid   "Saved JSON data"
-msgstr  "5@V3|) ;zON d4T4"
+msgstr  "S4\\/3D jz0N |)a74"
+
+#
+# File: PluginDir/Editor.js, line: 175
+#: PluginDir/Editor.js:175
+#, c-format
+msgid   "Saving at %1$s"
+msgstr  "S4\\/ing a7 %1$z"
+
 #
 # File: auth_profiles/i18n/en_US/form_errors_auth.php, line: 60
+#: auth_profiles/i18n/en_US/form_errors_auth.php:60
 msgid   "Screen name is not available."
-msgstr  "5kr3egn gnam3 Is N0t 4vAi14BLE."
+msgstr  "ScR3e|\\| naME !z n07 4VA|Lab13."
+
 #
 # File: auth_profiles/i18n/en_US/form_errors_auth.php, line: 54
+#: auth_profiles/i18n/en_US/form_errors_auth.php:54
 msgid   "Screen name is required."
-msgstr  "5kr3egn gnam3 Is rEQU|REd."
+msgstr  "ScR3e|\\| naME !z reqUYrE|)."
+
 #
 # File: auth_profiles/i18n/en_US/form_errors_auth.php, line: 56
+#: auth_profiles/i18n/en_US/form_errors_auth.php:56
 msgid   "Screen name must be between 3 and 64 characters in length"
-msgstr  "5kr3egn gnam3 mUZ7 b3 b3twE3n 3 an|) 64 k]-[@r4Ct3rz IN l3ng7]-["
+msgstr  "ScR3e|\\| naME muZ7 b3 b3TW33N 3 4|\\|d 64 khARacT3RZ 1n l3ngTh"
+
 #
 # File: auth_profiles/i18n/en_US/form_errors_auth.php, line: 58
+#: auth_profiles/i18n/en_US/form_errors_auth.php:58
 msgid   "Screen name must contain only alphanumeric characters"
-msgstr  "5kr3egn gnam3 mUZ7 cognTa1N onLY @lPHanU]\\/[3rYc CHArAkt3rS"
+msgstr  "ScR3e|\\| naME muZ7 c0NT@i|\\| ()NlY 4LphANUm3R|c kHAr@k73RZ"
+
 #
-#. i18n: %1$s = authprofile_screen_name_e
 # File: views/auth_profiles/settings.html, line: 31
+#. i18n: %1$s = authprofile_screen_name_e
+#: views/auth_profiles/settings.html:31
 #, php-format
 msgid   "Settings for %1$s"
-msgstr  "5eT7!gn65 phOr %1$s"
+msgstr  "s377!|\\|g5 FOR %1$S"
+
 #
 # File: views/forbidden.html, line: 31
+#: views/forbidden.html:31
 msgid   "Sorry, that action is not allowed."
-msgstr  "soRRy, 7hAT act10n i5 gn0t 4Ll0W3|)."
+msgstr  "s()RrY, 7h4T ak7iON |S |\\|07 4110wED."
+
 #
 # File: views/auth_profiles/login.html, line: 39
+#: views/auth_profiles/login.html:39
 msgid   "Sorry, that login has been disabled."
-msgstr  "soRRy, 7hAT L061gn Ha5 b33n |)!z4BL3d."
+msgstr  "s()RrY, 7h4T 1ogiN h4S 83e|\\| d1zA8l3d."
+
 #
 # File: views/auth_profiles/login.html, line: 51
+#: views/auth_profiles/login.html:51
 msgid   "Sorry, the email address for that login has not yet been verified."
-msgstr  "soRRy, d4 EmAIL 4dDR3s5 F0r 7]-[At L()G!n ]-[@s nOt y3t be3|\\| veR|"
-        "phied."
+msgstr  "s()RrY, d4 em4|1 4D|)r35S ph0r 7h4T l0g|N H4S n0t yE7 been \\/3RYph!3|)."
+
 #
 # File: views/plugins/detail.html, line: 259
 # File: views/plugins/submissions.html, line: 45
 # File: views/plugins/submit.html, line: 100
 # File: views/search/results.html, line: 69
+#: views/plugins/detail.html:259 views/plugins/submissions.html:45 views/plugins/submit.html:100 views/search/results.html:69
 msgid   "Status"
-msgstr  "st4tuS"
+msgstr  "s747Us"
+
 #
 # File: views/index/index_shell.html, line: 122
 # File: views/plugins/submission_detail.html, line: 19
+#: views/index/index_shell.html:122 views/plugins/submission_detail.html:19
 msgid   "Submissions"
-msgstr  "sUbmIS5YOn5"
+msgstr  "sUbM!sSI0nS"
+
 #
 # File: views/plugins/submit.html, line: 138
+#: views/plugins/submit.html:138
 msgid   "Submit"
-msgstr  "sUbmI7"
+msgstr  "sUbM!7"
+
 #
 # File: views/plugins/submit.html, line: 51
+#: views/plugins/submit.html:51
 msgid   "Submit plugin info"
-msgstr  "sUbmI7 PluG|N 1gnfo"
+msgstr  "sUbM!7 P1U6i|\\| iNF0"
+
 #
 # File: views/index/index_byinstalled.html, line: 124
 # File: views/index/index_byinstalled.html, line: 128
 # File: views/index/index_byinstalled.html, line: 132
+#: views/index/index_byinstalled.html:124 views/index/index_byinstalled.html:128 views/index/index_byinstalled.html:132
 msgid   "Suggest correction"
-msgstr  "sUgg3St cORR3cT1o]\\["
+msgstr  "SuGgeZT C0RR3C710N"
+
 #
 # File: views/index/index_byinstalled.html, line: 120
+#: views/index/index_byinstalled.html:120
 msgid   "Suggest update"
-msgstr  "SuGgEzt uPDAt3"
+msgstr  "SuGgeZT up|)a73"
+
 #
 # File: views/macros/oses.html, line: 104
+#: views/macros/oses.html:104
 msgid   "SunOS"
-msgstr  "SuNoS"
+msgstr  "SuNos"
+
 #
 # File: views/macros/oses.html, line: 112
+#: views/macros/oses.html:112
 msgid   "SunOS (sun4u)"
-msgstr  "SuNoS (zUN4U)"
+msgstr  "SuNos (ZUn4u)"
+
 #
 # File: views/auth_profiles/forgotpassword.html, line: 56
-msgid   "Supply either of these pieces of information to recover your "
-        "password:"
-msgstr  "SuPP1y 3ItHEr 0f 7hES3 p!3ceS 0f Ynf0rm4T|On t0 rEko\\/3R j00R p@5s"
-        "\\/\\/0Rd:"
+#: views/auth_profiles/forgotpassword.html:56
+msgid   "Supply either of these pieces of information to recover your password:"
+msgstr  "SuPPlY 31t]-[3r 0ph 7]-[ezE P13k3z 0ph 1nfoRm4T|0n 70 rEk()\\/3R j00r P@Sz\\/\\/ord:"
+
 #
 # File: views/plugins/edit.html, line: 208
+#: views/plugins/edit.html:208
 msgid   "The literal names by which this plugin has been known"
-msgstr  "D4 1ITer4l N4MES bY Wh!kh 7h|z Plu6Yn h4S 8Eegn cn0wn"
+msgstr  "D4 lYt3ral na]\\/[3z by w]-[Ych th!S PluG1n ]-[a5 83Egn kn0wn"
+
 #
 # File: auth_profiles/i18n/en_US/form_errors_auth.php, line: 92
+#: auth_profiles/i18n/en_US/form_errors_auth.php:92
 msgid   "This email address is used by another login"
-msgstr  "th|s EM4IL addR3ZZ !S UzEd bY a]\\[0t]-[3r 1Og|gn"
+msgstr  "tHi5 ema1l AdDrezz Yz UZ3d 8Y @n07h3R LOg|gn"
+
 #
 # File: views/plugins/sandbox_listing.html, line: 13
+#: views/plugins/sandbox_listing.html:13
 msgid   "This sandbox is empty."
-msgstr  "th|s S4ndB0kz YZ 3Mp7Y."
+msgstr  "tHi5 sanDb()x 1Z eMPty."
+
 #
 # File: views/auth_profiles/changepassword.html, line: 78
+#: views/auth_profiles/changepassword.html:78
 msgid   "Try again?"
-msgstr  "trY a64iN?"
+msgstr  "7Ry 4GaIgn?"
+
 #
 # File: views/plugins/detail.html, line: 263
+#: views/plugins/detail.html:263
 msgid   "URL"
-msgstr  "uRl"
+msgstr  "URl"
+
 #
 # File: views/index/index_byinstalled.html, line: 113
 # File: views/macros/statuses.html, line: 59
+#: views/index/index_byinstalled.html:113 views/macros/statuses.html:59
 msgid   "Unknown"
-msgstr  "u]\\[K]\\[O\\/\\/]\\["
+msgstr  "Ugnc|\\|()Wn"
+
 #
 # File: views/index/index_byinstalled.html, line: 101
+#: views/index/index_byinstalled.html:101
 msgid   "Up to date"
-msgstr  "uP to dat3"
+msgstr  "UP t() |)aTE"
+
 #
 # File: views/auth_profiles/editprofile.html, line: 69
+#: views/auth_profiles/editprofile.html:69
 msgid   "Update"
-msgstr  "uPd4TE"
+msgstr  "UPD47e"
+
 #
 # File: auth_profiles/i18n/en_US/form_errors_auth.php, line: 70
+#: auth_profiles/i18n/en_US/form_errors_auth.php:70
 msgid   "Valid captcha response is required."
-msgstr  "v4lid kApTch@ r3zPognz3 1z R3QUiRe|)."
+msgstr  "v4l!|) k4p7kHA r3ZP0n53 1Z REQU1R3D."
+
 #
 # File: auth_profiles/i18n/en_US/form_errors_auth.php, line: 32
 # File: auth_profiles/i18n/en_US/form_errors_auth.php, line: 36
+#: auth_profiles/i18n/en_US/form_errors_auth.php:32 auth_profiles/i18n/en_US/form_errors_auth.php:36
 msgid   "Valid email confirmation is required."
-msgstr  "v4lid EmAIL c0nf1RmatY0n !z R3QUIReD."
+msgstr  "v4l!|) em41L k0nf!R]\\/[a7|0N |S R3qU|r3D."
+
 #
 # File: auth_profiles/i18n/en_US/form_errors_auth.php, line: 22
 # File: auth_profiles/i18n/en_US/form_errors_auth.php, line: 26
+#: auth_profiles/i18n/en_US/form_errors_auth.php:22 auth_profiles/i18n/en_US/form_errors_auth.php:26
 msgid   "Valid email is required."
-msgstr  "v4lid EmAIL |Z r3qUiR3D."
+msgstr  "v4l!|) em41L 1s r3QU|R3|)."
+
 #
 # File: auth_profiles/i18n/en_US/form_errors_auth.php, line: 10
+#: auth_profiles/i18n/en_US/form_errors_auth.php:10
 msgid   "Valid login name is required."
-msgstr  "v4lid 1ogIn n@M3 1s R3qu1RED."
+msgstr  "v41!d LOgY]\\[ n4]\\/[3 !5 R3qU!REd."
+
 #
 # File: views/plugins/submit.html, line: 112
+#: views/plugins/submit.html:112
 msgid   "Vendor"
-msgstr  "v3Nd0r"
+msgstr  "v3N|)0R"
+
 #
 # File: views/plugins/submissions.html, line: 41
 # File: views/plugins/submit.html, line: 120
 # File: views/search/results.html, line: 57
+#: views/plugins/submissions.html:41 views/plugins/submit.html:120 views/search/results.html:57
 msgid   "Version"
-msgstr  "v3Rs1On"
+msgstr  "v3rZ1()N"
+
 #
 # File: views/plugins/detail.html, line: 90
+#: views/plugins/detail.html:90
 msgid   "View original"
-msgstr  "vIeW 0ri6iNA1"
+msgstr  "v13W 0RIgY]\\[@1"
+
 #
 # File: views/plugins/submit.html, line: 104
+#: views/plugins/submit.html:104
 msgid   "Vulnerability URL"
-msgstr  "vuLnEr48ilItY Ur1"
+msgstr  "vu1n3RabYL!tY uRl"
+
 #
 # File: views/plugins/submit.html, line: 108
+#: views/plugins/submit.html:108
 msgid   "Vulnerability description"
-msgstr  "vuLnEr48ilItY d3ZkR!p7|0]\\["
+msgstr  "vu1n3RabYL!tY De5cRIP7|0n"
+
 #
 # File: views/index/index_byinstalled.html, line: 105
 # File: views/macros/statuses.html, line: 51
+#: views/index/index_byinstalled.html:105 views/macros/statuses.html:51
 msgid   "Vulnerable"
-msgstr  "vuLnEr48Le"
+msgstr  "vu1n3Rabl3"
+
 #
 # File: views/index/index_shell.html, line: 56
+#: views/index/index_shell.html:56
 msgid   "Welcome to the Mozilla Plugin Directory"
-msgstr  "\\/\\/3Lk0M3 To d4 MOZ|lla PlUg!N Dir3ct()ry"
+msgstr  "W31C0]\\/[3 t0 d4 ]\\/[()zill4 PluG!gn DYREk70rY"
+
 #
 # File: views/macros/oses.html, line: 40
+#: views/macros/oses.html:40
 msgid   "Windows"
-msgstr  "\\/\\/INd0wZ"
+msgstr  "w|]\\[|)()WS"
+
 #
 # File: views/macros/oses.html, line: 48
+#: views/macros/oses.html:48
 msgid   "Windows Vista"
-msgstr  "wINd0\\/\\/z vIzTa"
+msgstr  "w|]\\[|)()WS v1S7A"
+
 #
 # File: views/index/index_shell.html, line: 103
+#: views/index/index_shell.html:103
 msgid   "Your Installed Plugins"
-msgstr  "J00r INS74L13d Plug!gnZ"
+msgstr  "J00r !gnS7al1Ed PlU6InS"
+
 #
 # File: views/index/index_shell.html, line: 111
+#: views/index/index_shell.html:111
 msgid   "Your Sandbox"
-msgstr  "J00r z4Ndb()x"
+msgstr  "J00r z4]\\[|)B0kz"
+
 #
 # File: views/plugins/create.html, line: 81
 # File: views/plugins/submit.html, line: 63
+#: views/plugins/create.html:81 views/plugins/submit.html:63
 msgid   "Your plugin data submission has been accepted, thank you!"
-msgstr  "J00r plug||\\| d4Ta Zubm|Zz10n H4Z 83e|\\| 4CC3pT3|), th4nc j00!"
+msgstr  "J00r PluG!n d474 SU8M!Sz!()gn h4Z b33n aCk3p73D, T]-[@nk j00!"
+
 #
 # File: views/plugins/edit.html, line: 230
+#: views/plugins/edit.html:230
 msgid   "[ + ] Add new release"
-msgstr  "[ + ] aDd nE\\/\\/ r3134Ze"
+msgstr  "[ + ] adD |\\|3W rE1Eas3"
+
 #
 # File: views/plugins/edit.html, line: 260
+#: views/plugins/edit.html:260
 msgid   "[ x ] Delete release"
-msgstr  "[ kz ] DElE73 R3l3as3"
+msgstr  "[ x ] dEL37E reLEAZ3"
+
 #
 # File: auth_profiles/controllers/auth_profiles.php, line: 390
+#: auth_profiles/controllers/auth_profiles.php:390
 msgid   "change current login email"
-msgstr  "cH4ngE cUrR3|\\|T l06|n 3]\\/[4Il"
+msgstr  "ch4|\\|Ge kurREgnT l()g|n 3]\\/[4Il"
+
 #
 # File: auth_profiles/controllers/auth_profiles.php, line: 385
+#: auth_profiles/controllers/auth_profiles.php:385
 msgid   "change current login password"
-msgstr  "cH4ngE cUrR3|\\|T l06|n P4sZW0rd"
+msgstr  "CHAn63 cUrReNt l()giN p4sS\\/\\/0RD"
+
 #
 # File: auth_profiles/controllers/auth_profiles.php, line: 395
+#: auth_profiles/controllers/auth_profiles.php:395
 msgid   "change screen name, bio, etc."
-msgstr  "C]-[a|\\|g3 zcr33n ]\\[4m3, bI0, 3tk."
+msgstr  "CHAn63 zkr3eN ]\\[Am3, b|O, 37k."
+
 #
 # File: views/plugins/sandbox_listing.html, line: 51
+#: views/plugins/sandbox_listing.html:51
 msgid   "delete"
-msgstr  "dele73"
+msgstr  "d31373"
+
 #
 # File: views/plugins/sandbox_listing.html, line: 61
+#: views/plugins/sandbox_listing.html:61
 msgid   "edit"
-msgstr  "3|)17"
+msgstr  "3DI7"
+
 #
 # File: views/auth_profiles/changeemail.html, line: 56
 # File: views/layout.html, line: 85
+#: views/auth_profiles/changeemail.html:56 views/layout.html:85
 msgid   "login"
-msgstr  "1()g!n"
+msgstr  "l06!|\\|"
+
 #
 # File: views/layout.html, line: 74
+#: views/layout.html:74
 msgid   "logout"
-msgstr  "1()g()UT"
+msgstr  "l06()u7"
+
 #
 # File: views/layout.html, line: 91
+#: views/layout.html:91
 msgid   "register"
-msgstr  "reg!zT3r"
+msgstr  "R36!573R"
+
 #
 # File: views/layout.html, line: 108
+#: views/layout.html:108
 msgid   "search releases"
-msgstr  "ZeaRch R3l3aS35"
+msgstr  "Z3ARc]-[ rel3@sEZ"
+
 #
 # File: views/layout.html, line: 68
+#: views/layout.html:68
 msgid   "settings"
-msgstr  "Ze77!Ngz"
+msgstr  "z3t7!n6S"

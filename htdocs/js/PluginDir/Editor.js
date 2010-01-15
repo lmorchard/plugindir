@@ -172,7 +172,7 @@ PluginDir.Editor = (function () {
             if ($this.save_inprogress) { return; }
             $this.save_inprogress = true;
 
-            $this.updateStatusMessage("Saving at " + (new Date()));
+            $this.updateStatusMessage(sprintf(_("Saving at %1$s"), ''+new Date()));
 
             $this.updateDefinitionFromForm();
 
@@ -187,12 +187,12 @@ PluginDir.Editor = (function () {
                 data: json,
                 success: function () {
                     $this.save_inprogress = false;
-                    $this.updateStatusMessage("Last saved at " + (new Date()));
+                    $this.updateStatusMessage(sprintf(_("Last saved at %1$s", ''+new Date())));
                 },
                 error: function () {
                     $this.save_inprogress = false;
                     // TODO: More descriptive explanation of save failure.
-                    $this.updateStatusMessage("Save failed at " + (new Date()));
+                    $this.updateStatusMessage(sprintf(_("Save failed at %1$s"), ''+new Date()));
                 }
             });
 

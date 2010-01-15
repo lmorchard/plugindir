@@ -1,16 +1,18 @@
 # File: views/plugins/edit.html, line: 251
+#: views/plugins/edit.html:251
 msgid   "                            <a href=\"#\" class=\"show\">Show</a> /\n"
         "                            <a href=\"#\" class=\"hide\">Hide</a>\n"
         "                            empty properties.\n"
         "                        "
 msgstr  "                            <a href=\"#\" class=\"show\">Shoo</a> /\n"
-        "                            <a href=\"#\" class=\"hide\">Heede-a</"
-        "a>\n"
+        "                            <a href=\"#\" class=\"hide\">Heede-a</a>\n"
         "                            impty pruperteees.\n"
         "Bork Bork Bork!\n"
         "                        "
+
 #
 # File: views/plugins/edit.html, line: 173
+#: views/plugins/edit.html:173
 msgid   "                    <a href=\"#\" class=\"show\">Show</a> /\n"
         "                    <a href=\"#\" class=\"hide\">Hide</a>\n"
         "                    empty properties.\n"
@@ -20,1065 +22,1477 @@ msgstr  "                    <a href=\"#\" class=\"show\">Shoo</a> /\n"
         "                    impty pruperteees.\n"
         "Bork Bork Bork!\n"
         "                "
+
 #
 # File: views/plugins/submit.html, line: 91
-msgid   "                    This form will submit details detected about "
-        "this plugin and your browser,\n"
-        "                    along with the following fields that you may "
-        "modify to suggest\n"
+#: views/plugins/submit.html:91
+msgid   "                    This form will submit details detected about this plugin and your browser,\n"
+        "                    along with the following fields that you may modify to suggest\n"
         "                    corrections.\n"
         "                "
-msgstr  "                    Thees furm veell soobmeet deteeels detected "
-        "ebuoot thees ploogeen und yuoor brooser,\n"
-        "                    elung veet zee fullooeeng feeelds thet yuoo mey "
-        "mudeeffy tu sooggest\n"
+msgstr  "                    Thees furm veell soobmeet deteeels detected ebuoot thees ploogeen und yuoor brooser,\n"
+        "                    elung veet zee fullooeeng feeelds thet yuoo mey mudeeffy tu sooggest\n"
         "                    currecshuns.\n"
         "Bork Bork Bork!\n"
         "                "
+
 #
 # File: views/plugins/create.html, line: 106
-msgid   "                    Use this form to provide details to create a new "
-        "plugin\n"
-        "                    and an initial release.  Some or all of these "
-        "details may\n"
-        "                    have already been filled in from data detected "
-        "about your\n"
-        "                    browser and an installed plugin, so you may not "
-        "need to\n"
+#: views/plugins/create.html:106
+msgid   "                    Use this form to provide details to create a new plugin\n"
+        "                    and an initial release.  Some or all of these details may\n"
+        "                    have already been filled in from data detected about your\n"
+        "                    browser and an installed plugin, so you may not need to\n"
         "                    modify these values.\n"
         "                "
-msgstr  "                    Use-a thees furm tu prufeede-a deteeels tu "
-        "creete-a a noo ploogeen\n"
-        "                    und un ineetiel releese-a.  Sume-a oor ell ooff "
-        "zeese-a deteeels mey\n"
-        "                    hefe-a elreedy beee feelled in frum deta "
-        "detected ebuoot yuoor\n"
-        "                    brooser und un instelled ploogeen, su yuoo mey "
-        "nut need tu\n"
+msgstr  "                    Use-a thees furm tu prufeede-a deteeels tu creete-a a noo ploogeen\n"
+        "                    und un ineetiel releese-a.  Sume-a oor ell ooff zeese-a deteeels mey\n"
+        "                    hefe-a elreedy beee feelled in frum deta detected ebuoot yuoor\n"
+        "                    brooser und un instelled ploogeen, su yuoo mey nut need tu\n"
         "                    mudeeffy zeese-a felooes.\n"
         "Bork Bork Bork!\n"
         "                "
+
 #
 # File: views/index/index_shell.html, line: 84
-msgid   "            If you want to get even more involved, you can sign up "
-        "for a\n"
-        "            profile.  This will give you access to a sandbox in "
-        "which to \n"
-        "            edit plugin records, test them against our detection "
-        "code in \n"
+#: views/index/index_shell.html:84
+msgid   "            If you want to get even more involved, you can sign up for a\n"
+        "            profile.  This will give you access to a sandbox in which to \n"
+        "            edit plugin records, test them against our detection code in \n"
         "            browsers, and submit changes to our editors for\n"
         "            approval and inclusion in the database.\n"
         "        "
-msgstr  "            Iff yuoo vunt tu get ifee mure-a infulfed, yuoo cun "
-        "seegn up fur a\n"
-        "            pruffeele-a.  Thees veell geefe-a yuoo eccess tu a "
-        "sundbux in vheech tu \n"
-        "            ideet ploogeen recurds, test zeem egeeenst oooor "
-        "detecshun cude-a in \n"
+msgstr  "            Iff yuoo vunt tu get ifee mure-a infulfed, yuoo cun seegn up fur a\n"
+        "            pruffeele-a.  Thees veell geefe-a yuoo eccess tu a sundbux in vheech tu \n"
+        "            ideet ploogeen recurds, test zeem egeeenst oooor detecshun cude-a in \n"
         "            broosers, und soobmeet chunges tu oooor ideeturs fur\n"
         "            epprufel und inclooseeun in zee detebese-a.\n"
         "Bork Bork Bork!\n"
         "        "
+
 #
 # File: views/index/index_shell.html, line: 60
-msgid   "            This site is an attempt to collect and provide "
-        "information about\n"
-        "            third-party browser plugins installed by people across "
-        "the web.  \n"
+#: views/index/index_shell.html:60
+msgid   "            This site is an attempt to collect and provide information about\n"
+        "            third-party browser plugins installed by people across the web.  \n"
         "        "
-msgstr  "            Thees seete-a is un ettempt tu cullect und prufeede-a "
-        "inffurmeshun ebuoot\n"
-        "            thurd-perty brooser ploogeens instelled by peuple-a "
-        "ecruss zee veb.  \n"
+msgstr  "            Thees seete-a is un ettempt tu cullect und prufeede-a inffurmeshun ebuoot\n"
+        "            thurd-perty brooser ploogeens instelled by peuple-a ecruss zee veb.  \n"
         "        "
+
 #
 # File: views/index/index_shell.html, line: 67
-msgid   "            Using our plugin detection service, you can check to see "
-        "if your\n"
-        "            plugins are up to date (as far as we know) or if you may "
-        "be\n"
+#: views/index/index_shell.html:67
+msgid   "            Using our plugin detection service, you can check to see if your\n"
+        "            plugins are up to date (as far as we know) or if you may be\n"
         "            vulnerable to any problems or security issues.\n"
         "        "
-msgstr  "            Useeng oooor ploogeen detecshun serfeece-a, yuoo cun "
-        "check tu see-a iff yuoor\n"
-        "            ploogeens ere-a up tu dete-a (es fer es ve-a knoo) oor "
-        "iff yuoo mey be-a\n"
+msgstr  "            Useeng oooor ploogeen detecshun serfeece-a, yuoo cun check tu see-a iff yuoor\n"
+        "            ploogeens ere-a up tu dete-a (es fer es ve-a knoo) oor iff yuoo mey be-a\n"
         "            foolnereble-a tu uny prublems oor secooreety issooes.\n"
         "Bork Bork Bork!\n"
         "        "
+
 #
 # File: views/index/index_shell.html, line: 75
-msgid   "            We can also use your help:  If you are a plugin vendor, "
-        "or simply\n"
-        "            know something we don't know about a plugin, you can "
-        "help us by\n"
-        "            submitting suggested updates to this database along with "
-        "information\n"
-        "            we've detected about your browser and installed "
-        "plugins.\n"
+#: views/index/index_shell.html:75
+msgid   "            We can also use your help:  If you are a plugin vendor, or simply\n"
+        "            know something we don't know about a plugin, you can help us by\n"
+        "            submitting suggested updates to this database along with information\n"
+        "            we've detected about your browser and installed plugins.\n"
         "        "
-msgstr  "            Ve-a cun elsu use-a yuoor help:  Iff yuoo ere-a a "
-        "ploogeen fendur, oor seemply\n"
-        "            knoo sumetheeng ve-a dun't knoo ebuoot a ploogeen, yuoo "
-        "cun help us by\n"
-        "            soobmeetting sooggested updetes tu thees detebese-a "
-        "elung veet inffurmeshun\n"
-        "            ve'fe-a detected ebuoot yuoor brooser und instelled "
-        "ploogeens.\n"
+msgstr  "            Ve-a cun elsu use-a yuoor help:  Iff yuoo ere-a a ploogeen fendur, oor seemply\n"
+        "            knoo sumetheeng ve-a dun't knoo ebuoot a ploogeen, yuoo cun help us by\n"
+        "            soobmeetting sooggested updetes tu thees detebese-a elung veet inffurmeshun\n"
+        "            ve'fe-a detected ebuoot yuoor brooser und instelled ploogeens.\n"
         "Bork Bork Bork!\n"
         "        "
+
 #
 # File: views/index/index_byinstalled.html, line: 32
+#: views/index/index_byinstalled.html:32
 msgid   "        If you can see this message, we were unable to perform\n"
         "        plugin detection on your browser.  You may have JavaScript\n"
-        "        disabled, which this site requires for many of its "
-        "features.\n"
+        "        disabled, which this site requires for many of its features.\n"
         "    "
-msgstr  "        Iff yuoo cun see-a thees messege-a, ve-a vere-a uneble-a tu "
-        "perffurm\n"
-        "        ploogeen detecshun oon yuoor brooser.  Yuoo mey hefe-a "
-        "JefeScreept\n"
-        "        deesebled, vheech thees seete-a reqooures fur muny ooff its "
-        "feetoores.\n"
+msgstr  "        Iff yuoo cun see-a thees messege-a, ve-a vere-a uneble-a tu perffurm\n"
+        "        ploogeen detecshun oon yuoor brooser.  Yuoo mey hefe-a JefeScreept\n"
+        "        deesebled, vheech thees seete-a reqooures fur muny ooff its feetoores.\n"
         "Bork Bork Bork!\n"
         "    "
+
 #
 # File: views/index/index_byapplication.html, line: 29
-msgid   "        The following is a list of plugins by browser application, "
-        "along with a\n"
+#: views/index/index_byapplication.html:29
+msgid   "        The following is a list of plugins by browser application, along with a\n"
         "        count of releases for each application.\n"
         "    "
-msgstr  "        Zee fullooeeng is a leest ooff ploogeens by brooser "
-        "eppleeceshun, elung veet a\n"
+msgstr  "        Zee fullooeeng is a leest ooff ploogeens by brooser eppleeceshun, elung veet a\n"
         "        cuoont ooff releeses fur iech eppleeceshun.\n"
         "Bork Bork Bork!\n"
         "    "
+
 #
 # File: views/index/index_byname.html, line: 19
-msgid   "        The following is a list of plugins by name, along with a "
-        "count of\n"
+#: views/index/index_byname.html:19
+msgid   "        The following is a list of plugins by name, along with a count of\n"
         "        releases for each plugin.\n"
         "    "
-msgstr  "        Zee fullooeeng is a leest ooff ploogeens by neme-a, elung "
-        "veet a cuoont ooff\n"
+msgstr  "        Zee fullooeeng is a leest ooff ploogeens by neme-a, elung veet a cuoont ooff\n"
         "        releeses fur iech ploogeen.\n"
         "Bork Bork Bork!\n"
         "    "
+
 #
 # File: views/index/index_byos.html, line: 29
-msgid   "        The following is a list of plugins by operating system, "
-        "along with a\n"
+#: views/index/index_byos.html:29
+msgid   "        The following is a list of plugins by operating system, along with a\n"
         "        count of releases for each OS.\n"
         "    "
-msgstr  "        Zee fullooeeng is a leest ooff ploogeens by oopereteeng "
-        "system, elung veet a\n"
+msgstr  "        Zee fullooeeng is a leest ooff ploogeens by oopereteeng system, elung veet a\n"
         "        cuoont ooff releeses fur iech OoS.\n"
         "Bork Bork Bork!\n"
         "    "
+
 #
 # File: views/index/index_byinstalled.html, line: 20
+#: views/index/index_byinstalled.html:20
 msgid   "        The following is a list of plugins detected as installed\n"
         "        in your browser, along with the status of each with respect\n"
         "        to our plugin database.  Some of these plugins may not be\n"
-        "        present in our database, and some may have incorrect "
-        "details.\n"
-        "        You can help us improve this directory by using the "
-        "feedback\n"
+        "        present in our database, and some may have incorrect details.\n"
+        "        You can help us improve this directory by using the feedback\n"
         "        links next to each plugin.\n"
         "    "
-msgstr  "        Zee fullooeeng is a leest ooff ploogeens detected es "
-        "instelled\n"
-        "        in yuoor brooser, elung veet zee stetoos ooff iech veet "
-        "respect\n"
-        "        tu oooor ploogeen detebese-a.  Sume-a ooff zeese-a ploogeens "
-        "mey nut be-a\n"
-        "        present in oooor detebese-a, und sume-a mey hefe-a incurrect "
-        "deteeels.\n"
+msgstr  "        Zee fullooeeng is a leest ooff ploogeens detected es instelled\n"
+        "        in yuoor brooser, elung veet zee stetoos ooff iech veet respect\n"
+        "        tu oooor ploogeen detebese-a.  Sume-a ooff zeese-a ploogeens mey nut be-a\n"
+        "        present in oooor detebese-a, und sume-a mey hefe-a incurrect deteeels.\n"
         "Bork Bork Bork!\n"
-        "        Yuoo cun help us imprufe-a thees durectury by useeng zee "
-        "feedbeck\n"
+        "        Yuoo cun help us imprufe-a thees durectury by useeng zee feedbeck\n"
         "        leenks next tu iech ploogeen.\n"
         "Bork Bork Bork!\n"
         "    "
+
 #
 # File: views/plugins/sandbox_mine.html, line: 24
+#: views/plugins/sandbox_mine.html:24
 msgid   "+ Create new sandbox plugin"
 msgstr  "+ Creete-a noo sundbux ploogeen"
+
 #
 # File: auth_profiles/i18n/en_US/form_errors_auth.php, line: 28
+#: auth_profiles/i18n/en_US/form_errors_auth.php:28
 msgid   "A login has already been registered using this email address."
 msgstr  "A lugeen hes elreedy beee regeestered useeng thees imeeel eddress."
+
 #
 # File: auth_profiles/i18n/en_US/form_errors_auth.php, line: 96
+#: auth_profiles/i18n/en_US/form_errors_auth.php:96
 msgid   "A valid new email confirmation is required"
 msgstr  "A feleed noo imeeel cunffurmeshun is reqooured"
+
 #
 # File: auth_profiles/i18n/en_US/form_errors_auth.php, line: 90
+#: auth_profiles/i18n/en_US/form_errors_auth.php:90
 msgid   "A valid new email is required"
 msgstr  "A feleed noo imeeel is reqooured"
+
 #
 # File: views/forbidden.html, line: 19
 # File: views/forbidden.html, line: 27
+#: views/forbidden.html:19 views/forbidden.html:27
 msgid   "Access denied"
 msgstr  "Eccess deneeed"
+
 #
 # File: views/auth_profiles/reverifyemail.html, line: 31
+#: views/auth_profiles/reverifyemail.html:31
 msgid   "Account activation email sent."
 msgstr  "Eccuoont ecteefeshun imeeel sent."
+
+#
+# File: PluginDir/Index.js, line: 257
+#: PluginDir/Index.js:257
+#, c-format
+msgid   "Add release to %1$s"
+msgstr  "Edd releese-a tu %1$s"
+
 #
 # File: views/layout.html, line: 117
+#: views/layout.html:117
 msgid   "Advanced search"
 msgstr  "Edfunced seerch"
+
 #
 # File: views/plugins/submit.html, line: 144
+#: views/plugins/submit.html:144
 msgid   "Also submitting the following additional information:"
 msgstr  "Elsu soobmeetting zee fullooeeng eddeeshunel inffurmeshun:"
+
 #
 # File: views/macros/oses.html, line: 32
+#: views/macros/oses.html:32
 msgid   "Any"
 msgstr  "Uny"
+
 #
 # File: views/plugins/edit.html, line: 138
+#: views/plugins/edit.html:138
 msgid   "Autosave"
 msgstr  "Ootusefe"
+
 #
 # File: views/plugins/submission_detail.html, line: 57
+#: views/plugins/submission_detail.html:57
 msgid   "Back to submissions"
 msgstr  "Beck tu soobmeessiuns"
+
 #
 # File: auth_profiles/controllers/auth_profiles.php, line: 379
+#: auth_profiles/controllers/auth_profiles.php:379
 msgid   "Basics"
 msgstr  "Beseecs"
+
 #
 # File: views/auth_profiles/editprofile.html, line: 54
 # File: views/auth_profiles/register.html, line: 54
+#: views/auth_profiles/editprofile.html:54 views/auth_profiles/register.html:54
 msgid   "Bio / About you"
 msgstr  "Beeu / Ebuoot yuoo"
+
 #
 # File: views/index/index_shell.html, line: 133
+#: views/index/index_shell.html:133
 msgid   "By Application"
 msgstr  "By Eppleeceshun"
+
 #
 # File: views/index/index_shell.html, line: 129
+#: views/index/index_shell.html:129
 msgid   "By Name"
 msgstr  "By Neme"
+
 #
 # File: views/index/index_shell.html, line: 137
+#: views/index/index_shell.html:137
 msgid   "By Operating System"
 msgstr  "By Oopereteeng System"
+
 #
 # File: views/plugins/copy.html, line: 47
 # File: views/plugins/delete.html, line: 52
 # File: views/plugins/deploy.html, line: 47
 # File: views/plugins/requestpush.html, line: 47
+#: views/plugins/copy.html:47 views/plugins/delete.html:52 views/plugins/deploy.html:47 views/plugins/requestpush.html:47
 msgid   "Cancel"
 msgstr  "Cuncel"
+
 #
 # File: views/auth_profiles/register.html, line: 74
 # File: views/plugins/submit.html, line: 133
+#: views/auth_profiles/register.html:74 views/plugins/submit.html:133
 msgid   "Captcha"
 msgstr  "Ceptcha"
+
 #
 # File: views/auth_profiles/changeemail.html, line: 64
+#: views/auth_profiles/changeemail.html:64
 msgid   "Change email"
 msgstr  "Chunge-a imeeel"
+
 #
-#. i18n: %1$s = profile_screen_name_e
 # File: views/auth_profiles/changeemail.html, line: 31
+#. i18n: %1$s = profile_screen_name_e
+#: views/auth_profiles/changeemail.html:31
 #, php-format
 msgid   "Change email address for %1$s"
 msgstr  "Chunge-a imeeel eddress fur %1$s"
+
 #
 # File: auth_profiles/controllers/auth_profiles.php, line: 389
+#: auth_profiles/controllers/auth_profiles.php:389
 msgid   "Change login email"
 msgstr  "Chunge-a lugeen imeeel"
+
 #
 # File: auth_profiles/controllers/auth_profiles.php, line: 384
+#: auth_profiles/controllers/auth_profiles.php:384
 msgid   "Change login password"
 msgstr  "Chunge-a lugeen pessvurd"
+
 #
 # File: views/auth_profiles/changepassword.html, line: 107
 # File: views/auth_profiles/changepassword.html, line: 130
+#: views/auth_profiles/changepassword.html:107 views/auth_profiles/changepassword.html:130
 msgid   "Change password"
 msgstr  "Chunge-a pessvurd"
+
 #
-#. i18n: %1$s = forgot_password_login_name
-#. i18n: %1$s = profile_screen_name_e
 # File: views/auth_profiles/changepassword.html, line: 32
 # File: views/auth_profiles/changepassword.html, line: 44
+#. i18n: %1$s = forgot_password_login_name
+#. i18n: %1$s = profile_screen_name_e
+#: views/auth_profiles/changepassword.html:32 views/auth_profiles/changepassword.html:44
 #, php-format
 msgid   "Change password for %1$s"
 msgstr  "Chunge-a pessvurd fur %1$s"
+
 #
 # File: views/auth_profiles/register_success.html, line: 27
+#: views/auth_profiles/register_success.html:27
 msgid   "Check your email to verify your address before login."
 msgstr  "Check yuoor imeeel tu fereeffy yuoor eddress beffure-a lugeen."
+
 #
 # File: views/auth_profiles/forgotpassword.html, line: 39
+#: views/auth_profiles/forgotpassword.html:39
 msgid   "Check your inbox for a link to change your password."
 msgstr  "Check yuoor inbux fur a leenk tu chunge-a yuoor pessvurd."
+
 #
 # File: views/auth_profiles/changeemail.html, line: 43
+#: views/auth_profiles/changeemail.html:43
 msgid   "Check your inbox for a link to verify this new email address."
 msgstr  "Check yuoor inbux fur a leenk tu fereeffy thees noo imeeel eddress."
+
 #
 # File: views/plugins/submit.html, line: 128
+#: views/plugins/submit.html:128
 msgid   "Comments"
 msgstr  "Cumments"
+
 #
 # File: views/index/index_byinstalled.html, line: 136
+#: views/index/index_byinstalled.html:136
 msgid   "Contribute new info"
 msgstr  "Cuntreeboote-a noo inffu"
+
 #
-#. i18n: %1$s = plugin_name_e
 # File: views/plugins/copy.html, line: 23
+#. i18n: %1$s = plugin_name_e
+#: views/plugins/copy.html:23
 #, php-format
 msgid   "Copy plugin \"%1$s\" to sandbox"
 msgstr  "Cupy ploogeen \"%1$s\" tu sundbux"
+
 #
 # File: views/plugins/copy.html, line: 33
+#: views/plugins/copy.html:33
 msgid   "Copy this plugin to your sandbox?"
 msgstr  "Cupy thees ploogeen tu yuoor sundbux?"
+
 #
 # File: views/plugins/copy.html, line: 38
+#: views/plugins/copy.html:38
 msgid   "Copy to Sandbox"
 msgstr  "Cupy tu Sundbux"
+
 #
 # File: views/plugins/detail.html, line: 140
+# File: PluginDir/Index.js, line: 232
+#: views/plugins/detail.html:140 PluginDir/Index.js:232
 msgid   "Copy to sandbox"
 msgstr  "Cupy tu sundbux"
+
 #
-#. i18n: %1$s = plugin_name_e
 # File: views/plugins/submission_detail.html, line: 100
+#. i18n: %1$s = plugin_name_e
+#: views/plugins/submission_detail.html:100
 #, php-format
 msgid   "Create a new release in %1$s"
 msgstr  "Creete-a a noo releese-a in %1$s"
+
 #
 # File: views/plugins/submission_detail.html, line: 67
+#: views/plugins/submission_detail.html:67
 msgid   "Create a new sandbox release"
 msgstr  "Creete-a a noo sundbux releese"
+
 #
 # File: views/plugins/create.html, line: 67
+#: views/plugins/create.html:67
 msgid   "Create new public plugin"
 msgstr  "Creete-a noo poobleec ploogeen"
+
 #
-#. i18n: %1$s = screen_name_e
+# File: PluginDir/Index.js, line: 250
+#: PluginDir/Index.js:250
+msgid   "Create new sandbox plugin"
+msgstr  "Creete-a noo sundbux ploogeen"
+
+#
 # File: views/plugins/create.html, line: 59
+#. i18n: %1$s = screen_name_e
+#: views/plugins/create.html:59
 #, php-format
 msgid   "Create new sandbox plugin for %1$s"
 msgstr  "Creete-a noo sundbux ploogeen fur %1$s"
+
 #
 # File: views/plugins/edit.html, line: 159
+#: views/plugins/edit.html:159
 msgid   "Current JSON data"
 msgstr  "Coorrent JSON deta"
+
 #
 # File: views/plugins/submissions.html, line: 33
+#: views/plugins/submissions.html:33
 msgid   "Date"
 msgstr  "Dete"
+
 #
 # File: views/plugins/delete.html, line: 43
 # File: views/plugins/detail.html, line: 166
+#: views/plugins/delete.html:43 views/plugins/detail.html:166
 msgid   "Delete plugin"
 msgstr  "Delete-a ploogeen"
+
 #
-#. i18n: %1$s = plugin_name_e
 # File: views/plugins/delete.html, line: 23
+#. i18n: %1$s = plugin_name_e
+#: views/plugins/delete.html:23
 #, php-format
 msgid   "Delete plugin \"%1$s\""
 msgstr  "Delete-a ploogeen \"%1$s\""
+
 #
 # File: views/plugins/delete.html, line: 38
+#: views/plugins/delete.html:38
 msgid   "Delete this plugin?"
 msgstr  "Delete-a thees ploogeen?"
+
 #
 # File: views/index/index_byinstalled.html, line: 52
 # File: views/plugins/submit.html, line: 124
+#: views/index/index_byinstalled.html:52 views/plugins/submit.html:124
 msgid   "Description"
 msgstr  "Descreepshun"
+
 #
 # File: views/plugins/detail.html, line: 209
+#: views/plugins/detail.html:209
 msgid   "Description:"
 msgstr  "Descreepshun:"
+
 #
 # File: views/index/index_byinstalled.html, line: 48
+#: views/index/index_byinstalled.html:48
 msgid   "Detected Version"
 msgstr  "Detected Ferseeun"
+
 #
 # File: views/plugins/detail.html, line: 307
+#: views/plugins/detail.html:307
 msgid   "Download / Details"
 msgstr  "Doonlued / Deteeels"
+
 #
 # File: views/plugins/detail.html, line: 153
+#: views/plugins/detail.html:153
 msgid   "Edit details"
 msgstr  "Edeet deteeels"
+
 #
-#. i18n: %1$s = profile_screen_name_e
 # File: views/auth_profiles/editprofile.html, line: 31
+#. i18n: %1$s = profile_screen_name_e
+#: views/auth_profiles/editprofile.html:31
 #, php-format
 msgid   "Edit details for %1$s"
 msgstr  "Edeet deteeels fur %1$s"
+
+#
+# File: PluginDir/Index.js, line: 240
+#: PluginDir/Index.js:240
+msgid   "Edit in sandbox"
+msgstr  "Edeet in sundbux"
+
 #
 # File: auth_profiles/controllers/auth_profiles.php, line: 394
+#: auth_profiles/controllers/auth_profiles.php:394
 msgid   "Edit profile details"
 msgstr  "Edeet pruffeele-a deteeels"
+
 #
 # File: views/auth_profiles/forgotpassword.html, line: 64
 # File: views/auth_profiles/register.html, line: 58
+#: views/auth_profiles/forgotpassword.html:64 views/auth_profiles/register.html:58
 msgid   "Email"
 msgstr  "Emeeel"
+
 #
 # File: views/auth_profiles/register.html, line: 62
+#: views/auth_profiles/register.html:62
 msgid   "Email (confirm)"
 msgstr  "Emeeel (cunffurm)"
+
 #
 # File: auth_profiles/i18n/en_US/form_errors_auth.php, line: 38
+#: auth_profiles/i18n/en_US/form_errors_auth.php:38
 msgid   "Email confirmation does not match email."
 msgstr  "Emeeel cunffurmeshun dues nut metch imeeel."
+
 #
 # File: auth_profiles/i18n/en_US/form_errors_auth.php, line: 34
+#: auth_profiles/i18n/en_US/form_errors_auth.php:34
 msgid   "Email confirmation is required."
 msgstr  "Emeeel cunffurmeshun is reqooured."
+
 #
 # File: auth_profiles/i18n/en_US/form_errors_auth.php, line: 24
+#: auth_profiles/i18n/en_US/form_errors_auth.php:24
 msgid   "Email is required."
 msgstr  "Emeeel is reqooured."
+
 #
 # File: views/macros/platforms.html, line: 32
+#: views/macros/platforms.html:32
 msgid   "Firefox"
 msgstr  "Fureffux"
+
 #
 # File: views/auth_profiles/forgotpassword.html, line: 68
+#: views/auth_profiles/forgotpassword.html:68
 msgid   "Forgot password"
 msgstr  "Furgut pessvurd"
+
 #
 # File: views/auth_profiles/login.html, line: 99
+#: views/auth_profiles/login.html:99
 msgid   "Forgot password?"
 msgstr  "Furgut pessvurd?"
+
 #
 # File: views/auth_profiles/editprofile.html, line: 50
 # File: views/auth_profiles/register.html, line: 50
+#: views/auth_profiles/editprofile.html:50 views/auth_profiles/register.html:50
 msgid   "Full name"
 msgstr  "Fooll neme"
+
 #
 # File: auth_profiles/i18n/en_US/form_errors_auth.php, line: 64
+#: auth_profiles/i18n/en_US/form_errors_auth.php:64
 msgid   "Full name is required"
 msgstr  "Fooll neme-a is reqooured"
+
 #
 # File: auth_profiles/i18n/en_US/form_errors_auth.php, line: 66
+#: auth_profiles/i18n/en_US/form_errors_auth.php:66
 msgid   "Full name must contain only alphanumeric characters"
 msgstr  "Fooll neme-a moost cunteeen oonly elphunoomereec cherecters"
+
 #
 # File: views/index/index_byinstalled.html, line: 60
+#: views/index/index_byinstalled.html:60
 msgid   "Have feedback?"
 msgstr  "Hefe-a feedbeck?"
+
 #
 # File: views/index/index_shell.html, line: 27
+#: views/index/index_shell.html:27
 msgid   "Home"
 msgstr  "Hume"
+
 #
 # File: views/index/index_byinstalled.html, line: 56
+#: views/index/index_byinstalled.html:56
 msgid   "Installed Status"
 msgstr  "Instelled Stetoos"
+
 #
 # File: views/macros/oses.html, line: 64
+#: views/macros/oses.html:64
 msgid   "Intel Mac OS X"
 msgstr  "Intel Mec OoS X"
+
 #
 # File: views/macros/oses.html, line: 56
+#: views/macros/oses.html:56
 msgid   "Intel Mac OS X 10.6"
 msgstr  "Intel Mec OoS X 10.6"
+
 #
 # File: views/auth_profiles/verifyemail.html, line: 31
+#: views/auth_profiles/verifyemail.html:31
 msgid   "Invalid email verification token."
 msgstr  "Infeleed imeeel fereefficeshun tukee."
+
 #
 # File: views/auth_profiles/changepassword.html, line: 72
+#: views/auth_profiles/changepassword.html:72
 msgid   "Invalid password reset attempt."
 msgstr  "Infeleed pessvurd reset ettempt."
+
 #
 # File: views/plugins/detail.html, line: 179
+#: views/plugins/detail.html:179
 msgid   "JSON export"
 msgstr  "JSON ixpurt"
+
+#
+# File: PluginDir/Editor.js, line: 190
+#: PluginDir/Editor.js:190
+#, c-format
+msgid   "Last saved at %1$s"
+msgstr  "Lest sefed et %1$s"
+
 #
 # File: views/macros/statuses.html, line: 33
+#: views/macros/statuses.html:33
 msgid   "Latest"
 msgstr  "Letest"
+
 #
 # File: views/macros/oses.html, line: 96
+#: views/macros/oses.html:96
 msgid   "Linux"
 msgstr  "Leenoox"
+
 #
 # File: views/plugins/edit.html, line: 203
+#: views/plugins/edit.html:203
 msgid   "Literal aliases"
 msgstr  "Leeterel eleeeses"
+
 #
 # File: views/auth_profiles/logout.html, line: 27
+#: views/auth_profiles/logout.html:27
 msgid   "Logged out."
 msgstr  "Lugged oooot."
+
 #
 # File: views/auth_profiles/login.html, line: 27
 # File: views/auth_profiles/login.html, line: 81
 # File: views/auth_profiles/login.html, line: 93
+#: views/auth_profiles/login.html:27 views/auth_profiles/login.html:81 views/auth_profiles/login.html:93
 msgid   "Login"
 msgstr  "Lugeen"
+
 #
 # File: views/auth_profiles/logout.html, line: 31
+#: views/auth_profiles/logout.html:31
 msgid   "Login again?"
 msgstr  "Lugeen egeeen?"
+
 #
 # File: views/auth_profiles/register.html, line: 42
+#: views/auth_profiles/register.html:42
 msgid   "Login details"
 msgstr  "Lugeen deteeels"
+
 #
 # File: views/auth_profiles/forgotpassword.html, line: 60
 # File: views/auth_profiles/login.html, line: 85
 # File: views/auth_profiles/register.html, line: 46
+#: views/auth_profiles/forgotpassword.html:60 views/auth_profiles/login.html:85 views/auth_profiles/register.html:46
 msgid   "Login name"
 msgstr  "Lugeen neme"
+
 #
 # File: auth_profiles/i18n/en_US/form_errors_auth.php, line: 18
+#: auth_profiles/i18n/en_US/form_errors_auth.php:18
 msgid   "Login name is not available."
 msgstr  "Lugeen neme-a is nut efeeeleble-a."
+
 #
 # File: auth_profiles/i18n/en_US/form_errors_auth.php, line: 12
+#: auth_profiles/i18n/en_US/form_errors_auth.php:12
 msgid   "Login name is required."
 msgstr  "Lugeen neme-a is reqooured."
+
 #
 # File: auth_profiles/i18n/en_US/form_errors_auth.php, line: 14
+#: auth_profiles/i18n/en_US/form_errors_auth.php:14
 msgid   "Login name must be between 3 and 64 characters in length"
 msgstr  "Lugeen neme-a moost be-a betveee 3 und 64 cherecters in length"
+
 #
 # File: auth_profiles/i18n/en_US/form_errors_auth.php, line: 16
+#: auth_profiles/i18n/en_US/form_errors_auth.php:16
 msgid   "Login name must contain only alphanumeric characters"
 msgstr  "Lugeen neme-a moost cunteeen oonly elphunoomereec cherecters"
+
 #
 # File: views/auth_profiles/changepassword.html, line: 63
 # File: views/auth_profiles/verifyemail.html, line: 51
+#: views/auth_profiles/changepassword.html:63 views/auth_profiles/verifyemail.html:51
 msgid   "Login?"
 msgstr  "Lugeen?"
+
 #
 # File: views/auth_profiles/logout.html, line: 19
+#: views/auth_profiles/logout.html:19
 msgid   "Logout"
 msgstr  "Luguoot"
+
 #
 # File: views/plugins/edit.html, line: 192
+#: views/plugins/edit.html:192
 msgid   "MIME types"
 msgstr  "MIME types"
+
 #
 # File: views/plugins/edit.html, line: 186
+#: views/plugins/edit.html:186
 msgid   "MIME types and aliases"
 msgstr  "MIME types und eleeeses"
+
 #
 # File: views/plugins/edit.html, line: 197
+#: views/plugins/edit.html:197
 msgid   "MIME types of content handled by this plugin"
 msgstr  "MIME types ooff cuntent hundled by thees ploogeen"
+
 #
 # File: views/macros/oses.html, line: 88
+#: views/macros/oses.html:88
 msgid   "Mac"
 msgstr  "Mec"
+
 #
 # File: views/macros/oses.html, line: 80
+#: views/macros/oses.html:80
 msgid   "Mac OS X"
 msgstr  "Mec OoS X"
+
 #
 # File: views/plugins/submission_detail.html, line: 47
 # File: views/plugins/submissions.html, line: 23
 # File: views/plugins/submissions.html, line: 154
+#: views/plugins/submission_detail.html:47 views/plugins/submissions.html:23 views/plugins/submissions.html:154
 msgid   "Mark as seen"
 msgstr  "Merk es seen"
+
 #
 # File: views/plugins/submission_detail.html, line: 38
+#: views/plugins/submission_detail.html:38
 msgid   "Mark as unseen"
 msgstr  "Merk es unseen"
+
 #
 # File: views/layout.html, line: 40
+#: views/layout.html:40
 msgid   "Mozilla"
 msgstr  "Muzeella"
+
 #
 # File: views/layout.html, line: 169
+#: views/layout.html:169
 msgid   "Mozilla Plugin Directory"
 msgstr  "Muzeella Ploogeen Durectury"
+
 #
 # File: views/index/index_byinstalled.html, line: 44
 # File: views/plugins/submissions.html, line: 37
 # File: views/plugins/submit.html, line: 116
 # File: views/search/results.html, line: 53
+#: views/index/index_byinstalled.html:44 views/plugins/submissions.html:37 views/plugins/submit.html:116 views/search/results.html:53
 msgid   "Name"
 msgstr  "Neme"
+
 #
 # File: views/index/index_byinstalled.html, line: 109
+#: views/index/index_byinstalled.html:109
 msgid   "Needs update"
 msgstr  "Needs updete"
+
 #
 # File: views/auth_profiles/changepassword.html, line: 122
+#: views/auth_profiles/changepassword.html:122
 msgid   "New Password"
 msgstr  "Noo Pessvurd"
+
 #
 # File: views/auth_profiles/changepassword.html, line: 126
+#: views/auth_profiles/changepassword.html:126
 msgid   "New Password (confirm)"
 msgstr  "Noo Pessvurd (cunffurm)"
+
 #
 # File: views/auth_profiles/changeemail.html, line: 60
+#: views/auth_profiles/changeemail.html:60
 msgid   "New email"
 msgstr  "Noo imeeel"
+
 #
 # File: views/auth_profiles/verifyemail.html, line: 41
+#: views/auth_profiles/verifyemail.html:41
 msgid   "New email address verified."
 msgstr  "Noo imeeel eddress fereeffied."
+
 #
 # File: auth_profiles/i18n/en_US/form_errors_auth.php, line: 84
+#: auth_profiles/i18n/en_US/form_errors_auth.php:84
 msgid   "New password confirmation required"
 msgstr  "Noo pessvurd cunffurmeshun reqooured"
+
 #
 # File: auth_profiles/i18n/en_US/form_errors_auth.php, line: 80
+#: auth_profiles/i18n/en_US/form_errors_auth.php:80
 msgid   "New password is required"
 msgstr  "Noo pessvurd is reqooured"
+
 #
 # File: views/index/index_byinstalled.html, line: 97
+#: views/index/index_byinstalled.html:97
 msgid   "Newer"
 msgstr  "Nooer"
+
 #
 # File: views/search/results.html, line: 139
+#: views/search/results.html:139
 msgid   "No search results, please change your search terms and try again."
-msgstr  "Nu seerch resoolts, pleese-a chunge-a yuoor seerch terms und try "
-        "egeeen."
+msgstr  "Nu seerch resoolts, pleese-a chunge-a yuoor seerch terms und try egeeen."
+
 #
 # File: views/plugins/submissions.html, line: 140
+#: views/plugins/submissions.html:140
 msgid   "No submissions."
 msgstr  "Nu soobmeessiuns."
+
+#
+# File: PluginDir/Index.js, line: 182
+#: PluginDir/Index.js:182
+msgid   "Not detected (<a href=\"https://bugzilla.mozilla.org/show_bug.cgi?id=536394\" target=\"_new\">Any ideas?</a>)"
+msgstr  "Nut detected (<a href=\"https://bugzilla.mozilla.org/show_bug.cgi?id=536394\" target=\"_new\">Uny idees?</a>)"
+
 #
 # File: views/plugins/detail.html, line: 255
 # File: views/plugins/submissions.html, line: 49
 # File: views/search/results.html, line: 65
+#: views/plugins/detail.html:255 views/plugins/submissions.html:49 views/search/results.html:65
 msgid   "OS"
 msgstr  "OS"
+
 #
 # File: views/auth_profiles/changepassword.html, line: 115
+#: views/auth_profiles/changepassword.html:115
 msgid   "Old Password"
 msgstr  "Old Pessvurd"
+
 #
 # File: auth_profiles/i18n/en_US/form_errors_auth.php, line: 74
+#: auth_profiles/i18n/en_US/form_errors_auth.php:74
 msgid   "Old password is invalid."
 msgstr  "Old pessvurd is infeleed."
+
 #
 # File: auth_profiles/i18n/en_US/form_errors_auth.php, line: 76
+#: auth_profiles/i18n/en_US/form_errors_auth.php:76
 msgid   "Old password is required"
 msgstr  "Old pessvurd is reqooured"
+
 #
 # File: views/plugins/edit.html, line: 128
+#: views/plugins/edit.html:128
 msgid   "Options"
 msgstr  "Opshuns"
+
 #
 # File: views/macros/statuses.html, line: 42
+#: views/macros/statuses.html:42
 msgid   "Outdated"
 msgstr  "Oootdeted"
+
 #
 # File: views/macros/oses.html, line: 72
+#: views/macros/oses.html:72
 msgid   "PPC Mac OS X"
 msgstr  "PPC Mec OoS X"
+
 #
 # File: views/auth_profiles/login.html, line: 89
 # File: views/auth_profiles/register.html, line: 66
+#: views/auth_profiles/login.html:89 views/auth_profiles/register.html:66
 msgid   "Password"
 msgstr  "Pessvurd"
+
 #
 # File: views/auth_profiles/register.html, line: 70
+#: views/auth_profiles/register.html:70
 msgid   "Password (confirm)"
 msgstr  "Pessvurd (cunffurm)"
+
 #
 # File: auth_profiles/i18n/en_US/form_errors_auth.php, line: 50
 # File: auth_profiles/i18n/en_US/form_errors_auth.php, line: 86
+#: auth_profiles/i18n/en_US/form_errors_auth.php:50 auth_profiles/i18n/en_US/form_errors_auth.php:86
 msgid   "Password and confirmation must match."
 msgstr  "Pessvurd und cunffurmeshun moost metch."
+
 #
 # File: views/auth_profiles/changepassword.html, line: 58
+#: views/auth_profiles/changepassword.html:58
 msgid   "Password changed."
 msgstr  "Pessvurd chunged."
+
 #
 # File: auth_profiles/i18n/en_US/form_errors_auth.php, line: 48
+#: auth_profiles/i18n/en_US/form_errors_auth.php:48
 msgid   "Password confirmation is required."
 msgstr  "Pessvurd cunffurmeshun is reqooured."
+
 #
 # File: auth_profiles/i18n/en_US/form_errors_auth.php, line: 42
+#: auth_profiles/i18n/en_US/form_errors_auth.php:42
 msgid   "Password is invalid."
 msgstr  "Pessvurd is infeleed."
+
 #
 # File: auth_profiles/i18n/en_US/form_errors_auth.php, line: 44
+#: auth_profiles/i18n/en_US/form_errors_auth.php:44
 msgid   "Password is required."
 msgstr  "Pessvurd is reqooured."
+
 #
 # File: views/plugins/detail.html, line: 251
 # File: views/plugins/submissions.html, line: 53
 # File: views/search/results.html, line: 61
+#: views/plugins/detail.html:251 views/plugins/submissions.html:53 views/search/results.html:61
 msgid   "Platform"
 msgstr  "Pletffurm"
+
 #
-#. i18n: %1$s = plugin_name_e
 # File: views/plugins/detail.html, line: 64
+#. i18n: %1$s = plugin_name_e
+#: views/plugins/detail.html:64
 #, php-format
 msgid   "Plugin Detail :: %1$s"
 msgstr  "Ploogeen Deteeel :: %1$s"
+
 #
+# File: views/plugins/detail.html, line: 55
 #. i18n: %1$s = plugin_name_e
 #. i18n: %2$s = screen_name_e
-# File: views/plugins/detail.html, line: 55
+#: views/plugins/detail.html:55
 #, php-format
 msgid   "Plugin Detail :: %1$s (%2$s sandbox)"
 msgstr  "Ploogeen Deteeel :: %1$s (%2$s sundbux)"
+
 #
 # File: views/layout.html, line: 42
+#: views/layout.html:42
 msgid   "Plugin Directory"
 msgstr  "Ploogeen Durectury"
+
 #
-#. i18n: %1$s = profile_screen_name_e
 # File: views/plugins/sandbox.html, line: 20
 # File: views/plugins/sandbox.html, line: 29
+#. i18n: %1$s = profile_screen_name_e
+#: views/plugins/sandbox.html:20 views/plugins/sandbox.html:29
 #, php-format
 msgid   "Plugin Sandbox for %1$s"
 msgstr  "Ploogeen Sundbux fur %1$s"
+
 #
 # File: views/plugins/edit.html, line: 147
 # File: views/plugins/submit.html, line: 86
+#: views/plugins/edit.html:147 views/plugins/submit.html:86
 msgid   "Plugin details"
 msgstr  "Ploogeen deteeels"
+
 #
 # File: views/plugins/detail.html, line: 196
+#: views/plugins/detail.html:196
 msgid   "Plugin icon"
 msgstr  "Ploogeen icun"
+
 #
 # File: views/plugins/edit.html, line: 168
+#: views/plugins/edit.html:168
 msgid   "Plugin metadata and release defaults"
 msgstr  "Ploogeen metedeta und releese-a deffoolts"
+
 #
+# File: views/auth_profiles/settings.html, line: 49
 #. i18n: %1$s = base_url
 #. i18n: %2$s = profile_screen_name_url
 #. i18n: %3$s = profile_screen_name
-# File: views/auth_profiles/settings.html, line: 49
+#: views/auth_profiles/settings.html:49
 #, php-format
 msgid   "Profile settings for <a href=\"%1$sprofiles/%2$s\">%3$s</a>"
 msgstr  "Pruffeele-a setteengs fur <a href=\"%1$sprofiles/%2$s\">%3$s</a>"
+
 #
 # File: views/plugins/detail.html, line: 103
+#: views/plugins/detail.html:103
 msgid   "Push changes live"
 msgstr  "Poosh chunges leefe"
+
 #
 # File: views/plugins/deploy.html, line: 33
+#: views/plugins/deploy.html:33
 msgid   "Push changes to this plugin live?"
 msgstr  "Poosh chunges tu thees ploogeen leefe-a?"
+
 #
-#. i18n: %1$s = plugin_name_e
 # File: views/plugins/deploy.html, line: 23
+#. i18n: %1$s = plugin_name_e
+#: views/plugins/deploy.html:23
 #, php-format
 msgid   "Push plugin changes for \"%1$s\""
 msgstr  "Poosh ploogeen chunges fur \"%1$s\""
+
 #
 # File: views/plugins/deploy.html, line: 38
+#: views/plugins/deploy.html:38
 msgid   "Push plugin changes live"
 msgstr  "Poosh ploogeen chunges leefe"
+
 #
 # File: views/auth_profiles/login.html, line: 61
+#: views/auth_profiles/login.html:61
 msgid   "Re-send Account Activation Information"
 msgstr  "Re-a-send Eccuoont Ecteefeshun Inffurmeshun"
+
 #
 # File: views/auth_profiles/register_success.html, line: 36
 # File: views/auth_profiles/reverifyemail.html, line: 44
+#: views/auth_profiles/register_success.html:36 views/auth_profiles/reverifyemail.html:44
 msgid   "Re-send verification email"
 msgstr  "Re-a-send fereefficeshun imeeel"
+
 #
-#. i18n: %1$s = forgot_password_login_name
 # File: views/auth_profiles/changepassword.html, line: 92
+#. i18n: %1$s = forgot_password_login_name
+#: views/auth_profiles/changepassword.html:92
 #, php-format
 msgid   "Recovering password for %1$s"
 msgstr  "Recufereeng pessvurd fur %1$s"
+
 #
 # File: views/plugins/edit.html, line: 214
+#: views/plugins/edit.html:214
 msgid   "Regex aliases"
 msgstr  "Regex eleeeses"
+
 #
 # File: views/plugins/edit.html, line: 219
+#: views/plugins/edit.html:219
 msgid   "Regexes matching names by which this plugin has been known"
 msgstr  "Regexes metcheeng nemes by vheech thees ploogeen hes beee knoon"
+
 #
 # File: views/auth_profiles/forgotpassword.html, line: 27
 # File: views/auth_profiles/register.html, line: 27
 # File: views/auth_profiles/register.html, line: 78
+#: views/auth_profiles/forgotpassword.html:27 views/auth_profiles/register.html:27 views/auth_profiles/register.html:78
 msgid   "Register"
 msgstr  "Regeester"
+
 #
 # File: views/auth_profiles/verifyemail.html, line: 19
+#: views/auth_profiles/verifyemail.html:19
 msgid   "Register (verified)"
 msgstr  "Regeester (fereeffied)"
+
 #
 # File: views/auth_profiles/register_success.html, line: 19
 # File: views/auth_profiles/reverifyemail.html, line: 19
+#: views/auth_profiles/register_success.html:19 views/auth_profiles/reverifyemail.html:19
 msgid   "Register (verify)"
 msgstr  "Regeester (fereeffy)"
+
 #
 # File: views/plugins/edit.html, line: 246
+#: views/plugins/edit.html:246
 msgid   "Release"
 msgstr  "Releese"
+
 #
 # File: views/plugins/requestpush.html, line: 38
+#: views/plugins/requestpush.html:38
 msgid   "Request approval"
 msgstr  "Reqooest epprufel"
+
 #
 # File: views/plugins/detail.html, line: 116
+#: views/plugins/detail.html:116
 msgid   "Request approval for changes"
 msgstr  "Reqooest epprufel fur chunges"
+
 #
-#. i18n: %1$s = plugin_name_e
 # File: views/plugins/requestpush.html, line: 23
+#. i18n: %1$s = plugin_name_e
+#: views/plugins/requestpush.html:23
 #, php-format
 msgid   "Request approval for changes to \"%1$s\""
 msgstr  "Reqooest epprufel fur chunges tu \"%1$s\""
+
 #
 # File: views/plugins/requestpush.html, line: 33
+#: views/plugins/requestpush.html:33
 msgid   "Request approval for changes?"
 msgstr  "Reqooest epprufel fur chunges?"
+
 #
 # File: views/auth_profiles/editprofile.html, line: 62
+#: views/auth_profiles/editprofile.html:62
 msgid   "Role"
 msgstr  "Rule"
+
 #
 # File: views/index/index_byinstalled.html, line: 68
+#: views/index/index_byinstalled.html:68
 msgid   "Sandbox actions"
 msgstr  "Sundbux ecshuns"
+
+#
+# File: PluginDir/Editor.js, line: 195
+#: PluginDir/Editor.js:195
+#, c-format
+msgid   "Save failed at %1$s"
+msgstr  "Sefe-a feeeled et %1$s"
+
 #
 # File: views/plugins/edit.html, line: 134
+#: views/plugins/edit.html:134
 msgid   "Save now"
 msgstr  "Sefe-a noo"
+
 #
 # File: views/plugins/edit.html, line: 154
+#: views/plugins/edit.html:154
 msgid   "Saved JSON data"
 msgstr  "Sefed JSON deta"
+
+#
+# File: PluginDir/Editor.js, line: 175
+#: PluginDir/Editor.js:175
+#, c-format
+msgid   "Saving at %1$s"
+msgstr  "Sefeeng et %1$s"
+
 #
 # File: auth_profiles/i18n/en_US/form_errors_auth.php, line: 60
+#: auth_profiles/i18n/en_US/form_errors_auth.php:60
 msgid   "Screen name is not available."
 msgstr  "Screee neme-a is nut efeeeleble-a."
+
 #
 # File: auth_profiles/i18n/en_US/form_errors_auth.php, line: 54
+#: auth_profiles/i18n/en_US/form_errors_auth.php:54
 msgid   "Screen name is required."
 msgstr  "Screee neme-a is reqooured."
+
 #
 # File: auth_profiles/i18n/en_US/form_errors_auth.php, line: 56
+#: auth_profiles/i18n/en_US/form_errors_auth.php:56
 msgid   "Screen name must be between 3 and 64 characters in length"
 msgstr  "Screee neme-a moost be-a betveee 3 und 64 cherecters in length"
+
 #
 # File: auth_profiles/i18n/en_US/form_errors_auth.php, line: 58
+#: auth_profiles/i18n/en_US/form_errors_auth.php:58
 msgid   "Screen name must contain only alphanumeric characters"
 msgstr  "Screee neme-a moost cunteeen oonly elphunoomereec cherecters"
+
 #
-#. i18n: %1$s = authprofile_screen_name_e
 # File: views/auth_profiles/settings.html, line: 31
+#. i18n: %1$s = authprofile_screen_name_e
+#: views/auth_profiles/settings.html:31
 #, php-format
 msgid   "Settings for %1$s"
 msgstr  "Setteengs fur %1$s"
+
 #
 # File: views/forbidden.html, line: 31
+#: views/forbidden.html:31
 msgid   "Sorry, that action is not allowed."
 msgstr  "Surry, thet ecshun is nut ellooed."
+
 #
 # File: views/auth_profiles/login.html, line: 39
+#: views/auth_profiles/login.html:39
 msgid   "Sorry, that login has been disabled."
 msgstr  "Surry, thet lugeen hes beee deesebled."
+
 #
 # File: views/auth_profiles/login.html, line: 51
+#: views/auth_profiles/login.html:51
 msgid   "Sorry, the email address for that login has not yet been verified."
-msgstr  "Surry, zee imeeel eddress fur thet lugeen hes nut yet beee "
-        "fereeffied."
+msgstr  "Surry, zee imeeel eddress fur thet lugeen hes nut yet beee fereeffied."
+
 #
 # File: views/plugins/detail.html, line: 259
 # File: views/plugins/submissions.html, line: 45
 # File: views/plugins/submit.html, line: 100
 # File: views/search/results.html, line: 69
+#: views/plugins/detail.html:259 views/plugins/submissions.html:45 views/plugins/submit.html:100 views/search/results.html:69
 msgid   "Status"
 msgstr  "Stetoos"
+
 #
 # File: views/index/index_shell.html, line: 122
 # File: views/plugins/submission_detail.html, line: 19
+#: views/index/index_shell.html:122 views/plugins/submission_detail.html:19
 msgid   "Submissions"
 msgstr  "Soobmeessiuns"
+
 #
 # File: views/plugins/submit.html, line: 138
+#: views/plugins/submit.html:138
 msgid   "Submit"
 msgstr  "Soobmeet"
+
 #
 # File: views/plugins/submit.html, line: 51
+#: views/plugins/submit.html:51
 msgid   "Submit plugin info"
 msgstr  "Soobmeet ploogeen inffu"
+
 #
 # File: views/index/index_byinstalled.html, line: 124
 # File: views/index/index_byinstalled.html, line: 128
 # File: views/index/index_byinstalled.html, line: 132
+#: views/index/index_byinstalled.html:124 views/index/index_byinstalled.html:128 views/index/index_byinstalled.html:132
 msgid   "Suggest correction"
 msgstr  "Sooggest currecshun"
+
 #
 # File: views/index/index_byinstalled.html, line: 120
+#: views/index/index_byinstalled.html:120
 msgid   "Suggest update"
 msgstr  "Sooggest updete"
+
 #
 # File: views/macros/oses.html, line: 104
+#: views/macros/oses.html:104
 msgid   "SunOS"
 msgstr  "SoonOS"
+
 #
 # File: views/macros/oses.html, line: 112
+#: views/macros/oses.html:112
 msgid   "SunOS (sun4u)"
 msgstr  "SoonOS (soon4u)"
+
 #
 # File: views/auth_profiles/forgotpassword.html, line: 56
-msgid   "Supply either of these pieces of information to recover your "
-        "password:"
-msgstr  "Soopply ieezeer ooff zeese-a peeeces ooff inffurmeshun tu recufer "
-        "yuoor pessvurd:"
+#: views/auth_profiles/forgotpassword.html:56
+msgid   "Supply either of these pieces of information to recover your password:"
+msgstr  "Soopply ieezeer ooff zeese-a peeeces ooff inffurmeshun tu recufer yuoor pessvurd:"
+
 #
 # File: views/plugins/edit.html, line: 208
+#: views/plugins/edit.html:208
 msgid   "The literal names by which this plugin has been known"
 msgstr  "Zee leeterel nemes by vheech thees ploogeen hes beee knoon"
+
 #
 # File: auth_profiles/i18n/en_US/form_errors_auth.php, line: 92
+#: auth_profiles/i18n/en_US/form_errors_auth.php:92
 msgid   "This email address is used by another login"
 msgstr  "Thees imeeel eddress is used by unuzeer lugeen"
+
 #
 # File: views/plugins/sandbox_listing.html, line: 13
+#: views/plugins/sandbox_listing.html:13
 msgid   "This sandbox is empty."
 msgstr  "Thees sundbux is impty."
+
 #
 # File: views/auth_profiles/changepassword.html, line: 78
+#: views/auth_profiles/changepassword.html:78
 msgid   "Try again?"
 msgstr  "Try egeeen?"
+
 #
 # File: views/plugins/detail.html, line: 263
+#: views/plugins/detail.html:263
 msgid   "URL"
 msgstr  "URL"
+
 #
 # File: views/index/index_byinstalled.html, line: 113
 # File: views/macros/statuses.html, line: 59
+#: views/index/index_byinstalled.html:113 views/macros/statuses.html:59
 msgid   "Unknown"
 msgstr  "Unknoon"
+
 #
 # File: views/index/index_byinstalled.html, line: 101
+#: views/index/index_byinstalled.html:101
 msgid   "Up to date"
 msgstr  "Up tu dete"
+
 #
 # File: views/auth_profiles/editprofile.html, line: 69
+#: views/auth_profiles/editprofile.html:69
 msgid   "Update"
 msgstr  "Updete"
+
 #
 # File: auth_profiles/i18n/en_US/form_errors_auth.php, line: 70
+#: auth_profiles/i18n/en_US/form_errors_auth.php:70
 msgid   "Valid captcha response is required."
 msgstr  "Feleed ceptcha respunse-a is reqooured."
+
 #
 # File: auth_profiles/i18n/en_US/form_errors_auth.php, line: 32
 # File: auth_profiles/i18n/en_US/form_errors_auth.php, line: 36
+#: auth_profiles/i18n/en_US/form_errors_auth.php:32 auth_profiles/i18n/en_US/form_errors_auth.php:36
 msgid   "Valid email confirmation is required."
 msgstr  "Feleed imeeel cunffurmeshun is reqooured."
+
 #
 # File: auth_profiles/i18n/en_US/form_errors_auth.php, line: 22
 # File: auth_profiles/i18n/en_US/form_errors_auth.php, line: 26
+#: auth_profiles/i18n/en_US/form_errors_auth.php:22 auth_profiles/i18n/en_US/form_errors_auth.php:26
 msgid   "Valid email is required."
 msgstr  "Feleed imeeel is reqooured."
+
 #
 # File: auth_profiles/i18n/en_US/form_errors_auth.php, line: 10
+#: auth_profiles/i18n/en_US/form_errors_auth.php:10
 msgid   "Valid login name is required."
 msgstr  "Feleed lugeen neme-a is reqooured."
+
 #
 # File: views/plugins/submit.html, line: 112
+#: views/plugins/submit.html:112
 msgid   "Vendor"
 msgstr  "Fendur"
+
 #
 # File: views/plugins/submissions.html, line: 41
 # File: views/plugins/submit.html, line: 120
 # File: views/search/results.html, line: 57
+#: views/plugins/submissions.html:41 views/plugins/submit.html:120 views/search/results.html:57
 msgid   "Version"
 msgstr  "Ferseeun"
+
 #
 # File: views/plugins/detail.html, line: 90
+#: views/plugins/detail.html:90
 msgid   "View original"
 msgstr  "Feeoo ooreeginel"
+
 #
 # File: views/plugins/submit.html, line: 104
+#: views/plugins/submit.html:104
 msgid   "Vulnerability URL"
 msgstr  "Foolnerebeelity URL"
+
 #
 # File: views/plugins/submit.html, line: 108
+#: views/plugins/submit.html:108
 msgid   "Vulnerability description"
 msgstr  "Foolnerebeelity descreepshun"
+
 #
 # File: views/index/index_byinstalled.html, line: 105
 # File: views/macros/statuses.html, line: 51
+#: views/index/index_byinstalled.html:105 views/macros/statuses.html:51
 msgid   "Vulnerable"
 msgstr  "Foolnereble"
+
 #
 # File: views/index/index_shell.html, line: 56
+#: views/index/index_shell.html:56
 msgid   "Welcome to the Mozilla Plugin Directory"
 msgstr  "Velcume-a tu zee Muzeella Ploogeen Durectury"
+
 #
 # File: views/macros/oses.html, line: 40
+#: views/macros/oses.html:40
 msgid   "Windows"
 msgstr  "Veendoos"
+
 #
 # File: views/macros/oses.html, line: 48
+#: views/macros/oses.html:48
 msgid   "Windows Vista"
 msgstr  "Veendoos Feesta"
+
 #
 # File: views/index/index_shell.html, line: 103
+#: views/index/index_shell.html:103
 msgid   "Your Installed Plugins"
 msgstr  "Yuoor Instelled Ploogeens"
+
 #
 # File: views/index/index_shell.html, line: 111
+#: views/index/index_shell.html:111
 msgid   "Your Sandbox"
 msgstr  "Yuoor Sundbux"
+
 #
 # File: views/plugins/create.html, line: 81
 # File: views/plugins/submit.html, line: 63
+#: views/plugins/create.html:81 views/plugins/submit.html:63
 msgid   "Your plugin data submission has been accepted, thank you!"
 msgstr  "Yuoor ploogeen deta soobmeessiun hes beee eccepted, thunk yuoo!"
+
 #
 # File: views/plugins/edit.html, line: 230
+#: views/plugins/edit.html:230
 msgid   "[ + ] Add new release"
 msgstr  "[ + ] Edd noo releese"
+
 #
 # File: views/plugins/edit.html, line: 260
+#: views/plugins/edit.html:260
 msgid   "[ x ] Delete release"
 msgstr  "[ x ] Delete-a releese"
+
 #
 # File: auth_profiles/controllers/auth_profiles.php, line: 390
+#: auth_profiles/controllers/auth_profiles.php:390
 msgid   "change current login email"
 msgstr  "chunge-a coorrent lugeen imeeel"
+
 #
 # File: auth_profiles/controllers/auth_profiles.php, line: 385
+#: auth_profiles/controllers/auth_profiles.php:385
 msgid   "change current login password"
 msgstr  "chunge-a coorrent lugeen pessvurd"
+
 #
 # File: auth_profiles/controllers/auth_profiles.php, line: 395
+#: auth_profiles/controllers/auth_profiles.php:395
 msgid   "change screen name, bio, etc."
 msgstr  "chunge-a screee neme-a, beeu, itc."
+
 #
 # File: views/plugins/sandbox_listing.html, line: 51
+#: views/plugins/sandbox_listing.html:51
 msgid   "delete"
 msgstr  "delete"
+
 #
 # File: views/plugins/sandbox_listing.html, line: 61
+#: views/plugins/sandbox_listing.html:61
 msgid   "edit"
 msgstr  "edeet"
+
 #
 # File: views/auth_profiles/changeemail.html, line: 56
 # File: views/layout.html, line: 85
+#: views/auth_profiles/changeemail.html:56 views/layout.html:85
 msgid   "login"
 msgstr  "lugeen"
+
 #
 # File: views/layout.html, line: 74
+#: views/layout.html:74
 msgid   "logout"
 msgstr  "luguoot"
+
 #
 # File: views/layout.html, line: 91
+#: views/layout.html:91
 msgid   "register"
 msgstr  "regeester"
+
 #
 # File: views/layout.html, line: 108
+#: views/layout.html:108
 msgid   "search releases"
 msgstr  "seerch releeses"
+
 #
 # File: views/layout.html, line: 68
+#: views/layout.html:68
 msgid   "settings"
 msgstr  "setteengs"

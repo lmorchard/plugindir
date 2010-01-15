@@ -1,5 +1,5 @@
 #!/bin/bash
-SOURCE_DIRS="tmp/l10n application modules"
+SOURCE_DIRS="tmp/l10n application modules htdocs/js"
 
 cd `dirname $0`/..;
 working_dir=$( pwd );
@@ -14,6 +14,25 @@ for sourcedir in $SOURCE_DIRS; do \
         --language=PHP \
         --indent \
         --add-comments=i18n \
+        --keyword=_ \
+        --keyword=__ \
+        --keyword=___ \
+        --keyword=n___:1,2 \
+        --keyword="pgettext:1c,2" \
+        --keyword="npgettext:1c,2,3" \
+        --force-po \
+        --omit-header \
+        --join-existing \
+        --sort-output \
+        --copyright-holder="Mozilla Corporation" \
+        --files-from=- # Pull from standard input (our find command) 
+    find . -not -path '*/cache/*' -name '*.js' | xgettext \
+        --output=$working_dir/application/locale/keys.pot \
+        --language=C \
+        --indent \
+        --add-comments=i18n \
+        --keyword=_ \
+        --keyword=__ \
         --keyword=___ \
         --keyword=n___:1,2 \
         --keyword="pgettext:1c,2" \

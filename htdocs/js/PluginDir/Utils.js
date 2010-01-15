@@ -7,6 +7,9 @@ PluginDir.Utils = (function () {
     var $ = jQuery.noConflict();
     var $this = {
 
+        // Translation table for gettext()
+        _translations: {},
+
         /**
          * Initialize the package.
          */
@@ -64,9 +67,33 @@ PluginDir.Utils = (function () {
             return el[0];
         },
 
+        /**
+         * Intended as a callback for a JSON request, populates the package's
+         * translation table.
+         */
+        loadTranslations: function (data) {
+            this._translations = data;
+        },
+
+        /**
+         * Quick & dirty gettext translation function.
+         */
+        gettext: function (str) {
+            if ('undefined' !== typeof this._translations[str]) {
+                return this._translations[str];
+            } else {
+                return str;
+            }
+        },
+
         EOF: null
     };
 
     return $this.init();
 
 }());
+
+// Global alias for PluginDir.Utils.gettext()
+function _(str) { 
+    return PluginDir.Utils.gettext(str); 
+}

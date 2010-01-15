@@ -136,7 +136,8 @@ class Util_Controller extends Local_Controller {
      * This helps with l10n message extraction by providing appropriate filename
      * context.
      */
-    function compiletemplates() {
+    function compiletemplates() 
+    {
         $files = array();
         $dirs = array();
         $this->_find_templates(APPPATH . 'views', $files, $dirs);
@@ -164,7 +165,8 @@ class Util_Controller extends Local_Controller {
     /**
      * Recursively search for HTML templates under views.
      */
-    function _find_templates($root, &$files, &$dirs, $prefix='') {
+    function _find_templates($root, &$files, &$dirs, $prefix='') 
+    {
         $dh = opendir($root);
         while ( false !== ( $fn = readdir($dh) ) ) {
             if ('.' === $fn || '..' === $fn) { continue; }

@@ -179,7 +179,7 @@ PluginDir.Index = (function () {
                             ".name": plugin.name,
                             ".description": plugin.description,
                             // TODO: Need a bugzilla URL or something here for detection ideas
-                            ".version": 'Not detected (<a href="https://bugzilla.mozilla.org/show_bug.cgi?id=536394" target="_new">Any ideas?</a>)',
+                            ".version": _("Not detected (<a href=\"https://bugzilla.mozilla.org/show_bug.cgi?id=536394\" target=\"_new\">Any ideas?</a>)"),
                             '.status': PluginDir.Utils.cloneTemplate(
                                 $('#status_templates').find('.unknown')
                             ),
@@ -229,7 +229,7 @@ PluginDir.Index = (function () {
             if (has_pfs_match && !latest.sandbox_profile_screen_name) {
                 
                 // If PFS matched but not sandboxed, allow copy to sandbox.
-                select.options[0] = new Option("Copy to sandbox", plugin_url+';copy');
+                select.options[0] = new Option(_("Copy to sandbox"), plugin_url+';copy');
             
             } else if (has_pfs_match && latest.sandbox_profile_screen_name) {
                 
@@ -237,7 +237,7 @@ PluginDir.Index = (function () {
                 // TODO: Maybe need sandbox plugins indexed by PFS ID from server?
                 $.each($this.sandbox_plugins, function () {
                     if (this.pfs_id == pfs_id) {
-                        select.options[0] = new Option("Edit in sandbox", this.edit);
+                        select.options[0] = new Option(_("Edit in sandbox"), this.edit);
                     }
                 });
 
@@ -247,14 +247,14 @@ PluginDir.Index = (function () {
                 // create a new plugin in the sandbox, or to add this detected
                 // release to an existing sandbox plugin.
                 select.options[0] = new Option(
-                    "Create new sandbox plugin",
+                    _("Create new sandbox plugin"),
                     PluginDir.base_url + 'profiles/'+ PluginDir.screen_name + 
                         '/plugins;create?' + submit_params
                 );
                 
                 $.each($this.sandbox_plugins, function (i) {
                     select.options[i+1] = new Option(
-                        "Add release to " + this.name, 
+                        sprintf(_("Add release to %1$s"), this.name), 
                         this.edit + '?add_release=1&' + submit_params
                     );
                 })

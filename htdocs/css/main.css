@@ -272,7 +272,6 @@ body {
     font-weight: bold;
 }
 .index_home .listing .installed_plugins tbody tr.from_sandbox td.name:after {
-    content: " (from sandbox)";
 }
 .index_home .listing .installed_plugins tbody tr td.new_release select {
     width: 85%;
