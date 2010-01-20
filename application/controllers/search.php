@@ -35,6 +35,12 @@ class Search_Controller extends Local_Controller {
         if ($os_id = $this->input->get('os_id')) {
             $release->where('os_id', $os_id);
         }
+        if ($mimes_id = $this->input->get('mimes_id')) {
+            $release
+                ->join('mimes_plugins', 'mimes_plugins.plugin_id', 'plugins.id')
+                ->join('mimes', 'mimes.id', 'mimes_plugins.mime_id')
+                ->where('mimes.id', $mimes_id);
+        }
         if ($q = $this->input->get('q')) {
             $this->view->q = $q;
             $parts = explode(' ', $q);

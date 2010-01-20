@@ -64,6 +64,7 @@
             {{ this.nav_item(base_url, 'name', '?by=name', 'By Name'|trans, by_cat) }}
             {{ this.nav_item(base_url, 'application', '?by=application', 'By Application'|trans, by_cat) }}
             {{ this.nav_item(base_url, 'os', '?by=os', 'By Operating System'|trans, by_cat) }}
+            {{ this.nav_item(base_url, 'mimetype', '?by=mimetype', 'By MIME Type'|trans, by_cat) }}
         </ul>
 
         <div class="listing_content">{% block index_content %}{% endblock %}</div>

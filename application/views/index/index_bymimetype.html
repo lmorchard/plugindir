@@ -1,0 +1,17 @@
+{% extends "index/index_shell.html" %}
+
+{% block index_content %}
+    <p>{% blocktrans %}
+        The following is a list of plugins by MIME type, along with a
+        count of releases for each MIME type.
+    {% endblocktrans %}</p>
+
+    <ul class="clearfix counts mimetype_counts">
+        {% for mimetype in mimetype_counts %}
+            <li>
+                <span class="count">({{mimetype.count|e}})</span>
+                <a href="{{base_url}}search/results?mimes_id={{mimetype.id|urlencode|e}}">{{mimetype.name}}</a>
+            </li>
+        {% endfor %}
+    </ul>
+{% endblock %}

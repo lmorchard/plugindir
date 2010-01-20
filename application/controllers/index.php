@@ -40,6 +40,10 @@ class Index_Controller extends Local_Controller {
                 $this->view->os_counts = 
                     ORM::factory('os')->find_release_counts();
                 break;
+            case 'mimetype':
+                $this->view->mimetype_counts = 
+                    ORM::factory('mimetype')->find_release_counts();
+                break;
             case 'installed':
             default:
                 $this->view->by_cat = 'installed';

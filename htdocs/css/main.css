@@ -207,6 +207,10 @@ body {
 .index_home .listing ul.counts li {
     line-height: 1.75em;
 }
+.index_home .listing ul.mimetype_counts li {
+    float: left;
+    width: 42ex;
+}
 .index_home .listing ul.nav {
     list-style: none;
     margin: 0 0 0 0;
