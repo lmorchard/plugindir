@@ -1,5 +1,7 @@
 <?php defined('SYSPATH') OR die('No direct access allowed.');
 
+$config['pfs/v2'] = 'search/pfs_v2';
+
 $config['([^/]+)/plugins/?;create'] = 'plugins/create';
 
 $config['([^/]+)/plugins/detail/([^\.]+).json'] = 'plugins/detail/$2/json';

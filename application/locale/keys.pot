@@ -12,7 +12,7 @@ msgid   "                    <a href=\"#\" class=\"show\">Show</a> /\n"
         "                "
 msgstr  ""
 
-#: views/plugins/submit.html:91
+#: views/plugins/submit.html:97
 msgid   "                    This form will submit details detected about "
         "this plugin and your browser,\n"
         "                    along with the following fields that you may "
@@ -136,6 +136,10 @@ msgstr  ""
 msgid   "(Not sure, inherited from PFS1, need a description)"
 msgstr  ""
 
+#: PluginDir/Index.js:150
+msgid   "(from sandbox)"
+msgstr  ""
+
 #: views/plugins/sandbox_mine.html:24
 msgid   "+ Create new sandbox plugin"
 msgstr  ""
@@ -180,7 +184,7 @@ msgstr  ""
 msgid   "Account activation email sent."
 msgstr  ""
 
-#: PluginDir/Index.js:257
+#: PluginDir/Index.js:262
 #, c-format
 msgid   "Add release to %1$s"
 msgstr  ""
@@ -189,7 +193,7 @@ msgstr  ""
 msgid   "Advanced search"
 msgstr  ""
 
-#: views/plugins/submit.html:144
+#: views/plugins/submit.html:150
 msgid   "Also submitting the following additional information:"
 msgstr  ""
 
@@ -239,7 +243,7 @@ msgstr  ""
 msgid   "Cancel"
 msgstr  ""
 
-#: views/auth_profiles/register.html:74 views/plugins/submit.html:133
+#: views/auth_profiles/register.html:74 views/plugins/submit.html:139
 msgid   "Captcha"
 msgstr  ""
 
@@ -302,7 +306,7 @@ msgstr  ""
 msgid   "Client app version for which the plugin is intended (* is wildcard)"
 msgstr  ""
 
-#: views/plugins/submit.html:128
+#: views/plugins/submit.html:134
 msgid   "Comments"
 msgstr  ""
 
@@ -324,7 +328,7 @@ msgstr  ""
 msgid   "Copy to Sandbox"
 msgstr  ""
 
-#: views/plugins/detail.html:140 PluginDir/Index.js:232
+#: views/plugins/detail.html:140 PluginDir/Index.js:237
 msgid   "Copy to sandbox"
 msgstr  ""
 
@@ -342,7 +346,7 @@ msgstr  ""
 msgid   "Create new public plugin"
 msgstr  ""
 
-#: PluginDir/Index.js:250
+#: PluginDir/Index.js:255
 msgid   "Create new sandbox plugin"
 msgstr  ""
 
@@ -382,7 +386,7 @@ msgstr  ""
 msgid   "Delete this release?"
 msgstr  ""
 
-#: views/index/index_byinstalled.html:52 views/plugins/submit.html:124
+#: views/index/index_byinstalled.html:52 views/plugins/submit.html:130
 msgid   "Description"
 msgstr  ""
 
@@ -413,7 +417,7 @@ msgstr  ""
 msgid   "Edit details for %1$s"
 msgstr  ""
 
-#: PluginDir/Index.js:240
+#: PluginDir/Index.js:245
 msgid   "Edit in sandbox"
 msgstr  ""
 
@@ -544,7 +548,7 @@ msgstr  ""
 msgid   "Login"
 msgstr  ""
 
-#: views/auth_profiles/logout.html:31
+#: views/auth_profiles/logout.html:33
 msgid   "Login again?"
 msgstr  ""
 
@@ -624,7 +628,7 @@ msgid   "Mozilla Plugin Directory"
 msgstr  ""
 
 #: views/index/index_byinstalled.html:44 views/plugins/submissions.html:37
-#: views/plugins/submit.html:116 views/search/results.html:53
+#: views/plugins/submit.html:122 views/search/results.html:53
 msgid   "Name"
 msgstr  ""
 
@@ -676,7 +680,7 @@ msgstr  ""
 msgid   "No submissions."
 msgstr  ""
 
-#: PluginDir/Index.js:182
+#: PluginDir/Index.js:187
 msgid   "Not detected (<a href=\"https://bugzilla.mozilla.org/show_bug.cgi?"
         "id=536394\" target=\"_new\">Any ideas?</a>)"
 msgstr  ""
@@ -767,7 +771,7 @@ msgstr  ""
 msgid   "Plugin Sandbox for %1$s"
 msgstr  ""
 
-#: views/plugins/edit.html:147 views/plugins/submit.html:86
+#: views/plugins/edit.html:147 views/plugins/submit.html:92
 msgid   "Plugin details"
 msgstr  ""
 
@@ -868,6 +872,10 @@ msgstr  ""
 msgid   "Request approval for changes?"
 msgstr  ""
 
+#: views/auth_profiles/logout.html:39 views/plugins/submit.html:69
+msgid   "Return to the home page?"
+msgstr  ""
+
 #: views/auth_profiles/editprofile.html:62
 msgid   "Role"
 msgstr  ""
@@ -929,7 +937,7 @@ msgid   "Sorry, the email address for that login has not yet been verified."
 msgstr  ""
 
 #: views/plugins/detail.html:259 views/plugins/submissions.html:45
-#: views/plugins/submit.html:100 views/search/results.html:69
+#: views/plugins/submit.html:106 views/search/results.html:69
 msgid   "Status"
 msgstr  ""
 
@@ -937,7 +945,7 @@ msgstr  ""
 msgid   "Submissions"
 msgstr  ""
 
-#: views/plugins/submit.html:138
+#: views/plugins/submit.html:144
 msgid   "Submit"
 msgstr  ""
 
@@ -1055,11 +1063,11 @@ msgstr  ""
 msgid   "Valid login name is required."
 msgstr  ""
 
-#: views/plugins/submit.html:112
+#: views/plugins/submit.html:118
 msgid   "Vendor"
 msgstr  ""
 
-#: views/plugins/submissions.html:41 views/plugins/submit.html:120
+#: views/plugins/submissions.html:41 views/plugins/submit.html:126
 #: views/search/results.html:57
 msgid   "Version"
 msgstr  ""
@@ -1073,11 +1081,11 @@ msgstr  ""
 msgid   "View original"
 msgstr  ""
 
-#: views/plugins/submit.html:104
+#: views/plugins/submit.html:110
 msgid   "Vulnerability URL"
 msgstr  ""
 
-#: views/plugins/submit.html:108
+#: views/plugins/submit.html:114
 msgid   "Vulnerability description"
 msgstr  ""
 

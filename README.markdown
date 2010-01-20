@@ -97,5 +97,5 @@ without "-dist" and modified for your installation.
 
 * See: https://wiki.mozilla.org/PFS2#Request_Parameters
 * Example query:
-    * `curl -sD - 'http://dev.plugindir.mozilla.org/api/v1/lookup?mimetype=application%2Fx-shockwave-flash+application%2Ffuturesplash&appID=%7Bec8030f7-c20a-464f-9b0e-13a3a9e97384%7D&appRelease=3.5.5&appVersion=20091102134505&clientOS=Intel+Mac+OS+X+10.6&chromeLocale=en-US'`
+    * `curl -sD - 'http://dev.plugindir.mozilla.org/pfs/v2?mimetype=application%2Fx-shockwave-flash+application%2Ffuturesplash&appID=%7Bec8030f7-c20a-464f-9b0e-13a3a9e97384%7D&appRelease=3.5.5&appVersion=20091102134505&clientOS=Intel+Mac+OS+X+10.6&chromeLocale=en-US'`
 

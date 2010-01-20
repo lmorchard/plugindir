@@ -5,7 +5,8 @@ msgid   "                            <a href=\"#\" class=\"show\">Show</a> /\n"
         "                        "
 msgstr  "                            <a href=\"#\" class=\"show\">Show</a> /\n"
         "                            <a href=\"#\" class=\"hide\">Hide</a>\n"
-        "                            empty properties, arrrr.\n"
+        "                            empty properties, by Davy Jones's "
+        "locker.\n"
         "                        "
 #
 # File: views/plugins/edit.html, line: 173
@@ -15,10 +16,10 @@ msgid   "                    <a href=\"#\" class=\"show\">Show</a> /\n"
         "                "
 msgstr  "                    <a href=\"#\" class=\"show\">Show</a> /\n"
         "                    <a href=\"#\" class=\"hide\">Hide</a>\n"
-        "                    empty properties, arrrr.\n"
+        "                    empty properties.\n"
         "                "
 #
-# File: views/plugins/submit.html, line: 91
+# File: views/plugins/submit.html, line: 97
 msgid   "                    This form will submit details detected about "
         "this plugin and your browser,\n"
         "                    along with the following fields that you may "
@@ -26,10 +27,10 @@ msgid   "                    This form will submit details detected about "
         "                    corrections.\n"
         "                "
 msgstr  "                    This ferm will submit details detected about "
-        "this plugin and yer browser, I'll warrant ye,\n"
+        "this plugin and yer browser, aye,\n"
         "                    along with th' following fields that ye may "
         "modify t' suggest\n"
-        "                    corrections. Pass the grog!\n"
+        "                    corrections. And swab the deck!\n"
         "                "
 #
 # File: views/plugins/create.html, line: 106
@@ -45,13 +46,13 @@ msgid   "                    Use this form to provide details to create a new "
         "                "
 msgstr  "                    Use this ferm t' provide details t' create a new "
         "plugin\n"
-        "                    and an initial release. And swab the deck!  Some "
-        "or all o' these details may\n"
+        "                    and an initial release. Pass the grog!  Some or "
+        "all o' these details may\n"
         "                    have already been filled in from data detected "
         "about yer\n"
-        "                    browser and an installed plugin, so ye may not "
-        "need t'\n"
-        "                    modify these values, by Davy Jones's locker.\n"
+        "                    browser and an installed plugin, aye, so ye may "
+        "not need t'\n"
+        "                    modify these values.\n"
         "                "
 #
 # File: views/index/index_shell.html, line: 84
@@ -64,14 +65,15 @@ msgid   "            If you want to get even more involved, you can sign up "
         "            browsers, and submit changes to our editors for\n"
         "            approval and inclusion in the database.\n"
         "        "
-msgstr  "            If ye want t' get even more involved, I'll warrant ye, "
-        "ye can sign up fer a\n"
-        "            profile. Pass the grog!  This will give ye access t' a "
-        "sandbox in which to \n"
-        "            edit plugin records, to be sure, test them against our "
-        "detection code in \n"
-        "            browsers, and submit changes t' our editors fer\n"
-        "            approval and inclusion in th' database.\n"
+msgstr  "            If ye want t' get even more involved, by Blackbeard's "
+        "sword, ye can sign up fer a\n"
+        "            profile.  This will give ye access t' a sandbox in which "
+        "to \n"
+        "            edit plugin records, by Blackbeard's sword, test them "
+        "against our detection code in \n"
+        "            browsers, aye, and submit changes t' our editors fer\n"
+        "            approval and inclusion in th' database, with a chest "
+        "full a' booty.\n"
         "        "
 #
 # File: views/index/index_shell.html, line: 60
@@ -93,12 +95,12 @@ msgid   "            Using our plugin detection service, you can check to see "
         "be\n"
         "            vulnerable to any problems or security issues.\n"
         "        "
-msgstr  "            Using our plugin detection service, I'll warrant ye, ye "
-        "can check t' see if yer\n"
+msgstr  "            Using our plugin detection service, aye, ye can check t' "
+        "see if yer\n"
         "            plugins be up t' date (as far as we know) or if ye may "
         "be\n"
-        "            vulnerable t' any problems or security issues. Pass the "
-        "grog!\n"
+        "            vulnerable t' any problems or security issues. And swab "
+        "the deck!\n"
         "        "
 #
 # File: views/index/index_shell.html, line: 75
@@ -111,14 +113,13 @@ msgid   "            We can also use your help:  If you are a plugin vendor, "
         "            we've detected about your browser and installed "
         "plugins.\n"
         "        "
-msgstr  "            We can also use yer help:  If ye be a plugin vendor, "
-        "I'll warrant ye, or simply\n"
-        "            know something we dinna about a plugin, ye can help us "
-        "by\n"
+msgstr  "            We can also use yer help:  If ye be a plugin vendor, or "
+        "simply\n"
+        "            know something we dinna about a plugin, aye, ye can help "
+        "us by\n"
         "            submitting suggested updates t' this database along with "
         "information\n"
-        "            we've detected about yer browser and installed plugins, "
-        "by Davy Jones's locker.\n"
+        "            we've detected about yer browser and installed plugins.\n"
         "        "
 #
 # File: views/index/index_byinstalled.html, line: 32
@@ -127,12 +128,11 @@ msgid   "        If you can see this message, we were unable to perform\n"
         "        disabled, which this site requires for many of its "
         "features.\n"
         "    "
-msgstr  "        If ye can see this message, I'll warrant ye, we were unable "
-        "t' perform\n"
-        "        plugin detection on yer browser. Pass the grog!  Ye may have "
-        "JavaScript\n"
-        "        disabled, to be sure, which this site requires fer many o' "
-        "its features.\n"
+msgstr  "        If ye can see this message, by Blackbeard's sword, we were "
+        "unable t' perform\n"
+        "        plugin detection on yer browser.  Ye may have JavaScript\n"
+        "        disabled, by Blackbeard's sword, which this site requires "
+        "fer many o' its features.\n"
         "    "
 #
 # File: views/index/index_bymimetype.html, line: 19
@@ -142,7 +142,7 @@ msgid   "        The following is a list of plugins by MIME type, along with "
         "    "
 msgstr  "        Th' following is a list o' plugins by MIME type, I'll "
         "warrant ye, along with a\n"
-        "        count o' releases fer each MIME type. Pass the grog!\n"
+        "        count o' releases fer each MIME type. Hoist the mainsail!\n"
         "    "
 #
 # File: views/index/index_byapplication.html, line: 29
@@ -151,8 +151,9 @@ msgid   "        The following is a list of plugins by browser application, "
         "        count of releases for each application.\n"
         "    "
 msgstr  "        Th' following is a list o' plugins by browser application, "
-        "arrrr, along with a\n"
-        "        count o' releases fer each application.\n"
+        "along with a\n"
+        "        count o' releases fer each application, with a chest full a' "
+        "booty.\n"
         "    "
 #
 # File: views/index/index_byname.html, line: 19
@@ -170,9 +171,9 @@ msgid   "        The following is a list of plugins by operating system, "
         "along with a\n"
         "        count of releases for each OS.\n"
         "    "
-msgstr  "        Th' following is a list o' plugins by operating system, "
-        "arrrr, along with a\n"
-        "        count o' releases fer each OS.\n"
+msgstr  "        Th' following is a list o' plugins by operating system, aye, "
+        "along with a\n"
+        "        count o' releases fer each OS, I'll warrant ye.\n"
         "    "
 #
 # File: views/index/index_byinstalled.html, line: 20
@@ -186,13 +187,12 @@ msgid   "        The following is a list of plugins detected as installed\n"
         "        links next to each plugin.\n"
         "    "
 msgstr  "        Th' following is a list o' plugins detected as installed\n"
-        "        in yer browser, arrrr, along with th' status o' each with "
-        "respect\n"
+        "        in yer browser, along with th' status o' each with respect\n"
         "        t' our plugin database.  Some o' these plugins may not be\n"
         "        present in our database, and some may have incorrect "
-        "details.\n"
+        "details, I'll warrant ye.\n"
         "        Ye can help us improve this directory by using th' feedback\n"
-        "        links next t' each plugin, arrrr.\n"
+        "        links next t' each plugin. And swab the deck!\n"
         "    "
 #
 # File: models/plugin.php, line: 758
@@ -209,7 +209,12 @@ msgstr  "(0/1) whether or not th' installer displays a user interface"
 # File: models/plugin.php, line: 766
 # File: models/plugin.php, line: 770
 msgid   "(Not sure, inherited from PFS1, need a description)"
-msgstr  "(Not sure, arrrr, inherited from PFS1, need a description)"
+msgstr  "(Not sure, aye, inherited from PFS1, by Blackbeard's sword, need a "
+        "description)"
+#
+# File: PluginDir/Index.js, line: 150
+msgid   "(from sandbox)"
+msgstr  "(from sandbox)"
 #
 # File: views/plugins/sandbox_mine.html, line: 24
 msgid   "+ Create new sandbox plugin"
@@ -230,8 +235,8 @@ msgstr  "A GUID fer th' plugin release, may differ betwixt releases and "
 msgid   "A dot-separated normalized version for the plugin, may differ from "
         "official vendor versioning scheme in order to maintain internal "
         "consistency in PFS2"
-msgstr  "A dot-separated normalized version fer th' plugin, may differ from "
-        "official vendor versioning scheme in order t' maintain internal "
+msgstr  "A dot-separated normalized version fer th' plugin, arrrr, may differ "
+        "from official vendor versioning scheme in order t' maintain internal "
         "consistency in PFS2"
 #
 # File: models/plugin.php, line: 750
@@ -259,7 +264,7 @@ msgstr  "Access denied"
 msgid   "Account activation email sent."
 msgstr  "Account activation email sent."
 #
-# File: PluginDir/Index.js, line: 257
+# File: PluginDir/Index.js, line: 262
 #, c-format
 msgid   "Add release to %1$s"
 msgstr  "Add release to %1$s"
@@ -268,7 +273,7 @@ msgstr  "Add release to %1$s"
 msgid   "Advanced search"
 msgstr  "Advanced search"
 #
-# File: views/plugins/submit.html, line: 144
+# File: views/plugins/submit.html, line: 150
 msgid   "Also submitting the following additional information:"
 msgstr  "Also submitting th' following additional information:"
 #
@@ -321,7 +326,7 @@ msgid   "Cancel"
 msgstr  "Cancel"
 #
 # File: views/auth_profiles/register.html, line: 74
-# File: views/plugins/submit.html, line: 133
+# File: views/plugins/submit.html, line: 139
 msgid   "Captcha"
 msgstr  "Captcha"
 #
@@ -384,7 +389,7 @@ msgstr  "Client app release fer which th' plugin is intended (* is wildcard)"
 msgid   "Client app version for which the plugin is intended (* is wildcard)"
 msgstr  "Client app version fer which th' plugin is intended (* is wildcard)"
 #
-# File: views/plugins/submit.html, line: 128
+# File: views/plugins/submit.html, line: 134
 msgid   "Comments"
 msgstr  "Comments"
 #
@@ -407,7 +412,7 @@ msgid   "Copy to Sandbox"
 msgstr  "Copy t' Sandbox"
 #
 # File: views/plugins/detail.html, line: 140
-# File: PluginDir/Index.js, line: 232
+# File: PluginDir/Index.js, line: 237
 msgid   "Copy to sandbox"
 msgstr  "Copy t' sandbox"
 #
@@ -425,7 +430,7 @@ msgstr  "Create a new sandbox release"
 msgid   "Create new public plugin"
 msgstr  "Create new public plugin"
 #
-# File: PluginDir/Index.js, line: 250
+# File: PluginDir/Index.js, line: 255
 msgid   "Create new sandbox plugin"
 msgstr  "Create new sandbox plugin"
 #
@@ -441,8 +446,8 @@ msgstr  "Current JSON data"
 #
 # File: models/plugin.php, line: 686
 msgid   "Current status of the release, eg. latest, outdated, vulnerable"
-msgstr  "Current status o' th' release, eg, and a bottle of rum! latest, aye, "
-        "outdated, arrrr, vulnerable"
+msgstr  "Current status o' th' release, eg. And swab the deck! latest, to be "
+        "sure, outdated, vulnerable"
 #
 # File: views/plugins/submissions.html, line: 33
 msgid   "Date"
@@ -468,7 +473,7 @@ msgid   "Delete this release?"
 msgstr  "Scuttle this release?"
 #
 # File: views/index/index_byinstalled.html, line: 52
-# File: views/plugins/submit.html, line: 124
+# File: views/plugins/submit.html, line: 130
 msgid   "Description"
 msgstr  "Description"
 #
@@ -500,7 +505,7 @@ msgstr  "Edit details"
 msgid   "Edit details for %1$s"
 msgstr  "Edit details fer %1$s"
 #
-# File: PluginDir/Index.js, line: 240
+# File: PluginDir/Index.js, line: 245
 msgid   "Edit in sandbox"
 msgstr  "Edit in sandbox"
 #
@@ -545,13 +550,13 @@ msgstr  "Firefox"
 # File: models/plugin.php, line: 722
 msgid   "For status vulnerable, a URL detailing security vulnerabilities for "
         "the plugin release"
-msgstr  "Fer status vulnerable, arrrr, a URL detailing security "
+msgstr  "Fer status vulnerable, I'll warrant ye, a URL detailing security "
         "vulnerabilities fer th' plugin release"
 #
 # File: models/plugin.php, line: 718
 msgid   "For status vulnerable, a short description of security "
         "vulnerabilities for the plugin release"
-msgstr  "Fer status vulnerable, arrrr, a short description o' security "
+msgstr  "Fer status vulnerable, a short description o' security "
         "vulnerabilities fer th' plugin release"
 #
 # File: views/auth_profiles/forgotpassword.html, line: 68
@@ -593,11 +598,11 @@ msgstr  "Intel Mac OS X 10.6"
 #
 # File: views/auth_profiles/verifyemail.html, line: 31
 msgid   "Invalid email verification token."
-msgstr  "Invalid email verification t'ken."
+msgstr  "Invalid email verification t'ken, ye scurvey dog."
 #
 # File: views/auth_profiles/changepassword.html, line: 72
 msgid   "Invalid password reset attempt."
-msgstr  "Invalid password reset attempt."
+msgstr  "Invalid password reset attempt, ye scurvey dog."
 #
 # File: views/plugins/detail.html, line: 179
 msgid   "JSON export"
@@ -636,7 +641,7 @@ msgstr  "Logged out."
 msgid   "Login"
 msgstr  "Login"
 #
-# File: views/auth_profiles/logout.html, line: 31
+# File: views/auth_profiles/logout.html, line: 33
 msgid   "Login again?"
 msgstr  "Login again?"
 #
@@ -719,7 +724,7 @@ msgstr  "Mozilla Plugin Directory"
 #
 # File: views/index/index_byinstalled.html, line: 44
 # File: views/plugins/submissions.html, line: 37
-# File: views/plugins/submit.html, line: 116
+# File: views/plugins/submit.html, line: 122
 # File: views/search/results.html, line: 53
 msgid   "Name"
 msgstr  "Name"
@@ -767,14 +772,14 @@ msgstr  "Newer than directory"
 #
 # File: views/search/results.html, line: 139
 msgid   "No search results, please change your search terms and try again."
-msgstr  "Nay search results, arrrr, please change yer search terms and try "
-        "again."
+msgstr  "Nay search results, please change yer search terms and try again. "
+        "Hoist the mainsail!"
 #
 # File: views/plugins/submissions.html, line: 140
 msgid   "No submissions."
 msgstr  "Nay submissions."
 #
-# File: PluginDir/Index.js, line: 182
+# File: PluginDir/Index.js, line: 187
 msgid   "Not detected (<a href=\"https://bugzilla.mozilla.org/show_bug.cgi?"
         "id=536394\" target=\"_new\">Any ideas?</a>)"
 msgstr  "Not detected (<a href=\"https://bugzilla.mozilla.org/show_bug.cgi?"
@@ -831,11 +836,11 @@ msgstr  "Password changed."
 #
 # File: auth_profiles/i18n/en_US/form_errors_auth.php, line: 48
 msgid   "Password confirmation is required."
-msgstr  "Password confirmation is required."
+msgstr  "Password confirmation is required, arrrr."
 #
 # File: auth_profiles/i18n/en_US/form_errors_auth.php, line: 42
 msgid   "Password is invalid."
-msgstr  "Password is invalid."
+msgstr  "Password is invalid, arrrr."
 #
 # File: auth_profiles/i18n/en_US/form_errors_auth.php, line: 44
 msgid   "Password is required."
@@ -872,7 +877,7 @@ msgid   "Plugin Sandbox for %1$s"
 msgstr  "Plugin Sandbox fer %1$s"
 #
 # File: views/plugins/edit.html, line: 147
-# File: views/plugins/submit.html, line: 86
+# File: views/plugins/submit.html, line: 92
 msgid   "Plugin details"
 msgstr  "Plugin details"
 #
@@ -975,6 +980,11 @@ msgstr  "Request approval fer changes to \"%1$s\""
 msgid   "Request approval for changes?"
 msgstr  "Request approval fer changes?"
 #
+# File: views/auth_profiles/logout.html, line: 39
+# File: views/plugins/submit.html, line: 69
+msgid   "Return to the home page?"
+msgstr  "Return t' th' home page?"
+#
 # File: views/auth_profiles/editprofile.html, line: 62
 msgid   "Role"
 msgstr  "Role"
@@ -1025,20 +1035,20 @@ msgstr  "Settings fer %1$s"
 #
 # File: views/forbidden.html, line: 31
 msgid   "Sorry, that action is not allowed."
-msgstr  "Sorry, that action is not allowed, and a bottle of rum!"
+msgstr  "Sorry, I'll warrant ye, that action is not allowed, arrrr."
 #
 # File: views/auth_profiles/login.html, line: 39
 msgid   "Sorry, that login has been disabled."
-msgstr  "Sorry, that login has been disabled, and a bottle of rum!"
+msgstr  "Sorry, I'll warrant ye, that login has been disabled, arrrr."
 #
 # File: views/auth_profiles/login.html, line: 51
 msgid   "Sorry, the email address for that login has not yet been verified."
 msgstr  "Sorry, th' email address fer that login has not yet been verified, "
-        "and a bottle of rum!"
+        "ye scurvey dog."
 #
 # File: views/plugins/detail.html, line: 259
 # File: views/plugins/submissions.html, line: 45
-# File: views/plugins/submit.html, line: 100
+# File: views/plugins/submit.html, line: 106
 # File: views/search/results.html, line: 69
 msgid   "Status"
 msgstr  "Status"
@@ -1048,7 +1058,7 @@ msgstr  "Status"
 msgid   "Submissions"
 msgstr  "Submissions"
 #
-# File: views/plugins/submit.html, line: 138
+# File: views/plugins/submit.html, line: 144
 msgid   "Submit"
 msgstr  "Submit"
 #
@@ -1082,9 +1092,9 @@ msgstr  "Supply either o' these pieces o' information t' recover yer password:"
 # File: views/index/index_byinstalled.html, line: 148
 msgid   "The directory can't find any details on this plugin. You can share "
         "the details with us to help keep the directory up to date!"
-msgstr  "Th' directory can't find any details on this plugin. Ye can share "
-        "th' details with us t' help keep th' directory up t' date! Fire the "
-        "cannons!"
+msgstr  "Th' directory can't find any details on this plugin, ye scurvey dog. "
+        "Ye can share th' details with us t' help keep th' directory up t' "
+        "date! Fire the cannons!"
 #
 # File: views/plugins/edit.html, line: 208
 msgid   "The literal names by which this plugin has been known"
@@ -1158,23 +1168,23 @@ msgstr  "Valid captcha response is required."
 # File: auth_profiles/i18n/en_US/form_errors_auth.php, line: 32
 # File: auth_profiles/i18n/en_US/form_errors_auth.php, line: 36
 msgid   "Valid email confirmation is required."
-msgstr  "Valid email confirmation is required."
+msgstr  "Valid email confirmation is required, arrrr."
 #
 # File: auth_profiles/i18n/en_US/form_errors_auth.php, line: 22
 # File: auth_profiles/i18n/en_US/form_errors_auth.php, line: 26
 msgid   "Valid email is required."
-msgstr  "Valid email is required."
+msgstr  "Valid email is required, arrrr."
 #
 # File: auth_profiles/i18n/en_US/form_errors_auth.php, line: 10
 msgid   "Valid login name is required."
 msgstr  "Valid login name is required."
 #
-# File: views/plugins/submit.html, line: 112
+# File: views/plugins/submit.html, line: 118
 msgid   "Vendor"
 msgstr  "Vendor"
 #
 # File: views/plugins/submissions.html, line: 41
-# File: views/plugins/submit.html, line: 120
+# File: views/plugins/submit.html, line: 126
 # File: views/search/results.html, line: 57
 msgid   "Version"
 msgstr  "Version"
@@ -1189,11 +1199,11 @@ msgstr  "Version detected in th' client, can differ from vendor-intended "
 msgid   "View original"
 msgstr  "View original"
 #
-# File: views/plugins/submit.html, line: 104
+# File: views/plugins/submit.html, line: 110
 msgid   "Vulnerability URL"
 msgstr  "Vulnerability URL"
 #
-# File: views/plugins/submit.html, line: 108
+# File: views/plugins/submit.html, line: 114
 msgid   "Vulnerability description"
 msgstr  "Vulnerability description"
 #
@@ -1220,30 +1230,30 @@ msgid   "You appear to have a newer version of this plugin installed than "
         "what the directory knows about. You can share the details with us to "
         "help keep the directory up to date!"
 msgstr  "Ye appear t' have a newer version o' this plugin installed than what "
-        "th' directory knows about. Ye can share th' details with us t' help "
-        "keep th' directory up t' date! Fire the cannons!"
+        "th' directory knows about. And swab the deck! Ye can share th' "
+        "details with us t' help keep th' directory up t' date!"
 #
 # File: views/index/index_byinstalled.html, line: 136
 msgid   "You appear to have a vulnerable version of this plugin that needs an "
         "update! If this is incorrect, you can suggest a correction."
 msgstr  "Ye appear t' have a vulnerable version o' this plugin that needs an "
         "update, and dinna spare the whip! If this is incorrect, ye can "
-        "suggest a correction. Hoist the mainsail!"
+        "suggest a correction."
 #
 # File: views/index/index_byinstalled.html, line: 142
 msgid   "You appear to have an outdated version of this plugin that needs an "
         "update. If this is incorrect, you can suggest a correction."
 msgstr  "Ye appear t' have an outdated version o' this plugin that needs an "
-        "update. If this is incorrect, ye can suggest a correction. Hoist the "
-        "mainsail!"
+        "update, ye scurvey dog. If this is incorrect, ye can suggest a "
+        "correction."
 #
 # File: views/index/index_byinstalled.html, line: 130
 msgid   "You appear to have the latest version of this plugin as far as the "
         "directory is concerned. If this is incorrect, you can suggest a "
         "correction."
 msgstr  "Ye appear t' have th' latest version o' this plugin as far as th' "
-        "directory is concerned. If this is incorrect, aye, ye can suggest a "
-        "correction."
+        "directory is concerned. If this is incorrect, arrrr, ye can suggest "
+        "a correction."
 #
 # File: views/index/index_shell.html, line: 103
 msgid   "Your Installed Plugins"
@@ -1256,7 +1266,7 @@ msgstr  "Yer Sandbox"
 # File: views/plugins/create.html, line: 81
 # File: views/plugins/submit.html, line: 63
 msgid   "Your plugin data submission has been accepted, thank you!"
-msgstr  "Yer plugin data submission has been accepted, thank ye!"
+msgstr  "Yer plugin data submission has been accepted, arrrr, thank ye!"
 #
 # File: views/plugins/edit.html, line: 233
 msgid   "[ + ] Add new release"
@@ -1276,7 +1286,7 @@ msgstr  "change current login password"
 #
 # File: auth_profiles/controllers/auth_profiles.php, line: 395
 msgid   "change screen name, bio, etc."
-msgstr  "change screen name, arrrr, bio, etc. Hoist the mainsail!"
+msgstr  "change screen name, arrrr, bio, etc."
 #
 # File: views/plugins/sandbox_listing.html, line: 51
 msgid   "delete"

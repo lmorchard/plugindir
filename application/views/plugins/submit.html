@@ -12,6 +12,7 @@
 {% block content %}
     {% if saved %}
         <p>{% trans "Your plugin data submission has been accepted, thank you!" %}</p>
+        <p><a href="{{base_url}}">{% trans "Return to the home page?" %}</a></p>
     {% else %}
 
         <form class="contribute" action="{{base_url}}plugins/submit" method="post">

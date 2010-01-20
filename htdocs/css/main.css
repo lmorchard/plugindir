@@ -266,13 +266,10 @@ body {
     text-align: left;
     padding: 0.5em 0.5em 0.5em 0.5em;
 }
-/*
 .index_home .listing .installed_plugins tbody tr.from_sandbox td {
-    background-color: #eee;
+    background-color: #ddf8dd;
 }
-    */
 .index_home .listing .installed_plugins tbody tr.from_sandbox td.name {
-    background-color: #eee;
     font-weight: bold;
 }
 .index_home .listing .installed_plugins tbody tr.from_sandbox td.name:after {

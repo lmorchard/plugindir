@@ -62,6 +62,7 @@ PluginDir.Index = (function () {
 
             if (PluginDir.is_logged_in) {
                 // Include the user's sandbox in PFS lookups, if logged in.
+                // TODO: Allow disabling of this via a query string param?
                 browser_info.sandboxScreenName = PluginDir.screen_name;
             }
 
@@ -143,7 +144,11 @@ PluginDir.Index = (function () {
 
                     // Annotate this result if it was found via sandbox.
                     if (has_pfs_match && latest.sandbox_profile_screen_name) {
-                        $(row).addClass("from_sandbox");
+                        $(row)
+                            .addClass("from_sandbox")
+                            .find('.name')
+                                .append('<div>' + _("(from sandbox)") + '</div>')
+                            .end();
                     }
                     
                 },

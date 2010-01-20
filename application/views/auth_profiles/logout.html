@@ -5,5 +5,7 @@
 {% endblock %}
 
 {% block content %}
-    <p>{% trans "Logged out." %}  <a href="{{base_url}}login">{% trans "Login again?" %}</a></p>
+    <p>{% trans "Logged out." %}</p>
+    <p><a href="{{base_url}}login">{% trans "Login again?" %}</a></p>
+    <p><a href="{{base_url}}">{% trans "Return to the home page?" %}</a></p>
 {% endblock %}

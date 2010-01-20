@@ -21,7 +21,7 @@ msgstr  "                    <a href=\"#\" class=\"show\">Shoo</a> /\n"
         "Bork Bork Bork!\n"
         "                "
 #
-# File: views/plugins/submit.html, line: 91
+# File: views/plugins/submit.html, line: 97
 msgid   "                    This form will submit details detected about "
         "this plugin and your browser,\n"
         "                    along with the following fields that you may "
@@ -228,6 +228,10 @@ msgstr  "(0/1) vhezeer oor nut zee insteller deespleys a user interffece"
 msgid   "(Not sure, inherited from PFS1, need a description)"
 msgstr  "(Nut soore-a, inhereeted frum PFS1, need a descreepshun)"
 #
+# File: PluginDir/Index.js, line: 150
+msgid   "(from sandbox)"
+msgstr  "(frum sundbux)"
+#
 # File: views/plugins/sandbox_mine.html, line: 24
 msgid   "+ Create new sandbox plugin"
 msgstr  "+ Creete-a noo sundbux ploogeen"
@@ -276,7 +280,7 @@ msgstr  "Eccess deneeed"
 msgid   "Account activation email sent."
 msgstr  "Eccuoont ecteefeshun imeeel sent."
 #
-# File: PluginDir/Index.js, line: 257
+# File: PluginDir/Index.js, line: 262
 #, c-format
 msgid   "Add release to %1$s"
 msgstr  "Edd releese-a tu %1$s"
@@ -285,7 +289,7 @@ msgstr  "Edd releese-a tu %1$s"
 msgid   "Advanced search"
 msgstr  "Edfunced seerch"
 #
-# File: views/plugins/submit.html, line: 144
+# File: views/plugins/submit.html, line: 150
 msgid   "Also submitting the following additional information:"
 msgstr  "Elsu soobmeetting zee fullooeeng eddeeshunel inffurmeshun:"
 #
@@ -338,7 +342,7 @@ msgid   "Cancel"
 msgstr  "Cuncel"
 #
 # File: views/auth_profiles/register.html, line: 74
-# File: views/plugins/submit.html, line: 133
+# File: views/plugins/submit.html, line: 139
 msgid   "Captcha"
 msgstr  "Ceptcha"
 #
@@ -404,7 +408,7 @@ msgid   "Client app version for which the plugin is intended (* is wildcard)"
 msgstr  "Cleeent epp ferseeun fur vheech zee ploogeen is intended (* is "
         "veeldcerd)"
 #
-# File: views/plugins/submit.html, line: 128
+# File: views/plugins/submit.html, line: 134
 msgid   "Comments"
 msgstr  "Cumments"
 #
@@ -427,7 +431,7 @@ msgid   "Copy to Sandbox"
 msgstr  "Cupy tu Sundbux"
 #
 # File: views/plugins/detail.html, line: 140
-# File: PluginDir/Index.js, line: 232
+# File: PluginDir/Index.js, line: 237
 msgid   "Copy to sandbox"
 msgstr  "Cupy tu sundbux"
 #
@@ -445,7 +449,7 @@ msgstr  "Creete-a a noo sundbux releese"
 msgid   "Create new public plugin"
 msgstr  "Creete-a noo poobleec ploogeen"
 #
-# File: PluginDir/Index.js, line: 250
+# File: PluginDir/Index.js, line: 255
 msgid   "Create new sandbox plugin"
 msgstr  "Creete-a noo sundbux ploogeen"
 #
@@ -488,7 +492,7 @@ msgid   "Delete this release?"
 msgstr  "Delete-a thees releese-a?"
 #
 # File: views/index/index_byinstalled.html, line: 52
-# File: views/plugins/submit.html, line: 124
+# File: views/plugins/submit.html, line: 130
 msgid   "Description"
 msgstr  "Descreepshun"
 #
@@ -520,7 +524,7 @@ msgstr  "Edeet deteeels"
 msgid   "Edit details for %1$s"
 msgstr  "Edeet deteeels fur %1$s"
 #
-# File: PluginDir/Index.js, line: 240
+# File: PluginDir/Index.js, line: 245
 msgid   "Edit in sandbox"
 msgstr  "Edeet in sundbux"
 #
@@ -656,7 +660,7 @@ msgstr  "Lugged oooot."
 msgid   "Login"
 msgstr  "Lugeen"
 #
-# File: views/auth_profiles/logout.html, line: 31
+# File: views/auth_profiles/logout.html, line: 33
 msgid   "Login again?"
 msgstr  "Lugeen egeeen?"
 #
@@ -739,7 +743,7 @@ msgstr  "Muzeella Ploogeen Durectury"
 #
 # File: views/index/index_byinstalled.html, line: 44
 # File: views/plugins/submissions.html, line: 37
-# File: views/plugins/submit.html, line: 116
+# File: views/plugins/submit.html, line: 122
 # File: views/search/results.html, line: 53
 msgid   "Name"
 msgstr  "Neme"
@@ -794,7 +798,7 @@ msgstr  "Nu seerch resoolts, pleese-a chunge-a yuoor seerch terms und try "
 msgid   "No submissions."
 msgstr  "Nu soobmeessiuns."
 #
-# File: PluginDir/Index.js, line: 182
+# File: PluginDir/Index.js, line: 187
 msgid   "Not detected (<a href=\"https://bugzilla.mozilla.org/show_bug.cgi?"
         "id=536394\" target=\"_new\">Any ideas?</a>)"
 msgstr  "Nut detected (<a href=\"https://bugzilla.mozilla.org/show_bug.cgi?"
@@ -892,7 +896,7 @@ msgid   "Plugin Sandbox for %1$s"
 msgstr  "Ploogeen Sundbux fur %1$s"
 #
 # File: views/plugins/edit.html, line: 147
-# File: views/plugins/submit.html, line: 86
+# File: views/plugins/submit.html, line: 92
 msgid   "Plugin details"
 msgstr  "Ploogeen deteeels"
 #
@@ -995,6 +999,11 @@ msgstr  "Reqooest epprufel fur chunges tu \"%1$s\""
 msgid   "Request approval for changes?"
 msgstr  "Reqooest epprufel fur chunges?"
 #
+# File: views/auth_profiles/logout.html, line: 39
+# File: views/plugins/submit.html, line: 69
+msgid   "Return to the home page?"
+msgstr  "Retoorn tu zee hume-a pege-a?"
+#
 # File: views/auth_profiles/editprofile.html, line: 62
 msgid   "Role"
 msgstr  "Rule"
@@ -1058,7 +1067,7 @@ msgstr  "Surry, zee imeeel eddress fur thet lugeen hes nut yet beee "
 #
 # File: views/plugins/detail.html, line: 259
 # File: views/plugins/submissions.html, line: 45
-# File: views/plugins/submit.html, line: 100
+# File: views/plugins/submit.html, line: 106
 # File: views/search/results.html, line: 69
 msgid   "Status"
 msgstr  "Stetoos"
@@ -1068,7 +1077,7 @@ msgstr  "Stetoos"
 msgid   "Submissions"
 msgstr  "Soobmeessiuns"
 #
-# File: views/plugins/submit.html, line: 138
+# File: views/plugins/submit.html, line: 144
 msgid   "Submit"
 msgstr  "Soobmeet"
 #
@@ -1190,12 +1199,12 @@ msgstr  "Feleed imeeel is reqooured."
 msgid   "Valid login name is required."
 msgstr  "Feleed lugeen neme-a is reqooured."
 #
-# File: views/plugins/submit.html, line: 112
+# File: views/plugins/submit.html, line: 118
 msgid   "Vendor"
 msgstr  "Fendur"
 #
 # File: views/plugins/submissions.html, line: 41
-# File: views/plugins/submit.html, line: 120
+# File: views/plugins/submit.html, line: 126
 # File: views/search/results.html, line: 57
 msgid   "Version"
 msgstr  "Ferseeun"
@@ -1210,11 +1219,11 @@ msgstr  "Ferseeun detected in zee cleeent, cun deeffffer frum fendur-intended "
 msgid   "View original"
 msgstr  "Feeoo ooreeginel"
 #
-# File: views/plugins/submit.html, line: 104
+# File: views/plugins/submit.html, line: 110
 msgid   "Vulnerability URL"
 msgstr  "Foolnerebeelity URL"
 #
-# File: views/plugins/submit.html, line: 108
+# File: views/plugins/submit.html, line: 114
 msgid   "Vulnerability description"
 msgstr  "Foolnerebeelity descreepshun"
 #
