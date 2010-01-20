@@ -305,8 +305,7 @@ body {
     font-weight: bold;
     padding: 0.25em 0.5em;
     margin: 0.5em 0 0 0.5em;
-    border: 1px solid #ccc;
-    background: #eee;
+    border-bottom: 2px solid #333;
 }
 #ctrl_plugins_act_detail ul.releases li.release table.version_releases {
     margin: 0.5em 1.5em 0.5em 1.5em;
@@ -315,7 +314,7 @@ body {
 #ctrl_plugins_act_detail ul.releases li.release table.version_releases thead th {
     text-align: left;
     padding: 0.25em 0.5em 0.125em 0.5em;
-    border-bottom: 2px solid #333;
+    border-bottom: 1px solid #333;
 }
 #ctrl_plugins_act_detail ul.releases li.release table.version_releases tbody td {
     padding: 0.25em 0.5em 0.125em 0.5em;
