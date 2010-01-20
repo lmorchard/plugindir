@@ -143,6 +143,17 @@ msgstr  "        Iff yuoo cun see-a thees messege-a, ve-a vere-a uneble-a tu "
         "Bork Bork Bork!\n"
         "    "
 #
+# File: views/index/index_bymimetype.html, line: 19
+msgid   "        The following is a list of plugins by MIME type, along with "
+        "a\n"
+        "        count of releases for each MIME type.\n"
+        "    "
+msgstr  "        Zee fullooeeng is a leest ooff ploogeens by MIME type-a, "
+        "elung veet a\n"
+        "        cuoont ooff releeses fur iech MIME type-a.\n"
+        "Bork Bork Bork!\n"
+        "    "
+#
 # File: views/index/index_byapplication.html, line: 29
 msgid   "        The following is a list of plugins by browser application, "
         "along with a\n"
@@ -220,6 +231,11 @@ msgstr  "(Nut soore-a, inhereeted frum PFS1, need a descreepshun)"
 # File: views/plugins/sandbox_mine.html, line: 24
 msgid   "+ Create new sandbox plugin"
 msgstr  "+ Creete-a noo sundbux ploogeen"
+#
+# File: views/index/index_byinstalled.html, line: 107
+# File: views/index/index_byinstalled.html, line: 113
+msgid   "<span class=\"version\">###</span> available"
+msgstr  "<span class=\"version\">###</span> efeeeleble"
 #
 # File: models/plugin.php, line: 714
 msgid   "A GUID for the plugin release, may differ between releases and "
@@ -301,6 +317,10 @@ msgstr  "Beeu / Ebuoot yuoo"
 # File: views/index/index_shell.html, line: 133
 msgid   "By Application"
 msgstr  "By Eppleeceshun"
+#
+# File: views/index/index_shell.html, line: 141
+msgid   "By MIME Type"
+msgstr  "By MIME Type"
 #
 # File: views/index/index_shell.html, line: 129
 msgid   "By Name"
@@ -388,7 +408,7 @@ msgstr  "Cleeent epp ferseeun fur vheech zee ploogeen is intended (* is "
 msgid   "Comments"
 msgstr  "Cumments"
 #
-# File: views/index/index_byinstalled.html, line: 136
+# File: views/index/index_byinstalled.html, line: 150
 msgid   "Contribute new info"
 msgstr  "Cuntreeboote-a noo inffu"
 #
@@ -529,6 +549,10 @@ msgstr  "Emeeel cunffurmeshun is reqooured."
 msgid   "Email is required."
 msgstr  "Emeeel is reqooured."
 #
+# File: views/index/index_byinstalled.html, line: 60
+msgid   "Feedback Actions"
+msgstr  "Feedbeck Ecshuns"
+#
 # File: models/plugin.php, line: 726
 msgid   "Filename of the plugin as installed"
 msgstr  "Feeleneme-a ooff zee ploogeen es instelled"
@@ -570,10 +594,6 @@ msgstr  "Fooll neme-a is reqooured"
 # File: auth_profiles/i18n/en_US/form_errors_auth.php, line: 66
 msgid   "Full name must contain only alphanumeric characters"
 msgstr  "Fooll neme-a moost cunteeen oonly elphunoomereec cherecters"
-#
-# File: views/index/index_byinstalled.html, line: 60
-msgid   "Have feedback?"
-msgstr  "Hefe-a feedbeck?"
 #
 # File: views/index/index_shell.html, line: 27
 msgid   "Home"
@@ -732,7 +752,7 @@ msgstr  "Neme-a ooff zee ploogeen"
 msgid   "Name of the vendor providing the plugin"
 msgstr  "Neme-a ooff zee fendur prufeeding zee ploogeen"
 #
-# File: views/index/index_byinstalled.html, line: 109
+# File: views/index/index_byinstalled.html, line: 111
 msgid   "Needs update"
 msgstr  "Needs updete"
 #
@@ -762,8 +782,8 @@ msgstr  "Noo pessvurd is reqooured"
 #
 # File: views/index/index_byinstalled.html, line: 97
 # File: models/plugin.php, line: 675
-msgid   "Newer"
-msgstr  "Nooer"
+msgid   "Newer than directory"
+msgstr  "Nooer thun durectury"
 #
 # File: views/search/results.html, line: 139
 msgid   "No search results, please change your search terms and try again."
@@ -980,8 +1000,8 @@ msgid   "Role"
 msgstr  "Rule"
 #
 # File: views/index/index_byinstalled.html, line: 68
-msgid   "Sandbox actions"
-msgstr  "Sundbux ecshuns"
+msgid   "Sandbox Actions"
+msgstr  "Sundbux Ecshuns"
 #
 # File: PluginDir/Editor.js, line: 195
 #, c-format
@@ -1056,15 +1076,15 @@ msgstr  "Soobmeet"
 msgid   "Submit plugin info"
 msgstr  "Soobmeet ploogeen inffu"
 #
-# File: views/index/index_byinstalled.html, line: 124
-# File: views/index/index_byinstalled.html, line: 128
 # File: views/index/index_byinstalled.html, line: 132
-msgid   "Suggest correction"
-msgstr  "Sooggest currecshun"
+# File: views/index/index_byinstalled.html, line: 138
+# File: views/index/index_byinstalled.html, line: 144
+msgid   "Suggest directory correction"
+msgstr  "Sooggest durectury currecshun"
 #
-# File: views/index/index_byinstalled.html, line: 120
-msgid   "Suggest update"
-msgstr  "Sooggest updete"
+# File: views/index/index_byinstalled.html, line: 126
+msgid   "Suggest directory update"
+msgstr  "Sooggest durectury updete"
 #
 # File: views/macros/oses.html, line: 104
 msgid   "SunOS"
@@ -1079,6 +1099,12 @@ msgid   "Supply either of these pieces of information to recover your "
         "password:"
 msgstr  "Soopply ieezeer ooff zeese-a peeeces ooff inffurmeshun tu recufer "
         "yuoor pessvurd:"
+#
+# File: views/index/index_byinstalled.html, line: 148
+msgid   "The directory can't find any details on this plugin. You can share "
+        "the details with us to help keep the directory up to date!"
+msgstr  "Zee durectury cun't feend uny deteeels oon thees ploogeen. Yuoo cun "
+        "shere-a zee deteeels veet us tu help keep zee durectury up tu dete-a!"
 #
 # File: views/plugins/edit.html, line: 208
 msgid   "The literal names by which this plugin has been known"
@@ -1129,11 +1155,14 @@ msgstr  "URL veet deteeels descreebing zee ploogeen"
 msgid   "Uncertain"
 msgstr  "Uncerteeen"
 #
-# File: views/index/index_byinstalled.html, line: 113
 # File: views/macros/statuses.html, line: 59
 # File: models/plugin.php, line: 671
 msgid   "Unknown"
 msgstr  "Unknoon"
+#
+# File: views/index/index_byinstalled.html, line: 117
+msgid   "Unknown to directory"
+msgstr  "Unknoon tu durectury"
 #
 # File: views/index/index_byinstalled.html, line: 101
 msgid   "Up to date"
@@ -1206,6 +1235,36 @@ msgstr  "Veendoos"
 # File: views/macros/oses.html, line: 48
 msgid   "Windows Vista"
 msgstr  "Veendoos Feesta"
+#
+# File: views/index/index_byinstalled.html, line: 124
+msgid   "You appear to have a newer version of this plugin installed than "
+        "what the directory knows about. You can share the details with us to "
+        "help keep the directory up to date!"
+msgstr  "Yuoo eppeer tu hefe-a a nooer ferseeun ooff thees ploogeen instelled "
+        "thun vhet zee durectury knoos ebuoot. Yuoo cun shere-a zee deteeels "
+        "veet us tu help keep zee durectury up tu dete-a!"
+#
+# File: views/index/index_byinstalled.html, line: 136
+msgid   "You appear to have a vulnerable version of this plugin that needs an "
+        "update! If this is incorrect, you can suggest a correction."
+msgstr  "Yuoo eppeer tu hefe-a a foolnereble-a ferseeun ooff thees ploogeen "
+        "thet needs un updete-a! Iff thees is incurrect, yuoo cun sooggest a "
+        "currecshun."
+#
+# File: views/index/index_byinstalled.html, line: 142
+msgid   "You appear to have an outdated version of this plugin that needs an "
+        "update. If this is incorrect, you can suggest a correction."
+msgstr  "Yuoo eppeer tu hefe-a un ooootdeted ferseeun ooff thees ploogeen "
+        "thet needs un updete-a. Iff thees is incurrect, yuoo cun sooggest a "
+        "currecshun."
+#
+# File: views/index/index_byinstalled.html, line: 130
+msgid   "You appear to have the latest version of this plugin as far as the "
+        "directory is concerned. If this is incorrect, you can suggest a "
+        "correction."
+msgstr  "Yuoo eppeer tu hefe-a zee letest ferseeun ooff thees ploogeen es fer "
+        "es zee durectury is cuncerned. Iff thees is incurrect, yuoo cun "
+        "sooggest a currecshun."
 #
 # File: views/index/index_shell.html, line: 103
 msgid   "Your Installed Plugins"

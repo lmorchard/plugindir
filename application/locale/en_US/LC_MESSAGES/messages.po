@@ -96,6 +96,14 @@ msgstr  "        If you can see this message, we were unable to perform\n"
         "        disabled, which this site requires for many of its features.\n"
         "    "
 
+#: views/index/index_bymimetype.html:19
+msgid   "        The following is a list of plugins by MIME type, along with a\n"
+        "        count of releases for each MIME type.\n"
+        "    "
+msgstr  "        The following is a list of plugins by MIME type, along with a\n"
+        "        count of releases for each MIME type.\n"
+        "    "
+
 #: views/index/index_byapplication.html:29
 msgid   "        The following is a list of plugins by browser application, along with a\n"
         "        count of releases for each application.\n"
@@ -151,6 +159,10 @@ msgstr  "(Not sure, inherited from PFS1, need a description)"
 #: views/plugins/sandbox_mine.html:24
 msgid   "+ Create new sandbox plugin"
 msgstr  "+ Create new sandbox plugin"
+
+#: views/index/index_byinstalled.html:107 views/index/index_byinstalled.html:113
+msgid   "<span class=\"version\">###</span> available"
+msgstr  "<span class=\"version\">###</span> available"
 
 #: models/plugin.php:714
 msgid   "A GUID for the plugin release, may differ between releases and platforms (unlike pfs_id)"
@@ -224,6 +236,10 @@ msgstr  "Bio / About you"
 #: views/index/index_shell.html:133
 msgid   "By Application"
 msgstr  "By Application"
+
+#: views/index/index_shell.html:141
+msgid   "By MIME Type"
+msgstr  "By MIME Type"
 
 #: views/index/index_shell.html:129
 msgid   "By Name"
@@ -302,7 +318,7 @@ msgstr  "Client app version for which the plugin is intended (* is wildcard)"
 msgid   "Comments"
 msgstr  "Comments"
 
-#: views/index/index_byinstalled.html:136
+#: views/index/index_byinstalled.html:150
 msgid   "Contribute new info"
 msgstr  "Contribute new info"
 
@@ -436,6 +452,10 @@ msgstr  "Email confirmation is required."
 msgid   "Email is required."
 msgstr  "Email is required."
 
+#: views/index/index_byinstalled.html:60
+msgid   "Feedback Actions"
+msgstr  "Feedback Actions"
+
 #: models/plugin.php:726
 msgid   "Filename of the plugin as installed"
 msgstr  "Filename of the plugin as installed"
@@ -471,10 +491,6 @@ msgstr  "Full name is required"
 #: auth_profiles/i18n/en_US/form_errors_auth.php:66
 msgid   "Full name must contain only alphanumeric characters"
 msgstr  "Full name must contain only alphanumeric characters"
-
-#: views/index/index_byinstalled.html:60
-msgid   "Have feedback?"
-msgstr  "Have feedback?"
 
 #: views/index/index_shell.html:27
 msgid   "Home"
@@ -622,7 +638,7 @@ msgstr  "Name of the plugin"
 msgid   "Name of the vendor providing the plugin"
 msgstr  "Name of the vendor providing the plugin"
 
-#: views/index/index_byinstalled.html:109
+#: views/index/index_byinstalled.html:111
 msgid   "Needs update"
 msgstr  "Needs update"
 
@@ -651,8 +667,8 @@ msgid   "New password is required"
 msgstr  "New password is required"
 
 #: views/index/index_byinstalled.html:97 models/plugin.php:675
-msgid   "Newer"
-msgstr  "Newer"
+msgid   "Newer than directory"
+msgstr  "Newer than directory"
 
 #: views/search/results.html:139
 msgid   "No search results, please change your search terms and try again."
@@ -852,8 +868,8 @@ msgid   "Role"
 msgstr  "Role"
 
 #: views/index/index_byinstalled.html:68
-msgid   "Sandbox actions"
-msgstr  "Sandbox actions"
+msgid   "Sandbox Actions"
+msgstr  "Sandbox Actions"
 
 #: PluginDir/Editor.js:195
 #, c-format
@@ -923,13 +939,13 @@ msgstr  "Submit"
 msgid   "Submit plugin info"
 msgstr  "Submit plugin info"
 
-#: views/index/index_byinstalled.html:124 views/index/index_byinstalled.html:128 views/index/index_byinstalled.html:132
-msgid   "Suggest correction"
-msgstr  "Suggest correction"
+#: views/index/index_byinstalled.html:132 views/index/index_byinstalled.html:138 views/index/index_byinstalled.html:144
+msgid   "Suggest directory correction"
+msgstr  "Suggest directory correction"
 
-#: views/index/index_byinstalled.html:120
-msgid   "Suggest update"
-msgstr  "Suggest update"
+#: views/index/index_byinstalled.html:126
+msgid   "Suggest directory update"
+msgstr  "Suggest directory update"
 
 #: views/macros/oses.html:104
 msgid   "SunOS"
@@ -942,6 +958,10 @@ msgstr  "SunOS (sun4u)"
 #: views/auth_profiles/forgotpassword.html:56
 msgid   "Supply either of these pieces of information to recover your password:"
 msgstr  "Supply either of these pieces of information to recover your password:"
+
+#: views/index/index_byinstalled.html:148
+msgid   "The directory can't find any details on this plugin. You can share the details with us to help keep the directory up to date!"
+msgstr  "The directory can't find any details on this plugin. You can share the details with us to help keep the directory up to date!"
 
 #: views/plugins/edit.html:208
 msgid   "The literal names by which this plugin has been known"
@@ -991,9 +1011,13 @@ msgstr  "URL with details describing the plugin"
 msgid   "Uncertain"
 msgstr  "Uncertain"
 
-#: views/index/index_byinstalled.html:113 views/macros/statuses.html:59 models/plugin.php:671
+#: views/macros/statuses.html:59 models/plugin.php:671
 msgid   "Unknown"
 msgstr  "Unknown"
+
+#: views/index/index_byinstalled.html:117
+msgid   "Unknown to directory"
+msgstr  "Unknown to directory"
 
 #: views/index/index_byinstalled.html:101
 msgid   "Up to date"
@@ -1059,6 +1083,22 @@ msgstr  "Windows"
 msgid   "Windows Vista"
 msgstr  "Windows Vista"
 
+#: views/index/index_byinstalled.html:124
+msgid   "You appear to have a newer version of this plugin installed than what the directory knows about. You can share the details with us to help keep the directory up to date!"
+msgstr  "You appear to have a newer version of this plugin installed than what the directory knows about. You can share the details with us to help keep the directory up to date!"
+
+#: views/index/index_byinstalled.html:136
+msgid   "You appear to have a vulnerable version of this plugin that needs an update! If this is incorrect, you can suggest a correction."
+msgstr  "You appear to have a vulnerable version of this plugin that needs an update! If this is incorrect, you can suggest a correction."
+
+#: views/index/index_byinstalled.html:142
+msgid   "You appear to have an outdated version of this plugin that needs an update. If this is incorrect, you can suggest a correction."
+msgstr  "You appear to have an outdated version of this plugin that needs an update. If this is incorrect, you can suggest a correction."
+
+#: views/index/index_byinstalled.html:130
+msgid   "You appear to have the latest version of this plugin as far as the directory is concerned. If this is incorrect, you can suggest a correction."
+msgstr  "You appear to have the latest version of this plugin as far as the directory is concerned. If this is incorrect, you can suggest a correction."
+
 #: views/index/index_shell.html:103
 msgid   "Your Installed Plugins"
 msgstr  "Your Installed Plugins"
@@ -1122,3 +1162,18 @@ msgstr  "search releases"
 #: views/layout.html:68
 msgid   "settings"
 msgstr  "settings"
+
+#~ msgid        "Have feedback?"
+#~ msgstr       "Have feedback?"
+
+#~ msgid        "Newer"
+#~ msgstr       "Newer"
+
+#~ msgid        "Sandbox actions"
+#~ msgstr       "Sandbox actions"
+
+#~ msgid        "Suggest correction"
+#~ msgstr       "Suggest correction"
+
+#~ msgid        "Suggest update"
+#~ msgstr       "Suggest update"

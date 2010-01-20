@@ -24,9 +24,9 @@
                 <th>{% trans "Detected Version" %}</th>
                 <!-- <th>{% trans "Description" %}</th> -->
                 <th>{% trans "Installed Status" %}</th>
-                <th>{% trans "Have feedback?" %}</th>
+                <th>{% trans "Feedback Actions" %}</th>
                 {% if is_logged_in %}
-                <th>{% trans "Sandbox actions" %}</th>
+                <th>{% trans "Sandbox Actions" %}</th>
                 {% endif %}
             </tr>
         </thead>
@@ -45,19 +45,19 @@
     </table>
 
     <div id="status_templates" class="templates">
-        <span class="newer">{% trans "Newer" %}</span>
+        <span class="newer">{% trans "Newer than directory" %}</span>
         <span class="latest">{% trans "Up to date" %}</span>
-        <span class="vulnerable">{% trans "Vulnerable" %} (<span class="version">###</span> available)</span>
-        <span class="outdated">{% trans "Needs update" %} (<span class="version">###</span> available)</span>
-        <span class="unknown">{% trans "Unknown" %}</span>
+        <span class="vulnerable">{% trans "Vulnerable" %} ({% blocktrans %}<span class="version">###</span> available{% endblocktrans %})</span>
+        <span class="outdated">{% trans "Needs update" %} ({% blocktrans %}<span class="version">###</span> available{% endblocktrans %})</span>
+        <span class="unknown">{% trans "Unknown to directory" %}</span>
     </div>
 
     <div id="feedback_templates" class="templates">
-        <a href="#" class="newer">{% trans "Suggest update" %}</a>
-        <a href="#" class="latest">{% trans "Suggest correction" %}</a>
-        <a href="#" class="vulnerable">{% trans "Suggest correction" %}</a>
-        <a href="#" class="outdated">{% trans "Suggest correction" %}</a>
-        <a href="#" class="unknown">{% trans "Contribute new info" %}</a>
+        <a href="#" class="newer" title="{% trans "You appear to have a newer version of this plugin installed than what the directory knows about. You can share the details with us to help keep the directory up to date!" %}">{% trans "Suggest directory update" %}</a>
+        <a href="#" class="latest" title="{% trans "You appear to have the latest version of this plugin as far as the directory is concerned. If this is incorrect, you can suggest a correction." %}">{% trans "Suggest directory correction" %}</a>
+        <a href="#" class="vulnerable" title="{% trans "You appear to have a vulnerable version of this plugin that needs an update! If this is incorrect, you can suggest a correction." %}">{% trans "Suggest directory correction" %}</a>
+        <a href="#" class="outdated" title="{% trans "You appear to have an outdated version of this plugin that needs an update. If this is incorrect, you can suggest a correction." %}">{% trans "Suggest directory correction" %}</a>
+        <a href="#" class="unknown" title="{% trans "The directory can't find any details on this plugin. You can share the details with us to help keep the directory up to date!" %}">{% trans "Contribute new info" %}</a>
     </div>
 
     <div class="add_release template">

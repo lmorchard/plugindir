@@ -672,7 +672,7 @@ Plugin_Model::$status_choices = array(
     "latest"     => _("Latest"),
     "outdated"   => _("Outdated"),
     "vulnerable" => _("Vulnerable"),
-    "newer"      => _("Newer"),
+    "newer"      => _("Newer than directory"),
     "uncertain"  => _("Uncertain"),
 );
 
