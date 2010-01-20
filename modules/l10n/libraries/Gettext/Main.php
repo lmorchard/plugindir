@@ -6,13 +6,13 @@
  */
 class Gettext_Main {
 
-    static $default_language = 'en-US';
+    static $default_language = 'en_US';
     static $default_domain   = 'messages';
 
     static $domain;
     static $domain_path;
 
-    static $current_language = 'en-US';
+    static $current_language = 'en_US';
 
     /**
      * Initialize the module.

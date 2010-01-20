@@ -11,7 +11,7 @@ class L10n_Controller extends Controller {
     /**
      * Return the JSON version of the current locale .mo strings.
      */
-    function mo_json($locale='')
+    function translations($locale='')
     {
         if (empty($locale)) { 
             $locale = Gettext_Main::$current_language; 
