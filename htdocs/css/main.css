@@ -266,7 +266,10 @@ body {
     text-align: left;
     padding: 0.5em 0.5em 0.5em 0.5em;
 }
-.index_home .listing .installed_plugins tbody tr.from_sandbox td {
+.index_home .listing .installed_plugins tbody tr.from_sandbox.odd td {
+    background-color: #f3fff3;
+}
+.index_home .listing .installed_plugins tbody tr.from_sandbox.even td {
     background-color: #ddf8dd;
 }
 .index_home .listing .installed_plugins tbody tr.from_sandbox td.name {
@@ -295,6 +298,45 @@ body {
     text-align: center;
 }
 
+ul.actions {
+    list-style-type: none;
+    text-indent: 0;
+    margin: 0.25em;
+    padding: 0.5em 0.0em;
+}
+ul.actions > li {
+    float: left;
+    padding-right: 1em;
+}
+ul.actions > li > a {
+    display: block;
+    font-weight: bold;
+    border: 1px solid #ccc;
+    padding: 0.5em;
+    background-color: #EFF7FA;
+    text-decoration: none;
+}
+ul.actions > li > a:hover {
+    border: 1px solid #333;
+    text-decoration: underline;
+}
+
+#ctrl_plugins_act_detail .meta {
+    margin: 0.5em;
+    padding: 0.5em;
+    border: 1px solid #333;
+    background: #fff;
+}
+#ctrl_plugins_act_detail .meta .title {
+    margin: 0 0 0.5em 0;
+}
+#ctrl_plugins_act_detail .meta .icon {
+    float: left;
+    padding-right: 0.5em;
+}
+#ctrl_plugins_act_detail .meta .icon img {
+    width: 75px;
+}
 #ctrl_plugins_act_detail ul.releases {
     list-style: none;
     margin: 0; padding: 0;

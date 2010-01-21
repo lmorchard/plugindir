@@ -729,6 +729,10 @@ Plugin_Model::$properties = array(
         'type' => 'text', 
         'description' => _("URL with details describing the plugin")
     ),
+    'icon_url' => array( 
+        'type' => 'text', 
+        'description' => _("URL to an image icon for the plugin")
+    ),
     'license_url' => array( 
         'type' => 'text', 
         'description' => _("URL where the license for using the plugin may be found")

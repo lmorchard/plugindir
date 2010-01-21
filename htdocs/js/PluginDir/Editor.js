@@ -187,7 +187,7 @@ PluginDir.Editor = (function () {
                 data: json,
                 success: function () {
                     $this.save_inprogress = false;
-                    $this.updateStatusMessage(sprintf(_("Last saved at %1$s", ''+new Date())));
+                    $this.updateStatusMessage(sprintf(_("Last saved at %1$s"), ''+new Date()));
                 },
                 error: function () {
                     $this.save_inprogress = false;
@@ -432,7 +432,9 @@ PluginDir.Editor = (function () {
          * React to a changed field.
          */
         fieldChanged: function (ev) {
-            $this.updateReleaseSummary($(this).parents('fieldset:first'));
+            if ($(this).parents('#meta-fields').length == 0) {
+                $this.updateReleaseSummary($(this).parents('fieldset:first'));
+            }
             $this.scheduleSavePlugin();
             return true;
         },

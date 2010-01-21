@@ -8,14 +8,14 @@
     {% set plugin_name_e as plugin.name | e %}
     {% set screen_name_e as screen_name | e %}
     {% if plugin.sandbox_profile_id %}
-        {% blocktrans %}Plugin Detail :: {{plugin_name_e}} ({{ screen_name_e }} sandbox){% endblocktrans %}
+        {% blocktrans %}{{plugin_name_e}} ({{ screen_name_e }} sandbox){% endblocktrans %}
     {% else %}
-        {% blocktrans %}Plugin Detail :: {{plugin_name_e}}{% endblocktrans %}
+        {{plugin_name_e}}
     {% endif %}
 {% endblock %}
 
 {% block content %}
-    <ul class="actions">
+    <ul class="actions clearfix">
         {% if plugin.sandbox_profile_id %}
             {% set plugin_base as base_url ~ "profiles/" ~ screen_name|e ~ "/plugins/detail/" ~ plugin.pfs_id|urlencode|e %}
             {% if plugin.is_allowed(authprofile, 'view') %}
@@ -44,15 +44,15 @@
         {% endif %}
     </ul>
 
-    <div class="meta">
+    <div class="meta clearfix">
         {% if plugin.icon_url %}
             <div class="icon">
                 <img src="{{plugin.icon_url}}" alt="{% trans "Plugin icon" %}" />
             </div>
         {% endif %}
+        <h2 class="title">{{plugin.name}}</h2>
         {% if plugin.description %}
             <div>
-                <h2>{% trans "Description:" %}</h2>
                 <p>{{plugin.description}}</p>
             </div>
         {% endif %}
