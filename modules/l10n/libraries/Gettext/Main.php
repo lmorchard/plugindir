@@ -83,10 +83,16 @@ class Gettext_Main {
 
         // Look for the first valid language from the list.
         foreach ($langs as $lang) {
-            if (empty($u_valid[strtolower($lang)]))
-                continue;
 
-            $lang = str_replace('-','_',$u_valid[strtolower($lang)]);
+            // Convert candidate locale to lower case, normalize hyphens to 
+            // underscores, look for the result in case-insensitive valid 
+            // locale matches.
+            $lang = str_replace('-','_',strtolower($lang));
+            if (empty($u_valid[$lang])) continue;
+            $lang = $u_valid[$lang];
+
+            // The candidate matches a valid locale, so use it and stop the 
+            // search.
             self::$current_language = Kohana::$locale = $lang;
             setlocale(LC_COLLATE, $lang);
             setlocale(LC_MONETARY, $lang);
@@ -97,6 +103,7 @@ class Gettext_Main {
             }
             putenv("LANG=" . $lang);
             return true;
+
         }
         return false;
     }

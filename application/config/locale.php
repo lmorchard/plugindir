@@ -10,7 +10,12 @@
 $config['language'] = array('en_US', 'English_United States');
 
 $config['valid_languages'] = array(
+
     'en_US' => 'English/United States', 
+
+    // More locales to come...
+    //'en_CA' => 'English/Canada',
+    //'zh_CN' => 'Chinese/China',
 
     // Silly talks, see bin/silly-po.sh
     'xx_b1ff'       => 'Silly/B1FF', 
