@@ -45,7 +45,7 @@ class Local_Controller extends TwigRender_Controller {
 
             'l10n_language'     => Gettext_Main::$current_language,
             'l10n_locale'       => Gettext_Main::$current_locale,
-            'l10n_rtl'          => Gettext_Main::$current_rtl,
+            'l10n_dir'          => Gettext_Main::$current_dir,
 
             // Dirty, but occasionally useful:
             '_POST' => $_POST,

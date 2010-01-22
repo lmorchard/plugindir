@@ -18,7 +18,7 @@ class Gettext_Main {
 
     static $current_language = 'en-US';
     static $current_locale   = 'en_US';
-    static $current_rtl      = false;
+    static $current_dir      = 'ltr';
 
     /**
      * Initialize the module.
@@ -137,7 +137,8 @@ class Gettext_Main {
             if (!array_key_exists($u_lang, $valid_languages)) continue;
 
             // Found a valid language/local mapping, so use it.
-            self::$current_rtl = array_key_exists($u_lang, $rtl_languages);
+            self::$current_dir = in_array($u_lang, $rtl_languages) ?
+                'rtl' : 'ltr';
             self::$current_language = $lang;
             self::$current_locale = Kohana::$locale = $locale =
                 $valid_languages[$u_lang];
