@@ -55,7 +55,7 @@ body {
     display: block; 
     float: left;
 }
-#main .header .title .mozilla {
+body.l10n-dir-rtl #main .header .title .mozilla {
     float: right;
 }
 #main .header .secondary {
