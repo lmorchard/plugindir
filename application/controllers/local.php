@@ -34,7 +34,7 @@ class Local_Controller extends TwigRender_Controller {
 
         View::set_global(array(
             'media_url'         => url::base(),
-            'base_url'          => url::site(Gettext_Main::$current_language, '') . '/',
+            'base_url'          => url::site().'/',
             'router_controller' => Router::$controller,
             'router_method'     => Router::$method,
 
@@ -42,6 +42,10 @@ class Local_Controller extends TwigRender_Controller {
 
             'is_logged_in'      => authprofiles::is_logged_in(),
             'authprofile'       => authprofiles::get_profile(),
+
+            'l10n_language'     => Gettext_Main::$current_language,
+            'l10n_locale'       => Gettext_Main::$current_locale,
+            'l10n_rtl'          => Gettext_Main::$current_rtl,
 
             // Dirty, but occasionally useful:
             '_POST' => $_POST,

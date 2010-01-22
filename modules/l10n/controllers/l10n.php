@@ -14,7 +14,8 @@ class L10n_Controller extends Controller {
     function translations($locale='')
     {
         if (empty($locale)) { 
-            $locale = Gettext_Main::$current_language; 
+            // HACK: Strip off the .utf8 locale suffix if present.
+            $locale = str_replace('.utf8', '', Gettext_Main::$current_locale);
         }
         
         // Make sure the .mo file exists, throwing a 404 if not.
