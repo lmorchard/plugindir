@@ -49,4 +49,16 @@ class Index_Controller extends Local_Controller {
         $this->view->set_filename('index/index_by' . $this->view->by_cat);
     }
 
+    /**
+     * Display a captcha image, stolen from system/controllers/captcha.php 
+     * since it has a hardcoded reference into the URI segments.  Language
+     * handling seems to break that.
+     */
+    public function captcha ($group='default')
+    {
+		// Output the Captcha challenge resource (no html)
+		// Pull the config group name from the URL
+		Captcha::factory($group)->render(FALSE);
+    }
+
 }

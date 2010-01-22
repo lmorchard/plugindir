@@ -55,6 +55,9 @@ body {
     display: block; 
     float: left;
 }
+#main .header .title .mozilla {
+    float: right;
+}
 #main .header .secondary {
     position: absolute;
     font-size: 85%;
@@ -62,6 +65,9 @@ body {
     right: 14px;
     height: 56px;
     line-height: 64px;
+}
+body.l10n-dir-rtl #main .header .secondary {
+    left: 14px;
 }
 #main .header .secondary ul {
     list-style: none;
@@ -74,20 +80,16 @@ body {
     padding: 0 0.75em 0 0;
     text-indent: 0;
 }
+body.l10n-dir-rtl #main .header .secondary ul li {
+}
 #main .header .secondary ul li a {
     font-weight: bold;
 }
 #main .header .secondary ul li a:hover {
     text-decoration: underline;
 }
-#main .header .secondary ul li:after {
-    content: "";
-}
 #main .header .secondary ul li.search {
     padding: 0 0 0 0;
-}
-#main .header .secondary ul li.search:after {
-    content: "";
 }
 #main .header .secondary .auth {
     display: inline;
@@ -152,6 +154,12 @@ body {
     padding-right: 0.5em;
     text-align: right;
 }
+body.l10n-dir-rtl .content form fieldset ul.fields li.field label {
+    float: right;
+    padding-left: 0.5em;
+    padding-right: 0em;
+    text-align: left;
+}
 .content form fieldset ul.fields li.error label {
     color: red;
 }
@@ -169,6 +177,9 @@ body {
     display: block;
     margin: 0 0 1.5em 31ex;
 }
+body.l10n-dir-rtl .content form fieldset ul.fields li.field input.captcha {
+    margin: 0 31ex 1.5em 0;
+}
 .content form fieldset ul.fields li.error textarea.textarea,
 .content form fieldset ul.fields li.error input.text,
 .content form fieldset ul.fields li.error input.captcha,
@@ -179,9 +190,15 @@ body {
     margin: 0.25em 0 0.5em 26ex;
     padding: 0;
 }
+body.l10n-dir-rtl .content form fieldset ul.fields li.error p.error {
+    margin: 0.25em 26ex 0.5em 0;
+}
 .content form fieldset ul.fields li.field p.notes {
     margin: 0.25em 0 0.5em 26ex;
     padding: 0;
+}
+body.l10n-dir-rtl .content form fieldset ul.fields li.field p.notes {
+    margin: 0.25em 26ex 0.5em 0;
 }
 
 .index_home .listing {
@@ -204,12 +221,21 @@ body {
     text-align: right;
     padding-right: 0.5em;
 }
+body.l10n-dir-rtl .index_home .listing .count {
+    float: right;
+    text-align: left;
+    padding-left: 0.5em;
+    padding-right: 0em;
+}
 .index_home .listing ul.counts li {
     line-height: 1.75em;
 }
 .index_home .listing ul.mimetype_counts li {
     float: left;
     width: 42ex;
+}
+body.l10n-dir-rtl .index_home .listing ul.mimetype_counts li {
+    float: right;
 }
 .index_home .listing ul.nav {
     list-style: none;
@@ -221,11 +247,17 @@ body {
     border: 1px solid #ccc;
     float: left;
 }
+body.l10n-dir-rtl .index_home .listing ul.nav li {
+    float: right;
+}
 .index_home .listing .counts li {
     margin: 0 0 0 0;
 }
 .index_home .listing ul.nav li {
     margin: 0 0.5em -1px 0;
+}
+body.l10n-dir-rtl .index_home .listing ul.nav li {
+    margin: 0 0 -1px 0.5em;
 }
 .index_home .listing ul.nav li.selected {
     border-bottom: 1px solid #fff;
@@ -262,9 +294,15 @@ body {
     text-align: left;
     padding: 0.25em 0.5em 0.25em 0.5em;
 }
+body.l10n-dir-rtl .index_home .listing .installed_plugins thead th {
+    text-align: right;
+}
 .index_home .listing .installed_plugins tbody td {
     text-align: left;
     padding: 0.5em 0.5em 0.5em 0.5em;
+}
+body.l10n-dir-rtl .index_home .listing .installed_plugins tbody td {
+    text-align: right;
 }
 .index_home .listing .installed_plugins tbody tr.from_sandbox.odd td {
     background-color: #f3fff3;
@@ -274,8 +312,6 @@ body {
 }
 .index_home .listing .installed_plugins tbody tr.from_sandbox td.name {
     font-weight: bold;
-}
-.index_home .listing .installed_plugins tbody tr.from_sandbox td.name:after {
 }
 .index_home .listing .installed_plugins tbody tr td.new_release select {
     width: 85%;
@@ -308,6 +344,10 @@ ul.actions > li {
     float: left;
     padding-right: 1em;
 }
+.l10n-dir-rtl ul.actions > li {
+    float: right;
+    padding-left: 1em;
+}
 ul.actions > li > a {
     display: block;
     font-weight: bold;
@@ -333,6 +373,11 @@ ul.actions > li > a:hover {
 #ctrl_plugins_act_detail .meta .icon {
     float: left;
     padding-right: 0.5em;
+}
+#ctrl_plugins_act_detail.l10n-dir-rtl .meta .icon {
+    float: right;
+    padding-right: 0;
+    padding-left: 0.5em;
 }
 #ctrl_plugins_act_detail .meta .icon img {
     width: 75px;
@@ -381,6 +426,10 @@ ul.actions > li > a:hover {
     padding: 0.5em 0.5em 0.5em 0.75em;
     border: 1px solid #666;
 }
+body#ctrl_plugins_act_edit.l10n-dir-rtl fieldset {
+    margin: 0.5em 1em 0.5em 0.5em;
+    padding: 0.5em 0.75em 0.5em 0.5em;
+}
 #ctrl_plugins_act_edit fieldset legend {
     cursor: pointer;
     border: 1px solid #333;
@@ -388,8 +437,14 @@ ul.actions > li > a:hover {
     padding: 0.125em 0.5em;
     margin: 0 0 0 -0.825em;
 }
+body#ctrl_plugins_act_edit.l10n-dir-rtl fieldset legend {
+    margin: 0 -0.825em 0 0;
+}
 #ctrl_plugins_act_edit fieldset.closed legend {
     margin: 0 0 0 -0.25em;
+}
+body#ctrl_plugins_act_edit.l10n-dir-rtl fieldset.closed legend {
+    margin: 0 -0.25em 0 0;
 }
 #ctrl_plugins_act_edit fieldset legend:hover {
     background: #fff;
@@ -427,6 +482,8 @@ ul.actions > li > a:hover {
     font-size: 0.85em;
     height: 2.5em;
 }
+#ctrl_plugins_act_edit ul.controls {
+}
 #ctrl_plugins_act_edit .release ul.controls {
     margin: 0.25em 0 1em 0;
 }
@@ -435,6 +492,12 @@ ul.actions > li > a:hover {
     padding: 0.25em 0.5em;
     border: 1px solid #ccc;
     float: left;
+}
+#ctrl_plugins_act_edit.l10n-dir-rtl  ul.controls li {
+    margin: 0 0 0 1em;
+    padding: 0.25em 0.5em;
+    border: 1px solid #ccc;
+    float: right;
 }
 #ctrl_plugins_act_edit ul.fields li.field {
     position: relative;
@@ -449,6 +512,10 @@ ul.actions > li > a:hover {
     float: left;
     text-align: right;    
 }
+body#ctrl_plugins_act_edit.l10n-dir-rtl ul.fields li.field label {
+    float: right;
+    text-align: left;    
+}
 #ctrl_plugins_act_edit ul.fields li.field input.text {
     width: 55ex;
 }
@@ -459,6 +526,10 @@ ul.actions > li > a:hover {
     left: 95ex;
     padding: 0 0 0 0;
     margin: 0 0 0 0;
+}
+body#ctrl_plugins_act_edit.l10n-dir-rtl  ul.fields li.field p.notes {
+    left: 0;
+    right: 95ex;
 }
 #ctrl_plugins_act_edit ul.fields li.textarea {
     min-height: 5em;
@@ -482,8 +553,9 @@ ul.actions > li > a:hover {
     padding: 0.25em 0 0.25em 0;
     line-height: 1.5em;
 }
-#ctrl_plugins_act_submission_detail dl.submission dt:after {
-    content: ":";
+#ctrl_plugins_act_submission_detail.l10n-dir-rtl dl.submission dt {
+    float: right;
+    text-align: left;
 }
 #ctrl_plugins_act_submission_detail dl.submission dd {
     margin: 0;

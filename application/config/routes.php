@@ -20,7 +20,7 @@ $config['profiles/([^/]+)/plugins/detail/([^\.]+).json'] =
 $config['profiles/([^/]+)/plugins/detail/([^\.]+).html'] = 
     'plugins/detail/$2/html/$1';
 $config['profiles/([^/]+)/plugins/detail/([^;]+);(.*)'] = 
-    'plugins/$4/$2/$1';
+    'plugins/$3/$2/$1';
 $config['profiles/([^/]+)/plugins/detail/(.*)'] = 
     'plugins/detail/$2/html/$1';
 
@@ -56,6 +56,8 @@ $config['profiles/([^/]+)/settings/basics/changeemail'] =
 
 $config['profiles/([^/]+)/settings/basics/details'] = 
     'auth_profiles/editprofile/screen_name/$1/';
+
+$config['captcha/?(.*)'] = 'index/captcha/$1';
 
 $config['(.*)/(.*)'] = '$1/$2';
 
