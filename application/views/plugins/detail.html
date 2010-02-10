@@ -15,6 +15,8 @@
 {% endblock %}
 
 {% block content %}
+    {% set plugin_name_e as plugin.name | e %}
+    {% set screen_name_e as screen_name | e %}
     <ul class="actions clearfix">
         {% if plugin.sandbox_profile_id %}
             {% set plugin_base as base_url ~ "profiles/" ~ screen_name|e ~ "/plugins/detail/" ~ plugin.pfs_id|urlencode|e %}
@@ -22,10 +24,17 @@
                 <li><a href="{{base_url}}plugins/detail/{{plugin.pfs_id|urlencode|e}}">{% trans "View original" %}</a></li>
             {% endif %}
             {% if plugin.is_allowed(authprofile, 'deploy') %}
-                <li><a href="{{plugin_base}};deploy">{% trans "Push changes live" %}</a></li>
+                <li><a href="{{plugin_base}};deploy">{% trans "Push live" %}</a></li>
             {% endif %}
             {% if plugin.is_allowed(authprofile, 'requestpush') %}
-                <li><a href="{{plugin_base}};requestpush">{% trans "Request approval for changes" %}</a></li>
+                <li><a href="{{plugin_base}};requestpush">{% trans "Request approval" %}</a></li>
+            {% endif %}
+            {% if plugin.is_allowed(authprofile, 'managetrust') %}
+                {% if plugin.trusts(plugin_profile) %}
+                    <li><a href="{{plugin_base}};removetrusted">{% blocktrans %}Remove {{ screen_name_e }} as trusted{% endblocktrans %}</a></li>
+                {% else %}
+                    <li><a href="{{plugin_base}};addtrusted">{% blocktrans %}Add {{ screen_name_e }} as trusted{% endblocktrans %}</a></li>
+                {% endif %}
             {% endif %}
         {% else %}
             {% set plugin_base as base_url ~ "plugins/detail/" ~ plugin.pfs_id|urlencode|e %}

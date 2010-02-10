@@ -43,18 +43,24 @@ class PluginDir_ACL_Setup
                 new PluginDir_Acl_Assert_Plugin_Edit())
             ->allow('member', 'plugin', 'delete',
                 new PluginDir_Acl_Assert_Plugin_Delete())
+            ->allow('member', 'plugin', 'managetrust',
+                new PluginDir_Acl_Assert_Plugin_ManageTrust())
             ->allow('member', 'plugin', 'requestpush',
                 new PluginDir_Acl_Assert_Plugin_RequestPush())
+            ->allow('member', 'plugin', 'deploy',
+                new PluginDir_Acl_Assert_Plugin_Deploy())
             ->allow('member', 'plugin', array(
                 'copy', 'request_deploy', 
                 'view_own', 'edit_own', 'delete_own',
-                'create', 'create_own', 'requestpush_own'
+                'create', 'create_own', 'requestpush_own',
+                'view_trusted', 'edit_trusted', 'deploy_trusted',
             ))
 
             ->allow('editor', 'plugin', array(
-                'view_any', 'edit_sandbox', 'delete_sandbox', 
-                'deploy', 'create_sandbox', 'requestpush_sandbox',
-                'view_submissions'
+                'view_sandbox', 'edit_sandbox', 'delete_sandbox', 
+                'deploy_any', 'create_sandbox', 'requestpush_sandbox',
+                'managetrust_sandbox',
+                'view_submissions', 
             ))
 
             ->allow('member', 'profile', 'view_sandbox', 
@@ -129,6 +135,10 @@ class PluginDir_Acl_Assert_Plugin implements Zend_Acl_Assert_Interface {
                 $resource->sandbox_profile_id == $role->id) {
             return true;
         }
+        if ($acl->isAllowed($role, $resource, $this->base_priv . '_trusted') &&
+                $resource->trusts($role)) {
+            return true;
+        }
         if ($acl->isAllowed($role, $resource, $this->base_priv . '_public') &&
                 !$resource->is_sandboxed()) {
             return true;
@@ -150,8 +160,14 @@ class PluginDir_Acl_Assert_Plugin_Edit extends PluginDir_Acl_Assert_Plugin {
 class PluginDir_Acl_Assert_Plugin_Delete extends PluginDir_Acl_Assert_Plugin {
     protected $base_priv = 'delete';
 }
+class PluginDir_Acl_Assert_Plugin_ManageTrust extends PluginDir_Acl_Assert_Plugin {
+    protected $base_priv = 'managetrust';
+}
 class PluginDir_Acl_Assert_Plugin_RequestPush extends PluginDir_Acl_Assert_Plugin {
     protected $base_priv = 'requestpush';
+}
+class PluginDir_Acl_Assert_Plugin_Deploy extends PluginDir_Acl_Assert_Plugin {
+    protected $base_priv = 'deploy';
 }
 
 // Fire up the initialization on load.

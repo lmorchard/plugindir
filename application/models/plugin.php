@@ -15,7 +15,7 @@ class Plugin_Model extends ORM_Resource {
     // {{{ Relations
 
     public $has_and_belongs_to_many = array(
-        'mimetypes'
+        'mimetypes',
     );
 
     public $has_many = array(
@@ -43,7 +43,6 @@ class Plugin_Model extends ORM_Resource {
     public static $properties = array();
 
     // }}}
-
     
     /**
      * Assemble a count of releases by plugin.
@@ -627,7 +626,7 @@ class Plugin_Model extends ORM_Resource {
     }
 
     /**
-     * Allow mime-types to be referred to by name.
+     * Allow plugins to be referred to by name.
      */
     public function unique_key($id = NULL)
     {
@@ -646,6 +645,74 @@ class Plugin_Model extends ORM_Resource {
     public function is_sandboxed() 
     {
         return !empty($this->sandbox_profile_id);
+    }
+
+
+    /**
+     * Add the profile as trusted to this plugin by PFS ID.
+     * Note that this covers sandboxed copies, as well.
+     *
+     * @param Profile $profile Profile to be trusted
+     */
+    public function add_trusted($profile)
+    {
+        $rv = $this->db->query("
+            INSERT INTO plugins_trustedprofiles
+            (pfs_id, profile_id) VALUES ( ?, ? )
+            ON DUPLICATE KEY UPDATE pfs_id=pfs_id, profile_id=profile_id
+        ", $this->pfs_id, $profile->id);
+        $this->db->clear_cache();
+        return $rv;
+    }
+
+    /**
+     * Remove the profile as trusted from this plugin by PFS ID.
+     * Note that this covers sandboxed copies, as well.
+     *
+     * @param Profile $profile Profile to be trusted
+     */
+    public function remove_trusted($profile)
+    {
+        $rv = $this->db->query("
+            DELETE FROM plugins_trustedprofiles
+            WHERE pfs_id=? AND profile_id=?
+        ", $this->pfs_id, $profile->id);
+        $this->db->clear_cache();
+        return $rv;
+    }
+
+    /**
+     * List the profiles that are trusted by this plugin.
+     *
+     * @returns array
+     */
+    public function list_trusted()
+    {
+        return ORM::factory('profile')
+            ->join(
+                'plugins_trustedprofiles', 
+                'plugins_trustedprofiles.profile_id', 
+                'profiles.id'
+            )
+            ->where('plugins_trustedprofiles.pfs_id', $this->pfs_id)
+            ->find_all();
+    }
+
+    /**
+     * Determine whether this plugin trusts the given profile.
+     *
+     * @returns bool
+     */
+    public function trusts($profile)
+    {
+        if (is_string($profile)) return false;
+        $count = $this->db
+            ->where(array(
+                'pfs_id'=>$this->pfs_id, 
+                'profile_id'=>$profile->id
+            ))
+            ->count_records('plugins_trustedprofiles');
+        return $count > 0;
     }
 
 

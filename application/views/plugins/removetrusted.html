@@ -1,0 +1,25 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    {% set plugin_name_e as plugin.name | e %}
+    {% set screen_name_e as screen_name | e %}
+    {% blocktrans %}Remove {{ screen_name_e }} as trusted for "{{plugin_name_e}}"{% endblocktrans %}
+{% endblock %}
+
+{% block content %}
+    {% set plugin_name_e as plugin.name | e %}
+    {% set screen_name_e as screen_name | e %}
+
+    <h2>{{plugin.name | e}}</h2>
+
+    <form action="" method="POST">
+        <p>{% blocktrans %}Remove {{ screen_name_e }} as trusted for "{{plugin_name_e}}"{% endblocktrans %}</p>
+        <div>
+            <input type="submit" value="{% trans "Remove as trusted" %}" />
+            |
+            <a href="{{base_url}}plugins/detail/{{plugin.pfs_id}}">{% trans "Cancel" %}</a>
+        </div>
+    </form>
+
+{% endblock %}
+

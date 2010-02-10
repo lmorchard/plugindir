@@ -258,7 +258,7 @@ class Plugins_Controller extends Local_Controller {
      */
     function detail($pfs_id, $format='html', $screen_name=null)
     {
-        $plugin = $this->_find_plugin($pfs_id, $screen_name);
+        list($plugin, $plugin_profile) = $this->_find_plugin($pfs_id, $screen_name);
         if (!authprofiles::is_allowed($plugin, 'view'))
             return Event::run('system.forbidden');
 
@@ -315,7 +315,7 @@ class Plugins_Controller extends Local_Controller {
      */
     function copy($pfs_id, $screen_name=null)
     {
-        $plugin = $this->_find_plugin($pfs_id, $screen_name);
+        list($plugin, $plugin_profile) = $this->_find_plugin($pfs_id, $screen_name);
         if (!authprofiles::is_allowed($plugin, 'copy'))
             return Event::run('system.forbidden');
 
@@ -348,7 +348,7 @@ class Plugins_Controller extends Local_Controller {
      * Deploy a sandbox plugin live.
      */
     function deploy($pfs_id, $screen_name=null) {
-        $plugin = $this->_find_plugin($pfs_id, $screen_name);
+        list($plugin, $plugin_profile) = $this->_find_plugin($pfs_id, $screen_name);
         if (!authprofiles::is_allowed($plugin, 'deploy'))
             return Event::run('system.forbidden');
 
@@ -381,7 +381,7 @@ class Plugins_Controller extends Local_Controller {
      */
     function delete($pfs_id, $screen_name=null) 
     {
-        $plugin = $this->_find_plugin($pfs_id, $screen_name);
+        list($plugin, $plugin_profile) = $this->_find_plugin($pfs_id, $screen_name);
         if (!authprofiles::is_allowed($plugin, 'delete'))
             return Event::run('system.forbidden');
 
@@ -401,7 +401,7 @@ class Plugins_Controller extends Local_Controller {
      */
     function edit($pfs_id, $screen_name=null)
     {
-        $plugin = $this->_find_plugin($pfs_id, $screen_name);
+        list($plugin, $plugin_profile) = $this->_find_plugin($pfs_id, $screen_name);
         if (!authprofiles::is_allowed($plugin, 'edit'))
             return Event::run('system.forbidden');
 
@@ -416,7 +416,7 @@ class Plugins_Controller extends Local_Controller {
      */
     function requestpush($pfs_id, $screen_name=null) 
     {
-        $plugin = $this->_find_plugin($pfs_id, $screen_name);
+        list($plugin, $plugin_profile) = $this->_find_plugin($pfs_id, $screen_name);
         if (!authprofiles::is_allowed($plugin, 'requestpush'))
             return Event::run('system.forbidden');
 
@@ -452,6 +452,48 @@ class Plugins_Controller extends Local_Controller {
         }
     }
 
+    /**
+     * Attempt to add a profile as trusted for the plugin.
+     */
+    function addtrusted($pfs_id, $screen_name)
+    {
+        list($plugin, $plugin_profile) = $this->_find_plugin($pfs_id, $screen_name);
+        if (!authprofiles::is_allowed($plugin, 'managetrust'))
+            return Event::run('system.forbidden');
+
+        // Only perform the delete on POST.
+        if ('post' == request::method()) {
+            $plugin->add_trusted($plugin_profile);
+
+            // Bounce over to sandbox.
+            $auth_screen_name = authprofiles::get_profile('screen_name');
+            url::redirect(
+                "profiles/{$screen_name}/plugins/detail/{$plugin->pfs_id}"
+            );
+        }
+    }
+
+    /**
+     * Attempt to remove a profile as trusted for the plugin.
+     */
+    function removetrusted($pfs_id, $screen_name)
+    {
+        list($plugin, $plugin_profile) = $this->_find_plugin($pfs_id, $screen_name);
+        if (!authprofiles::is_allowed($plugin, 'managetrust'))
+            return Event::run('system.forbidden');
+
+        // Only perform the delete on POST.
+        if ('post' == request::method()) {
+            $plugin->remove_trusted($plugin_profile);
+
+            // Bounce over to sandbox.
+            $auth_screen_name = authprofiles::get_profile('screen_name');
+            url::redirect(
+                "profiles/{$screen_name}/plugins/detail/{$plugin->pfs_id}"
+            );
+        }
+    }
+
 
     /**
      * Try looking for plugin given PFS ID and optional screen name.
@@ -462,6 +504,7 @@ class Plugins_Controller extends Local_Controller {
     {
         // Check for screen name if necessary
         if (!$screen_name) {
+            $profile = null;
             $profile_id = null;
         } else {
             $profile = ORM::factory('profile', $screen_name);
@@ -482,9 +525,10 @@ class Plugins_Controller extends Local_Controller {
         }
 
         $this->view->plugin = $plugin;
+        $this->view->plugin_profile = $profile;
         $this->view->screen_name = $screen_name;
 
-        return $plugin;
+        return array($plugin, $profile);
     }
 
     /**

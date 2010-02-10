@@ -98,6 +98,9 @@ class Plugin_Model_Test extends PHPUnit_Framework_TestCase
                 ->clear_cache();
         }
 
+        $this->cache = Cache::instance();
+        $this->cache->delete_all();
+
         self::$test_plugin = 
             ORM::factory('plugin')->import(self::$test_plugin_data);
     }
@@ -449,7 +452,7 @@ class Plugin_Model_Test extends PHPUnit_Framework_TestCase
                 ),
             )
         );
-        ORM::factory('plugin')->import($plugin_update);
+        ORM::factory('plugin')->import($plugin_update, TRUE);
 
         $os_guid_map = array(
             'Windows 98'          => 'foobar-win-200.9.9',
@@ -576,6 +579,10 @@ class Plugin_Model_Test extends PHPUnit_Framework_TestCase
             'screen_name' => 'member2', 'role' => 'member',
         ))->save();
 
+        $member3_profile = ORM::factory('profile')->set(array( 
+            'screen_name' => 'member3', 'role' => 'member',
+        ))->save();
+
         $plugin = self::$test_plugin;
 
         $privs = array( 
@@ -614,6 +621,94 @@ class Plugin_Model_Test extends PHPUnit_Framework_TestCase
             array($editor_profile,  true,  true,  true,  true,  true, true,  true,),
             array($admin_profile,   true,  true,  true,  true,  true, true,  true,),
         ));
+
+        // Add member1 and member3 profile as trusted.  Should be able to do 
+        // this several times in a row without mishap.
+        $plugin->add_trusted($member1_profile);
+        $plugin->add_trusted($member1_profile);
+        $plugin->add_trusted($member1_profile);
+        $plugin->add_trusted($member1_profile);
+        $this->assertTrue($plugin->trusts($member1_profile)); 
+
+        $plugin->add_trusted($member3_profile);
+        
+        // Ensure that the list of trusted profiles works properly.
+        $trusted_profiles = $plugin->list_trusted();
+        $trusted_screen_names = array();
+        foreach ($trusted_profiles as $profile) {
+            $trusted_screen_names[] = $profile->screen_name;
+        }
+        sort($trusted_screen_names);
+        $this->assertEquals(
+            array('member1', 'member3'),
+            $trusted_screen_names,
+            'Should list appropriate trusted profile screen names'
+        );
+
+        // Ensure member1 and member3 can perform as trusted
+        $trusted_privs = array( 'view', 'edit', 'deploy' );
+        $this->checkACL("member2 sandbox plugin (trust)", 
+            $trusted_privs, $acl, $plugin, array(
+                array('guest',          false, false, false,),
+                array($member1_profile, true,  true,  true),
+                array($member2_profile, true,  true,  false),
+                array($member3_profile, true,  true,  true),
+                array($editor_profile,  true,  true,  true),
+                array($admin_profile,   true,  true,  true),
+            )
+        );
+
+        // Remove member1 profile as trusted. Shouldn't need to match the count 
+        // of add attempts.
+        $plugin->remove_trusted($member1_profile);
+        $this->assertTrue(!($plugin->trusts($member1_profile))); 
+        $plugin->remove_trusted($member1_profile);
+        $this->assertTrue(!($plugin->trusts($member1_profile))); 
+
+        $this->checkACL("member2 sandbox plugin (trust minus member1)", 
+            $trusted_privs, $acl, $plugin, array(
+                array('guest',          false, false, false,),
+                array($member1_profile, false, false, false),
+                array($member2_profile, true,  true,  false),
+                array($member3_profile, true,  true,  true),
+                array($editor_profile,  true,  true,  true),
+                array($admin_profile,   true,  true,  true),
+            )
+        );
+
+        // Make a sandbox copy of the plugin for member1
+        $export = $plugin->export();
+        $export['meta']['sandbox_profile_id'] = $member1_profile->id;
+        $export['meta']['original_plugin_id'] = $plugin->id;
+        $new_plugin = ORM::factory('plugin')->import($export);
+
+        // Ensure member3 still has trusted access to this sandboxed $new_plugin, 
+        // which shares a PFS ID with $plugin yet has a different DB ID.
+        $this->checkACL("member1 sandbox plugin (trust minus member1)", 
+            $trusted_privs, $acl, $new_plugin, array(
+                array('guest',          false, false, false,),
+                array($member1_profile, true,  true,  false),
+                array($member2_profile, false, false, false),
+                array($member3_profile, true,  true,  true),
+                array($editor_profile,  true,  true,  true),
+                array($admin_profile,   true,  true,  true),
+            )
+        );
+
+        // Finally, remove member3 from trusted list and ensure access goes away.
+        $plugin->remove_trusted($member3_profile);
+        $this->assertTrue(!($plugin->trusts($member3_profile))); 
+
+        $this->checkACL("member2 sandbox plugin (trust minus member1)", 
+            $trusted_privs, $acl, $plugin, array(
+                array('guest',          false, false, false,),
+                array($member1_profile, false, false, false),
+                array($member2_profile, true,  true,  false),
+                array($member3_profile, false, false, false),
+                array($editor_profile,  true,  true,  true),
+                array($admin_profile,   true,  true,  true),
+            )
+        );
 
     }
 

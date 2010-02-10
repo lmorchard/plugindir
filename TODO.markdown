@@ -1,9 +1,14 @@
 # Plugin directory TODO
 
+## 1.0.0
+
+* version vs vendor_version in detection
+
 ## 1.5.0
 
 * Advanced search pulldown
-* Minimize strings included in l10n/mo_json to just those needed by JS
+* Minimize strings included in l10n/translations to just those needed by JS
+    * Switch from .mo parsing to producing a PHP file with _() calls?
 
 ## 2.0.0
 
