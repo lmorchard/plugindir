@@ -56,9 +56,10 @@ class Index_Controller extends Local_Controller {
      */
     public function captcha ($group='default')
     {
-		// Output the Captcha challenge resource (no html)
-		// Pull the config group name from the URL
-		Captcha::factory($group)->render(FALSE);
+        $this->auto_render = false;
+        // Output the Captcha challenge resource (no html)
+        // Pull the config group name from the URL
+        Captcha::factory($group)->render(FALSE);
     }
 
 }

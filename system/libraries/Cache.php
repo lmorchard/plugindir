@@ -86,7 +86,7 @@ class Cache_Core {
 		if ( ! ($this->driver instanceof Cache_Driver))
 			throw new Kohana_Exception('core.driver_implements', $this->config['driver'], get_class($this), 'Cache_Driver');
 
-		Kohana::log('debug', 'Cache Library initialized');
+		// Kohana::log('debug', 'Cache Library initialized');
 
 		if (Cache::$loaded !== TRUE)
 		{
