@@ -8,7 +8,7 @@
     {% set plugin_name_e as plugin.name | e %}
     {% set screen_name_e as screen_name | e %}
     {% if plugin.sandbox_profile_id %}
-        {% blocktrans %}{{plugin_name_e}} ({{ screen_name_e }} sandbox){% endblocktrans %}
+        {% blocktrans %}{{plugin_name_e}} ({{screen_name_e}} sandbox){% endblocktrans %}
     {% else %}
         {{plugin_name_e}}
     {% endif %}
@@ -21,19 +21,19 @@
         {% if plugin.sandbox_profile_id %}
             {% set plugin_base as base_url ~ "profiles/" ~ screen_name|e ~ "/plugins/detail/" ~ plugin.pfs_id|urlencode|e %}
             {% if plugin.is_allowed(authprofile, 'view') %}
-                <li><a href="{{base_url}}plugins/detail/{{plugin.pfs_id|urlencode|e}}">{% trans "View original" %}</a></li>
+                <li><a href="{{base_url}}plugins/detail/{{plugin.pfs_id|urlencode|e}}">{% trans "View live" %}</a></li>
             {% endif %}
             {% if plugin.is_allowed(authprofile, 'deploy') %}
                 <li><a href="{{plugin_base}};deploy">{% trans "Push live" %}</a></li>
             {% endif %}
-            {% if plugin.is_allowed(authprofile, 'requestpush') %}
+            {% if not plugin.is_allowed(authprofile, 'deploy') and plugin.is_allowed(authprofile, 'requestpush') %}
                 <li><a href="{{plugin_base}};requestpush">{% trans "Request approval" %}</a></li>
             {% endif %}
             {% if plugin.is_allowed(authprofile, 'managetrust') %}
                 {% if plugin.trusts(plugin_profile) %}
-                    <li><a href="{{plugin_base}};removetrusted">{% blocktrans %}Remove {{ screen_name_e }} as trusted{% endblocktrans %}</a></li>
+                    <li><a href="{{plugin_base}};removetrusted">{% blocktrans %}Remove {{screen_name_e}} as trusted{% endblocktrans %}</a></li>
                 {% else %}
-                    <li><a href="{{plugin_base}};addtrusted">{% blocktrans %}Add {{ screen_name_e }} as trusted{% endblocktrans %}</a></li>
+                    <li><a href="{{plugin_base}};addtrusted">{% blocktrans %}Add {{screen_name_e}} as trusted{% endblocktrans %}</a></li>
                 {% endif %}
             {% endif %}
         {% else %}
