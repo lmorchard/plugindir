@@ -228,7 +228,12 @@ class Plugin_Model extends ORM_Resource {
                 PluginRelease_Model::$defaults, $meta, $release_data
             );
 
-            if (!isset($release_data['detected_version'])) {
+            if (empty($release_data['detection_type'])) {
+                $release_data['detection_type'] = 'original';
+            }
+
+            if (!isset($release_data['detected_version']) ||
+                    '0.0.0' == $release_data['detected_version']) {
                 $release_data['detected_version'] = $release_data['version'];
             }
 
@@ -342,6 +347,7 @@ class Plugin_Model extends ORM_Resource {
             'appVersion' => '',
             'appRelease' => '',
             'chromeLocale' => '',
+            'detection' => false,
             'sandboxScreenName' => false
         ), $criteria);
 
@@ -429,6 +435,11 @@ class Plugin_Model extends ORM_Resource {
                     'plugins.sandbox_profile_id' => NULL
                 ));
         }
+
+        // Add detection type to the SQL
+        $this->db
+            ->in('detection_type', array($criteria['detection'], '*'))
+            ;
 
         // Add client OS criteria to the SQL
         $criteria['clientOS'] = OS_Model::normalizeClientOS(@$criteria['clientOS']);

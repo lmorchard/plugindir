@@ -77,6 +77,7 @@ class Search_Controller extends Local_Controller {
             'appVersion' => '',
             'appRelease' => '',
             'chromeLocale' => '',
+            'detection' => '',
             'sandboxScreenName' => false,
             'callback' => ''
         );

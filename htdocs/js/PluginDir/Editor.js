@@ -27,6 +27,8 @@ PluginDir.Editor = (function () {
         property_defaults: {
             status: 'latest',
             version: '0.0.0',
+            detected_version: '0.0.0',
+            detection_type: 'original',
             platform: {
                 app_id: '*',
                 app_release: '*',
@@ -446,7 +448,8 @@ PluginDir.Editor = (function () {
         updateReleaseSummary: function (release) {
             var parts = [_("Release")],
                 fields = [
-                    'version', 'os_name', 'locale', 'app_id', 
+                    'version', 'detection_type', 'detected_version',
+                    'status', 'os_name', 'locale', 'app_id',
                     'app_release', 'app_version'
                 ];
             $.each(fields, function () {

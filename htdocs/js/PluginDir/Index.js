@@ -72,7 +72,7 @@ PluginDir.Index = (function () {
                 function (data) {
                     // Callback to process plugins with detected versions.
                     var raw_plugin = data.pluginInfo.raw;
-                    var version = Pfs.parseVersion(data.pluginInfo.plugin).join('.');
+                    var version = data.pluginInfo.detected_version || Pfs.parseVersion(data.pluginInfo.plugin).join('.');
                     var has_pfs_match = (data.status !== 'unknown') && data.pfsInfo;
                     var latest = (!has_pfs_match) ? null : data.pfsInfo.releases.latest;
                     var pfs_id = (!has_pfs_match) ? null : latest.pfs_id;
@@ -245,6 +245,15 @@ PluginDir.Index = (function () {
                         select.options[0] = new Option(_("Edit in sandbox"), this.edit);
                     }
                 });
+
+                $.each($this.sandbox_plugins, function (i) {
+                    if (this.pfs_id == pfs_id) {
+                        select.options[1] = new Option(
+                            sprintf(_("Add release to %1$s"), this.name), 
+                            this.edit + '?add_release=1&' + submit_params
+                        );
+                    }
+                })
 
             } else {
 

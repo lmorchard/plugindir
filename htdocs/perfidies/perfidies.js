@@ -91,6 +91,17 @@ Pfs = {
      */
     VULNERABLE: "vulnerable",
     /**
+     * Status Code for incremental callback.
+     *
+     * Version detection for this plugin is imprecise,
+     * and at least one plugin detected with this version
+     * has been reported as vulnerable. Manual inspection
+     * is suggested.
+     * 
+     * Also can be used as a constant with PFS2Info status field
+     */
+    MAYBE_VULNERABLE: "maybe_vulnerable",
+    /**
      * Status Code for incremental callback
      *
      * This browser has an older version of the plugin installed.
@@ -100,6 +111,17 @@ Pfs = {
      * Also can be used as a constant with PFS2Info status field
      */
     OUTDATED:    "outdated",
+    /**
+     * Status Code for incremental callback.
+     *
+     * Version detection for this plugin is imprecise,
+     * and at least one plugin detected with this version
+     * has been reported as outdated. Manual inspection
+     * is suggested.
+     * 
+     * Also can be used as a constant with PFS2Info status field
+     */
+    MAYBE_OUTDATED: "maybe_vulnerable",
     /**
      * Status Code for incremental callback
      *
@@ -197,8 +219,11 @@ Pfs = {
                 var mime = this.currentPlugin.mimes[this.currentMime];
                     
                 var that = this;
-                this.callPfs2(mime, function(){ that.pfs2Success.apply(that, arguments);},                                
-                                    function(){ that.pfs2Error.apply(that, arguments);});  
+                this.callPfs2(
+                    { detection: this.currentPlugin.detection_type, mimetype: mime },
+                    function(){ that.pfs2Success.apply(that, arguments);},
+                    function(){ that.pfs2Error.apply(that, arguments);}
+                );
             },
             /**
              * Stops the finder from continuing to work it's way through plugins in the queue
@@ -214,12 +239,12 @@ Pfs = {
                this.running = false;
             },
             /************* PFS2 below *************/
-            callPfs2: function(mimeType, successFn, errorFn) {
+            callPfs2: function(args_in, successFn, errorFn) {
                 if (Pfs.endpoint == "error set me before using") {                    
                     Pfs.e("You must configure Pfs.endpoint before using this library");
                     return false;
                 }
-                var args = Pfs.$.extend({}, {mimetype: mimeType}, navigatorInfo);
+                var args = Pfs.$.extend({}, navigatorInfo, args_in);
                 
                 Pfs.$.jsonp({
                     cache: true,
@@ -322,7 +347,13 @@ Pfs = {
                     if (pluginMatch === true) {
                         var searchPluginRelease = true;
                         if (pfsInfo.releases.latest) {                            
-                            switch(Pfs.compVersion(this.currentPlugin.plugin, pfsInfo.releases.latest.version)) {
+                            var pfs_version = (pfsInfo.releases.latest.detected_version) ?
+                                pfsInfo.releases.latest.detected_version :
+                                pfsInfo.releases.latest.version;
+                            var pl_version = (this.currentPlugin.detected_version) ?
+                                this.currentPlugin.detected_version :
+                                this.currentPlugin.plugin
+                            switch(Pfs.compVersion(pl_version, pfs_version)) {
                                 case 1:
                                     if (Pfs.reportPluginFn) {
                                         Pfs.reportPluginFn([pfsInfo], 'newer');
@@ -368,10 +399,12 @@ Pfs = {
                         if (this.running && searchPluginRelease && pfsInfo.releases.others) {
                             var others = pfsInfo.releases.others;
                             for (var k=0; searchPluginRelease && k < others.length; k++) {                                 
-                                if (! others[k].version) {
+                                var c_version = (others[k].detected_version) ?
+                                    others[k].detected_version : others[k].version;
+                                if (!c_version) {
                                     continue;
                                 }
-                                switch(Pfs.compVersion(this.currentPlugin.plugin, others[k].version)) {
+                                switch(Pfs.compVersion(this.currentPlugin.plugin, c_version)) {
                                     case 1:
                                         //older than ours, keep looking
                                         break;
@@ -521,7 +554,7 @@ Pfs = {
             currentVersionPart = "";
         }
         
-        for(var i=0; i < tokens.length; i++){
+        for(var i=tokens.length-1; i >= 0; i--){
             var token = Pfs.$.trim(tokens[i]);
             if (token.length === 0) {
                 continue;

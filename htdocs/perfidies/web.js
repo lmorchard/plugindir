@@ -119,8 +119,21 @@ if (window.Pfs === undefined) { window.Pfs = {}; }
                     } 
                 }            
             }            
+
             pluginInfo = Pfs.UI.namePlusVersion(rawPlugin.name, rawPlugin.description, mimes);            
-            if (Pfs.UI.hasVersionInfo(pluginInfo) === false) {
+
+            // Apply version detection scheme logic here.
+            var detected_version = false, detection_type = 'original';
+            if (rawPlugin.version) {
+                detection_type = 'version_available';
+                detected_version = rawPlugin.version;
+            }
+            if (!detected_version) {
+                detection_type = 'original';
+                detected_version = Pfs.parseVersion(pluginInfo).join('.');
+            }
+
+            if (!detected_version) {
                 Pfs.UI.unknownVersionPlugins.push(rawPlugin);
                 continue;
             }
@@ -142,7 +155,14 @@ if (window.Pfs === undefined) { window.Pfs = {}; }
                 }
                 mimeValues.push(mimeValue);
             }
-            p.push({plugin: pluginInfo, mimes: mimeValues, classified: false, raw: rawPlugin});
+            p.push({
+                plugin: pluginInfo,
+                mimes: mimeValues,
+                classified: false,
+                detected_version: detected_version,
+                detection_type: detection_type,
+                raw: rawPlugin
+            });
             if (rawPlugin.name) {
                 // Bug#519256 - guard against duplicate plugins
                 pluginsSeen.push(plugins[i].name);    
@@ -224,7 +244,7 @@ if (window.Pfs === undefined) { window.Pfs = {}; }
                 re_trailing_version = /_([0-9]+\.[0-9]+\.[0-9]+)$/;
                 for (mime in mimes) {
                     mime = mimes[mime];
-                    var r = re_trailing_version.exec(mime)
+                    var r = re_trailing_version.exec(mime);
                     if (r) {
                         q = r[1];
                         break;
