@@ -353,7 +353,6 @@ PluginDir.Editor = (function () {
                     }
                 }
             }
-            console.dir(fields);
             return fields;
         },
 
