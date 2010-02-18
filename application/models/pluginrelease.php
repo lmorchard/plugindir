@@ -21,6 +21,8 @@ class PluginRelease_Model extends ORM {
     public static $defaults = array(
         'os_name' => '*',
         'detection_type' => 'original',
+        'vulnerability_url' => '',
+        'vulnerability_description' => ''
     );
 
     /**

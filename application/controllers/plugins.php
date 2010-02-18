@@ -288,7 +288,7 @@ class Plugins_Controller extends Local_Controller {
                     }
                 }
                 
-                $plugin = ORM::factory('plugin')->import($data, true);
+                $plugin = ORM::factory('plugin')->import($data);
             }
             
             // Return the plugin data as an export in JSON

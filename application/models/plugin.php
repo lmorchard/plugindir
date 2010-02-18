@@ -38,6 +38,39 @@ class Plugin_Model extends ORM_Resource {
         'uncertain'  => 50,
     );
 
+    /**
+     * Default properties for plugins and releases.
+     */
+    public static $defaults = array(
+        'os_name' => '*',
+        'app_id' => '{ec8030f7-c20a-464f-9b0e-13a3a9e97384}', 
+        'app_release' => '*', 
+        'app_version' => '*', 
+        'locale' => '*', 
+        'name' => '', 
+        'vendor' => '', 
+        'description' => '', 
+        'version' => '0.0.0', 
+        'detected_version' => '0.0.0',
+        'detection_type' => 'original',
+        'guid' => '', 
+        'vulnerability_description' => '', 
+        'vulnerability_url' => '', 
+        'filename' => '', 
+        'url' => '', 
+        'icon_url' => '', 
+        'license_url' => '', 
+        'manual_installation_url' => '', 
+        'xpi_location' => '', 
+        'installer_location' => '', 
+        'installer_hash' => '', 
+        'installer_shows_ui' => '', 
+        'needs_restart' => '', 
+        'xpcomabi' => '', 
+        'min' => '',
+        'max' => '',
+    );
+
     // HACK: The contents of these two arrays are defined at the end of the file.
     public static $status_choices = array();
     public static $properties = array();
@@ -170,9 +203,13 @@ class Plugin_Model extends ORM_Resource {
 
         // Delete the plugin before replacing the data.
         if ($delete_first) {
-            $q = $db->query( 
-                "DELETE FROM plugins WHERE pfs_id=?", $meta['pfs_id']
-            );
+            $this->db->where('pfs_id', $meta['pfs_id']);
+            if (empty($meta['sandbox_profile_id'])) {
+                $this->db->where('plugins.sandbox_profile_id IS NULL');
+            } else {
+                $this->db->where('sandbox_profile_id', $meta['sandbox_profile_id']);
+            }
+            $this->db->delete('plugins');
         }
 
         // Find or update the main plugin record.
@@ -225,7 +262,8 @@ class Plugin_Model extends ORM_Resource {
 
             // Assemble the release data with defaults from plugin data.
             $release_data = array_merge(
-                PluginRelease_Model::$defaults, $meta, $release_data
+                Plugin_Model::$defaults, PluginRelease_Model::$defaults, 
+                $meta, $release_data
             );
 
             if (empty($release_data['detection_type'])) {
