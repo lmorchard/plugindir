@@ -176,6 +176,8 @@ class Plugins_Controller extends Local_Controller {
                 array(
                     'status' => $this->input->post('status'),
                     'version' => $this->input->post('version'),
+                    'detected_version' => $this->input->post('detected_version'),
+                    'detection_type' => $this->input->post('detection_type'),
                     'os_name' => $this->input->post('clientOS'),
                     'platform' => array(
                         'app_id' => $this->input->post('appID'),
@@ -286,7 +288,7 @@ class Plugins_Controller extends Local_Controller {
                     }
                 }
                 
-                $plugin = ORM::factory('plugin')->import($data);
+                $plugin = ORM::factory('plugin')->import($data, true);
             }
             
             // Return the plugin data as an export in JSON

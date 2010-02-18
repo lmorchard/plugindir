@@ -51,7 +51,7 @@
                                 {{ forms.hidden(data, errors, 'screen_name', authprofile.screen_name) }}
                             </dd>
                         {% endif %}
-                        {% for name in 'pfs_id filename appID appRelease appVersion clientOS chromeLocale mimetypes' | explode %}
+                        {% for name in 'pfs_id filename detected_version detection_type appID appRelease appVersion clientOS chromeLocale mimetypes' | explode %}
                             <dt>{{ name | e }}</dt>
                             <dd>
                                 {{ data[name] | e }}

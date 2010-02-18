@@ -148,6 +148,8 @@ PluginDir.Editor = (function () {
                     filename: qp.filename,
                     detection: qp.detection,
                     version: qp.version,
+                    detected_version: qp.detected_version,
+                    detection_type: qp.detection_type,
                     os_name: qp.clientOS,
                     vulnerability_description: qp.vulnerability_description,
                     vulnerability_url: qp.vulnerability_url,
@@ -333,6 +335,7 @@ PluginDir.Editor = (function () {
          */
         extractPropertyFields: function (parent) {
             var fields = { };
+            var to_delete = [];
             for (name in $this.plugin_properties) {
                 if ($this.plugin_properties.hasOwnProperty(name)) {
                     var prop = $this.plugin_properties[name],
@@ -350,6 +353,7 @@ PluginDir.Editor = (function () {
                     }
                 }
             }
+            console.dir(fields);
             return fields;
         },
 

@@ -29,7 +29,7 @@
             {% if not plugin.is_allowed(authprofile, 'deploy') and plugin.is_allowed(authprofile, 'requestpush') %}
                 <li><a href="{{plugin_base}};requestpush">{% trans "Request approval" %}</a></li>
             {% endif %}
-            {% if plugin.is_allowed(authprofile, 'managetrust') %}
+            {% if plugin.is_allowed(authprofile, 'managetrust') and not plugin.is_allowed(plugin_profile, 'managetrust') %}
                 {% if plugin.trusts(plugin_profile) %}
                     <li><a href="{{plugin_base}};removetrusted">{% blocktrans %}Remove {{screen_name_e}} as trusted{% endblocktrans %}</a></li>
                 {% else %}

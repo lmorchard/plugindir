@@ -126,7 +126,7 @@ if (window.Pfs === undefined) { window.Pfs = {}; }
             var detected_version = false, detection_type = 'original';
             if (rawPlugin.version) {
                 detection_type = 'version_available';
-                detected_version = rawPlugin.version;
+                detected_version = Pfs.parseVersion(rawPlugin.version).join('.');
             }
             if (!detected_version) {
                 detection_type = 'original';

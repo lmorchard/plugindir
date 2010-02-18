@@ -263,13 +263,6 @@ class Plugin_Model extends ORM_Resource {
                     self::$status_codes[$release_data['status']];
             }
 
-            // Force a vulnerable status if a vulnerability is described.
-            if (!empty($release_data['vulnerability_description']) ||
-                    !empty($release_data['vulnerability_url'])) {
-                $release_data['status_code'] = 
-                    self::$status_codes['vulnerable'];
-            }
-
             // Find and update or create the appropriate release.
             $release = ORM::find_or_insert(
                 'pluginrelease', 
@@ -388,6 +381,32 @@ class Plugin_Model extends ORM_Resource {
             $criteria['mimetype'] = explode(' ', $criteria['mimetype']);
         }
 
+        // HACK: If using a sandbox screen name, get the set of plugin IDs for
+        // that profile, allowing their sandbox plugins to supercede live data.
+        // This (ab)uses some MySQL GROUP BY trickery to ensure sandbox plugins
+        // come out on top, but non-sandboxed plugins are still included.
+        //
+        // Might be better done as a sub-select, but the expression is awkward
+        // with Kohana DB
+        $profile_plugin_ids = array();
+        if (!empty($criteria['sandboxScreenName'])) {
+            // HACK: Using sprintf() here because, for some reason, query param
+            // binding isn't working for this query.
+            $rows = $this->db->query(sprintf("
+                SELECT
+                    substring_index(group_concat(
+                        `plugins`.`id` ORDER BY `plugins`.`sandbox_profile_id` DESC
+                    ), ',', 1) AS `id`
+                FROM `plugins`
+                LEFT JOIN `profiles` ON `plugins`.`sandbox_profile_id`=`profiles`.`id`
+                WHERE `sandbox_profile_id` IS NULL OR `profiles`.`screen_name` = %s
+                GROUP BY `pfs_id`
+            ", $this->db->escape( $criteria['sandboxScreenName'] )));
+            foreach ($rows as $row) {
+                $profile_plugin_ids[] = $row->id;
+            }
+        }
+
         $platform_model = ORM::factory('platform');
         $os_model = ORM::factory('os');
         $plugin_release_model = ORM::factory('pluginrelease');
@@ -427,13 +446,12 @@ class Plugin_Model extends ORM_Resource {
             $select[] = 'profiles.screen_name as plugin_sandbox_profile_screen_name';
             $cols["plugin_sandbox_profile_screen_name"] = 'sandbox_profile_screen_name';
 
-            // Add the sandbox criteria.
+            // Constrain plugins matched to the set constructed with overriding
+            // sandbox plugins.
             $this->db
+                ->in('plugins.id', $profile_plugin_ids)
                 ->join('profiles', 'profiles.id', 'plugins.sandbox_profile_id', 'LEFT')
-                ->orwhere(array(
-                    'profiles.screen_name' => $criteria['sandboxScreenName'], 
-                    'plugins.sandbox_profile_id' => NULL
-                ));
+                ;
         }
 
         // Add detection type to the SQL
@@ -565,7 +583,8 @@ class Plugin_Model extends ORM_Resource {
 
             // Gather the aliases into the output.
             foreach ($this->db->get() as $row) {
-                $data[$row->pfs_id]['aliases'][($row->is_regex) ? 'regex' : 'literal'][] = $row->alias;
+                $key = ($row->is_regex) ? 'regex' : 'literal';
+                $data[$row->pfs_id]['aliases'][$key][] = $row->alias;
             }
 
         }
@@ -578,6 +597,11 @@ class Plugin_Model extends ORM_Resource {
         $flat = array();
         foreach ($data as $pfs_id => $plugin) {
 
+            $status_versions = array(
+                'vulnerable' => array(),
+                'outdated' => array()
+            );
+
             $rs = array(
                 'latest' => null,
                 'others' => array()
@@ -586,22 +610,64 @@ class Plugin_Model extends ORM_Resource {
             // Comb through releases to find most relevant latest, collect the 
             // rest under 'others'
             foreach ($plugin['releases'] as $version => $r) {
-                if ('latest' == $r['status']) {
-                   if (!$rs['latest'] || $r['relevance'] > $rs['latest']['relevance']) {
+
+                // Collect detected versions by status
+                if (array_key_exists($r['status'], $status_versions)) {
+                    $status_versions[$r['status']][] = $r['detected_version'];
+                }
+
+                if ('latest' != $r['status']) {
+                    // Not a latest candidate, so stick it with the others.
+                    $rs['others'][] = $r;
+                } else {
+                    // This release is the new latest if:
+                    $is_new_latest =
+                        // there's no latest chosen yet
+                        !$rs['latest'] ||
+                        // or this one has better relevance than the existing
+                        $r['relevance'] > $rs['latest']['relevance'] ||
+                        // or this one has the same relevance, but a higher version
+                        (
+                            $r['relevance'] == $rs['latest']['relevance'] &&
+                            $this->compareVersions($r['version'], 
+                                $rs['latest']['version']) > 0
+                        );
+                    if ($is_new_latest) {
                         $rs['latest'] = $r;
                     }
-                } else {
-                    $rs['others'][] = $r;
                 }
             }
 
             $plugin['releases'] = $rs;
+
+            // Special case: if the latest release also describes a
+            // vulnerability, mark it with a should_disable status.
+            if (!empty($plugin['releases']['latest']['vulnerability_url']) ||
+                !empty($plugin['releases']['latest']['vulnerability_description'])) {
+                $plugin['releases']['latest']['status'] = 'should_disable';
+            }
+
+            // Special case: if the latest shares a detected version with
+            // another release having a non-latest status, mark it with a dubious
+            // status (i.e. in need of manual checking to account for imprecise 
+            // version detection mechanism)
+            if (!empty($plugin['releases']['latest']['detected_version'])) {
+                $ldv = $plugin['releases']['latest']['detected_version'];
+                foreach ($status_versions as $status => $versions) {
+                    if (in_array($ldv, $versions)) {
+                        $plugin['releases']['latest']['status'] = 'maybe_' . $status;
+                    }
+                }
+            }
+
             $flat[] = $plugin;
 
         }
 
         // Cache the data, return it.
-        $this->cache->set($cache_key, $flat);
+        if (empty($criteria['sandboxScreenName'])) {
+            $this->cache->set($cache_key, $flat);
+        }
         return $flat;
     }
     
@@ -737,6 +803,25 @@ class Plugin_Model extends ORM_Resource {
         return 'plugin';
     }
 
+    /**
+     * Pad a number to the left with zeroes
+     */
+    public function num_pad($num, $pad_len = 6) {
+        return str_pad($num, $pad_len, '0', STR_PAD_LEFT);
+    }
+
+    /**
+     * Quick and dirty version comparison using zero-padding and lexical sort.
+     *
+     * 1.2.3 -> 000001.000002.000003
+     * 1.1.2 -> 000001.000001.000002
+     */
+    public function compareVersions($av, $bv) {
+        $pav = implode('.', array_map(array($this, 'num_pad'), explode('.', $av)));
+        $pbv = implode('.', array_map(array($this, 'num_pad'), explode('.', $bv)));
+        return strcmp($pav, $pbv);
+    }
+
 }
 
 // {{{ Plugin and release properties
@@ -746,12 +831,13 @@ class Plugin_Model extends ORM_Resource {
  * class definition.
  */
 Plugin_Model::$status_choices = array(
-    "unknown"    => _("Unknown"),
-    "latest"     => _("Latest"),
-    "outdated"   => _("Outdated"),
-    "vulnerable" => _("Vulnerable"),
-    "newer"      => _("Newer than directory"),
-    "uncertain"  => _("Uncertain"),
+    "unknown"        => _("Unknown"),
+    "latest"         => _("Latest"),
+    "outdated"       => _("Outdated"),
+    "vulnerable"     => _("Vulnerable"),
+    "newer"          => _("Newer than directory"),
+    "uncertain"      => _("Uncertain"),
+    "should_disable" => _("Should be disabled")
 );
 
 Plugin_Model::$properties = array(

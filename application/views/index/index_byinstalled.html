@@ -48,7 +48,10 @@
         <span class="newer">{% trans "Newer than directory" %}</span>
         <span class="latest">{% trans "Up to date" %}</span>
         <span class="vulnerable">{% trans "Vulnerable" %} ({% blocktrans %}<span class="version">###</span> available{% endblocktrans %})</span>
+        <span class="maybe_vulnerable">{% trans "Maybe vulnerable" %} ({% blocktrans %}<span class="version">###</span> is the latest version{% endblocktrans %})</span>
+        <span class="should_disable">{% trans "Vulnerable (Should be disabled)" %}</span>
         <span class="outdated">{% trans "Needs update" %} ({% blocktrans %}<span class="version">###</span> available{% endblocktrans %})</span>
+        <span class="maybe_outdated">{% trans "Maybe outdated" %} ({% blocktrans %}<span class="version">###</span> is the latest version{% endblocktrans %})</span>
         <span class="unknown">{% trans "Unknown to directory" %}</span>
     </div>
 
@@ -56,7 +59,10 @@
         <a href="#" class="newer" title="{% trans "You appear to have a newer version of this plugin installed than what the directory knows about. You can share the details with us to help keep the directory up to date!" %}">{% trans "Suggest directory update" %}</a>
         <a href="#" class="latest" title="{% trans "You appear to have the latest version of this plugin as far as the directory is concerned. If this is incorrect, you can suggest a correction." %}">{% trans "Suggest directory correction" %}</a>
         <a href="#" class="vulnerable" title="{% trans "You appear to have a vulnerable version of this plugin that needs an update! If this is incorrect, you can suggest a correction." %}">{% trans "Suggest directory correction" %}</a>
+        <a href="#" class="maybe_vulnerable" title="{% trans "The version detected for this plugin is imprecise, and is shared by another plugin that is vulnerable. Manual verification is suggested. If this is incorrect, you can suggest a correction." %}">{% trans "Suggest directory correction" %}</a>
+        <a href="#" class="should_disable" title="{% trans "You appear to have a vulnerable version of this plugin, but no update is available. You should disable this plugin. If this is incorrect, you can suggest a correction." %}">{% trans "Suggest directory correction" %}</a>
         <a href="#" class="outdated" title="{% trans "You appear to have an outdated version of this plugin that needs an update. If this is incorrect, you can suggest a correction." %}">{% trans "Suggest directory correction" %}</a>
+        <a href="#" class="maybe_outdated" title="{% trans "The version detected for this plugin is imprecise, and is shared by another plugin that is outdated. Manual verification is suggested. If this is incorrect, you can suggest a correction." %}">{% trans "Suggest directory correction" %}</a>
         <a href="#" class="unknown" title="{% trans "The directory can't find any details on this plugin. You can share the details with us to help keep the directory up to date!" %}">{% trans "Contribute new info" %}</a>
     </div>
 

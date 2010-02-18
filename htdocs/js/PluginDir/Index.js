@@ -99,6 +99,8 @@ PluginDir.Index = (function () {
                         status: data.status,
                         pfs_id: pfs_id || $this.inventPfsId(raw_plugin),
                         version: version,
+                        detected_version: data.pluginInfo.detected_version,
+                        detection_type: data.pluginInfo.detection_type,
                         name: raw_plugin.name,
                         filename: raw_plugin.filename,
                         description: raw_plugin.description,
