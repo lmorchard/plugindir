@@ -133,9 +133,9 @@
             <li class="field template status">
                 <label>...</label>
                 <select name="..." class="select">
-                    {% for v,l in status_choices %}
-                        <option value="{{v|e}}">{{l|e}}</option>
-                    {% endfor %}
+                    <option value="latest">{% trans "Latest" %}</option>
+                    <option value="outdated">{% trans "Outdated" %}</option>
+                    <option value="vulnerable">{% trans "Vulnerable" %}</option>
                 </select>
                 <p class="notes">...</p>
             </li>
