@@ -8,6 +8,9 @@ See also: [bugzilla bugs][bugzilla] at Mozilla.
 
 ## 1.5.0
 
+* Perform PFS searches even when version not detected
+    * Can at least report that the plugin is known, with indeterminate detected version
+    * Can report maybe_vulnerable if any known version is vulnerable
 * Blocklist parity
     * Need to support version ranges, for both application and plugins?
     * More general client-side match elements, regexes beyond just names
@@ -24,6 +27,9 @@ See also: [bugzilla bugs][bugzilla] at Mozilla.
 * Advanced search pulldown
 * Minimize strings included in l10n/translations to just those needed by JS
     * Switch from .mo parsing to producing a PHP file with _() calls?
+* Flatten the platform key in the plugin JSON structure
+    * seems unnecessary as a substructure.
+    * artifact from earlier DB code
 
 ## 2.0.0
 
