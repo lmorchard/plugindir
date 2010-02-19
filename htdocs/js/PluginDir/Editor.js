@@ -18,7 +18,7 @@ PluginDir.Editor = (function () {
         // Whether or not a save is in progress
         save_inprogress: false, 
         // Time in milliseconds of idle time before save.
-        save_delay: 2 * 1000, 
+        save_delay: 7 * 1000,
         // Quick mapping of app_ids to readable versions for summaries.
         app_ids: {
             '{ec8030f7-c20a-464f-9b0e-13a3a9e97384}': _("Firefox")
