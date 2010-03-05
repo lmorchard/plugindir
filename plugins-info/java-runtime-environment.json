@@ -14,18 +14,29 @@
     },
     "releases": [
         {
-            "version": "1.5.0.19",
+            "version": "1.6.0.18",
             "installer_location": "http://java.com/firefoxjre_exe", 
             "guid": "{fbe640ef-4375-4f45-8d79-767d60bf75b8}", 
             "installer_hash": "sha1:89a78d34a36d7e25cc32b1a507a2cd6fb87dd40a", 
             "needs_restart": "false", 
-            "os_name": "windows nt 6.0",
+            "os_name": "win",
             "url": "http://www.java.com/en/download/manual.jsp"
-        }, 
+        },
         {
-            "version": "1.5.0.19",
+            "version": "1.6.0.18",
+            "os_name": "linux",
+            "url": "http://www.java.com/en/download/manual.jsp"
+        },
+        {
+            "version": "1.5.0.22",
             "guid": "{fbe640ef-4375-4f45-8d79-767d60bf75b8}", 
-            "os_name": "*",
+            "os_name": "mac",
+            "url": "http://www.java.com/en/download/manual.jsp"
+        },
+        {
+            "version": "1.6.0.17",
+            "guid": "{fbe640ef-4375-4f45-8d79-767d60bf75b8}", 
+            "os_name": "Intel Mac OS X 10.6",
             "url": "http://www.java.com/en/download/manual.jsp"
         }
     ], 

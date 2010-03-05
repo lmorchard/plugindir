@@ -20,26 +20,24 @@
     "releases": [
         {
             "os_name": "mac",
-            "version": "11.5.2",
+            "version": "11.5.6",
             "filename": "DirectorShockwave.plugin",
-            "manual_installation_url": "http://fpdownload.macromedia.com/get/shockwave/default/english/macosx/latest/Shockwave_Installer_Slim.dmg",            
-            "url": "http://www.adobe.com/products/shockwaveplayer/",
+            "url": "http://get.adobe.com/shockwave/",
             "status": "latest"
         },
         {
             "os_name": "win",
-            "version": "11.5.2",
+            "version": "11.5.6",
             "filename": "np32dsw.dll",
-            "manual_installation_url": "http://fpdownload.macromedia.com/get/shockwave/default/english/win95nt/latest/Shockwave_Installer_Slim.exe",
-            "url": "http://www.adobe.com/products/shockwaveplayer/",
+            "url": "http://get.adobe.com/shockwave/",
             "status": "latest"
         },
         {
             "os_name": "*",
-            "version": "11.5.1",
+            "version": "11.5.2",
             "status": "vulnerable",
-            "vulnerability_url": "http://www.mxlogic.com/securitynews/web-security/adobe-issues-critical-security-update-for-shockwave-player000.cfm",
-            "vulnerability_description": "Four separate vulnerabilities are addressed in the update, three of which are invalid index, pointer and string length vulnerabilities that could allow remote code execution. The other vulnerability is a boundary condition issue that could allow a Denial of Service (DOS)."
+            "vulnerability_url": "http://www.adobe.com/support/security/bulletins/apsb10-03.html",
+            "vulnerability_description": "The vulnerabilities could allow an attacker, who successfully exploits the vulnerabilities, to run malicious code on the affected system."
         }
     ]
 }
