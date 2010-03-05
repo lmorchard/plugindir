@@ -6,7 +6,13 @@ See also: [bugzilla bugs][bugzilla] at Mozilla.
 
 [bugzilla]: https://bugzilla.mozilla.org/buglist.cgi?query_format=advanced&product=Websites&component=plugins.mozilla.org&bug_status=UNCONFIRMED&bug_status=NEW&bug_status=ASSIGNED
 
-## 1.0.1
+## 0.6.0
+
+* Need easier way to go from submissions to sandbox
+* Need an audit log, tracking when plugins were pushed live etc.
+* Cache invalidation on plugin/release modification by PFS ID
+
+## 1.1.0
 
 * Enhance security on passwords
     * Every new password stored in a form like {algo}-{salt}-{hash}
