@@ -35,49 +35,66 @@
  *
  * ***** END LICENSE BLOCK ***** */
 
-if (window.Pfs === undefined) { window.Pfs = {}; }
+/*jslint browser: true, plusplus: false */
+/*global Pfs, PluginDetect, BrowserDetect, window*/
+// jslint that we should fix below
+/*jslint eqeqeq: false*/
+if (window.Pfs === undefined) {
+    window.Pfs = {};
+}
 
 /**
  * Common JS for getting browsers ready for using PFS
  * via a web page.
  */
- Pfs.UI = {
+Pfs.UI = {
     unknownVersionPlugins: [],
     /**
      * Creates a navigatorInfo object from the browser's navigator object
      */
-    browserInfo: function() {
+    browserInfo: function () {
         var detected = BrowserDetect.detect(),
-            appID, version_detection_scheme;
+            appID;
 
-        if ('Firefox' == detected.browser || 'Minefield' == detected.browser) {
+        if ('Firefox' === detected.browser || 'Minefield' === detected.browser) {
             appID = '{ec8030f7-c20a-464f-9b0e-13a3a9e97384}';
         } else {
             // TODO: More appIDs here?
             appID = detected.browser;
         }
-
-        // TODO: invent more schemes here, eg. Firefox 3.6 has plugin versions
-        version_detection_scheme = 'original';
-
+        if ('Explorer' === detected.browser) {
+	    // Two issues with BrowserDetect 
+	    // 1) 7.0; and 8.0; get rid of ';'
+            // 2) detected.build is currently '???', give it something decent
+            detected.version = '' + parseFloat(detected.version, 10);
+            detected.build = detected.version;
+	    }
+        // TODO IEBug navigator.language is undefined, fallback to IE specific browserLanguage
         return {
             appID:        appID,
             appRelease:   detected.version,
             appVersion:   detected.build,
             clientOS:     navigator.oscpu || navigator.platform,
-            chromeLocale: navigator.language,
-            detection:    version_detection_scheme
+            chromeLocale: navigator.language || navigator.browserLanguage || 'en-US'
         };
+    },
+    inList: function (pluginsSeen, name) {
+        // IEBug
+        if (pluginsSeen.indexOf) {
+            return pluginsSeen.indexOf(name) >= 0;
+        } else {
+            return pluginsSeen.join(', ').indexOf(name) >= 0;
+        }        
     },
     /**
      * Cleans up the navigator.plugins object into a list of plugin2mimeTypes
      * 
      * Each plugin2mimeTypes has two fields
-     * * plugins - the plugin Description including Version information if available
+     * * plugin - the plugin Description including Version information if available
      * * mimes - An array of mime types
      * * classified - Do we know the plugins status from pfs2
      * * raw - A reference to origional navigator.plugins object
-     * Eample: [{plugin: "QuickTime Plug-in 7.6.2", mimes: ["image/tiff', "image/jpeg"], classified: false, raw: {...}}]
+     * Eample: [{plugin: "QuickTime Plug-in 7.6.2", detection_type: "original", mimes: ["image/tiff', "image/jpeg"], classified: false, raw: {...}}]
      *
      * Cleanup includes
      * * filtering out *always* up to date plugins
@@ -85,55 +102,43 @@ if (window.Pfs === undefined) { window.Pfs = {}; }
      * @param plugins {object} The window.navigator.plugins object
      * @returns {array} A list of plugin2mimeTypes
      */
-    browserPlugins: function(plugins) {
+    browserPlugins: function (plugins) {
         var p = [];
         var pluginsSeen = [];
-        for (var i=0; i < plugins.length; i++) {
+        for (var i = 0; i < plugins.length; i++) {
             var pluginInfo;
             var rawPlugin = plugins[i];
             if (Pfs.shouldSkipPluginNamed(plugins[i].name) ||
                 this.shouldSkipPluginFileNamed(plugins[i].filename) ||
-                pluginsSeen.indexOf(plugins[i].name) >= 0) {
+                Pfs.UI.inList(pluginsSeen, plugins[i].name)) {
                 continue;
             }
             // Linux Totem acts like QuickTime, DivX, VLC, etc Bug#520041
             if (plugins[i].filename == "libtotem-cone-plugin.so") {
                 rawPlugin = {
-                    name:"Totem", description: plugins[i].description,
+                    name: "Totem",
+                    description: plugins[i].description,
                     length: plugins[i].length,
                     filename: plugins[i].filename
                 };
-                for (var m=0; m < plugins[i].length; m++) {
+                for (var m = 0; m < plugins[i].length; m++) {
                     rawPlugin[m] = plugins[i][m];
                 }                
             }
             var mimes = [];
             var marcelMrceau = Pfs.createMasterMime(); /* I hate mimes */
-            for (var j=0; j < rawPlugin.length; j++) {
+            for (var j = 0; j < rawPlugin.length; j++) {
                 var mimeType = rawPlugin[j].type;
                 if (mimeType) {
-                    var m = marcelMrceau.normalize(mimeType);
-                    if (marcelMrceau.seen[m] === undefined) {
-                        marcelMrceau.seen[m] = true;
-                        mimes.push(m);
+                    var mm = marcelMrceau.normalize(mimeType);
+                    if (marcelMrceau.seen[mm] === undefined) {
+                        marcelMrceau.seen[mm] = true;
+                        mimes.push(mm);
                     } 
                 }            
-            }            
-
-            pluginInfo = Pfs.UI.namePlusVersion(rawPlugin.name, rawPlugin.description, mimes);            
-
-            // Apply version detection scheme logic here.
-            var detected_version = false, detection_type = 'original';
-            if (rawPlugin.version) {
-                detection_type = 'version_available';
-                detected_version = Pfs.parseVersion(rawPlugin.version).join('.');
             }
-            if (!detected_version) {
-                detection_type = 'original';
-                detected_version = Pfs.parseVersion(pluginInfo).join('.');
-            }
-
-            if (!detected_version) {
+            var wrappedPlugin = Pfs.UI.browserPlugin(rawPlugin, mimes);
+            if (Pfs.UI.hasVersionInfo(wrappedPlugin.plugin) === false) {
                 Pfs.UI.unknownVersionPlugins.push(rawPlugin);
                 continue;
             }
@@ -141,10 +146,10 @@ if (window.Pfs === undefined) { window.Pfs = {}; }
             if (mimes.length > 0) {
                 var mimeValue = mimes[0];
                 var length = mimeValue.length;
-                for (var j=1; j < mimes.length; j++) {
-                    length += mimes[j].length;
+                for (var jj = 1; jj < mimes.length; jj++) {
+                    length += mimes[jj].length;
                     // mime types are space delimited
-                    mimeValue += " " + mimes[j];
+                    mimeValue += " " + mimes[jj];
                     if (length > Pfs.MAX_MIMES_LENGTH &&
                         (i + 1) < mimes.length) {                        
                         mimeValues.push(mimeValue);
@@ -155,14 +160,10 @@ if (window.Pfs === undefined) { window.Pfs = {}; }
                 }
                 mimeValues.push(mimeValue);
             }
-            p.push({
-                plugin: pluginInfo,
-                mimes: mimeValues,
-                classified: false,
-                detected_version: detected_version,
-                detection_type: detection_type,
-                raw: rawPlugin
-            });
+            wrappedPlugin.mimes = mimeValues;
+            
+            p.push(wrappedPlugin);
+            
             if (rawPlugin.name) {
                 // Bug#519256 - guard against duplicate plugins
                 pluginsSeen.push(plugins[i].name);    
@@ -182,91 +183,115 @@ if (window.Pfs === undefined) { window.Pfs = {}; }
     skipPluginsFilesNamed: ["libtotem-mully-plugin.so",
                             "libtotem-narrowspace-plugin.so",
                             "libtotem-gmp-plugin.so"],
-    shouldSkipPluginFileNamed: function(filename) {
-        return this.skipPluginsFilesNamed.indexOf(Pfs.$.trim(filename)) >= 0;
+    shouldSkipPluginFileNamed: function (filename) {
+        // IEBug [].indexOf is undefined
+        if (this.skipPluginsFilesNamed.indexOf) {
+            return this.skipPluginsFilesNamed.indexOf(Pfs.$.trim(filename)) >= 0;    
+        } else {
+            return this.skipPluginsFilesNamed.join(', ').indexOf(Pfs.$.trim(filename)) >= 0;
+        }
     },
     /**
      * @private
      */
-    hasVersionInfo: function(versionedName) {
+    hasVersionInfo: function (versionedName) {
         if (versionedName) {
             return Pfs.parseVersion(versionedName).length > 0;
         } else {
             return false;
         }
     },
+    usePinladyDetection: true,
     /**
-     * Given a name, description, and mime types, returns the name
-     * and version * of the plugin. This may include special handeling *
+     * Cleans up a browser's plugin info based on it's
+     * name, plugin.version property (Fx 3.6 only), description, 
+     * and mime types. Using this info it chooses the
+     * best candidate for a version string.
+     *
+     * This may include special handeling 
      * for known plugins using the PluginDetect or other hooks.
      *
-     * This function can be used to format the version property of the
-     * pluginMetadata object
+     * lastly it return a new plugin like object suitable for
+     * use with findPluginInfos.
      * 
      * @public
      * @ui - PluginDetect dependency belongs in UI, as well as hasVerison
      *       It's not so much a name hook as override version detection
      * @returns {string} - The name of the plugin, it may be enhanced via PluginDetect or other hooks
      */
-    namePlusVersion: function(name, description, mimes) {
-        if (/Java.*/.test(name)) {
-            //Bug#519823 If we want to start using Applets again
-            var j =  PluginDetect.getVersion('Java', 'getJavaInfo.jar', [0, 0, 0]);
-            if (j !== null) {
-                return "Java Embedding Plugin " + j.replace(/,/g, '.').replace(/_/g, '.');        
-            } else {
-                return name;
-            }
-        } else if(/.*Flash/.test(name)) {
-            var f = PluginDetect.getVersion('Flash');
-            if (f !== null) {
-                return name + " " + f.replace(/,/g, '.');    
-            } else {
-                return name;
-            }
-        } else if(/.*QuickTime.*/.test(name)) {
-            var q = PluginDetect.getVersion('QuickTime');
-            if (q !== null) {
-                return "QuickTime Plug-in " + q.replace(/,/g, '.');            
-            } else {
-                return name;
-            }
-        } else if(/Windows Media Player Plug-in.*/.test(name)) {
-            var q = PluginDetect.getVersion('WindowsMediaPlayer');
-            if (q !== null) {
-                return name + " " + q.replace(/,/g, '.');            
-            } else {
-                return name;
-            }
-        } else if(/.*BrowserPlus.*/.test(name)) {
-            var q = "";
-            if (mimes) {
-                re_trailing_version = /_([0-9]+\.[0-9]+\.[0-9]+)$/;
-                for (mime in mimes) {
-                    mime = mimes[mime];
-                    var r = re_trailing_version.exec(mime);
-                    if (r) {
-                        q = r[1];
-                        break;
-                    }
+    browserPlugin: function (rawPlugin, mimes) {
+        var newPlugin = {
+                plugin: undefined,
+                mimes: undefined, // Gets set outside of this function
+                detection_type: 'original',
+                classified: false,
+                raw: rawPlugin
+            };
+        if (Pfs.UI.usePinladyDetection) {
+            if (/Java.*/.test(rawPlugin.name)) {
+                //Bug#519823 If we want to start using Applets again
+                var j =  PluginDetect.getVersion('Java', 'getJavaInfo.jar', [0, 0, 0]);
+                if (j !== null) {
+                    newPlugin.plugin = "Java Embedding Plugin " + j.replace(/,/g, '.').replace(/_/g, '.');
+                } 
+            } else if (/.*Flash/.test(rawPlugin.name)) {
+                var f = PluginDetect.getVersion('Flash');
+                if (f !== null) {
+                    newPlugin.plugin = rawPlugin.name + " " + f.replace(/,/g, '.');    
+                }
+            } else if (/.*QuickTime.*/.test(rawPlugin.name)) {
+                var q = PluginDetect.getVersion('QuickTime');
+                if (q !== null) {
+                    newPlugin.plugin = "QuickTime Plug-in " + q.replace(/,/g, '.');            
+                }
+            } else if (/Windows Media Player Plug-in.*/.test(rawPlugin.name)) {
+                var w = PluginDetect.getVersion('WindowsMediaPlayer');
+                if (w !== null) {
+                    newPlugin.plugin = rawPlugin.name + " " + w.replace(/,/g, '.');
                 }
             }
-            q = name + " " + q;
-            return q;
-        } else {
+            /* Note: Shockwave, DevalVR, Silverlight, and VLC pinlady detection only used in exploder.js
+               this is because general version detection works as well w/o instaniating the plugin */
+        }
+        if (newPlugin.plugin === undefined) {
             // General case
-            if (name && this.hasVersionInfo(name)) {                
-                return name;
-            } else if (description && this.hasVersionInfo(description)) {                
-                return description;
+            if (rawPlugin.version !== undefined && this.hasVersionInfo(rawPlugin.version)) {
+                // TODO - Note: no name or description... to avoid multiple versions
+                // Example: name 'QuickTime Plug-in 7.6.5' versionproperty '7.6.5.0'
+                // we'll return only '7.6.5.0'
+                newPlugin.plugin = rawPlugin.version;
+                newPlugin.detection_type = 'version_available';
+            } else if (rawPlugin.name && this.hasVersionInfo(newPlugin.name)) {                
+                newPlugin.plugin = rawPlugin.name;
+            } else if (rawPlugin.description && this.hasVersionInfo(rawPlugin.description)) {                
+                newPlugin.plugin = rawPlugin.description;
             } else {
-                
-                if (name) {
-                    return name;
+                if (/.*BrowserPlus.*/.test(rawPlugin.name)) {
+                    // Only used for older versions of BrowserPlus
+                    var bp = "";
+                    if (mimes) {
+                        var re_trailing_version = /_([0-9]+\.[0-9]+\.[0-9]+)$/;
+                        for (var mime in mimes) {
+                            mime = mimes[mime];
+                            var r = re_trailing_version.exec(mime);
+                            if (r) {
+                                bp = r[1];
+                                break;
+                            }
+                        }
+                    }
+                    bp = name + " " + bp;
+                    newPlugin.plugin = bp;
+                } else if (rawPlugin.name) {
+                    newPlugin.plugin = rawPlugin.name;
                 } else {
-                    return description;
+                    newPlugin.plugin = rawPlugin.description;
                 }
             }
         }
+        if (newPlugin.plugin === undefined) {
+            throw new Error('Assertion Failed', 'Attempting to return from browserPlugin without setting the plugin field with version info.');
+        }
+        return newPlugin;
     }
 };

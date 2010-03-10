@@ -5,7 +5,7 @@
         "description": "npViewpoint Plugin",
         "vendor": "Viewpoint",
         "platform": {
-            "app_id": "{ec8030f7-c20a-464f-9b0e-13a3a9e97384}"
+            "app_id": "*"
         },
         "url": "http://www.viewpoint.com/technologies/viewpoint-media-player.shtml"
     },

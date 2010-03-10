@@ -105,12 +105,43 @@ class Util_Controller extends Local_Controller {
 
         foreach ($_SERVER['argv'] as $fn) {
             echo "Importing $fn...\n";
-            $plugin = ORM::factory('plugin')->import(
-                json_decode(file_get_contents($fn), true)
-            );
-            echo "\t{$plugin->id}: ";
-            foreach ($plugin->pluginreleases as $release) echo "{$release->id} ";
-            echo "\n";
+	    if (file_exists($fn)) {
+                if (is_readable($fn)) {
+                    Kohana::log('info', "We can read $fn");
+		    $pluginJson = json_decode(file_get_contents($fn), true);
+
+                    if (is_null($pluginJson)) {
+                        echo "Unable to read JSON formmated data from $fn ... Skipping\n";
+                        if (function_exists('json_last_error')) {//PHP 5.3 and up
+
+                            switch(json_last_error()) {
+                                case JSON_ERROR_DEPTH:
+                                    echo "JSON ERROR: Maximum stack depth exceeded\n";
+                                    break;
+                                case JSON_ERROR_CTRL_CHAR:
+                                    echo "JSON ERROR: Unexpected control character found\n";
+                                    break;
+                                case JSON_ERROR_SYNTAX:
+                                    echo "JSON ERROR: Syntax error, malformed JSON\n";
+                                    break;
+                                case JSON_ERROR_NONE:
+                                    echo "Huh? - No errors\n";
+                                    break;
+                            }
+                        }
+                        continue;
+                    } else {
+                        $plugin = ORM::factory('plugin')->import($pluginJson);
+                        echo "\t{$plugin->id}: ";
+                        foreach ($plugin->pluginreleases as $release) echo "{$release->id} ";
+                        echo "\n";
+                    }
+                } else {
+		    echo "Unable to read ${fn} Skipping\n";
+                }
+            } else {
+                echo "Expected a filename, got ${fn}... Skipping\n";
+            }
         }
     }
 

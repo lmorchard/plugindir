@@ -2,13 +2,13 @@
     "meta": {
         "pfs_id": "adobe-flash-player",
         "vendor": "Adobe", 
-        "name": "Shockwave Flash",
+        "name": "Adobe Flash Player", 
         "platform": {
-            "app_id": "{ec8030f7-c20a-464f-9b0e-13a3a9e97384}"
+            "app_id": "*"
         }, 
         "url": "http://www.adobe.com/go/getflashplayer", 
         "license_url": "http://www.adobe.com/go/eula_flashplayer", 
-        "version": "10.0.45.0"
+        "version": "10.0.32.0"
     }, 
     "aliases": {
         "literal": [

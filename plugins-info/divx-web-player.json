@@ -5,7 +5,7 @@
         "description": "DivX Web Player lets you play up to HD-quality DivX® video in your web browser. You can also use DivX Web Player to easily embed DivX videos onto your website or blog.",
         "vendor": "DivX, Inc",
         "platform": {
-            "app_id": "{ec8030f7-c20a-464f-9b0e-13a3a9e97384}"
+            "app_id": "*"
         }
     },
     "aliases": {

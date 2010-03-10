@@ -7,7 +7,7 @@ PluginDir = (function () {
     var $ = window.$ = jQuery.noConflict();
     var $this = {
 
-        pfs_endpoint: 'http://dev.plugindir.mozilla.org/pfs/v2',
+        pfs_endpoint: 'http://plugins.stage.mozilla.com/pfs/v2',
 
         /**
          * Initialize the package.

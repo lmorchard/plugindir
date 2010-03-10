@@ -4,7 +4,7 @@
         "name":"Microsoft® Windows Media Player Firefox Plugin",
         "vendor": "Microsoft",
         "platform": {
-            "app_id": "{ec8030f7-c20a-464f-9b0e-13a3a9e97384}"
+            "app_id": "*"
         },
         "filename": "np-mswmp.dll",
         "url": "http://port25.technet.com/pages/windows-media-player-firefox-plugin-download.aspx"

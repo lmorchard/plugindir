@@ -1,0 +1,24 @@
+{
+    "meta": {
+        "pfs_id": "yahoo-browserplus",
+        "name": "BrowserPlus",
+	"vendor": "Yahoo",
+	"platform": { "app_id": "*"},
+        "url": "http://browserplus.yahoo.com/"
+
+    },
+    "aliases": {
+        "literal": ["BrowserPlus (from Yahoo!)"],
+        "regex":["BrowserPlus.*"]
+    },
+    "mimes":[
+        "application\/x-yahoo-browserplus_2.5.1",
+        "application\/x-yahoo-browserplus_2"
+    ],
+    "releases":[
+        {
+            "status": "latest",
+            "version": "2.5.1"
+        }
+    ]
+}
