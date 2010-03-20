@@ -86,6 +86,7 @@ class Plugins_Controller extends Local_Controller {
             ->find_all();
 
         $this->view->pagination = new Pagination(array(
+            'base_url' => 'plugins/submissions',
             'style' => 'digg',
             'items_per_page' => $per_page,
             'query_string' => 'page',
