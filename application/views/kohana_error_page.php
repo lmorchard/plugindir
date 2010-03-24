@@ -14,17 +14,6 @@
 .south {
     -moz-transform: rotate(30deg);
     -moz-transform-origin: left top;
-    
-    -moz-transition-duration: 4s;  
-    -moz-transition-delay: 2s;
-
-   -moz-transition-property: background-color, color, left;  
-
-   -moz-transition-duration: 5s;  
-   -webkit-transition-property: background-color, color, left;  
-   -webkit-transition-duration: 5s;  
-   -o-transition-property: background-color, color, left;  
-   -o-transition-duration: 5s;  
 }
 </style>
 <p class="south">Something went south...</p>
