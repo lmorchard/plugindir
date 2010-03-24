@@ -5,8 +5,12 @@
 * Apache
 * PHP 5.2+
 ** mcrypt
+** gettext
 * MySQL 5+
 * Memcached (optional)
+
+Example Ubuntu 9.10 package names
+apache2 mysql-server mysql-client php5 php5-mcrypt php-gettext php5-gd php5-mysql memcached php5-cli php5-memcache
 
 ## Install
 
@@ -14,7 +18,6 @@
 without "-dist" and modified for your installation.
 
 * Create a MySQL database using application/config/sql/current.sql as schema
-    `mysql -u root -p plugindir_dev < application/config/sql/current.sql`
 
 * Copy htdocs/htaccess-dist to htdocs/.htaccess
     * Edit htdocs/.htaccess to adjust RewriteBase if site base URL path is not '/'
@@ -59,25 +62,17 @@ without "-dist" and modified for your installation.
     * application/cache
     * application/cache/twig
 
-* Test Your Install
-    * Restart Apache sudo /etc/init.d/apache2 reload
-    * Requset the homepage. If you see errors, tail application/logs/{date}.log.php
-    * A successful install will redirect you to /{locale}/ and you will see the homepage
-
-* Everything is working, right? Ok...
-
 * Run this to import initial plugin definitions:
     * `php htdocs/index.php util/import plugins-info/*json`
         * You may need to do this as the Apache user, or another user in same group.
         * This will attempt to write to the same logs, caches, etc as the web app.
-        * For this and other php commands you can do `sudo -u www-data php {rest of command}`
+        * Watch application/logs/(date).log.php for errors
 
 * Creating the initial admin user:
     * `php htdocs/index.php util/createlogin admin lorchard@mozilla.com admin`
         * First argument is the login name (ie. 'admin')
         * Second argument is a valid email address (ie. 'lorchard@mozilla.com')
         * Third argument is the access role for the user (ie. admin, editor, member)
-        * Same caveat about running as apache or another user...
     * Note the password generated and displayed on a successful new login creation:
 
         Profile ID 10 created for 'admin4'
@@ -93,6 +88,12 @@ without "-dist" and modified for your installation.
         * `php htdocs/index.php phpunit/group/models.plugindir.plugin`
 
 ## Developer Notes
+
+### Debugging
+If you want the error page to display a stack trace, remove application/views/kohana_error_page.php
+or replace it with the system/views/kohana_error_page.php.
+
+Be sure not to check in your modified file!
 
 ### Localization
 
