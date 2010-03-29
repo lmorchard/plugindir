@@ -20,7 +20,7 @@
     <ul class="actions clearfix">
         {% if plugin.sandbox_profile_id %}
             {% set plugin_base as base_url ~ "profiles/" ~ screen_name|e ~ "/plugins/detail/" ~ plugin.pfs_id|urlencode|e %}
-            {% if plugin.is_allowed(authprofile, 'view') %}
+            {% if live_plugin and live_plugin.is_allowed(authprofile, 'view') %}
                 <li><a href="{{base_url}}plugins/detail/{{plugin.pfs_id|urlencode|e}}">{% trans "View live" %}</a></li>
             {% endif %}
             {% if plugin.is_allowed(authprofile, 'deploy') %}

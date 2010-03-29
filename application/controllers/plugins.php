@@ -265,6 +265,17 @@ class Plugins_Controller extends Local_Controller {
         if (!authprofiles::is_allowed($plugin, 'view'))
             return Event::run('system.forbidden');
 
+        if (!empty($screen_name)) {
+            // Try finding the live version of this plugin, since it was looked 
+            // for in a sandbox.
+            $live_plugin = ORM::factory('plugin')
+                ->where('pfs_id', $pfs_id)
+                ->where('sandbox_profile_id IS NULL')
+                ->find();
+            $this->view->live_plugin = ($live_plugin->loaded) ?
+                $live_plugin : null;
+        }
+
         if ('json' == $format) {
 
             if ('post' == request::method()) {
