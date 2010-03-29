@@ -298,9 +298,6 @@ class Auth_Profiles_Controller extends Local_Controller
             authprofiles::logout();
         }
 
-        if (!authprofiles::is_allowed($login, 'changepassword'))
-            return Event::run('system.403');
-        
         $_POST['login_name'] = $login->login_name;
 
         // Now that we know who's trying to change a password, validate the 
