@@ -3,8 +3,8 @@
 {% import "macros/forms.html" as forms %}
 
 {% block title %}
-    {% set authprofile_screen_name_e as authprofile.screen_name|e %}
-    {% blocktrans %}Settings for {{authprofile_screen_name_e}}{% endblocktrans %}
+    {% set profile_screen_name as profile.screen_name|e %}
+    {% blocktrans %}Settings for {{profile_screen_name}}{% endblocktrans %}
 {% endblock %}
 
 {% block content %}
