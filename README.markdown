@@ -25,6 +25,12 @@ without "-dist" and modified for your installation.
     * Optionally, you can do away with the .htaccess and move the rules to your
         main Apache config.
 
+* For a development installation, copy index.php-dev-dist to index.php
+    * This should leave error display and logging enabled
+
+* For a production/staging installation, copy index.php-prod-dist to index.php
+    * This should disable error display and logging, along with settings specified below.
+
 * Set up Apache config something like the following for a virtual host:
 
         <VirtualHost *:80>
@@ -88,12 +94,6 @@ without "-dist" and modified for your installation.
         * `php htdocs/index.php phpunit/group/models.plugindir.plugin`
 
 ## Developer Notes
-
-### Debugging
-If you want the error page to display a stack trace, remove application/views/kohana_error_page.php
-or replace it with the system/views/kohana_error_page.php.
-
-Be sure not to check in your modified file!
 
 ### Localization
 
