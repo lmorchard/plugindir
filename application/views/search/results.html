@@ -22,8 +22,8 @@
         <tbody>
             {% for release in releases %}
                 <tr>
-                    <td><a href="{{base_url}}plugins/detail/{{release.plugin.pfs_id|urlencode|e}}">{{release.plugin.name}}</a></td>
-                    <td><a href="{{base_url}}plugins/detail/{{release.plugin.pfs_id|urlencode|e}}#{{release.version|urlencode|e}}">{{release.version}}</a></td>
+                    <td><a href="{{base_url}}plugins/detail/{{release.plugin.pfs_id | urlencode | e}}">{{release.plugin.name | e}}</a></td>
+                    <td><a href="{{base_url}}plugins/detail/{{release.plugin.pfs_id | urlencode | e}}#{{release.version | urlencode | e}}">{{release.version | e}}</a></td>
                     <td>{{platforms.readable(release.platform)}}</td>
                     <td>{{oses.readable(release.os)}}</td>
                     <td>{{statuses.readable(release.status_code)}}</td>

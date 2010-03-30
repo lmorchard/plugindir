@@ -9,11 +9,11 @@
         (
         {% if '*' == platform.app_release and '*' == platform.app_version %}
         {% else %}
-            v{{platform.app_release}}
-            {% if "*" != platform.app_version %}, {{platform.app_version}}{% endif %}
+            v{{platform.app_release | e}}
+            {% if "*" != platform.app_version %}, {{platform.app_version | e}}{% endif %}
         {% endif %}
         {% if '*' != platform.locale %}
-            {{platform.locale}}
+            {{platform.locale | e}}
         {% endif %}
         )
     {% endif %}

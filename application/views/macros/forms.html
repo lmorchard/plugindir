@@ -10,13 +10,13 @@
 {% endmacro %}
 
 {% macro hidden(data, errors, name, defval) %}
-    <input id="{{name}}" name="{{name}}" class="hidden" type="hidden" value="{{data[name] | default(defval) | e}}" />
+    <input id="{{name|e}}" name="{{name|e}}" class="hidden" type="hidden" value="{{data[name] | default(defval) | e}}" />
 {% endmacro %}
 
 {% macro input(data, errors, type, name, label, defval, notes) %}
     <li class="field input-{{type}} {{ errors[name] ? 'error' : '' }}">
-        <label for="{{name}}">{{label ? label : '&nbsp;' }}</label>
-        <input id="{{name}}" name="{{name}}" class="{{type}}" type="{{type}}" value="{{data[name] | default(defval) | e}}" />
+        <label for="{{name|e}}">{{label ? label : '&nbsp;' }}</label>
+        <input id="{{name|e}}" name="{{name|e}}" class="{{type}}" type="{{type}}" value="{{data[name] | default(defval) | e}}" />
         {% if notes %}
             <p class="notes">{{ notes }}</p>
         {% endif %}
@@ -28,8 +28,8 @@
 
 {% macro textarea(data, errors, name, label, defval, notes) %}
     <li class="field textarea {{ errors[name] ? 'error' : '' }}">
-        <label for="{{name}}">{{label ? label : '&nbsp;' }}</label>
-        <textarea id="{{name}}" name="{{name}}" class="textarea">{{data[name] | default(defval) | e}}</textarea>
+        <label for="{{name|e}}">{{label ? label : '&nbsp;' }}</label>
+        <textarea id="{{name|e}}" name="{{name|e}}" class="textarea">{{data[name] | default(defval) | e}}</textarea>
         {% if notes %}
             <p class="notes">{{ notes }}</p>
         {% endif %}
@@ -42,8 +42,8 @@
 {% macro dropdown(data, errors, name, label, choices, defval, notes) %}
     {% set value as data[name] | default(defval) %}
     <li class="field dropdown {{ errors[name] ? 'error' : '' }}">
-        <label for="{{name}}">{{label ? label : '&nbsp;' }}</label>
-        <select id="{{name}}" name="{{name}}" class="select">
+        <label for="{{name|e}}">{{label ? label : '&nbsp;' }}</label>
+        <select id="{{name|e}}" name="{{name|e}}" class="select">
             {% for v,l in choices %}
                 <option value="{{v|e}}"{{(v==value)?' selected':''}}>{{l|e}}</option>
             {% endfor %}
@@ -60,8 +60,8 @@
 
 {% macro submit(name, label, val, notes) %}
     <li class="field input-submit {{ errors[name] ? 'error' : '' }}">
-        <label for="{{name}}">{{label ? label : '&nbsp;' }}</label>
-        <input id="{{name}}" name="{{name}}" class="submit" type="submit" value="{{val}}" />
+        <label for="{{name|e}}">{{label ? label : '&nbsp;' }}</label>
+        <input id="{{name|e}}" name="{{name|e}}" class="submit" type="submit" value="{{val|e}}" />
         {% if notes %}
             <p class="notes">{{notes}}</p>
         {% endif %}
@@ -70,9 +70,9 @@
 
 {% macro captcha(data, errors, name, label) %}
     <li class="field captcha {{ errors[name] ? 'error' : '' }}">
-        <label for="{{name}}">{{label ? label : '&nbsp;' }}</label>
+        <label for="{{name|e}}">{{label ? label : '&nbsp;' }}</label>
         {{ "return Captcha::factory()->render();" | phpeval }}
-        <input id="{{name}}" name="{{name}}" class="captcha" type="text" value="" />
+        <input id="{{name|e}}" name="{{name|e}}" class="captcha" type="text" value="" />
         {% if notes %}
             <p class="notes">{{notes}}</p>
         {% endif %}

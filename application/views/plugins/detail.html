@@ -56,13 +56,13 @@
     <div class="meta clearfix">
         {% if plugin.icon_url %}
             <div class="icon">
-                <img src="{{plugin.icon_url}}" alt="{% trans "Plugin icon" %}" />
+                <img src="{{plugin.icon_url | e}}" alt="{% trans "Plugin icon" %}" />
             </div>
         {% endif %}
-        <h2 class="title">{{plugin.name}}</h2>
+        <h2 class="title">{{plugin.name | e}}</h2>
         {% if plugin.description %}
             <div>
-                <p>{{plugin.description}}</p>
+                <p>{{plugin.description | e}}</p>
             </div>
         {% endif %}
     </div>
@@ -82,11 +82,11 @@
                     </thead>
                     <tbody>
                         {% for release in version_releases %}
-                            <tr id="{{release.plugin.pfs_id}}-{{release.id}}">
+                            <tr id="{{release.plugin.pfs_id | e}}-{{release.id | e}}">
                                 <td>{{platforms.readable(release.platform)}}</td>
                                 <td>{{oses.readable(release.os)}}</td>
                                 <td>{{statuses.readable(release.status_code)}}</td>
-                                <td><a href="{{release.url}}">{% trans "Download / Details" %}</a>
+                                <td><a href="{{release.url | e}}">{% trans "Download / Details" %}</a>
                             </tr>
                         {% endfor %}
                     </tbody>
