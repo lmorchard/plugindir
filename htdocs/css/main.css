@@ -160,6 +160,7 @@ body.l10n-dir-rtl .content form fieldset ul.fields li.field label {
     padding-right: 0em;
     text-align: left;
 }
+.content form fieldset ul.fields li.error,
 .content form fieldset ul.fields li.error label {
     color: red;
 }

@@ -19,9 +19,14 @@
     {% endif %}
 
     <form class="login" action="{{base_url}}login" method="post">
-        {% set data, errors as form_data, form_errors %}
+        {% set data, errors as form_data, [] %}
         {{ forms.hidden(data, errors, 'jump') }}
         {{ forms.fieldset('Login'|trans, 'login') }}
+            {% if form_errors %}
+                <li class="error">
+                    {% trans "The username or password you entered is not correct." %}
+                </li>
+            {% endif %}
             {{ forms.input(data, errors, 'text', 'login_name', 'Login name'|trans) }}
             {{ forms.input(data, errors, 'password', 'password', 'Password'|trans) }}
             {{ forms.submit('login', '', 'Login'|trans) }}
