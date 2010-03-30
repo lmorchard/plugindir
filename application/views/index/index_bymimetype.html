@@ -10,7 +10,7 @@
         {% for mimetype in mimetype_counts %}
             <li>
                 <span class="count">({{mimetype.count|e}})</span>
-                <a href="{{base_url}}search/results?mimes_id={{mimetype.id|urlencode|e}}">{{mimetype.name}}</a>
+                <a href="{{base_url}}search/results?mimes_id={{mimetype.id|urlencode|e}}">{{mimetype.name|e}}</a>
             </li>
         {% endfor %}
     </ul>
