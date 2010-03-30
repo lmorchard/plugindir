@@ -392,6 +392,291 @@ class Plugin_Model_Test extends PHPUnit_Framework_TestCase
     }
 
     /**
+     * Exercise searching plugins using detection type.
+     */
+    public function testVersionDetectionTypeCriteria()
+    {
+        // Create a plugin with some releases keyed on detection type.
+        $new_data = array(
+            'meta' => array(
+                'pfs_id'   => 'bazfoo-player',
+                'name'     => 'Bazfoo Player',
+                'vendor'   => 'Bazfoo Corp',
+                'filename' => 'bazfoo.plugin',
+                'platform' => array(
+                    "app_id" => "{8675309}"
+                )
+            ),
+            'mimes' => array(
+                'audio/x-bazfoo-player',
+            ),
+            'releases' => array(
+                array(
+                    'version' => '12.3.4.5',
+                    'guid'    => 'bazfoo',
+                    'os_name' => 'mac',
+                    'detection_type' => 'version_available'
+                ),
+                array(
+                    'version' => '12.4',
+                    'guid'    => 'bazfoo',
+                    'os_name' => 'mac',
+                    'detection_type' => 'original',
+                ),
+                array(
+                    'version' => '15.6',
+                    'guid'    => 'bazfoo',
+                    'os_name' => 'mac',
+                    'detection_type' => 'whatever',
+                ),
+            )
+        );
+        ORM::factory('plugin')->import($new_data);
+
+        // Establish some base criteria
+        $criteria = array(
+            'appID'        => '{8675309}',
+            'mimetype'     => array(
+                'audio/x-bazfoo-player',
+            ),
+            'appVersion'   => '2008052906',
+            'appRelease'   => '3.5',
+            'clientOS'     => 'Intel Mac OS X 10.6',
+            'chromeLocale' => 'en-US'
+        );
+
+        // Don't specify a type, highest version wins
+        list($results, $result, $releases, $versions) = 
+            $this->lookupAndExtract($criteria);
+        $this->assertEquals('15.6', 
+            $releases['latest']['detected_version']);
+
+        // Look for the original type
+        $criteria['detection'] = 'original';
+        list($results, $result, $releases, $versions) = 
+            $this->lookupAndExtract($criteria);
+        $this->assertEquals('12.4', 
+            $releases['latest']['detected_version']);
+
+        // Look for the version_available type
+        $criteria['detection'] = 'version_available';
+        list($results, $result, $releases, $versions) = 
+            $this->lookupAndExtract($criteria);
+        $this->assertEquals('12.3.4.5', 
+            $releases['latest']['detected_version']);
+    }
+
+    /**
+     * Exercise PFS ID suggestion from existing plugins or derived value
+     */
+    public function testPfsIdSuggestion()
+    {
+        $new_data = array(
+            array(
+                'meta' => array(
+                    'name'   => 'The NEW Bazfoo player',
+                    'pfs_id' => 'bazfoo-player',
+                    'vendor' => 'Bazfoo Corp',
+                    'platform' => array(
+                        "app_id" => "{8675309}"
+                    )
+                ),
+                'mimes' => array(
+                    'audio/x-bazfoo-player',
+                ),
+                'releases' => array(
+                    array(
+                        'filename' => 'bazfoo.plugin',
+                        'version' => '12.3.4.5',
+                        'guid'    => 'bazfoo',
+                        'os_name' => 'mac',
+                        'detection_type' => 'version_available'
+                    ),
+                )
+            ),
+            array(
+                'meta' => array(
+                    'pfs_id'   => 'quux-player',
+                    'filename' => 'quux.plugin',
+                    'vendor'   => 'Bazfoo Corp',
+                    'platform' => array(
+                        "app_id" => "{8675309}"
+                    )
+                ),
+                'mimes' => array(
+                    'audio/x-bazfoo-player',
+                ),
+                'releases' => array(
+                    array(
+                        'name' => 'The Brand New QUUX!',
+                        'version' => '8.6.7',
+                        'guid'    => 'quux',
+                        'os_name' => 'mac',
+                        'detection_type' => 'version_available'
+                    ),
+                )
+            ),
+            array(
+                'meta' => array(
+                    'pfs_id'   => 'xyzzy-player',
+                    'filename' => 'xyzzy.plugin',
+                    'vendor'   => 'Bazfoo Corp',
+                    'platform' => array(
+                        "app_id" => "{8675309}"
+                    )
+                ),
+                'mimes' => array(
+                    'audio/x-bazfoo-player',
+                ),
+                'releases' => array(
+                    array(
+                        'name' => 'New-school Xyzzy Flavor',
+                        'version' => '9.9.9',
+                        'guid'    => 'xyzzy',
+                        'os_name' => 'mac',
+                        'detection_type' => 'version_available'
+                    ),
+                )
+            ),
+        );
+
+        foreach ($new_data as $data) {
+            ORM::factory('plugin')->import($data);
+        }
+
+        $criteria = array(
+            'mimetype' => array(
+                'audio/x-bazfoo-player',
+            ),
+        );
+
+        $criteria['name'] = 'Bazfoo player';
+        $criteria['filename'] = 'bazfoo.plugin';
+        $pfs_ids = ORM::factory('plugin')->suggestPfsId($criteria);
+        $this->assertEquals('bazfoo-player', $pfs_ids[0]);
+
+        $criteria['name'] = 'The Brand New QUUX!';
+        $criteria['filename'] = 'quux-16-32-64.plugin';
+        $pfs_ids = ORM::factory('plugin')->suggestPfsId($criteria);
+        $this->assertEquals('quux-player', $pfs_ids[0]);
+
+        $criteria['name'] = 'Xyzzy Wrangler';
+        $criteria['filename'] = 'xyzzy.plugin';
+        $pfs_ids = ORM::factory('plugin')->suggestPfsId($criteria);
+        $this->assertEquals('xyzzy-player', $pfs_ids[0]);
+
+        $criteria['name'] = 'Super New Thingy 1.2.3.4.5';
+        $criteria['filename'] = 'super-new.plugin';
+        $pfs_ids = ORM::factory('plugin')->suggestPfsId($criteria);
+        $this->assertEquals('super-new-thingy', $pfs_ids[0]);
+
+    }
+
+    /**
+     * Exercise the filename criteria in lookup
+     */
+    public function testFilenameCriteria()
+    {
+        $new_data = array(
+            array(
+                'meta' => array(
+                    'pfs_id'   => 'bazfoo-player',
+                    'filename' => 'bazfoo.plugin',
+                    'platform' => array(
+                        "app_id" => "{8675309}"
+                    )
+                ),
+                'mimes' => array(
+                    'audio/x-bazfoo-player',
+                ),
+                'releases' => array(
+                    array(
+                        'version' => '12.3.4.5',
+                        'guid'    => 'bazfoo',
+                        'os_name' => 'mac',
+                        'detection_type' => 'version_available'
+                    ),
+                )
+            ),
+            array(
+                'meta' => array(
+                    'pfs_id'   => 'quux-player',
+                    'filename' => 'quux.plugin',
+                    'platform' => array(
+                        "app_id" => "{8675309}"
+                    )
+                ),
+                'mimes' => array(
+                    'audio/x-bazfoo-player',
+                ),
+                'releases' => array(
+                    array(
+                        'version' => '8.6.7',
+                        'guid'    => 'quux',
+                        'os_name' => 'mac',
+                        'detection_type' => 'version_available'
+                    ),
+                )
+            ),
+            array(
+                'meta' => array(
+                    'pfs_id'   => 'xyzzy-player',
+                    'filename' => 'xyzzy.plugin',
+                    'platform' => array(
+                        "app_id" => "{8675309}"
+                    )
+                ),
+                'mimes' => array(
+                    'audio/x-bazfoo-player',
+                ),
+                'releases' => array(
+                    array(
+                        'version' => '9.9.9',
+                        'guid'    => 'xyzzy',
+                        'os_name' => 'mac',
+                        'detection_type' => 'version_available'
+                    ),
+                )
+            ),
+        );
+
+        foreach ($new_data as $data) {
+            ORM::factory('plugin')->import($data);
+        }
+
+        // Establish some base criteria
+        $criteria = array(
+            'appID'        => '{8675309}',
+            'mimetype'     => array(
+                'audio/x-bazfoo-player',
+            ),
+            'appVersion'   => '2008052906',
+            'appRelease'   => '3.5',
+            'clientOS'     => 'Intel Mac OS X 10.6',
+            'chromeLocale' => 'en-US'
+        );
+
+        $criteria['filename'] = 'xyzzy.plugin';
+        list($results, $result, $releases, $versions) = 
+            $this->lookupAndExtract($criteria);
+        $this->assertEquals('xyzzy-player',
+            $results[0]['releases']['latest']['pfs_id']);
+
+        $criteria['filename'] = 'bazfoo.plugin';
+        list($results, $result, $releases, $versions) = 
+            $this->lookupAndExtract($criteria);
+        $this->assertEquals('bazfoo-player',
+            $results[0]['releases']['latest']['pfs_id']);
+
+        $criteria['filename'] = 'quux.plugin';
+        list($results, $result, $releases, $versions) = 
+            $this->lookupAndExtract($criteria);
+        $this->assertEquals('quux-player',
+            $results[0]['releases']['latest']['pfs_id']);
+
+    }
+
+    /**
      * Exercise relevant matches on exact and fuzzy OS name matches
      */
     public function testOSRelevance()
@@ -762,6 +1047,9 @@ class Plugin_Model_Test extends PHPUnit_Framework_TestCase
     public function lookupAndExtract($criteria)
     {
         $results = $this->plugin_model->lookup($criteria);
+        if (empty($results)) {
+            return array( null, null, null, null );
+        }
         $result = $results[0];
 
         $releases = $result['releases'];
