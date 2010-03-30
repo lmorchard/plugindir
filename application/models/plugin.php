@@ -382,6 +382,9 @@ class Plugin_Model extends ORM_Resource {
             'appVersion' => '',
             'appRelease' => '',
             'chromeLocale' => '',
+            'filename' => false,
+            'name' => false,
+            'vendor' => false,
             'detection' => false,
             'sandboxScreenName' => false
         ), $criteria);
@@ -496,10 +499,16 @@ class Plugin_Model extends ORM_Resource {
                 ;
         }
 
-        // Add detection type to the SQL
-        $this->db
-            ->in('detection_type', array($criteria['detection'], '*'))
-            ;
+        if (!empty($criteria['detection'])) {
+            // Add detection type to the SQL, if supplied
+            $this->db->in('detection_type', array($criteria['detection'], '*'));
+        }
+
+        foreach (array('filename', 'name', 'vendor') as $field_name) {
+            if (!empty($criteria[$field_name])) {
+                $this->db->where('plugin_releases.'.$field_name, $criteria[$field_name]);
+            }
+        }
 
         // Add client OS criteria to the SQL
         $criteria['clientOS'] = OS_Model::normalizeClientOS(@$criteria['clientOS']);
