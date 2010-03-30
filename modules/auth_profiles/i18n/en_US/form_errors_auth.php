@@ -42,6 +42,10 @@ $lang = array(
             => _('Password is invalid.'),
         'required' 
             => _('Password is required.'),
+        'length'
+            => _('Password must be between 8 and 255 characters in length.'),
+        'is_password_acceptable'
+            => _('Password must be 8 characters or greater in length, contain at least one number, and contain at least one non-alphanumeric character (eg. punctuation, special characters).'),
     ),
     'password_confirm' => array(
         'required' 
@@ -76,8 +80,14 @@ $lang = array(
             => _('Old password is required'),
     ),
     'new_password' => array(
+        'default'
+            => _('Password is invalid.'),
         'required'
             => _('New password is required'),
+        'length'
+            => _('Password must be between 8 and 255 characters in length.'),
+        'is_password_acceptable'
+            => _('Password must be 8 characters or greater in length, contain at least one number, and contain at least one non-alphanumeric character (eg. punctuation, special characters).'),
     ),
     'new_password_confirm' => array(
         'required'

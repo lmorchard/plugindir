@@ -115,7 +115,9 @@ class Auth_Profile_Model extends ORM implements Zend_Acl_Role_Interface, Zend_Ac
                 array($login_model, 'is_email_available'))
             ->add_rules('email_confirm', 
                 'required', 'valid::email', 'matches[email]')
-            ->add_rules('password', 'required')
+            ->add_rules('password',
+                'required', 'length[8,255]',
+                array($login_model, 'is_password_acceptable'))
             ->add_rules('password_confirm', 'required', 'matches[password]')
             ->add_rules('screen_name',      
                 'required', 'length[3,64]', 'valid::alpha_dash', 

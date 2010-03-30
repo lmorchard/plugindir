@@ -322,7 +322,9 @@ class Auth_Login_Model extends ORM implements Zend_Acl_Resource_Interface
             ->add_rules('old_password', 'required')
             ->add_callbacks('old_password',
                 array($this, 'is_password_correct'))
-            ->add_rules('new_password', 'required')
+            ->add_rules('new_password',
+                'required', 'length[8,255]',
+                array($this, 'is_password_acceptable'))
             ->add_rules('new_password_confirm', 
                 'required', 'matches[new_password]')
             ;
@@ -340,7 +342,9 @@ class Auth_Login_Model extends ORM implements Zend_Acl_Resource_Interface
     {
         $data = Validation::factory($data)
             ->pre_filter('trim')
-            ->add_rules('new_password', 'required')
+            ->add_rules('new_password',
+                'required', 'length[8,255]',
+                array($this, 'is_password_acceptable'))
             ->add_rules('new_password_confirm', 
                 'required', 'matches[new_password]')
             ;
@@ -360,7 +364,9 @@ class Auth_Login_Model extends ORM implements Zend_Acl_Resource_Interface
             ->pre_filter('trim')
             ->add_rules('password_reset_token', 
                 array($this, 'is_password_reset_token_valid'))
-            ->add_rules('new_password', 'required')
+            ->add_rules('new_password',
+                'required', 'length[8,255]',
+                array($this, 'is_password_acceptable'))
             ->add_rules('new_password_confirm', 
                 'required', 'matches[new_password]')
             ;
@@ -431,6 +437,26 @@ class Auth_Login_Model extends ORM implements Zend_Acl_Resource_Interface
      */
     public function is_email_registered($email) {
         return !($this->is_email_available($email));
+    }
+
+    /**
+     * Check to see whether password is acceptably strong enough for us.
+     */
+    public function is_password_acceptable($passwd) 
+    {
+        if (strlen($passwd) < 8) {
+            // greater than 8 characters
+            return false;
+        }
+        if (preg_match('/\d/', $passwd) == 0) {
+            // includes at least 1 number
+            return false;
+        }
+        if (preg_match('/\W/', $passwd) == 0) {
+            // require at least one character not in [0-9a-zA-Z_]
+            return false;
+        }
+        return true;
     }
 
     /**
