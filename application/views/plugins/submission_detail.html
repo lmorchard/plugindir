@@ -15,11 +15,21 @@
             {% endif %}
             <ul>
                 <li><a href="{{base_url}}plugins/submissions">{% trans "Back to submissions" %}</a></li>
-                <li><a href="{{base_url}}profiles/{{authprofile.screen_name|urlencode|e}}/plugins;create?{{submit_params|e}}">{% trans "Create a new sandbox release" %}</a></li>
+            </ul>
+            <ul>
                 {% for plugin in sandbox_plugins %}
                     {% set plugin_name_e as plugin.name | e %}
-                    <li><a href="{{base_url}}profiles/{{authprofile.screen_name|urlencode|e}}/plugins/detail/{{ plugin.pfs_id | e }};edit?add_release=1&amp;{{submit_params|e}}">{% blocktrans %}Create a new release in {{ plugin_name_e }}{% endblocktrans %}</a></li>
+                    <li><a href="{{base_url}}profiles/{{authprofile.screen_name|urlencode|e}}/plugins/detail/{{ plugin.pfs_id | e }};edit?add_release=1&amp;{{submit_params|e}}">{% blocktrans %}Add a release to {{ plugin_name_e }} (in sandbox){% endblocktrans %}</a></li>
                 {% endfor %}
+            </ul>
+            <ul>
+                {% for plugin in suggested_plugins %}
+                    {% set plugin_name_e as plugin.name | e %}
+                    <li><a href="{{base_url}}plugins/detail/{{ plugin.pfs_id | e }};copy?add_release=1&amp;{{submit_params|e}}">{% blocktrans %}Copy {{ plugin_name_e }} to sandbox and add release{% endblocktrans %}</a></li>
+                {% endfor %}
+            </ul>
+            <ul>
+                <li><a href="{{base_url}}profiles/{{authprofile.screen_name|urlencode|e}}/plugins;create?{{submit_params|e}}">{% trans "Create a new sandbox plugin and add release" %}</a></li>
             </ul>
         </div>
 

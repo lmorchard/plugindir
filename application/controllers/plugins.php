@@ -115,6 +115,25 @@ class Plugins_Controller extends Local_Controller {
             }
         }
 
+        // Try finding suggested plugins for copy-and-edit
+        if (!empty($submission->pfs_id)) {
+            $pfs_ids = array($submission->pfs_id);
+        } else {
+            $pfs_ids = ORM::factory('plugin')->suggestPfsId(array(
+                'name'     => $submission->name,
+                'filename' => $submission->filename,
+                'mimetype' => $submission->mimetypes
+            ));
+        }
+        $this->view->suggested_plugins = ORM::factory('plugin')
+            ->in('pfs_id', $pfs_ids)
+            ->where('plugins.sandbox_profile_id IS NULL')
+            ->find_all();
+
+        // Grab all the plugins from the user's sandbox
+        $this->view->sandbox_plugins = ORM::factory('plugin')
+            ->find_for_sandbox(authprofiles::get_profile('id'));
+
         $this->view->submission = $submission;
 
         $this->view->submit_params = http_build_query(array(
@@ -137,9 +156,32 @@ class Plugins_Controller extends Local_Controller {
             "vulnerability_url" => 
                 $submission->vulnerability_url,
         ));
+    }
 
-        $this->view->sandbox_plugins = ORM::factory('plugin')
-            ->find_for_sandbox(authprofiles::get_profile('id'));
+    /**
+     * Offer a JSON API to the PFS ID suggestion method.
+     */
+    function suggest_pfs_id()
+    {
+        $this->auto_render = FALSE;
+
+        $params = array(
+            'mimetype' => '',
+            'filename' => false,
+            'name' => false,
+            'vendor' => false,
+            'callback' => false,
+        );
+        foreach ($params as $name=>$default) {
+            $params[$name] = $this->input->get($name, $default);
+        }
+
+        $callback = $params['callback'];
+        unset($params['callback']);
+
+        return json::render(
+            ORM::factory('plugin')->suggestPfsId($params), $callback
+        );
     }
 
     /**
@@ -351,9 +393,15 @@ class Plugins_Controller extends Local_Controller {
             // Create a new plugin from the export.
             $new_plugin = ORM::factory('plugin')->import($export);
 
-            // Bounce over to sandbox.
             $auth_screen_name = authprofiles::get_profile('screen_name');
-            url::redirect("profiles/{$auth_screen_name}/plugins");
+            if (empty($_GET)) {
+                // Bounce over to sandbox.
+                url::redirect("profiles/{$auth_screen_name}/plugins");
+            } else {
+                // GET params not empty, so bounce them over to editor
+                $qs = http_build_query($_GET);
+                url::redirect("profiles/{$auth_screen_name}/plugins/detail/{$new_plugin->pfs_id};edit?{$qs}");
+            }
 
         }
     }

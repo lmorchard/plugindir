@@ -98,7 +98,7 @@ PluginDir.Index = (function () {
                     // and browser info.
                     var submit_params = $.param($.extend({
                         status: data.status,
-                        pfs_id: pfs_id || $this.inventPfsId(raw_plugin),
+                        pfs_id: pfs_id || '',
                         version: version,
                         detected_version: data.pluginInfo.detected_version,
                         detection_type: data.pluginInfo.detection_type,
@@ -172,7 +172,7 @@ PluginDir.Index = (function () {
                         // composed of detected plugin details and browser info.
                         var submit_params = $.param($.extend({
                             status: 'unknown',
-                            pfs_id: $this.inventPfsId(plugin),
+                            pfs_id: null,
                             name: plugin.name,
                             filename: plugin.filename,
                             description: plugin.description,
@@ -279,32 +279,6 @@ PluginDir.Index = (function () {
             }
 
             return add_release;
-        },
-
-        /**
-         * Try inventing a suggested PFS ID based on plugin filename or name.
-         * This is just done in order to make an attempt at a consistent
-         * cross-browser ID when building submissions.
-         *
-         * TODO: Should this be an MD5 hash or something more inclusive of
-         * plugin details?
-         *
-         * @param   {plugin} plugin Plugin from navigator.plugins
-         *
-         * @returns {string} Generated PFS ID
-         */
-        inventPfsId: function (plugin) {
-            return (plugin.name || plugin.filename || "")
-                .toLowerCase()
-                .replace(/_/g, '-')
-                .replace(/ /g, '-')
-                .replace(/\.plugin$/g, '')
-                .replace(/\.dll$/g, '')
-                .replace(/\.so$/g, '')
-                .replace(/\d/g, '')
-                .replace(/\./g, '')
-                .replace(/-+$/, '')
-                ;
         },
 
         EOF:null

@@ -754,6 +754,95 @@ class Plugin_Model extends ORM_Resource {
         return $rel;
     }
 
+
+    /**
+     * Make a fuzzy search using mimetypes, filename, name, and/or vendor
+     * to try digging up a PFS ID for a plugin.  Last ditch effort will
+     * attempt to derive an ID from name or filename.
+     */
+    public function suggestPfsId($criteria, $derive=TRUE, $requery=TRUE) {
+
+        $criteria = array_merge(array(
+            'mimetype' => '',
+            'filename' => false,
+            'name' => false,
+            'vendor' => false,
+        ), $criteria);
+
+        // Start building the basic DB query to look for PFS ID.
+        $this->db
+            ->select('pfs_id')
+            ->from('plugins')
+            ->join('plugin_releases', 'plugin_releases.plugin_id', 'plugins.id')
+            ->where('plugins.sandbox_profile_id IS NULL')
+            ->groupby('plugin_releases.id')
+            ;
+
+        // Add in the search for mimetypes, if any supplied.
+        if (!empty($criteria['mimetype'])) {
+            $mimetypes = $criteria['mimetype'];
+            if (!is_array($mimetypes)) {
+                $mimetypes = explode(' ', $mimetypes);
+            }
+            $this->db
+                ->join('mimes_plugins', 'mimes_plugins.plugin_id', 'plugins.id')
+                ->join('mimes', 'mimes_plugins.mime_id', 'mimes.id')
+                ->in('mimes.name', $mimetypes)
+                ;
+        }
+
+        // Build up a set of WHERE ... OR criteria
+        $orwhere = array();
+        foreach (array('filename','name','vendor') as $name) {
+            if (!empty($criteria[$name])) {
+                $orwhere["plugin_releases.{$name}"] = $criteria[$name];
+            }
+        }
+        if (!empty($orwhere)) $this->db->orwhere($orwhere);
+
+        // Execute the query and try collecting the PFS IDs
+        $pfs_ids = array();
+        foreach ($this->db->get() as $row) {
+            $pfs_ids[] = $row->pfs_id;
+        }
+
+        // If there were no IDs found, try the query again with just mimetypes.
+        if (empty($pfs_ids) && !empty($mimetypes) && $requery) {
+            $sub_criteria = array( 'mimetype' => $criteria['mimetype'] );
+            $pfs_ids = $this->suggestPfsId($sub_criteria, false, false);
+        }
+
+        // If there were no PFS IDs found, it's time to try deriving one.
+        if (empty($pfs_ids) && $derive) {
+
+            // Use name, filename, or nothing.
+            if (!empty($criteria['name'])) {
+                $source = $criteria['name'];
+            } else if (!empty($criteria['filename'])) {
+                $source = $criteria['filename'];
+            } else {
+                $source = null;
+            }
+
+            // If we've got a source to start deriving from...
+            if ($source) {
+                $source = strtolower($source);
+                $source = preg_replace('/_/',         '-', $source);
+                $source = preg_replace('/ /',         '-', $source);
+                $source = preg_replace('/\.plugin$/', '', $source);
+                $source = preg_replace('/\.dll$/',    '', $source);
+                $source = preg_replace('/\.so$/',     '', $source);
+                $source = preg_replace('/\d/',        '', $source);
+                $source = preg_replace('/\./',        '', $source);
+                $source = preg_replace('/-+$/',       '', $source);
+                $pfs_ids[] = $source;
+            }
+
+        }
+
+        return array_unique($pfs_ids);
+    }
+
     /**
      * Allow plugins to be referred to by name.
      */
