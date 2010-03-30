@@ -348,18 +348,22 @@ class Plugin_Model extends ORM_Resource {
         // Delete plugin aliases and releases not included in this import, 
         // assuming deletion by omission.
         if (!$delete_first) {
-            $db->query(
-                "DELETE FROM plugin_aliases ".
-                "WHERE plugin_id=? AND ".
-                "id NOT IN (". join(',', $alias_ids).")",
-                $plugin->id
-            );
-            $db->query(
-                "DELETE FROM plugin_releases ".
-                "WHERE plugin_id=? AND ".
-                "id NOT IN (". join(',', $release_ids).")",
-                $plugin->id
-            );
+            if (!empty($alias_ids)) {
+                $db->query(
+                    "DELETE FROM plugin_aliases ".
+                    "WHERE plugin_id=? AND ".
+                    "id NOT IN (". join(',', $alias_ids).")",
+                    $plugin->id
+                );
+            }
+            if (!empty($release_ids)) {
+                $db->query(
+                    "DELETE FROM plugin_releases ".
+                    "WHERE plugin_id=? AND ".
+                    "id NOT IN (". join(',', $release_ids).")",
+                    $plugin->id
+                );
+            }
         }
 
         Database::enable_read_shadow();
