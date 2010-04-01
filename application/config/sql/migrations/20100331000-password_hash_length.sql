@@ -1,5 +1,5 @@
 --
--- Changes for bug 554368, longer password hashes for hash algo 
+-- Changes for bug 555027, longer password hashes for hash algo 
 -- flexibility and salt.
 --
 

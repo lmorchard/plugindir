@@ -32,15 +32,57 @@ class Auth_Login_Model extends ORM implements Zend_Acl_Resource_Interface
     // }}}
 
     /**
-     * One-way encrypt a plaintext password, both for storage and comparison 
+     * One-way hash a plaintext password, both for storage and comparison 
      * purposes.
      *
      * @param  string cleartext password
      * @return string encrypted password
      */
-    public function encrypt_password($password)
+    public function hash_password($password, $salt=null, $algo='SHA-256')
     {
-        return md5($password);
+        if ('SHA-256' == $algo) {
+            if (null === $salt) {
+                // Generate a new random salt, if none provided.
+                $salt = substr(md5(uniqid(mt_rand(), true)), 0, 
+                    Kohana::config('auth_profiles.salt_length'));
+            }
+            return '{SHA-256}'.$salt.'-'.hash('sha256', $salt.$password);
+        } else {
+            return md5($password);
+        }
+    }
+
+    /**
+     * Accept a database password hash and attempt to parse it into algo,
+     * salt, and hash values.
+     *
+     * @param  string $str full DB hash
+     * @return array  algo, salt, hash
+     */
+    public function parse_password_hash($str) 
+    {
+        $m = array();
+        if (1 === preg_match('/^\{([\w-]+)\}(\w+)-(\w+)$/', $str, $m)) {
+            // This is a hash in {ALGO}SALT-HASH form.
+            return array( $m[1], $m[2], $m[3] );
+        } else {
+            // Assume this is a legacy MD5 password hash.
+            return array( 'MD5', null, $str );
+        }
+    }
+
+    /**
+     * Check a given plaintext password against a full DB hash.
+     *
+     * @param  string  $password     plaintext password
+     * @param  string  $db_full_hash full hash string from DB
+     * @return boolean 
+     */
+    public function check_password($password, $db_full_hash)
+    {
+        list($algo, $salt, $hash) = $this->parse_password_hash($db_full_hash);
+        $password_full_hash = $this->hash_password($password, $salt, $algo);
+        return ($password_full_hash === $db_full_hash);
     }
 
     /**
@@ -140,7 +182,7 @@ class Auth_Login_Model extends ORM implements Zend_Acl_Resource_Interface
     {
         if (!$this->loaded) return;
 
-        $crypt_password = $this->encrypt_password($new_password);
+        $full_hash = $this->hash_password($new_password);
 
         $this->db->delete(
             $this->_table_name_password_reset_token,
@@ -148,12 +190,13 @@ class Auth_Login_Model extends ORM implements Zend_Acl_Resource_Interface
         );
         $rows = $this->db->update(
             'logins', 
-            array('password'=>$crypt_password), 
+            array('password'=>$full_hash), 
             array('id'=>$this->id)
         );
 
         return !empty($rows);
     }
+
 
     /**
      * Set the password reset token for a given login and return the value 
@@ -467,13 +510,31 @@ class Auth_Login_Model extends ORM implements Zend_Acl_Resource_Interface
     {
         $login_name = (isset($valid['login_name'])) ?
             $valid['login_name'] : authprofiles::get_login('login_name');
-        $count = $this->db
+
+        $row = $this->db
+            ->select('password')
+            ->from($this->table_name)
             ->where('login_name', $login_name)
-            ->where('password', $this->encrypt_password($valid[$field]))
-            ->count_records($this->table_name);
-        if ($count < 1) {
+            ->get()->current();
+
+        if (empty($row->password)) {
+            // No password found for this login name
             $valid->add_error($field, 'invalid');
+        } else if (!$this->check_password($valid[$field], $row->password)) {
+            // Password for this login name is invalid.
+            $valid->add_error($field, 'invalid');
+        } else {
+            // Password is correct, but does it need to be migrated?
+            // TODO: Disable this with a config setting?
+            list($algo, $salt, $hash) = 
+                $this->parse_password_hash($row->password);
+            if ('MD5' == $algo) {
+                // Migrate the legacy MD5 password to new-style salted hash.
+                ORM::factory('login', $login_name)
+                    ->change_password($valid[$field]);
+            }
         }
+
     }
 
     /**

@@ -82,7 +82,6 @@ class Logins_Test extends PHPUnit_Framework_TestCase
 
         $this->assertEquals($login->login_name, 'tester1');
         $this->assertEquals($login->email, 'tester1@example.com');
-        //$this->assertEquals($login->password, $login->encrypt_password('tester_password'));
     }
 
     /**
@@ -108,53 +107,135 @@ class Logins_Test extends PHPUnit_Framework_TestCase
             $this->assertContains('Duplicate', $e->getMessage());
         }
     }
-    
+
     /**
-     * Since login and profile creation during registration are two steps,
-     * ensure that a failed profile creation doesn't result in a deadend login.
+     * Exercise password hashing and respective algos
      */
-    public function test_registration_should_create_profile()
+    public function test_password_hashing()
     {
-        $login = ORM::factory('login')->register_with_profile(array(
-            'login_name'  => 'tester1',
-            'email'       => 'tester1@example.com',
-            'password'    => 'tester_password',
-            'screen_name' => 'tester1_screenname',
-            'full_name'   => 'Tess T. Erone',
-            //'bio'         => 'I live!'
-        ));
-        $this->assertTrue(null !== $login);
-        $login = ORM::factory('login', $login->id);
+        $login_model = ORM::factory('login'); 
 
-        $profile = ORM::factory('profile', 'tester1_screenname');
+        ORM::factory('login')->set(array(
+            'login_name' => 'tester42',
+            'email'      => 'tester1@example.com',
+            'password'   => 'tester_password',
+        ))->save();
 
-        $this->assertTrue(null !== $profile);
-        $this->assertEquals($profile->screen_name, 'tester1_screenname');
-        $this->assertEquals($profile->full_name, 'Tess T. Erone');
-        //$this->assertEquals($profile->bio, 'I live!');
+        list($algo, $salt, $hash) = $login_model
+            ->parse_password_hash('528fbfb3293b1e0be03766af476e0117');
+        $this->assertEquals('MD5', $algo,
+            'Legacy hash should yield MD5 algo');
+        $this->assertEquals(null, $salt,
+            'Legacy hash should yield null salt');
+        $this->assertEquals('528fbfb3293b1e0be03766af476e0117', $hash,
+            'Legacy hash should yield self as hash');
 
-        $default_profile = $login->find_default_profile_for_login();
-        $this->assertEquals($profile->id, $default_profile->id);
+        $passwords = array( 'trustno1', 'n0mor3s3cr37$', 'i like pie' );
+        foreach ($passwords as $password) {
+
+            $full_hash = $login_model->hash_password($password);
+            list($algo, $salt, $hash) = 
+                $login_model->parse_password_hash($full_hash);
+
+            $this->assertEquals('SHA-256', $algo,
+                'Default algo should be SHA-256');
+            $this->assertTrue( (null !== $salt),
+                'Default algo hash should yield a salt.');
+            $this->assertTrue( ($hash != $full_hash),
+                'Default algo hash should not equal input str');
+
+            $this->assertTrue(
+                $login_model->check_password($password, $full_hash),
+                'Password check should be true.'
+            );
+            $this->assertTrue(
+                !$login_model->check_password('incorrect'.$password, $full_hash),
+                'Bad password check should be false'
+            );
+
+            $login = ORM::factory('login', 'tester42');
+            $login->change_password($password);
+
+            $login_data_1 = array(
+                'login_name' => $login->login_name,
+                'password'   => $password
+            );
+            $is_valid = $login_model->validate_login($login_data_1);
+            $this->assertTrue($is_valid, 'Valid login should be valid.');
+
+            $login_data_2 = array(
+                'login_name' => $login->login_name,
+                'password'   => 'incorrect-'.$password
+            );
+            $is_valid = $login_model->validate_login($login_data_2);
+            $this->assertTrue(!$is_valid, 'Invalid login should be invalid.');
+
+        }
+
     }
 
     /**
-     * Since login and profile creation during registration are two steps,
-     * ensure that a failed profile creation doesn't result in a deadend login.
+     *
      */
-    public function pass_testFailedRegistrationShouldNotCreateLogin()
+    public function test_legacy_md5_password_migration()
     {
-        try {
-            $login_id = $this->logins_model->register_with_profile(array(
-                'login_name' => 'tester1',
-                'email'      => 'tester1@example.com',
-                'password'   => 'tester_password',
-            ));
-            $this->fail('Missing profile details should cause registration to fail');
-        } catch (Exception $e) {
-            $this->assertContains('required', $e->getMessage());
-            $login = $this->logins_model->find_by_login_name('tester1');
-            $this->assertNull($login);
-        }
+        $db = Database::instance( Kohana::config('model.database') );
+
+        $login_model = ORM::factory('login'); 
+
+        ORM::factory('login')->set(array(
+            'login_name' => 'tester42',
+            'email'      => 'tester1@example.com'
+        ))->save();
+
+        $login = ORM::factory('login', 'tester42');
+
+        $password = 'n0mor3s3cr37$';
+
+        // Forcibly set the login password to an old-style MD5 hash
+        $md5_hash = md5($password);
+        $db->update(
+            'logins', 
+            array('password'=>$md5_hash),
+            array('id'=>$login->id)
+        );
+
+        $login_data_1 = array(
+            'login_name' => $login->login_name,
+            'password'   => $password
+        );
+        $is_valid = $login_model->validate_login($login_data_1);
+        $this->assertTrue($is_valid, 'Valid login should be valid.');
+
+        $row = $db
+            ->select('password')
+            ->from('logins')
+            ->where('login_name', $login->login_name)
+            ->get()->current();
+
+        $this->assertTrue(
+            ($row->password != $md5_hash),
+            "MD5 hash should have been migrated to new-style"
+        );
+
+        list($algo, $salt, $hash) = 
+            $login_model->parse_password_hash($row->password);
+
+        $this->assertEquals('SHA-256', $algo,
+            'Default algo should be SHA-256');
+        $this->assertTrue( (null !== $salt),
+            'Default algo hash should yield a salt.');
+        $this->assertTrue( ($hash != $row->password),
+            'Default algo hash should not equal input str');
+
+        $login_data_2 = array(
+            'login_name' => $login->login_name,
+            'password'   => $password
+        );
+        $is_valid = $login_model->validate_login($login_data_2);
+        $this->assertTrue($is_valid, 
+            'Valid login should be valid, after migration.');
+
     }
     
 }
