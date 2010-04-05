@@ -22,7 +22,7 @@ class Mimetype_Model extends ORM {
             FROM plugin_releases
             JOIN plugins ON plugins.id = plugin_releases.plugin_id
             JOIN mimes_plugins ON mimes_plugins.plugin_id = plugins.id
-            JOIN mimes ON mimes.id = mimes_plugins.id
+            JOIN mimes ON mimes.id = mimes_plugins.mime_id
             WHERE plugins.sandbox_profile_id IS NULL
             GROUP BY mimes.name
             ORDER BY count DESC

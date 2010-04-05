@@ -366,6 +366,13 @@ class Plugin_Model extends ORM_Resource {
             }
         }
 
+        // Delete mimetypes for which there is no association to a plugin.
+        $db->query("
+            DELETE mimes FROM mimes 
+            LEFT JOIN mimes_plugins ON mimes_plugins.mime_id=mimes.id
+            WHERE mimes_plugins.id IS null
+        ");
+
         Database::enable_read_shadow();
         return $plugin;
     }
