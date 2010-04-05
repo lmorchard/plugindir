@@ -10,6 +10,7 @@
 {% block content %}
     <form class="register" action="" method="post">
         {% set data, errors as form_data, form_errors %}
+        {{ forms.hidden(data, errors, 'crumb', crumb) }}
         {{ forms.fieldset('Profile details', 'profile') }}
             {# {{ forms.input(data, errors, 'text', 'screen_name', 'Screen name') }} #}
             {{ forms.input(data, errors, 'text', 'full_name', 'Full name'|trans) }}

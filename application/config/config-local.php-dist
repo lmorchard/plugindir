@@ -7,6 +7,8 @@ $config['core.internal_cache_key'] = '8675309';
 $config['core.display_errors'] = FALSE;
 $config['core.render_stats'] = FALSE;
 
+$config['csrf_crumbs.secret'] = 'you should really change this';
+
 $config['model.database'] = 'default';
 
 $config['database.default'] = array

@@ -20,6 +20,7 @@
 
     <form class="login" action="{{base_url}}login" method="post">
         {% set data, errors as form_data, [] %}
+        {{ forms.hidden(data, errors, 'crumb', crumb) }}
         {{ forms.hidden(data, errors, 'jump') }}
         {{ forms.fieldset('Login'|trans, 'login') }}
             {% if form_errors %}

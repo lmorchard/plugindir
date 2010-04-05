@@ -54,11 +54,17 @@ class authprofiles_Core
     {
         $duration = Kohana::config('auth_profiles.login_duration');
         if (empty($duration)) $duration = ( 52 * 7 * 24 * 60 * 60 );
+
+        // Generate a new login session token for the csrf_crumbs module
+        $login_token = text::random('alnum', 16);
+        csrf_crumbs::set_session_token($login_token);
+
         self::$cookie_manager->setCookie(
             self::$cookie_name, 
             serialize(array(
-                'login_name' => $login->login_name, 
-                'profile_id' => $profile->id
+                'login_token' => $login_token,
+                'login_name'  => $login->login_name,
+                'profile_id'  => $profile->id
             )),
             $user_name,
             time() + $duration,
@@ -108,6 +114,12 @@ class authprofiles_Core
                     empty(self::$user_data['profile_id'])) {
                 // Force cookie clear if data is invalid.
                 return self::logout();
+            }
+
+            if (!empty(self::$user_data['login_token'])) {
+                // Grab the previously generated login session token for the 
+                // csrf_crumbs module
+                csrf_crumbs::set_session_token(self::$user_data['login_token']);
             }
 
         }

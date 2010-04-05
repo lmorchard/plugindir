@@ -1,0 +1,10 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    {% trans "CSRF alert!" %}
+{% endblock %}
+
+{% block content %}
+    <p>{% trans "This request appears to be an attempt at cross-site request forgery and has been rejected!" %}</p>
+    <p><a href="">{% trans "Click here to try again." %}</a></p>
+{% endblock %}

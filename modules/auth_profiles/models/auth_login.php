@@ -325,6 +325,7 @@ class Auth_Login_Model extends ORM implements Zend_Acl_Resource_Interface
     {
         $data = Validation::factory($data)
             ->pre_filter('trim')
+            ->add_rules('crumb', 'csrf_crumbs::validate')
             ->add_rules('login_name', 'required', 'length[3,64]', 
                 'valid::alpha_dash', array($this, 'is_login_name_registered'))
             ->add_rules('password', 'required')
@@ -344,6 +345,7 @@ class Auth_Login_Model extends ORM implements Zend_Acl_Resource_Interface
     {
         $data = Validation::factory($data)
             ->pre_filter('trim')
+            ->add_rules('crumb', 'csrf_crumbs::validate')
             ->add_rules('new_email', 
                 'required', 'length[3,255]', 'valid::email',
                 array($this, 'is_email_available'))
@@ -362,6 +364,7 @@ class Auth_Login_Model extends ORM implements Zend_Acl_Resource_Interface
     {
         $data = Validation::factory($data)
             ->pre_filter('trim')
+            ->add_rules('crumb', 'csrf_crumbs::validate')
             ->add_rules('old_password', 'required')
             ->add_callbacks('old_password',
                 array($this, 'is_password_correct'))
@@ -385,6 +388,7 @@ class Auth_Login_Model extends ORM implements Zend_Acl_Resource_Interface
     {
         $data = Validation::factory($data)
             ->pre_filter('trim')
+            ->add_rules('crumb', 'csrf_crumbs::validate')
             ->add_rules('new_password',
                 'required', 'length[8,255]',
                 array($this, 'is_password_acceptable'))
@@ -427,6 +431,7 @@ class Auth_Login_Model extends ORM implements Zend_Acl_Resource_Interface
     {
         $data = Validation::factory($data)
             ->pre_filter('trim')
+            ->add_rules('crumb', 'csrf_crumbs::validate')
             ->add_rules('login_name', 'length[3,64]', 'valid::alpha_dash')
             ->add_rules('email', 'valid::email')
             ->add_callbacks('login_name', array($this, 'need_login_name_or_email'))

@@ -120,5 +120,6 @@ $config['modules'] = array
     MODPATH.'l10n',
     MODPATH.'twig',
     MODPATH.'auth_profiles',
+    MODPATH.'csrf_crumbs',
     MODPATH.'lmo_email',
 );
