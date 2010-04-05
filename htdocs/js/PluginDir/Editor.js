@@ -12,7 +12,7 @@ PluginDir.Editor = (function () {
         // Description of plugin properties.
         plugin_properties: {}, 
         // Whether or not to autosave using idle timer.
-        autosave: true, 
+        autosave: false, 
         // Idle timer used to save when user is inbetween edits.
         save_timer: null, 
         // Whether or not a save is in progress
