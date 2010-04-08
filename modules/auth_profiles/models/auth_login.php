@@ -205,22 +205,19 @@ class Auth_Login_Model extends ORM implements Zend_Acl_Resource_Interface
      * @param  string login ID
      * @return string password reset string
      */
-    public function set_email_verification_token($new_email)
+    public function generate_email_verification_token($email=null)
     {
         if (!$this->loaded) return;
+        if (empty($email)) $email = $this->email;
 
         $token = md5(uniqid(mt_rand(), true));
 
-        $this->db->delete(
-            $this->_table_name_email_verification_token,
-            array( 'login_id' => $this->id )
-        );
         $rv = $this->db->insert(
             $this->_table_name_email_verification_token,
             array(
-                'login_id' => $this->id,
-                'token'    => $token,
-                'value'    => $new_email
+                'login_id'   => $this->id,
+                'token'      => $token,
+                'value'      => $email,
             )
         );
         
@@ -232,37 +229,48 @@ class Auth_Login_Model extends ORM implements Zend_Acl_Resource_Interface
      *
      * @return object Object with properties value and token.
      */
-    public function get_email_verification()
+    public function get_email_verification($email=null)
     {
-        $row = $this->db
+        $q = $this->db
             ->select('value, token')
             ->from($this->_table_name_email_verification_token)
-            ->where('login_id', $this->id)
-            ->get()->current();
+            ->where('login_id', $this->id);
+        if (null === $email) {
+            $q->where('value <>', $this->email);
+        }
+        $row = $q->get()->current();
         return (empty($row)) ? null : $row;
     }
 
     /**
-     * Change email for a login.
-     * The email verification token, if any, is cleared as well.
+     * Change email for a login, using a verification token.
      *
      * @param  string  login id
      * @param  string  new email value
      * @return boolean whether or not a email was changed
      */
-    public function change_email($new_email)
+    public function change_email_with_verification_token($token)
     {
-        if (!$this->loaded) return;
-        $this->db->delete(
-            $this->_table_name_email_verification_token,
-            array( 'login_id' => $this->id )
-        );
-        $rows = $this->db->update(
-            'logins', 
-            array('email'=>$new_email), 
-            array('id'=>$this->id)
-        );
-        return !empty($rows);
+        list($login, $new_email, $token_id) = 
+            $this->find_by_email_verification_token($token);
+
+        if (empty($login) || empty($new_email)) { 
+            return array(null, null, null); 
+        }
+        
+        $login->email = $new_email;
+        $login->save();
+
+        // Delete this token, and all tokens created after this one.
+        // HACK: Relies on auto-increment ID column.
+        $this->db
+            ->where(array(
+                'login_id' => $login->id,
+                'id >='    => $token_id 
+            ))
+            ->delete($this->_table_name_email_verification_token);
+
+        return array($login, $new_email, $token_id);
     }
 
 
@@ -296,17 +304,18 @@ class Auth_Login_Model extends ORM implements Zend_Acl_Resource_Interface
     public function find_by_email_verification_token($token)
     {
         $row = $this->db
-            ->select('value, login_id')
+            ->select('value, login_id, id')
             ->from($this->_table_name_email_verification_token)
             ->where('token', $token)
             ->get()->current();
 
         if (!$row) {
-            return array(null, null);
+            return array(null, null, null);
         } else {
             return array(
                 ORM::factory('login', $row->login_id),
-                $row->value
+                $row->value,
+                $row->id
             );
         }
     }

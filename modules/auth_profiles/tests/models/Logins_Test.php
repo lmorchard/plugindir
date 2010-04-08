@@ -175,7 +175,8 @@ class Logins_Test extends PHPUnit_Framework_TestCase
     }
 
     /**
-     *
+     * Exercise the transition from legacy MD5 password hashes to salted 
+     * SHA-256 hashes
      */
     public function test_legacy_md5_password_migration()
     {
@@ -238,4 +239,109 @@ class Logins_Test extends PHPUnit_Framework_TestCase
 
     }
     
+    /**
+     * Exercise the email change verification tokens for new (change) and 
+     * old (revert) email addresses.
+     */
+    public function test_old_and_new_email_verification_tokens()
+    {
+        $login_model = ORM::factory('login');
+
+        ORM::factory('login')->set(array(
+            'login_name' => 'tester42',
+            'email'      => 'tester1@example.com',
+            'password'   => 'tester_password',
+        ))->save();
+
+        $login = ORM::factory('login', 'tester42');
+
+        $old_email = $login->email;
+        $new_email = 'tester-1@newexample.com';
+
+        $token_old = $login->generate_email_verification_token();
+        $token_new = $login->generate_email_verification_token($new_email);
+
+        $this->assertTrue($token_old != $token_new,
+            "Generated tokens should not match.");
+
+        list($login_old, $fetched_email_old, $token_id) = $login_model
+            ->find_by_email_verification_token($token_old);
+
+        $this->assertTrue(!(empty($login_old) || empty($fetched_email_old)),
+            "Finding by old token should yield result.");
+        $this->assertTrue($login->id == $login_old->id,
+            "Old token should find the original login.");
+        $this->assertEquals($login->email, $fetched_email_old,
+            "Old token email should match current login.");
+
+        list($login_new, $fetched_email_new, $token_id) = $login_model
+            ->find_by_email_verification_token($token_new);
+
+        $this->assertTrue(!(empty($login_new) || empty($fetched_email_new)),
+            "Finding by new token should yield result.");
+        $this->assertTrue($login->id == $login_new->id,
+            "New token should find the original login.");
+        $this->assertNotEquals($login->email, $fetched_email_new,
+            "Old token email should match current new email.");
+
+        // Try changing to new email.
+        list($changed_login, $changed_email, $token_id) =
+            $login_model->change_email_with_verification_token($token_new);
+        $this->assertEquals($new_email, $changed_email,
+            "Changed email should match new.");
+        $this->assertEquals($login->id, $changed_login->id,
+            "Changed login should match original id.");
+
+        list($no_login, $no_email, $token_id) = $login_model
+            ->find_by_email_verification_token($token_new);
+        $this->assertTrue(empty($no_login) && empty($no_email),
+            "Neither login nor email should be found for new token after use.");
+
+        // Try reverting to old email.
+        list($changed_login, $changed_email, $token_id) =
+            $login_model->change_email_with_verification_token($token_old);
+        $this->assertEquals($old_email, $changed_email,
+            "Changed email should match new.");
+        $this->assertEquals($login->id, $changed_login->id,
+            "Changed login should match original id.");
+        
+        list($no_login, $no_email, $token_id) = $login_model
+            ->find_by_email_verification_token($token_old);
+        $this->assertTrue(empty($no_login) && empty($no_email),
+            "Neither login nor email should be found for old token after use.");
+
+        // Ensure that the oldest token wins, eg. the first "undo" in a chain 
+        // of issued tokens will recover the original email address.
+        //
+        // This should help in the case where an unwanted email address change
+        // is triggered multiple times, and an unwanted "undo" is hanging 
+        // around out there.
+        //
+        // The very first undo, sent to the original email address, should serve
+        // to back the whole thing out.
+        
+        $login = ORM::factory('login', 'tester42');
+        $token_undo1 = $login->generate_email_verification_token();
+        $token_new1  = $login->generate_email_verification_token($new_email);
+        $login_model->change_email_with_verification_token($token_new1);
+
+        $login = ORM::factory('login', 'tester42');
+        $token_undo2 = $login->generate_email_verification_token();
+        $token_new2  = $login->generate_email_verification_token('a@b');
+
+        $login = ORM::factory('login', 'tester42');
+        $token_undo3 = $login->generate_email_verification_token();
+        $token_new3  = $login->generate_email_verification_token('b@a');
+
+        $login_model->change_email_with_verification_token($token_new2);
+        $login_model->change_email_with_verification_token($token_new3);
+        $login_model->change_email_with_verification_token($token_undo1);
+        $login_model->change_email_with_verification_token($token_undo3);
+        $login_model->change_email_with_verification_token($token_undo2);
+
+        $login = ORM::factory('login', 'tester42');
+        $this->assertEquals('tester1@example.com', $login->email,
+            "Original email should be restored.");
+
+    }
 }

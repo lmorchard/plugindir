@@ -213,18 +213,34 @@ class Auth_Profiles_Controller extends Local_Controller
         );
         if (null===$form_data) return;
 
-        $token = $login->set_email_verification_token($form_data['new_email']);
+        $revert_token = $login
+            ->generate_email_verification_token();
 
-        $this->view->email_verification_token_set = true;
+        email::send_view(
+            $login->email,
+            'auth_profiles/changeemail_revert_email',
+            array(
+                'email_verification_token' => $revert_token,
+                'new_email' => $form_data['new_email'],
+                'login_name' => authprofiles::get_login('login_name')
+            )
+        );
+
+        $new_token = $login
+            ->generate_email_verification_token($form_data['new_email']);
 
         email::send_view(
             $form_data['new_email'],
             'auth_profiles/changeemail_email',
             array(
-                'email_verification_token' => $token,
+                'email_verification_token' => $new_token,
+                'new_email' => $form_data['new_email'],
                 'login_name' => authprofiles::get_login('login_name')
             )
         );
+
+        $this->view->email_verification_token_set = true;
+
     }
 
     /**
@@ -276,13 +292,12 @@ class Auth_Profiles_Controller extends Local_Controller
             $this->input->post('email_verification_token') :
             $this->input->get('email_verification_token');
 
-        list($login, $new_email) = ORM::factory('login')
-            ->find_by_email_verification_token($token);
+        list($login, $new_email, $token_id) = ORM::factory('login')
+            ->change_email_with_verification_token($token);
         if (!$login) {
             $this->view->invalid_token = true;
             return;
         }
-        $login->change_email($new_email);
 
         // TODO: Make auto-login on email verification configurable?
         $profile = $login->find_default_profile_for_login();
