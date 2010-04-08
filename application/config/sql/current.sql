@@ -55,7 +55,7 @@ CREATE TABLE `logins` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `login_name` varchar(64) NOT NULL,
   `email` varchar(255) NOT NULL,
-  `password` varchar(32) NOT NULL,
+  `password` varchar(255) NOT NULL,
   `created` datetime DEFAULT NULL,
   `last_login` datetime DEFAULT NULL,
   `active` tinyint(2) NOT NULL DEFAULT '1',
