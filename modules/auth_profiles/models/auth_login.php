@@ -394,7 +394,7 @@ class Auth_Login_Model extends ORM implements Zend_Acl_Resource_Interface
 
         // Try loading the login object if possible
         $login = ORM::factory('login', $data['login_name']);
-        if (!empty($login)) {
+        if ($login->loaded) {
             if (!$login->active) {
                 // Flag a disabled account.
                 $data->add_error('inactive', 'inactive');
