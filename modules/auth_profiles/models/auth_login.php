@@ -125,10 +125,59 @@ class Auth_Login_Model extends ORM implements Zend_Acl_Resource_Interface
      */
     public function login($data=null)
     {
+        $this->failed_login_count = 0;
         $this->last_login = gmdate('c');
         $this->save();
         return true;
     }
+
+    /**
+     * Record a failed login, for eventual purposes of account lockout.
+     *
+     * @chainable
+     * @return Auth_Login_Model
+     */
+    public function record_failed_login()
+    {
+        $this->failed_login_count = $this->failed_login_count + 1;
+        $this->last_failed_login  = gmdate('c');
+        $this->save();
+        return $this;
+    }
+
+    /**
+     * Determine whether the login is locked out per the configured
+     * threshold of failed logins and the lockout period with respect
+     * to the last failed login.
+     *
+     * @return boolean
+     */
+    public function is_locked_out()
+    {
+        // HACK: Switch to UTC for date parsing since all MySQL times 
+        // should be in UTC
+        $old_tz = date_default_timezone_get();
+        date_default_timezone_set('UTC');
+
+        $time_now = 
+            time();
+        $last_failed_login = 
+            strtotime($this->last_failed_login, $time_now);
+        $lockout_threshold = 
+            Kohana::config('auth_profiles.max_failed_logins');
+        $lockout_period =
+            Kohana::config('auth_profiles.account_lockout_period');
+
+        $is_locked_out =  
+            $this->failed_login_count >= $lockout_threshold &&
+            $time_now < ( $last_failed_login + $lockout_period );
+
+        // HACK: Restore original time zone default.
+        date_default_timezone_set($old_tz);
+
+        return $is_locked_out;
+    }
+
 
     /**
      * Find the default profile for this login, usually the first registered.
@@ -332,6 +381,7 @@ class Auth_Login_Model extends ORM implements Zend_Acl_Resource_Interface
      */
     public function validate_login(&$data)
     {
+        // Validate the login form data itself.
         $data = Validation::factory($data)
             ->pre_filter('trim')
             ->add_rules('crumb', 'csrf_crumbs::validate')
@@ -340,7 +390,34 @@ class Auth_Login_Model extends ORM implements Zend_Acl_Resource_Interface
             ->add_rules('password', 'required')
             ->add_callbacks('password', array($this, 'is_password_correct'))
             ;
-        return $data->validate();
+        $is_valid = $data->validate();
+
+        // Try loading the login object if possible
+        $login = ORM::factory('login', $data['login_name']);
+        if (!empty($login)) {
+            if (!$login->active) {
+                // Flag a disabled account.
+                $data->add_error('inactive', 'inactive');
+                $is_valid = false;
+            }
+            if (empty($login->email)) {
+                // Flag unverified login.
+                $data->add_error('email_unverified', 'email_unverified');
+                $is_valid = false;
+            }
+            if ($data->errors('password')) {
+                // If the form data wasn't valid, record a failed login.
+                $login->record_failed_login();
+            }
+            if ($login->is_locked_out()) {
+                // If the login has been locked out after failed logins, flag 
+                // as invalid no matter what.
+                $data->add_error('locked_out', 'locked_out');
+                $is_valid = false;
+            }
+        }
+        
+        return $is_valid;
     }
 
     /**

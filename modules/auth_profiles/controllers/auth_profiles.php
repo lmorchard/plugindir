@@ -127,21 +127,14 @@ class Auth_Profiles_Controller extends Local_Controller
         if (null===$form_data) return;
 
         $login = ORM::factory('login', $form_data['login_name']);
-        if (!$login->active) {
-            $this->view->login_inactive = TRUE;
-            return;
-        } elseif (empty($login->email)) {
-            $this->view->no_verified_email = TRUE;
-            return;
-        }
-
         // TODO: Allow profile selection here if multiple.
         $profile = $login->find_default_profile_for_login();
 
         $login->login($form_data);
         authprofiles::login($login->login_name, $login, $profile);
 
-        if (isset($form_data['jump']) && substr($form_data['jump'], 0, 1) == '/') {
+        if (isset($form_data['jump']) && 
+                substr($form_data['jump'], 0, 1) == '/') {
             // Allow post-login redirect only if the param starts with '/', 
             // interpreted as relatve to root of site.
             return url::redirect($form_data['jump']);

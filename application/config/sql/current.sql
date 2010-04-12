@@ -59,6 +59,8 @@ CREATE TABLE `logins` (
   `created` datetime DEFAULT NULL,
   `last_login` datetime DEFAULT NULL,
   `active` tinyint(2) NOT NULL DEFAULT '1',
+  `failed_login_count` int(11) NOT NULL DEFAULT '0',
+  `last_failed_login` datetime DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `login_name` (`login_name`),
   KEY `email` (`email`)

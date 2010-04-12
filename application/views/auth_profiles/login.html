@@ -7,16 +7,6 @@
 {% endblock %}
 
 {% block content %}
-    {% if login_inactive %}
-        <p>{% trans "Sorry, that login has been disabled." %}</p>
-    {% endif %}
-
-    {% if no_verified_email %}
-        <p>{% trans "Sorry, the email address for that login has not yet been verified." %}</p>
-        <form action="{{base_url}}reverifyemail/{{_POST['login_name']|urlencode|e}}" method="POST">
-            <input type="submit" value="{% trans "Re-send Account Activation Information" %}" />
-        </form>
-    {% endif %}
 
     <form class="login" action="{{base_url}}login" method="post">
         {% set data, errors as form_data, [] %}
@@ -25,7 +15,18 @@
         {{ forms.fieldset('Login'|trans, 'login') }}
             {% if form_errors %}
                 <li class="error">
-                    {% trans "The username or password you entered is not correct." %}
+                    {% if form_errors.locked_out %}
+                        {% trans "This login has been temporarily disabled, due to multiple failed login attempts.  Please try again later." %}
+                    {% elseif form_errors.inactive %}
+                        {% trans "This login has been disabled." %}
+                    {% elseif form_errors.email_unverified %}
+                        {% trans "This email address for this login has not yet been verified." %}
+                        <form action="{{base_url}}reverifyemail/{{_POST['login_name']|urlencode|e}}" method="POST">
+                            <input type="submit" value="{% trans "Re-send Account Activation Information" %}" />
+                        </form>
+                    {% else %}
+                        {% trans "The username or password you entered is not correct." %}
+                    {% endif %}
                 </li>
             {% endif %}
             {{ forms.input(data, errors, 'text', 'login_name', 'Login name'|trans) }}

@@ -344,4 +344,73 @@ class Logins_Test extends PHPUnit_Framework_TestCase
             "Original email should be restored.");
 
     }
+
+    /**
+     * Exercise account lockout on failed login.
+     */
+    public function test_failed_login_lockout()
+    {
+        $max_failed_logins = 5;
+        $account_lockout_period = 5;
+
+        Kohana::config_set('auth_profiles.max_failed_logins', 
+            $max_failed_logins);
+        Kohana::config_set('auth_profiles.account_lockout_period', 
+            $account_lockout_period);
+
+        $login_model = ORM::factory('login');
+
+        ORM::factory('login')->set(array(
+            'login_name' => 'tester42',
+            'email'      => 'tester1@example.com',
+        ))->save();
+
+        $login = ORM::factory('login', 'tester42');
+        $login->change_password('tester_password');
+
+        $this->assertTrue(!$login->is_locked_out(),
+            "Account should not be locked out on initial creation.");
+
+        $data = array(
+            'crumb'      => csrf_crumbs::generate(),
+            'login_name' => $login->login_name,
+            'password'   => 'tester_password'
+        );
+        $this->assertTrue($login_model->validate_login($data), 
+            "Valid login should be valid.");
+
+        for ($i=0; $i<$max_failed_logins; $i++) {
+            $data = array(
+                'crumb'      => csrf_crumbs::generate(),
+                'login_name' => $login->login_name,
+                'password'   => uniqid()
+            );
+            $this->assertTrue(!$login_model->validate_login($data), 
+                "Invalid login should be invalid.");
+        }
+
+        $login = ORM::factory('login', 'tester42');
+        $this->assertTrue($login->is_locked_out(),
+            "Account should be locked out after invalid logins.");
+
+        $data = array(
+            'crumb'      => csrf_crumbs::generate(),
+            'login_name' => $login->login_name,
+            'password'   => 'tester_password'
+        );
+        $this->assertTrue(!$login_model->validate_login($data), 
+            "Valid login should be invalid during account lockout.");
+
+        sleep($account_lockout_period + 1);
+
+        $data = array(
+            'crumb'      => csrf_crumbs::generate(),
+            'login_name' => $login->login_name,
+            'password'   => 'tester_password'
+        );
+        $this->assertTrue($login_model->validate_login($data), 
+            "Valid login should be valid after account lockout.");
+        
+    }
+
 }
