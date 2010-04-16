@@ -183,7 +183,19 @@ class Auth_Profiles_Controller extends Local_Controller
             unset($form_data['role']);
         }
 
+        if (!empty($form_data['role']) && $form_data['role'] != $profile->role) {
+            cef_logging::log('000', 'Profile role changed', 1, array(
+                'role_old' => $profile->role, 'role_new' => $form_data['role']
+            ));
+            if ('admin' == $form_data['role']) {
+                cef_logging::log(cef_logging::NEW_PRIVILEGED_ACCOUNT, 
+                    'New Privileged Account', 6);
+            }
+        }
+
         $profile->set($form_data)->save();
+
+        cef_logging::log('000', 'Profile updated', 1);
 
         Session::instance()->set_flash(
             'message', 'Profile updated'
@@ -205,6 +217,13 @@ class Auth_Profiles_Controller extends Local_Controller
             'validate_change_email', 'form_errors_auth'
         );
         if (null===$form_data) return;
+
+        $profile = $login->find_default_profile_for_login();
+        if ($profile->loaded && 'admin' == $profile->role) {
+            cef_logging::log('000', 'Admin email address change email sent', 6);
+        } else {
+            cef_logging::log('000', 'Email address change email sent', 1);
+        }
 
         $revert_token = $login
             ->generate_email_verification_token();
@@ -323,6 +342,7 @@ class Auth_Profiles_Controller extends Local_Controller
             $login = ORM::factory('login')
                 ->find_by_password_reset_token($reset_token);
             if (!$login->loaded) {
+                cef_logging::log('000', 'Password change token invalid', 1);
                 $this->view->invalid_reset_token = true;
                 return;
             }
@@ -350,15 +370,20 @@ class Auth_Profiles_Controller extends Local_Controller
                 'validate_change_password_with_token', 
             'form_errors_auth'
         );
-        if (null===$form_data) return;
+        if (null===$form_data) {
+            cef_logging::log('000', 'Password change failed', 1);
+            return;
+        }
         
         // Finally, perform the password change.
         $changed = $login->change_password($form_data['new_password']);
         if (!$changed) {
             // Something unexpected happened.
             $this->view->password_change_failed = true;
+            cef_logging::log('000', 'Password change failed', 1);
         } else {
             $this->view->password_changed = true;
+            cef_logging::log('000', 'Password changed', 1);
         }
     }
 
@@ -382,6 +407,13 @@ class Auth_Profiles_Controller extends Local_Controller
 
         $reset_token = $login->set_password_reset_token();
         $this->view->password_reset_token_set = true;
+
+        $profile = $login->find_default_profile_for_login();
+        if ($profile->loaded && 'admin' == $profile->role) {
+            cef_logging::log('000', 'Admin password change email sent', 6);
+        } else {
+            cef_logging::log('000', 'Password change email sent', 1);
+        }
 
         email::send_view(
             $login->email,

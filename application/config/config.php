@@ -116,6 +116,7 @@ $config['extension_prefix'] = 'MY_';
  */
 $config['modules'] = array
 (
+    MODPATH.'cef_logging',
     MODPATH.'phpunit',
     MODPATH.'l10n',
     MODPATH.'twig',

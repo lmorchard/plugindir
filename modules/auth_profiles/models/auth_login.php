@@ -139,9 +139,28 @@ class Auth_Login_Model extends ORM implements Zend_Acl_Resource_Interface
      */
     public function record_failed_login()
     {
+        $was_locked_out = $this->is_locked_out();
         $this->failed_login_count = $this->failed_login_count + 1;
         $this->last_failed_login  = gmdate('c');
         $this->save();
+
+        if (!$was_locked_out && $this->is_locked_out()) {
+            $profile = $this->find_default_profile_for_login();
+            if ($profile->loaded && 'admin' == $profile->role) {
+                cef_logging::log(
+                    cef_logging::ADMIN_ACCOUNT_LOCKED, 
+                    'Admin Account Locked', 9, 
+                    array( 'suser' => $this->login_name )
+                );
+            } else {
+                cef_logging::log(
+                    cef_logging::ACCOUNT_LOCKED, 
+                    'Account Locked', 5, 
+                    array( 'suser' => $this->login_name )
+                );
+            }
+        }
+
         return $this;
     }
 
@@ -307,6 +326,7 @@ class Auth_Login_Model extends ORM implements Zend_Acl_Resource_Interface
             return array(null, null, null); 
         }
         
+        $old_email = $login->email;
         $login->email = $new_email;
         $login->save();
 
@@ -318,6 +338,12 @@ class Auth_Login_Model extends ORM implements Zend_Acl_Resource_Interface
                 'id >='    => $token_id 
             ))
             ->delete($this->_table_name_email_verification_token);
+
+        cef_logging::log('000', 'Email changed', 5, array( 
+            'suser'     => $login->login_name,
+            'email_old' => $old_email,
+            'email_new' => $new_email
+        ));
 
         return array($login, $new_email, $token_id);
     }
@@ -415,7 +441,24 @@ class Auth_Login_Model extends ORM implements Zend_Acl_Resource_Interface
                 $data->add_error('locked_out', 'locked_out');
                 $is_valid = false;
             }
+            if (!$is_valid) {
+                $profile = $login->find_default_profile_for_login();
+                if ($profile->loaded && 'admin' == $profile->role) {
+                    cef_logging::log(
+                        cef_logging::ACCESS_CONTROL_VIOLATION, 
+                        'Admin Invalid Login', 5, 
+                        array( 'suser' => $login->login_name )
+                    );
+                } else {
+                    cef_logging::log(
+                        cef_logging::ACCESS_CONTROL_VIOLATION, 
+                        'Invalid Login', 7, 
+                        array( 'suser' => $login->login_name )
+                    );
+                }
+            }
         }
+
         
         return $is_valid;
     }

@@ -27,6 +27,12 @@ class Local_Controller extends TwigRender_Controller {
         header('403 Forbidden');
         $this->view->set_filename('forbidden');
         $this->render();
+
+        cef_logging::log(
+            cef_logging::ACCESS_CONTROL_VIOLATION, 
+            'Access Control Violation', 5
+        );
+
         exit();
     }
 
