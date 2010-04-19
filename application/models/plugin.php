@@ -124,7 +124,7 @@ class Plugin_Model extends ORM_Resource {
 
         // Fill up the meta section from plugin columns.
         $plugin_skip_names = array(
-            'id', 'os_id', 'modified', 'created'
+            'id', 'os_id'
         );
         foreach ($this->table_columns as $name=>$info) {
             // Skip empty columns and columns named for skip.
@@ -200,6 +200,8 @@ class Plugin_Model extends ORM_Resource {
 
         // Grab the overall metadata for the plugin.
         $meta = $plugin_data['meta'];
+        unset($meta['created']);
+        unset($meta['modified']);
 
         // Delete the plugin before replacing the data.
         if ($delete_first) {
@@ -265,6 +267,8 @@ class Plugin_Model extends ORM_Resource {
                 Plugin_Model::$defaults, PluginRelease_Model::$defaults, 
                 $meta, $release_data
             );
+            unset($release_data['created']);
+            unset($release_data['modified']);
 
             if (empty($release_data['detection_type'])) {
                 $release_data['detection_type'] = 'original';

@@ -2,6 +2,8 @@
 
 $config['pfs/v2'] = 'search/pfs_v2';
 
+$config['index.json'] = 'plugins/index_json';
+
 $config['plugins/?;create'] = 'plugins/create';
 
 $config['plugins/detail/([^\.]+).json'] = 'plugins/detail/$1/json';

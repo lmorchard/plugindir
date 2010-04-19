@@ -16,6 +16,26 @@ class Plugins_Controller extends Local_Controller {
         parent::__construct();
     }
 
+    /**
+     * Produce a JSON index of all plugins with release counts.
+     */
+    function index_json(){
+        $this->auto_render = FALSE;
+        $name_counts = ORM::factory('plugin')->find_release_counts();
+        $out = array();
+        foreach ($name_counts as $count) {
+            $out[] = array(
+                'pfs_id'        => $count->pfs_id,
+                'name'          => $count->name,
+                'release_count' => $count->count,
+                'description'   => $count->description,
+                'modified'      => $count->modified,
+                'href'          => url::site('plugins/detail/' . 
+                    $count->pfs_id . '.json')
+            );
+        }
+        return json::render($out, $this->input->get('callback'));
+    }
 
     /**
      * Accept plugin data contributions.
