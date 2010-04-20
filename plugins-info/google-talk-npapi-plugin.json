@@ -1,0 +1,35 @@
+{
+    "meta": {
+        "created": "2010-03-18 20:31:32", 
+        "pfs_id": "google-talk-npapi-plugin", 
+        "modified": "2010-03-18 21:30:30", 
+        "name": "Google Talk NPAPI Plugin"
+    }, 
+    "releases": [
+        {
+            "status": "latest", 
+            "os_name": "*", 
+            "filename": "googletalkbrowserplugin.plugin", 
+            "platform": {
+                "app_release": "*", 
+                "locale": "*", 
+                "app_version": "*", 
+                "app_id": "*"
+            }, 
+            "detection_type": "version_available", 
+            "version": "1.0.20.8768", 
+            "detected_version": "1.0.20.8768"
+        }
+    ], 
+    "mimes": [
+        "application/googletalk"
+    ], 
+    "aliases": {
+        "regex": [
+            ".*Google Talk.*"
+        ], 
+        "literal": [
+            "Google Talk NPAPI Plugin"
+        ]
+    }
+}

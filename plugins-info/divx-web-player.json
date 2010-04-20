@@ -1,42 +1,78 @@
 {
     "meta": {
-        "pfs_id": "divx-web-player",
-        "name": "DivX® Web Player",
-        "description": "DivX Web Player lets you play up to HD-quality DivX® video in your web browser. You can also use DivX Web Player to easily embed DivX videos onto your website or blog.",
-        "vendor": "DivX, Inc",
-        "platform": {
-            "app_id": "*"
-        }
-    },
-    "aliases": {
-        "literal": ["DivX Web Player"],
-        "regex": ["DivX.? Web Player"]
-    },
-    "mimes": [
-        "video/divx"
-    ],
+        "vendor": "DivX, Inc", 
+        "description": "DivX Web Player lets you play up to HD-quality DivX\u00ae video in your web browser. You can also use DivX Web Player to easily embed DivX videos onto your website or blog.", 
+        "created": "2010-01-06 19:50:44", 
+        "modified": "2010-03-21 17:30:02", 
+        "name": "DivX\u00ae Web Player", 
+        "pfs_id": "divx-web-player"
+    }, 
     "releases": [
         {
-            "os_name": "win",
-            "version": "1.5",
-            "url": "http://www.divx.com/en/web-player-windows",
-            "status": "latest"
-        },
+            "status": "latest", 
+            "os_name": "win", 
+            "url": "http://www.divx.com/en/web-player-windows", 
+            "platform": {
+                "app_release": "*", 
+                "locale": "*", 
+                "app_version": "*", 
+                "app_id": "*"
+            }, 
+            "detection_type": "original", 
+            "version": "1.5", 
+            "detected_version": "1.5"
+        }, 
         {
-            "os_name": "mac",
-            "version": "1.4.1.4",
-            "url": "http://www.divx.com/en/products/software/mac/divx",
-            "status": "latest"
-        },
+            "status": "latest", 
+            "os_name": "mac", 
+            "url": "http://www.divx.com/en/products/software/mac/divx", 
+            "platform": {
+                "app_release": "*", 
+                "locale": "*", 
+                "app_version": "*", 
+                "app_id": "*"
+            }, 
+            "detection_type": "original", 
+            "version": "1.4.1.4", 
+            "detected_version": "1.4.1.4"
+        }, 
         {
-            "os_name": "*",
-            "version": "1.4.1.4",
-            "status": "outdated"
-        },
+            "status": "outdated", 
+            "os_name": "*", 
+            "platform": {
+                "app_release": "*", 
+                "locale": "*", 
+                "app_version": "*", 
+                "app_id": "*"
+            }, 
+            "detection_type": "original", 
+            "version": "1.4.1.4", 
+            "detected_version": "1.4.1.4"
+        }, 
         {
-            "os_name": "*",
-            "version": "1.4.0.233",
-            "status": "outdated"
+            "status": "outdated", 
+            "os_name": "*", 
+            "platform": {
+                "app_release": "*", 
+                "locale": "*", 
+                "app_version": "*", 
+                "app_id": "*"
+            }, 
+            "detection_type": "original", 
+            "version": "1.4.0.233", 
+            "detected_version": "1.4.0.233"
         }
-    ]
+    ], 
+    "mimes": [
+        "video/divx"
+    ], 
+    "aliases": {
+        "regex": [
+            "DivX.? Web Player"
+        ], 
+        "literal": [
+            "DivX Web Player", 
+            "DivX\u00ae Web Player"
+        ]
+    }
 }

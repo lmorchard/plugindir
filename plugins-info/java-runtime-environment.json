@@ -1,36 +1,47 @@
 {
     "meta": {
-        "pfs_id": "java-runtime-environment", 
-        "name": "Java Runtime Environment",
         "vendor": "Sun Microsystems", 
-        "platform": {
-            "app_id": "*"
-        }, 
+        "pfs_id": "java-runtime-environment", 
+        "created": "2010-01-06 19:50:44", 
         "url": "http://www.java.com/en/download/manual.jsp", 
-        "manual_installation_url": "http://java.com/firefoxjre"
+        "modified": "2010-03-21 17:30:02", 
+        "name": "Java Runtime Environment"
     }, 
-    "aliases": {
-        "regex": [ "Java Embedding Plugin .*", "Java.* Platform SE.*", ".*Java Deployment Toolkit.*" ]
-    },
     "releases": [
         {
-            "version": "1.5.0.19",
+            "status": "latest", 
+            "os_name": "windows nt 6.0", 
+            "platform": {
+                "app_release": "*", 
+                "locale": "*", 
+                "app_version": "*", 
+                "app_id": "*"
+            }, 
             "installer_location": "http://java.com/firefoxjre_exe", 
-            "guid": "{fbe640ef-4375-4f45-8d79-767d60bf75b8}", 
             "installer_hash": "sha1:89a78d34a36d7e25cc32b1a507a2cd6fb87dd40a", 
-            "needs_restart": "false", 
-            "os_name": "windows nt 6.0",
-            "url": "http://www.java.com/en/download/manual.jsp"
+            "manual_installation_url": "http://java.com/firefoxjre", 
+            "detection_type": "original", 
+            "version": "1.5.0.19", 
+            "guid": "{fbe640ef-4375-4f45-8d79-767d60bf75b8}", 
+            "detected_version": "1.5.0.19"
         }, 
         {
-            "version": "1.5.0.19",
+            "status": "latest", 
+            "os_name": "*", 
+            "manual_installation_url": "http://java.com/firefoxjre", 
+            "platform": {
+                "app_release": "*", 
+                "locale": "*", 
+                "app_version": "*", 
+                "app_id": "*"
+            }, 
+            "detection_type": "original", 
+            "version": "1.5.0.19", 
             "guid": "{fbe640ef-4375-4f45-8d79-767d60bf75b8}", 
-            "os_name": "*",
-            "url": "http://www.java.com/en/download/manual.jsp"
+            "detected_version": "1.5.0.19"
         }
     ], 
     "mimes": [
-        "application/npruntime-scriptable-plugin",
         "application/x-java-vm", 
         "application/x-java-applet;jpi-version=1.5", 
         "application/x-java-bean;jpi-version=1.5", 
@@ -61,6 +72,17 @@
         "application/x-java-applet;version=1.1", 
         "application/x-java-bean;version=1.1", 
         "application/x-java-applet", 
-        "application/x-java-bean"
-    ]
+        "application/x-java-bean", 
+        "application/npruntime-scriptable-plugin"
+    ], 
+    "aliases": {
+        "regex": [
+            "Java Embedding Plugin .*", 
+            "Java.* Platform SE.*", 
+            ".*Java Deployment Toolkit.*"
+        ], 
+        "literal": [
+            "Java Runtime Environment"
+        ]
+    }
 }

@@ -1,0 +1,49 @@
+{
+    "meta": {
+        "created": "2010-03-10 17:50:23", 
+        "pfs_id": "microsoft-drm", 
+        "modified": "2010-03-10 17:55:34", 
+        "name": "Microsoft DRM"
+    }, 
+    "releases": [
+        {
+            "status": "latest", 
+            "os_name": "*", 
+            "filename": "npwmsdrm.dll", 
+            "platform": {
+                "app_release": "*", 
+                "locale": "*", 
+                "app_version": "*", 
+                "app_id": "*"
+            }, 
+            "detection_type": "version_available", 
+            "version": "9.0.0.4503", 
+            "detected_version": "9.0.0.4503"
+        }, 
+        {
+            "status": "latest", 
+            "os_name": "*", 
+            "platform": {
+                "app_release": "*", 
+                "locale": "*", 
+                "app_version": "*", 
+                "app_id": "*"
+            }, 
+            "detection_type": "original", 
+            "version": "9.0.0.4503", 
+            "detected_version": "9.0.0.4503"
+        }
+    ], 
+    "mimes": [
+        "application/x-drm"
+    ], 
+    "aliases": {
+        "regex": [
+            "Microsoft. DRM"
+        ], 
+        "literal": [
+            "Microsoft\u00ae DRM", 
+            "Microsoft DRM"
+        ]
+    }
+}

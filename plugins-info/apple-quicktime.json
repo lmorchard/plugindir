@@ -1,53 +1,123 @@
 {
     "meta": {
-        "pfs_id": "apple-quicktime", 
-        "name": "QuickTime Plug-in",
         "vendor": "Apple", 
-        "platform": {
-            "app_id": "*"
-        }, 
+        "pfs_id": "apple-quicktime", 
+        "created": "2010-02-18 20:45:02", 
         "url": "http://www.apple.com/quicktime/download/", 
-        "manual_installation_url": "http://www.apple.com/quicktime/download/"
+        "modified": "2010-03-21 17:30:02", 
+        "name": "QuickTime Plug-in"
     }, 
-    "aliases": {
-        "regex": [ ".*QuickTime.*" ]
-    },
     "releases": [
-        { 
-            "version": "7.6.3.0",
-            "guid": "{a42bb825-7eee-420f-8ee7-834062b6fefd}", 
-            "os_name": "intel mac os x 10.6",
-            "status": "latest"
-        },    
         {
-            "version": "7.6.4.0",
+            "status": "latest", 
+            "os_name": "intel mac os x 10.6", 
+            "manual_installation_url": "http://www.apple.com/quicktime/download/", 
+            "platform": {
+                "app_release": "*", 
+                "locale": "*", 
+                "app_version": "*", 
+                "app_id": "*"
+            }, 
+            "detection_type": "original", 
+            "version": "7.6.3.0", 
             "guid": "{a42bb825-7eee-420f-8ee7-834062b6fefd}", 
-            "os_name": "win",
-            "status": "latest"
+            "detected_version": "7.6.3.0"
         }, 
         {
-            "version": "7.6.4.0",
+            "status": "latest", 
+            "os_name": "win", 
+            "manual_installation_url": "http://www.apple.com/quicktime/download/", 
+            "platform": {
+                "app_release": "*", 
+                "locale": "*", 
+                "app_version": "*", 
+                "app_id": "*"
+            }, 
+            "detection_type": "original", 
+            "version": "7.6.4.0", 
             "guid": "{a42bb825-7eee-420f-8ee7-834062b6fefd}", 
-            "os_name": "mac",
-            "status": "latest"
+            "detected_version": "7.6.4.0"
+        }, 
+        {
+            "status": "latest", 
+            "os_name": "mac", 
+            "manual_installation_url": "http://www.apple.com/quicktime/download/", 
+            "platform": {
+                "app_release": "*", 
+                "locale": "*", 
+                "app_version": "*", 
+                "app_id": "*"
+            }, 
+            "detection_type": "original", 
+            "version": "7.6.4.0", 
+            "guid": "{a42bb825-7eee-420f-8ee7-834062b6fefd}", 
+            "detected_version": "7.6.4.0"
         }
     ], 
     "mimes": [
-        "application/sdp", "application/x-sdp", "application/x-rtsp", 
-        "video/quicktime", "video/flc", "audio/x-wav", "audio/wav", 
-        "audio/aiff", "audio/x-aiff", "audio/basic", "audio/mid", 
-        "audio/x-midi", "audio/midi", "audio/vnd.qcelp", "audio/x-gsm", 
-        "audio/AMR", "audio/aac", "audio/x-aac", "audio/x-caf", 
-        "audio/ac3", "audio/x-ac3", "audio/vnd.qcelp", "video/x-mpeg", 
-        "video/mpeg", "audio/mpeg", "audio/x-mpeg", "video/3gpp", 
-        "audio/3gpp", "video/3gpp2", "audio/3gpp2", "video/sd-video", 
-        "application/x-mpeg", "video/mp4", "audio/mp4", "audio/x-m4a", 
-        "audio/x-m4p", "audio/x-m4b", "video/x-m4v", "audio/mpeg", 
-        "audio/x-mpeg", "audio/mp3", "audio/x-mp3", "audio/mpeg3", 
-        "audio/x-mpeg3", "image/x-bmp", "image/x-macpaint", "image/pict", 
-        "image/x-pict", "image/png", "image/x-png", "image/x-quicktime", 
-        "image/x-sgi", "image/x-targa", "image/tiff", "image/x-tiff", 
-        "image/jp2", "image/jpeg2000", "image/jpeg2000-image", 
+        "application/sdp", 
+        "application/x-sdp", 
+        "application/x-rtsp", 
+        "video/quicktime", 
+        "video/flc", 
+        "audio/x-wav", 
+        "audio/wav", 
+        "audio/aiff", 
+        "audio/x-aiff", 
+        "audio/basic", 
+        "audio/mid", 
+        "audio/x-midi", 
+        "audio/midi", 
+        "audio/vnd.qcelp", 
+        "audio/x-gsm", 
+        "audio/AMR", 
+        "audio/aac", 
+        "audio/x-aac", 
+        "audio/x-caf", 
+        "audio/ac3", 
+        "audio/x-ac3", 
+        "video/x-mpeg", 
+        "video/mpeg", 
+        "audio/mpeg", 
+        "audio/x-mpeg", 
+        "video/3gpp", 
+        "audio/3gpp", 
+        "video/3gpp2", 
+        "audio/3gpp2", 
+        "video/sd-video", 
+        "application/x-mpeg", 
+        "video/mp4", 
+        "audio/mp4", 
+        "audio/x-m4a", 
+        "audio/x-m4p", 
+        "audio/x-m4b", 
+        "video/x-m4v", 
+        "audio/mp3", 
+        "audio/x-mp3", 
+        "audio/mpeg3", 
+        "audio/x-mpeg3", 
+        "image/x-bmp", 
+        "image/x-macpaint", 
+        "image/pict", 
+        "image/x-pict", 
+        "image/png", 
+        "image/x-png", 
+        "image/x-quicktime", 
+        "image/x-sgi", 
+        "image/x-targa", 
+        "image/tiff", 
+        "image/x-tiff", 
+        "image/jp2", 
+        "image/jpeg2000", 
+        "image/jpeg2000-image", 
         "image/x-jpeg2000-image"
-    ]
+    ], 
+    "aliases": {
+        "regex": [
+            ".*QuickTime.*"
+        ], 
+        "literal": [
+            "QuickTime Plug-in"
+        ]
+    }
 }

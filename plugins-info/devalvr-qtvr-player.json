@@ -1,0 +1,35 @@
+{
+    "meta": {
+        "created": "2010-03-22 16:46:43", 
+        "pfs_id": "devalvr-qtvr-player", 
+        "modified": "2010-03-22 16:47:56", 
+        "name": "DevalVR - QTVR player"
+    }, 
+    "releases": [
+        {
+            "status": "latest", 
+            "os_name": "*", 
+            "filename": "jaronlanier.dll", 
+            "platform": {
+                "app_release": "*", 
+                "locale": "*", 
+                "app_version": "*", 
+                "app_id": "*"
+            }, 
+            "detection_type": "*", 
+            "version": "0.7.9.20", 
+            "detected_version": "0.7.9.20"
+        }
+    ], 
+    "mimes": [
+        "application/x-devalvrx"
+    ], 
+    "aliases": {
+        "regex": [
+            ".*DevalVR.*"
+        ], 
+        "literal": [
+            "DevalVR - QTVR player"
+        ]
+    }
+}

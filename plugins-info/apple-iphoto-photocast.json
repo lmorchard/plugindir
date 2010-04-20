@@ -1,25 +1,34 @@
 {
     "meta": {
-        "pfs_id": "apple-iphoto-photocast",
-        "name":"iPhotoPhotocast",
-        "vendor": "Apple Computers",
-        "platform": {
-            "app_id": "*"
-        },
-        "url": "http://www.apple.com/ilife/iphoto/"
-    },
-    "aliases": {
-        "literal": ["iPhotoPhotocast"],
-        "regex": []
-    },
-    "mimes": [
-         "application/photo"
-    ],
+        "vendor": "Apple Computers", 
+        "pfs_id": "apple-iphoto-photocast", 
+        "created": "2010-01-06 19:50:44", 
+        "url": "http://www.apple.com/ilife/iphoto/", 
+        "modified": "2010-03-21 17:30:01", 
+        "name": "iPhotoPhotocast"
+    }, 
     "releases": [
         {
-            "os_name": "*",
-            "version": "6",
-            "status": "latest"
+            "status": "latest", 
+            "os_name": "*", 
+            "platform": {
+                "app_release": "*", 
+                "locale": "*", 
+                "app_version": "*", 
+                "app_id": "*"
+            }, 
+            "detection_type": "original", 
+            "version": "6", 
+            "detected_version": "6"
         }
-    ]
+    ], 
+    "mimes": [
+        "application/photo"
+    ], 
+    "aliases": {
+        "regex": [], 
+        "literal": [
+            "iPhotoPhotocast"
+        ]
+    }
 }

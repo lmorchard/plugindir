@@ -1,27 +1,36 @@
 {
     "meta": {
-        "pfs_id": "realplayer-version",
-        "name": "RealPlayer Version Plugin",
-        "vendor": "RealNetworks",
-        "platform": {
-            "app_id": "*"
-        },
-        "url": "http://www.real.com/realplayer/rp11free"
-    },
-    "aliases": {
-        "literal": [],
-        "regex": []
-    },
-    "mimes": [
-        "application/vnd.rn-realplayer-javascript"
-    ],
+        "vendor": "RealNetworks", 
+        "pfs_id": "realplayer-version", 
+        "created": "2010-01-06 19:50:45", 
+        "url": "http://www.real.com/realplayer/rp11free", 
+        "modified": "2010-03-21 17:30:02", 
+        "name": "RealPlayer Version Plugin"
+    }, 
     "releases": [
         {
-            "os_name": "*",
-            "version": "6.0.12.448",
-            "name": "RealPlayer Version Plugin",
-            "filename": "nprpjplug.dll",
-            "manual_installation_url": "http://software-download.real.com/26edeb6dd3ffcc2b7722/windows/installer/stubinst/stub/rp11/R41RD01/RealPlayer11GOLD.exe"
+            "status": "latest", 
+            "os_name": "*", 
+            "manual_installation_url": "http://software-download.real.com/26edeb6dd3ffcc2b7722/windows/installer/stubinst/stub/rp11/R41RD01/RealPlayer11GOLD.exe", 
+            "filename": "nprpjplug.dll", 
+            "platform": {
+                "app_release": "*", 
+                "locale": "*", 
+                "app_version": "*", 
+                "app_id": "*"
+            }, 
+            "detection_type": "original", 
+            "version": "6.0.12.448", 
+            "detected_version": "6.0.12.448"
         }
-    ]
+    ], 
+    "mimes": [
+        "application/vnd.rn-realplayer-javascript"
+    ], 
+    "aliases": {
+        "regex": [], 
+        "literal": [
+            "RealPlayer Version Plugin"
+        ]
+    }
 }

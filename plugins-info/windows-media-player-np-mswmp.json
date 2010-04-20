@@ -1,29 +1,45 @@
 {
     "meta": {
-        "pfs_id": "windows-media-player-np-mswmp",
-        "name":"Microsoft® Windows Media Player Firefox Plugin",
-        "vendor": "Microsoft",
-        "platform": {
-            "app_id": "*"
-        },
-        "filename": "np-mswmp.dll",
-        "url": "http://port25.technet.com/pages/windows-media-player-firefox-plugin-download.aspx"
-    },
-    "aliases": {
-        "literal": [],
-        "regex": []
-    },
-    "mimes": [
-        "application/x-ms-wmp","application/asx","video/x-ms-asf-plugin",
-        "application/x-mplayer2","video/x-ms-asf","video/x-ms-wm",
-        "audio/x-ms-wma","audio/x-ms-wax","video/x-ms-wmv","video/x-ms-wvx"
-    ],
+        "vendor": "Microsoft", 
+        "pfs_id": "windows-media-player-np-mswmp", 
+        "created": "2010-01-06 19:50:45", 
+        "url": "http://port25.technet.com/pages/windows-media-player-firefox-plugin-download.aspx", 
+        "modified": "2010-03-21 17:30:02", 
+        "name": "Microsoft\u00ae Windows Media Player Firefox Plugin"
+    }, 
     "releases": [
         {
-            "version": "1.0.0.8",
-            "manual_installation_url": "http://port25.technet.com/videos/downloads/wmpfirefoxplugin.exe",
-            "os_name": "win",
-            "status": "latest"
+            "status": "latest", 
+            "os_name": "win", 
+            "manual_installation_url": "http://port25.technet.com/videos/downloads/wmpfirefoxplugin.exe", 
+            "filename": "np-mswmp.dll", 
+            "platform": {
+                "app_release": "*", 
+                "locale": "*", 
+                "app_version": "*", 
+                "app_id": "*"
+            }, 
+            "detection_type": "original", 
+            "version": "1.0.0.8", 
+            "detected_version": "1.0.0.8"
         }
-    ]
+    ], 
+    "mimes": [
+        "application/x-mplayer2", 
+        "video/x-ms-asf-plugin", 
+        "video/x-ms-asf", 
+        "video/x-ms-wmv", 
+        "audio/x-ms-wma", 
+        "application/asx", 
+        "video/x-ms-wm", 
+        "audio/x-ms-wax", 
+        "video/x-ms-wvx", 
+        "application/x-ms-wmp"
+    ], 
+    "aliases": {
+        "regex": [], 
+        "literal": [
+            "Microsoft\u00ae Windows Media Player Firefox Plugin"
+        ]
+    }
 }

@@ -1,31 +1,53 @@
 {
     "meta": {
-        "pfs_id": "microsoft-silverlight",
-        "name":"Silverlight Plug-In",
-        "vendor": "Microsoft",
-        "platform": {
-            "app_id": "*"
-        },
-        "url": "http://www.microsoft.com/silverlight/get-started/install/default.aspx"
-    },
-    "aliases": {
-        "literal": [],
-        "regex": []
-    },
-    "mimes": [
-        "application/x-silverlight", "application/x-silverlight-2"
-    ],
+        "vendor": "Microsoft", 
+        "pfs_id": "microsoft-silverlight", 
+        "created": "2010-02-19 00:09:07", 
+        "url": "http://www.microsoft.com/silverlight/get-started/install/default.aspx", 
+        "modified": "2010-03-26 17:30:10", 
+        "name": "Silverlight Plug-In"
+    }, 
     "releases": [
         {
-            "os_name": "win",
-            "version": "3.0.40818.0",
-            "filename": "npctrl.dll",
-            "manual_installation_url": "http://silverlight.dlservice.microsoft.com/download/C/5/B/C5BB5CD8-E871-49AC-8A40-61010E1FD1CF/Silverlight.exe"
-        },
+            "status": "latest", 
+            "os_name": "win", 
+            "manual_installation_url": "http://silverlight.dlservice.microsoft.com/download/C/5/B/C5BB5CD8-E871-49AC-8A40-61010E1FD1CF/Silverlight.exe", 
+            "filename": "npctrl.dll", 
+            "platform": {
+                "app_release": "*", 
+                "locale": "*", 
+                "app_version": "*", 
+                "app_id": "*"
+            }, 
+            "detection_type": "*", 
+            "version": "3.0.40818.0", 
+            "detected_version": "3.0.40818.0"
+        }, 
         {
-            "os_name": "mac",
-            "version": "3.0.40818.0",
-            "filename": "Silverlight.plugin"
+            "status": "latest", 
+            "os_name": "mac", 
+            "filename": "Silverlight.plugin", 
+            "platform": {
+                "app_release": "*", 
+                "locale": "*", 
+                "app_version": "*", 
+                "app_id": "*"
+            }, 
+            "detection_type": "*", 
+            "version": "3.0.40818.0", 
+            "detected_version": "3.0.40818.0"
         }
-    ]
+    ], 
+    "mimes": [
+        "application/x-silverlight", 
+        "application/x-silverlight-2"
+    ], 
+    "aliases": {
+        "regex": [
+            ".*Silverlight.*"
+        ], 
+        "literal": [
+            "Silverlight Plug-In"
+        ]
+    }
 }

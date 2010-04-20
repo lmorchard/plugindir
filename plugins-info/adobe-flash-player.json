@@ -1,139 +1,268 @@
 {
     "meta": {
-        "pfs_id": "adobe-flash-player",
         "vendor": "Adobe", 
-        "name": "Adobe Flash Player", 
-        "platform": {
-            "app_id": "*"
-        }, 
+        "pfs_id": "adobe-flash-player", 
+        "created": "2010-02-18 20:45:02", 
         "url": "http://www.adobe.com/go/getflashplayer", 
+        "modified": "2010-03-21 17:30:01", 
         "license_url": "http://www.adobe.com/go/eula_flashplayer", 
-        "version": "10.0.32.0"
+        "name": "Adobe Flash Player"
     }, 
-    "aliases": {
-        "literal": [
-            "Shockwave Flash",
-            "Adobe Flash Player"
-        ],
-        "regex": [ ".*Flash.*" ]
-    },
-    "mimes": [
-        "application/x-shockwave-flash",
-        "application/futuresplash"
-    ],
     "releases": [
         {
-            "version": "10.0.22.87",
-            "vulnerability_url": "http://www.adobe.com/support/security/bulletins/apsb09-10.html"
-        },
-        {
-            "version": "9.0.159.0",
-            "vulnerability_url": "http://www.adobe.com/support/security/bulletins/apsb09-10.html"
-        },
-        {
-            "version": "9.0.115.0",
-            "vulnerability_url": "http://documents.iss.net/whitepapers/IBM_X-Force_WP_final.pdf"
-        },
-        {
-            "guid": "{4cfaef8a-a6c9-41a0-8e6f-967eb8f49143}", 
-            "os_name": "windows nt 6.0"
-        }, 
-        {
-            "guid": "{4cfaef8a-a6c9-41a0-8e6f-967eb8f49143}", 
-            "xpi_location": "http://fpdownload.macromedia.com/get/flashplayer/xpi/current/flashplayer-win.xpi", 
-            "os_name": "win"
-        }, 
-        {
-            "guid": "{7a646d7b-0202-4491-9151-cf66fa0722b2}", 
-            "xpi_location": "http://fpdownload.macromedia.com/get/flashplayer/xpi/current/flashplayer-linux.xpi", 
-            "os_name": "linux"
-        }, 
-        {
-            "guid": "{89977581-9028-4be0-b151-7c4f9bcd3211}", 
-            "xpi_location": "http://fpdownload.macromedia.com/get/flashplayer/xpi/current/flashplayer-mac.xpi", 
-            "os_name": "mac"
-        }, 
-        {
-            "guid": "{0ae66efd-e183-431a-ab51-3af2c278a3dd}", 
-            "xpi_location": "http://download.macromedia.com/pub/flashplayer/xpi/current/flashplayer-solaris-sparc.xpi", 
-            "os_name": "sunos sun4u"
-        }, 
-        {
-            "guid": "{0ae66efd-e183-431a-ab51-3af2c278a3dd}", 
-            "xpi_location": "http://download.macromedia.com/pub/flashplayer/xpi/current/flashplayer-solaris-x86.xpi", 
-            "os_name": "sunos"
-        },
-        {
+            "status": "latest", 
+            "os_name": "mac", 
             "platform": {
+                "app_release": "3.5", 
                 "locale": "ja-JP", 
+                "app_version": "*", 
                 "app_id": "{ec8030f7-c20a-464f-9b0e-13a3a9e97384}"
             }, 
-            "license_url": "http://www.adobe.com/go/eula_flashplayer_jp", 
-            "guid": "{4cfaef8a-a6c9-41a0-8e6f-967eb8f49143}", 
-            "os_name": "windows nt 6.0"
-        }, 
-        {
-            "platform": {
-                "locale": "ja-JP", 
-                "app_id": "{ec8030f7-c20a-464f-9b0e-13a3a9e97384}"
-            }, 
-            "license_url": "http://www.adobe.com/go/eula_flashplayer_jp", 
-            "guid": "{4cfaef8a-a6c9-41a0-8e6f-967eb8f49143}", 
-            "xpi_location": "http://fpdownload.macromedia.com/get/flashplayer/xpi/current/flashplayer-win.xpi", 
-            "os_name": "win"
-        }, 
-        {
-            "platform": {
-                "locale": "ja-JP", 
-                "app_id": "{ec8030f7-c20a-464f-9b0e-13a3a9e97384}"
-            }, 
-            "license_url": "http://www.adobe.com/go/eula_flashplayer_jp", 
-            "guid": "{7a646d7b-0202-4491-9151-cf66fa0722b2}", 
-            "xpi_location": "http://fpdownload.macromedia.com/get/flashplayer/xpi/current/flashplayer-linux.xpi", 
-            "os_name": "linux"
-        }, 
-        {
-            "platform": {
-                "locale": "ja-JP", 
-                "app_id": "{ec8030f7-c20a-464f-9b0e-13a3a9e97384}",
-                "app_release": "3.5"
-            }, 
-            "license_url": "http://www.adobe.com/go/eula_flashplayer_jp", 
-            "guid": "{89977581-9028-4be0-b151-7c4f9bcd3211}", 
-            "xpi_location": "http://fpdownload.macromedia.com/get/flashplayer/xpi/current/flashplayer-mac.xpi", 
+            "detection_type": "original", 
             "version": "11.0.0.0", 
-            "os_name": "mac"
-        }, 
-        {
-            "platform": {
-                "locale": "ja-JP", 
-                "app_id": "{ec8030f7-c20a-464f-9b0e-13a3a9e97384}",
-                "app_release": "3.5"
-            }, 
             "license_url": "http://www.adobe.com/go/eula_flashplayer_jp", 
             "guid": "{89977581-9028-4be0-b151-7c4f9bcd3211}", 
             "xpi_location": "http://fpdownload.macromedia.com/get/flashplayer/xpi/current/flashplayer-mac.xpi", 
-            "os_name": "mac"
+            "detected_version": "11.0.0.0"
         }, 
         {
+            "status": "latest", 
+            "os_name": "*", 
             "platform": {
+                "app_release": "*", 
+                "locale": "*", 
+                "app_version": "*", 
+                "app_id": "*"
+            }, 
+            "vulnerability_url": "http://documents.iss.net/whitepapers/IBM_X-Force_WP_final.pdf", 
+            "detection_type": "original", 
+            "version": "9.0.115.0", 
+            "detected_version": "9.0.115.0"
+        }, 
+        {
+            "status": "latest", 
+            "os_name": "windows nt 6.0", 
+            "platform": {
+                "app_release": "*", 
+                "locale": "*", 
+                "app_version": "*", 
+                "app_id": "*"
+            }, 
+            "detection_type": "original", 
+            "version": "10.0.32.0", 
+            "guid": "{4cfaef8a-a6c9-41a0-8e6f-967eb8f49143}", 
+            "detected_version": "10.0.32.0"
+        }, 
+        {
+            "status": "latest", 
+            "os_name": "win", 
+            "platform": {
+                "app_release": "*", 
+                "locale": "*", 
+                "app_version": "*", 
+                "app_id": "*"
+            }, 
+            "detection_type": "original", 
+            "version": "10.0.32.0", 
+            "guid": "{4cfaef8a-a6c9-41a0-8e6f-967eb8f49143}", 
+            "xpi_location": "http://fpdownload.macromedia.com/get/flashplayer/xpi/current/flashplayer-win.xpi", 
+            "detected_version": "10.0.32.0"
+        }, 
+        {
+            "status": "latest", 
+            "os_name": "linux", 
+            "platform": {
+                "app_release": "*", 
+                "locale": "*", 
+                "app_version": "*", 
+                "app_id": "*"
+            }, 
+            "detection_type": "original", 
+            "version": "10.0.32.0", 
+            "guid": "{7a646d7b-0202-4491-9151-cf66fa0722b2}", 
+            "xpi_location": "http://fpdownload.macromedia.com/get/flashplayer/xpi/current/flashplayer-linux.xpi", 
+            "detected_version": "10.0.32.0"
+        }, 
+        {
+            "status": "latest", 
+            "os_name": "mac", 
+            "platform": {
+                "app_release": "*", 
+                "locale": "*", 
+                "app_version": "*", 
+                "app_id": "*"
+            }, 
+            "detection_type": "original", 
+            "version": "10.0.32.0", 
+            "guid": "{89977581-9028-4be0-b151-7c4f9bcd3211}", 
+            "xpi_location": "http://fpdownload.macromedia.com/get/flashplayer/xpi/current/flashplayer-mac.xpi", 
+            "detected_version": "10.0.32.0"
+        }, 
+        {
+            "status": "latest", 
+            "os_name": "sunos sun4u", 
+            "platform": {
+                "app_release": "*", 
+                "locale": "*", 
+                "app_version": "*", 
+                "app_id": "*"
+            }, 
+            "detection_type": "original", 
+            "version": "10.0.32.0", 
+            "guid": "{0ae66efd-e183-431a-ab51-3af2c278a3dd}", 
+            "xpi_location": "http://download.macromedia.com/pub/flashplayer/xpi/current/flashplayer-solaris-sparc.xpi", 
+            "detected_version": "10.0.32.0"
+        }, 
+        {
+            "status": "latest", 
+            "os_name": "sunos", 
+            "platform": {
+                "app_release": "*", 
+                "locale": "*", 
+                "app_version": "*", 
+                "app_id": "*"
+            }, 
+            "detection_type": "original", 
+            "version": "10.0.32.0", 
+            "guid": "{0ae66efd-e183-431a-ab51-3af2c278a3dd}", 
+            "xpi_location": "http://download.macromedia.com/pub/flashplayer/xpi/current/flashplayer-solaris-x86.xpi", 
+            "detected_version": "10.0.32.0"
+        }, 
+        {
+            "status": "latest", 
+            "os_name": "windows nt 6.0", 
+            "platform": {
+                "app_release": "*", 
                 "locale": "ja-JP", 
+                "app_version": "*", 
                 "app_id": "{ec8030f7-c20a-464f-9b0e-13a3a9e97384}"
             }, 
+            "detection_type": "original", 
+            "version": "10.0.32.0", 
+            "license_url": "http://www.adobe.com/go/eula_flashplayer_jp", 
+            "guid": "{4cfaef8a-a6c9-41a0-8e6f-967eb8f49143}", 
+            "detected_version": "10.0.32.0"
+        }, 
+        {
+            "status": "latest", 
+            "os_name": "win", 
+            "platform": {
+                "app_release": "*", 
+                "locale": "ja-JP", 
+                "app_version": "*", 
+                "app_id": "{ec8030f7-c20a-464f-9b0e-13a3a9e97384}"
+            }, 
+            "detection_type": "original", 
+            "version": "10.0.32.0", 
+            "license_url": "http://www.adobe.com/go/eula_flashplayer_jp", 
+            "guid": "{4cfaef8a-a6c9-41a0-8e6f-967eb8f49143}", 
+            "xpi_location": "http://fpdownload.macromedia.com/get/flashplayer/xpi/current/flashplayer-win.xpi", 
+            "detected_version": "10.0.32.0"
+        }, 
+        {
+            "status": "latest", 
+            "os_name": "linux", 
+            "platform": {
+                "app_release": "*", 
+                "locale": "ja-JP", 
+                "app_version": "*", 
+                "app_id": "{ec8030f7-c20a-464f-9b0e-13a3a9e97384}"
+            }, 
+            "detection_type": "original", 
+            "version": "10.0.32.0", 
+            "license_url": "http://www.adobe.com/go/eula_flashplayer_jp", 
+            "guid": "{7a646d7b-0202-4491-9151-cf66fa0722b2}", 
+            "xpi_location": "http://fpdownload.macromedia.com/get/flashplayer/xpi/current/flashplayer-linux.xpi", 
+            "detected_version": "10.0.32.0"
+        }, 
+        {
+            "status": "latest", 
+            "os_name": "mac", 
+            "platform": {
+                "app_release": "3.5", 
+                "locale": "ja-JP", 
+                "app_version": "*", 
+                "app_id": "{ec8030f7-c20a-464f-9b0e-13a3a9e97384}"
+            }, 
+            "detection_type": "original", 
+            "version": "10.0.32.0", 
+            "license_url": "http://www.adobe.com/go/eula_flashplayer_jp", 
+            "guid": "{89977581-9028-4be0-b151-7c4f9bcd3211}", 
+            "xpi_location": "http://fpdownload.macromedia.com/get/flashplayer/xpi/current/flashplayer-mac.xpi", 
+            "detected_version": "10.0.32.0"
+        }, 
+        {
+            "status": "latest", 
+            "os_name": "sunos sun4u", 
+            "platform": {
+                "app_release": "*", 
+                "locale": "ja-JP", 
+                "app_version": "*", 
+                "app_id": "{ec8030f7-c20a-464f-9b0e-13a3a9e97384}"
+            }, 
+            "detection_type": "original", 
+            "version": "10.0.32.0", 
             "license_url": "http://www.adobe.com/go/eula_flashplayer_jp", 
             "guid": "{0ae66efd-e183-431a-ab51-3af2c278a3dd}", 
             "xpi_location": "http://download.macromedia.com/pub/flashplayer/xpi/current/flashplayer-solaris-sparc.xpi", 
-            "os_name": "sunos sun4u"
+            "detected_version": "10.0.32.0"
         }, 
         {
+            "status": "latest", 
+            "os_name": "sunos", 
             "platform": {
+                "app_release": "*", 
                 "locale": "ja-JP", 
+                "app_version": "*", 
                 "app_id": "{ec8030f7-c20a-464f-9b0e-13a3a9e97384}"
             }, 
+            "detection_type": "original", 
+            "version": "10.0.32.0", 
             "license_url": "http://www.adobe.com/go/eula_flashplayer_jp", 
             "guid": "{0ae66efd-e183-431a-ab51-3af2c278a3dd}", 
             "xpi_location": "http://download.macromedia.com/pub/flashplayer/xpi/current/flashplayer-solaris-x86.xpi", 
-            "os_name": "sunos"
+            "detected_version": "10.0.32.0"
+        }, 
+        {
+            "status": "vulnerable", 
+            "os_name": "*", 
+            "platform": {
+                "app_release": "*", 
+                "locale": "*", 
+                "app_version": "*", 
+                "app_id": "*"
+            }, 
+            "vulnerability_url": "http://www.adobe.com/support/security/bulletins/apsb09-10.html", 
+            "detection_type": "original", 
+            "version": "10.0.22.87", 
+            "detected_version": "10.0.22.87"
+        }, 
+        {
+            "status": "latest", 
+            "os_name": "*", 
+            "platform": {
+                "app_release": "*", 
+                "locale": "*", 
+                "app_version": "*", 
+                "app_id": "*"
+            }, 
+            "vulnerability_url": "http://www.adobe.com/support/security/bulletins/apsb09-10.html", 
+            "detection_type": "original", 
+            "version": "9.0.159.0", 
+            "detected_version": "9.0.159.0"
         }
-    ]
+    ], 
+    "mimes": [
+        "application/x-shockwave-flash", 
+        "application/futuresplash"
+    ], 
+    "aliases": {
+        "regex": [
+            ".*Flash.*"
+        ], 
+        "literal": [
+            "Shockwave Flash", 
+            "Adobe Flash Player"
+        ]
+    }
 }

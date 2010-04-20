@@ -1,0 +1,33 @@
+{
+    "meta": {
+        "created": "2010-02-12 20:58:01", 
+        "pfs_id": "instantactioncom-game-launcher", 
+        "modified": "2010-02-12 20:58:23", 
+        "name": "InstantAction.com Game Launcher"
+    }, 
+    "releases": [
+        {
+            "status": "latest", 
+            "os_name": "mac", 
+            "filename": "Instant Action.plugin", 
+            "platform": {
+                "app_release": "*", 
+                "locale": "*", 
+                "app_version": "*", 
+                "app_id": "*"
+            }, 
+            "detection_type": "version_available", 
+            "version": "1.0", 
+            "detected_version": "1.0"
+        }
+    ], 
+    "mimes": [
+        "application/vnd.garagegames.iaplayer"
+    ], 
+    "aliases": {
+        "regex": [], 
+        "literal": [
+            "InstantAction.com Game Launcher"
+        ]
+    }
+}

@@ -1,33 +1,67 @@
 {
     "meta": {
-        "pfs_id": "gnome-totem",
-        "name":"Totem",
-        "vendor": "The GNOME Project",
-        "platform": {
-            "app_id": "*"
-        },
-        "url": "http://projects.gnome.org/totem/"        
-    },
-    "aliases": {
-        "literal": ["Totem"],
-        "regex": [".*Totem.*"]
-    },
-    "mimes": [
-        "application/x-vlc-plugin", "application/vlc", "video/x-google-vlc-plugin", "application/x-ogg",
-        "application/ogg", "audio/ogg", "audio/x-ogg", "video/ogg", "video/x-ogg", "application/annodex",
-        "audio/annodex", "video/annodex", "video/mpeg", "audio/wav", "audio/x-wav", "audio/mpeg",
-        "application/x-nsv-vp3-mp3", "video/flv", "application/x-totem-plugin"
-    ],
+        "vendor": "The GNOME Project", 
+        "pfs_id": "gnome-totem", 
+        "created": "2010-01-06 19:50:44", 
+        "url": "http://projects.gnome.org/totem/", 
+        "modified": "2010-03-21 17:30:02", 
+        "name": "Totem"
+    }, 
     "releases": [
         {
-            "os_name": "linux",
-            "version": "2.26.3",
-            "status": "latest"
-        },
+            "status": "latest", 
+            "os_name": "linux", 
+            "platform": {
+                "app_release": "*", 
+                "locale": "*", 
+                "app_version": "*", 
+                "app_id": "*"
+            }, 
+            "detection_type": "original", 
+            "version": "2.26.3", 
+            "detected_version": "2.26.3"
+        }, 
         {
-            "os_name": "linux",
-            "version": "2.26.1",
-            "status": "outdated"
+            "status": "outdated", 
+            "os_name": "linux", 
+            "platform": {
+                "app_release": "*", 
+                "locale": "*", 
+                "app_version": "*", 
+                "app_id": "*"
+            }, 
+            "detection_type": "original", 
+            "version": "2.26.1", 
+            "detected_version": "2.26.1"
         }
-    ]
+    ], 
+    "mimes": [
+        "audio/x-wav", 
+        "audio/wav", 
+        "video/mpeg", 
+        "audio/mpeg", 
+        "application/x-vlc-plugin", 
+        "application/vlc", 
+        "video/x-google-vlc-plugin", 
+        "application/x-ogg", 
+        "application/ogg", 
+        "audio/ogg", 
+        "audio/x-ogg", 
+        "video/ogg", 
+        "video/x-ogg", 
+        "application/annodex", 
+        "audio/annodex", 
+        "video/annodex", 
+        "application/x-nsv-vp3-mp3", 
+        "video/flv", 
+        "application/x-totem-plugin"
+    ], 
+    "aliases": {
+        "regex": [
+            ".*Totem.*"
+        ], 
+        "literal": [
+            "Totem"
+        ]
+    }
 }

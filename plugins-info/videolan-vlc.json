@@ -1,29 +1,68 @@
 {
     "meta": {
-        "pfs_id": "videolan-vlc",
-        "name": "VLC Multimedia Plug-in",
-        "vendor": "VideoLAN Project",
-        "platform": {
-            "app_id": "*"
-        }
-    },
-    "aliases": {
-        "literal": [],
-        "regex": []
-    },
-    "mimes": [
-        "audio/mpeg", "audio/x-mpeg", "video/mpeg", "video/x-mpeg", "video/mpeg-system", "video/x-mpeg-system",
-        "video/mp4", "audio/mp4", "application/mpeg4-iod", "application/mpeg4-muxcodetable", "video/x-msvideo",
-        "video/quicktime", "application/x-ogg", "application/ogg", "application/x-vlc-plugin", "video/x-ms-asf-plugin",
-        "video/x-ms-asf", "application/x-mplayer2", "video/x-ms-wmv", "application/x-google-vlc-plugin", "audio/wav",
-        "audio/x-wav", "audio/3gpp", "video/3gpp", "audio/3gpp2", "video/3gpp2", "video/divx", "video/flv", "video/x-flv",
-        "video/x-matroska", "audio/x-matroska", "application/xspf+xml", "audio/x-m4a", "audio/x-mpegurl", "audio/x-ms-wma"
-    ],
+        "created": "2010-01-06 19:50:45", 
+        "vendor": "VideoLAN Project", 
+        "pfs_id": "videolan-vlc", 
+        "modified": "2010-03-21 17:30:02", 
+        "name": "VLC Multimedia Plug-in"
+    }, 
     "releases": [
         {
-            "os_name": "*",
-            "version": "1.0.2",
-            "url": "http://www.videolan.org/vlc/"
+            "status": "latest", 
+            "os_name": "*", 
+            "url": "http://www.videolan.org/vlc/", 
+            "platform": {
+                "app_release": "*", 
+                "locale": "*", 
+                "app_version": "*", 
+                "app_id": "*"
+            }, 
+            "detection_type": "original", 
+            "version": "1.0.2", 
+            "detected_version": "1.0.2"
         }
-    ]
+    ], 
+    "mimes": [
+        "video/quicktime", 
+        "audio/x-wav", 
+        "audio/wav", 
+        "video/x-mpeg", 
+        "video/mpeg", 
+        "audio/mpeg", 
+        "audio/x-mpeg", 
+        "video/3gpp", 
+        "audio/3gpp", 
+        "video/3gpp2", 
+        "audio/3gpp2", 
+        "video/mp4", 
+        "audio/mp4", 
+        "audio/x-m4a", 
+        "video/divx", 
+        "application/x-vlc-plugin", 
+        "application/x-ogg", 
+        "application/ogg", 
+        "video/flv", 
+        "application/x-mplayer2", 
+        "video/mpeg-system", 
+        "video/x-mpeg-system", 
+        "application/mpeg4-iod", 
+        "application/mpeg4-muxcodetable", 
+        "video/x-msvideo", 
+        "video/x-ms-asf-plugin", 
+        "video/x-ms-asf", 
+        "video/x-ms-wmv", 
+        "application/x-google-vlc-plugin", 
+        "video/x-flv", 
+        "video/x-matroska", 
+        "audio/x-matroska", 
+        "application/xspf+xml", 
+        "audio/x-mpegurl", 
+        "audio/x-ms-wma"
+    ], 
+    "aliases": {
+        "regex": [], 
+        "literal": [
+            "VLC Multimedia Plug-in"
+        ]
+    }
 }

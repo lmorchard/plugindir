@@ -1,30 +1,42 @@
 {
     "meta": {
-        "pfs_id": "adobe-reader",
-        "vendor": "Adobe",
-        "name": "Adobe Reader",
-        "description": "Adobe PDF Plug-In For Firefox and Netscape",
-        "platform": {
-            "app_id": "*"
-        },
-        "url": "http://get.adobe.com/reader/"
-    },
-    "aliases": {
-        "literal": [
-            "Adobe Acrobat"
-        ]
-    },
-    "mimes": [
-        "application/pdf", "application/vnd.adobe.pdfxml",
-        "application/vnd.adobe.x-mars", "application/vnd.fdf",
-        "application/vnd.adobe.xfdf", "application/vnd.adobe.xdp+xml",
-        "application/vnd.adobe.xfd+xml"
-    ],
+        "vendor": "Adobe", 
+        "description": "Adobe PDF Plug-In For Firefox and Netscape", 
+        "created": "2010-01-06 19:50:44", 
+        "url": "http://get.adobe.com/reader/", 
+        "modified": "2010-03-21 17:30:01", 
+        "name": "Adobe Reader", 
+        "pfs_id": "adobe-reader"
+    }, 
     "releases": [
         {
-            "status": "latest",
-            "version": "9.1.0.163",
-            "os_name": "win"
+            "status": "latest", 
+            "os_name": "win", 
+            "platform": {
+                "app_release": "*", 
+                "locale": "*", 
+                "app_version": "*", 
+                "app_id": "*"
+            }, 
+            "detection_type": "original", 
+            "version": "9.1.0.163", 
+            "detected_version": "9.1.0.163"
         }
-    ]
+    ], 
+    "mimes": [
+        "application/pdf", 
+        "application/vnd.adobe.pdfxml", 
+        "application/vnd.adobe.x-mars", 
+        "application/vnd.fdf", 
+        "application/vnd.adobe.xfdf", 
+        "application/vnd.adobe.xdp+xml", 
+        "application/vnd.adobe.xfd+xml"
+    ], 
+    "aliases": {
+        "regex": [], 
+        "literal": [
+            "Adobe Acrobat", 
+            "Adobe Reader"
+        ]
+    }
 }

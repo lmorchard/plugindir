@@ -1,36 +1,61 @@
 {
     "meta": {
-        "pfs_id": "telestream-flip4mac",
-        "name": "Flip4Mac Windows Media Plugin",
-        "description": "The Flip4Mac WMV Plugin allows you to view Windows Media content using QuickTime.",
-        "vendor": "Telestream",
-        "platform": {
-            "app_id": "*"
-        },
-        "url": "http://www.telestream.net/flip4mac-wmv/overview.htm"        
-    },
-    "aliases": {
-        "literal": ["Flip4Mac Windows Media Plugin"],
-        "regex": []
-    },
-    "mimes": [
-        "application/x-mplayer2"
-    ],
+        "vendor": "Telestream", 
+        "description": "The Flip4Mac WMV Plugin allows you to view Windows Media content using QuickTime.", 
+        "created": "2010-01-06 19:50:45", 
+        "url": "http://www.telestream.net/flip4mac-wmv/overview.htm", 
+        "modified": "2010-03-21 17:30:02", 
+        "name": "Flip4Mac Windows Media Plugin", 
+        "pfs_id": "telestream-flip4mac"
+    }, 
     "releases": [
         {
-            "os_name": "*",
-            "version": "2.2.3",
-            "status": "latest"
-        },
+            "status": "latest", 
+            "os_name": "*", 
+            "platform": {
+                "app_release": "*", 
+                "locale": "*", 
+                "app_version": "*", 
+                "app_id": "*"
+            }, 
+            "detection_type": "original", 
+            "version": "2.2.3", 
+            "detected_version": "2.2.3"
+        }, 
         {
-            "os_name": "*",
-            "version": "2.2.1",
-            "status": "outdated"
-        },
+            "status": "outdated", 
+            "os_name": "*", 
+            "platform": {
+                "app_release": "*", 
+                "locale": "*", 
+                "app_version": "*", 
+                "app_id": "*"
+            }, 
+            "detection_type": "original", 
+            "version": "2.2.1", 
+            "detected_version": "2.2.1"
+        }, 
         {
-            "os_name": "*",
-            "version": "2.1.2",
-            "status": "outdated"
+            "status": "outdated", 
+            "os_name": "*", 
+            "platform": {
+                "app_release": "*", 
+                "locale": "*", 
+                "app_version": "*", 
+                "app_id": "*"
+            }, 
+            "detection_type": "original", 
+            "version": "2.1.2", 
+            "detected_version": "2.1.2"
         }
-    ]
+    ], 
+    "mimes": [
+        "application/x-mplayer2"
+    ], 
+    "aliases": {
+        "regex": [], 
+        "literal": [
+            "Flip4Mac Windows Media Plugin"
+        ]
+    }
 }

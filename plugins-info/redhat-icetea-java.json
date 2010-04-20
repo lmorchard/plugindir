@@ -1,25 +1,35 @@
 {
     "meta": {
-        "pfs_id": "redhat-icetea-java",
-        "name":"IcedTea Java Web Browser Plugin",
-        "vendor": "Redhat",
-        "platform": {
-            "app_id": "*"
-        },
-        "url": "http://icedtea.classpath.org/wiki/Main_Page"
-    },
-    "aliases": {
-        "literal": ["IcedTea Java Web Browser Plugin"],
-        "regex": []
-    },
-    "mimes": [
-         "application/x-java-vm", "application/x-java-applet"
-    ],
+        "vendor": "Redhat", 
+        "pfs_id": "redhat-icetea-java", 
+        "created": "2010-01-06 19:50:45", 
+        "url": "http://icedtea.classpath.org/wiki/Main_Page", 
+        "modified": "2010-03-21 17:30:02", 
+        "name": "IcedTea Java Web Browser Plugin"
+    }, 
     "releases": [
         {
-            "os_name": "*",
-            "version": "1.6.0.0",
-            "status": "latest"
+            "status": "latest", 
+            "os_name": "*", 
+            "platform": {
+                "app_release": "*", 
+                "locale": "*", 
+                "app_version": "*", 
+                "app_id": "*"
+            }, 
+            "detection_type": "original", 
+            "version": "1.6.0.0", 
+            "detected_version": "1.6.0.0"
         }
-    ]
+    ], 
+    "mimes": [
+        "application/x-java-vm", 
+        "application/x-java-applet"
+    ], 
+    "aliases": {
+        "regex": [], 
+        "literal": [
+            "IcedTea Java Web Browser Plugin"
+        ]
+    }
 }

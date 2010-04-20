@@ -10,12 +10,15 @@ def main():
     (options, args) = parse_opts()
 
     if options.username and options.password:
-        setup_basic_auth(options)
+        setup_basic_auth(options, options.index_url)
 
+    print "Fetching index..."
     index_json = json.loads(urllib2.urlopen(options.index_url).read())
+    print "\tfound %s plugins." % (len(index_json))
     for details in index_json:
 
         print "Fetching %s (%s)..." % (details['name'], details['pfs_id'])
+        setup_basic_auth(options, details['href'])
         plugin = json.loads(urllib2.urlopen(details['href']).read())
 
         out_fn = os.path.join(options.output_dir, 
@@ -44,11 +47,10 @@ def parse_opts():
             help="HTTP basic auth password")
     return op.parse_args()
 
-def setup_basic_auth(options):
+def setup_basic_auth(options, url):
     """Set up HTTP Basic auth from command line options"""
     pass_mgr = urllib2.HTTPPasswordMgrWithDefaultRealm()
-    pass_mgr.add_password(None, options.index_url, options.username, \
-            options.password)
+    pass_mgr.add_password(None, url, options.username, options.password)
     auth_handler = urllib2.HTTPBasicAuthHandler(pass_mgr)
     opener = urllib2.build_opener(auth_handler)
     urllib2.install_opener(opener)

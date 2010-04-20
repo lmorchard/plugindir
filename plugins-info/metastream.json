@@ -1,27 +1,37 @@
 {
     "meta": {
-        "pfs_id": "metastream",
-        "name": "MetaStream 3 Plugin",
-        "description": "npViewpoint Plugin",
-        "vendor": "Viewpoint",
-        "platform": {
-            "app_id": "*"
-        },
-        "url": "http://www.viewpoint.com/technologies/viewpoint-media-player.shtml"
-    },
-    "aliases": {
-        "literal": [],
-        "regex": []
-    },
-    "mimes": [
-        "application/x-mtx"
-    ],
+        "vendor": "Viewpoint", 
+        "description": "npViewpoint Plugin", 
+        "created": "2010-01-06 19:50:45", 
+        "url": "http://www.viewpoint.com/technologies/viewpoint-media-player.shtml", 
+        "modified": "2010-03-21 17:30:02", 
+        "name": "MetaStream 3 Plugin", 
+        "pfs_id": "metastream"
+    }, 
     "releases": [
         {
-            "os_name": "win",
-            "version": "3.6.0.59",
-            "filename": "npViewpoint.dll",
-            "manual_installation_url": "https://components.viewpoint.com/MTSInstallers/archive/vmp_full_installer_.exe"
+            "status": "latest", 
+            "os_name": "win", 
+            "manual_installation_url": "https://components.viewpoint.com/MTSInstallers/archive/vmp_full_installer_.exe", 
+            "filename": "npViewpoint.dll", 
+            "platform": {
+                "app_release": "*", 
+                "locale": "*", 
+                "app_version": "*", 
+                "app_id": "*"
+            }, 
+            "detection_type": "original", 
+            "version": "3.6.0.59", 
+            "detected_version": "3.6.0.59"
         }
-    ]
+    ], 
+    "mimes": [
+        "application/x-mtx"
+    ], 
+    "aliases": {
+        "regex": [], 
+        "literal": [
+            "MetaStream 3 Plugin"
+        ]
+    }
 }

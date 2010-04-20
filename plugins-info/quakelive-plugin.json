@@ -1,0 +1,51 @@
+{
+    "meta": {
+        "created": "2010-02-19 00:12:34", 
+        "pfs_id": "quakelive-plugin", 
+        "modified": "2010-03-26 17:37:55", 
+        "name": "QuakeLive Plugin"
+    }, 
+    "releases": [
+        {
+            "status": "latest", 
+            "os_name": "intel mac os x 10.6", 
+            "filename": "QuakeLivePlugin.plugin", 
+            "platform": {
+                "app_release": "3.7a4pre", 
+                "locale": "en-US", 
+                "app_version": "20100326030619", 
+                "app_id": "{ec8030f7-c20a-464f-9b0e-13a3a9e97384}"
+            }, 
+            "detection_type": "original", 
+            "version": "0.1.0.277", 
+            "detected_version": "0.1.0.277"
+        }, 
+        {
+            "status": "latest", 
+            "os_name": "Windows NT 6.1", 
+            "vendor": "id software", 
+            "name": "QUAKE LIVE", 
+            "filename": "npquakezero.dll", 
+            "platform": {
+                "app_release": "3.6.2", 
+                "locale": "en-US", 
+                "app_version": "20100316074819", 
+                "app_id": "{ec8030f7-c20a-464f-9b0e-13a3a9e97384}"
+            }, 
+            "detection_type": "original", 
+            "version": "0.1.0.277", 
+            "detected_version": "0.1.0.277", 
+            "description": "QUAKE LIVE"
+        }
+    ], 
+    "mimes": [
+        "application/x-id-quakelive"
+    ], 
+    "aliases": {
+        "regex": [], 
+        "literal": [
+            "QuakeLive Plugin", 
+            "QUAKE LIVE"
+        ]
+    }
+}

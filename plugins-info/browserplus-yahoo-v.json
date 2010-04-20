@@ -1,0 +1,51 @@
+{
+    "meta": {
+        "vendor": "Yahoo", 
+        "pfs_id": "browserplus-yahoo-v", 
+        "created": "2010-03-10 17:45:49", 
+        "url": "http://browserplus.yahoo.com/install/", 
+        "modified": "2010-03-22 16:51:51", 
+        "name": "BrowserPlus (from Yahoo!)"
+    }, 
+    "releases": [
+        {
+            "status": "latest", 
+            "os_name": "*", 
+            "filename": "npybrowserplus_2.5.1.dll", 
+            "platform": {
+                "app_release": "*", 
+                "locale": "*", 
+                "app_version": "*", 
+                "app_id": "*"
+            }, 
+            "detection_type": "version_available", 
+            "version": "2.5.1.0", 
+            "detected_version": "2.5.1.0"
+        }, 
+        {
+            "status": "latest", 
+            "os_name": "*", 
+            "platform": {
+                "app_release": "*", 
+                "locale": "*", 
+                "app_version": "*", 
+                "app_id": "*"
+            }, 
+            "detection_type": "original", 
+            "version": "2.5.1.0", 
+            "detected_version": "2.5.1.0"
+        }
+    ], 
+    "mimes": [
+        "application/x-yahoo-browserplus_2", 
+        "application/x-yahoo-browserplus_2.5.1"
+    ], 
+    "aliases": {
+        "regex": [
+            "BrowserPlus.*"
+        ], 
+        "literal": [
+            "BrowserPlus (from Yahoo!)"
+        ]
+    }
+}

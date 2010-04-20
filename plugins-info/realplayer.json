@@ -1,34 +1,54 @@
 {
     "meta": {
-        "pfs_id": "realplayer",
-        "name": "RealPlayer",
-        "vendor": "Real",
-        "platform": {
-            "app_id": "*"
-        },
-        "url": "http://www.real.com/realplayer/rp11free"
-    },
-    "aliases": {
-        "literal": [],
-        "regex": []
-    },
-    "mimes": [
-        "audio/x-pn-realaudio-plugin"
-    ],
+        "vendor": "Real", 
+        "pfs_id": "realplayer", 
+        "created": "2010-01-06 19:50:45", 
+        "url": "http://www.real.com/realplayer/rp11free", 
+        "modified": "2010-03-21 17:30:02", 
+        "name": "RealPlayer"
+    }, 
     "releases": [
         {
-            "os_name": "win",
-            "version": "6.0.12.448",
-            "name": "RealPlayer Version Plugin",
-            "filename": "nprpjplug.dll",
-            "manual_installation_url": "http://software-download.real.com/26edeb6dd3ffcc2b7722/windows/installer/stubinst/stub/rp11/R41RD01/RealPlayer11GOLD.exe"
-        },
+            "status": "latest", 
+            "os_name": "win", 
+            "name": "RealPlayer Version Plugin", 
+            "manual_installation_url": "http://software-download.real.com/26edeb6dd3ffcc2b7722/windows/installer/stubinst/stub/rp11/R41RD01/RealPlayer11GOLD.exe", 
+            "filename": "nprpjplug.dll", 
+            "platform": {
+                "app_release": "*", 
+                "locale": "*", 
+                "app_version": "*", 
+                "app_id": "*"
+            }, 
+            "detection_type": "original", 
+            "version": "6.0.12.448", 
+            "detected_version": "6.0.12.448"
+        }, 
         {
-            "os_name": "mac",
-            "version": "0.0.1d1",
-            "name": "RealPlayer Plugin.plugin",
-            "filename": "RealPlayer Plugin.plugin",
-            "manual_installation_url": "http://www.real.com/mac/realplayer"
+            "status": "latest", 
+            "os_name": "mac", 
+            "name": "RealPlayer Plugin.plugin", 
+            "manual_installation_url": "http://www.real.com/mac/realplayer", 
+            "filename": "RealPlayer Plugin.plugin", 
+            "platform": {
+                "app_release": "*", 
+                "locale": "*", 
+                "app_version": "*", 
+                "app_id": "*"
+            }, 
+            "detection_type": "original", 
+            "version": "0.0.1d1", 
+            "detected_version": "0.0.1d1"
         }
-    ]
+    ], 
+    "mimes": [
+        "audio/x-pn-realaudio-plugin"
+    ], 
+    "aliases": {
+        "regex": [], 
+        "literal": [
+            "RealPlayer Version Plugin", 
+            "RealPlayer Plugin.plugin"
+        ]
+    }
 }
