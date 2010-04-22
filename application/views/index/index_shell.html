@@ -54,12 +54,8 @@
                 </li>
             {% endmacro %}
 
-            {{ this.nav_item(base_url, 'installed', '?by=installed', 'Your Installed Plugins'|trans, by_cat) }}
             {% if is_logged_in %}
                 {{ this.nav_item(base_url, 'sandbox', 'profiles/' ~ authprofile.screen_name|urlencode|e ~ '/plugins', 'Your Sandbox'|trans, by_cat, authprofile.screen_name) }}
-            {% endif %}
-            {% if authprofile.is_allowed('plugin', 'view_submissions') %}
-                {{ this.nav_item(base_url, 'submissions', 'plugins/submissions', 'Submissions'|trans, by_cat) }}
             {% endif %}
             {{ this.nav_item(base_url, 'name', '?by=name', 'By Name'|trans, by_cat) }}
             {{ this.nav_item(base_url, 'application', '?by=application', 'By Application'|trans, by_cat) }}
