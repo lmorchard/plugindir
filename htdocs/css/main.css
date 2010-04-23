@@ -137,6 +137,9 @@ body.l10n-dir-rtl #main .header .secondary ul li {
 .content p {
     margin: 0.75em 0 0.75em 0;
 }
+.content h3 {
+    margin: 1.5em 0 0.5em 0;
+}
 .content form fieldset {
     border: 1px solid #666;
 }
@@ -540,32 +543,20 @@ body#ctrl_plugins_act_edit.l10n-dir-rtl  ul.fields li.field p.notes {
     height: 5em;
     padding: 2px;
 }
-#ctrl_plugins_act_submission_detail dl.submission {
-    border: 1px solid #333;
-    background: #fff;
-    margin: 0.5em;
-    padding: 1em;
+
+#ctrl_plugins_act_sandbox .sandbox_sections div {
+    display: none;
 }
-#ctrl_plugins_act_submission_detail dl.submission dt {
-    float: left;
-    width: 24ex;
-    text-align: right;
-    margin: 0;
-    padding: 0.25em 0 0.25em 0;
-    line-height: 1.5em;
+#ctrl_plugins_act_sandbox .sandbox_sections .detected_in_sandbox {
+    display: block;
 }
-#ctrl_plugins_act_submission_detail.l10n-dir-rtl dl.submission dt {
-    float: right;
-    text-align: left;
+#ctrl_plugins_act_sandbox table.plugins_list {
+
 }
-#ctrl_plugins_act_submission_detail dl.submission dd {
-    margin: 0;
-    padding: 0.25em 0.25em 0.25em 25ex;
-    line-height: 1.5em;
+#ctrl_plugins_act_sandbox table.plugins_list tr th {
+    padding: 0.25em;
+    border-bottom: 1px solid #333;
 }
-#ctrl_plugins_act_submission_detail dl.submission .even {
-    background: #EFF7FA;
-}
-#ctrl_plugins_act_submission_detail dl.submission .odd {
-    background: #ffffff;
+#ctrl_plugins_act_sandbox table.plugins_list tr td {
+    padding: 0.25em;
 }

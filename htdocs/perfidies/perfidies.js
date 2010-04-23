@@ -530,7 +530,7 @@ Pfs = {
         
         function isChar(c) { return "abcdefghijklmnopqrstuvwxyz".indexOf(c.toLowerCase())  >= 0; }
         
-        function isSeperator(c) { return c === '.'; }
+        function isSeperator(c) { return c === '.' || c === 'r'; }
     
         function startVersion(token, j) {
             if (isNumeric(token.charAt(j))) {

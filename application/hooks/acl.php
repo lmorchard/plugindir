@@ -63,16 +63,20 @@ class PluginDir_ACL_Setup
                 'view_submissions', 
             ))
 
-            ->allow('member', 'profile', 'view_sandbox', 
+            ->allow('guest', 'profile', 'view_sandbox', 
                 new PluginDir_Acl_Assert_Sandbox_View())
+            ->allow('guest', 'profile', array(
+                'view_sandbox_any' 
+            ))
+
             ->allow('member', 'profile', 'create_in_sandbox', 
                 new PluginDir_Acl_Assert_Sandbox_CreateIn())
             ->allow('member', 'profile', array( 
-                'view_sandbox_own', 'create_in_sandbox_own'
+                'create_in_sandbox_own'
             ))
 
             ->allow('editor', 'profile', array(
-                'view_sandbox_any', 'create_in_sandbox_any'
+                'create_in_sandbox_any'
             ))
             ;
     }

@@ -1,12 +1,20 @@
 {% extends "layout.html" %}
 
-{% set profile_screen_name_e as profile.screen_name|e %}
+{% block js_includes %}
+    {% parent %}
+    <script type="text/javascript" src="{{media_url}}js/PluginDir/Sandbox.js"></script>
+    <script type="text/javascript">
+        PluginDir.Sandbox.screen_name = "{{profile.screen_name | e}}";
+    </script>
+{% endblock %}
 
 {% block title %}
+    {% set profile_screen_name_e as profile.screen_name|e %}
     {% blocktrans %}Plugin Sandbox for {{profile_screen_name_e}}{% endblocktrans %}
 {% endblock %}
 
 {% block content %}
+    {% set profile_screen_name_e as profile.screen_name|e %}
     <h2>{% blocktrans %}Plugin Sandbox for {{profile_screen_name_e}}{% endblocktrans %}</h2>
     {% include 'plugins/sandbox_listing.html' %}
 {% endblock %}

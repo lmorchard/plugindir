@@ -1,5 +1,13 @@
 {% extends "index/index_shell.html" %}
 
+{% block js_includes %}
+    {% parent %}
+    <script type="text/javascript" src="{{media_url}}js/PluginDir/Sandbox.js"></script>
+    <script type="text/javascript">
+        PluginDir.Sandbox.screen_name = "{{profile.screen_name | e}}";
+    </script>
+{% endblock %}
+
 {% block index_content %}
     <p>
         <a class="new_plugin" href="{{base_url}}profiles/{{authprofile.screen_name|urlencode}}/plugins;create">{% trans "+ Create new sandbox plugin" %}</a>

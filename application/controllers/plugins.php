@@ -142,7 +142,7 @@ class Plugins_Controller extends Local_Controller {
         if (!authprofiles::is_allowed($profile, 'view_sandbox'))
             return Event::run('system.forbidden');
 
-        $this->view->profile = $profile->as_array();
+        $this->view->profile = $profile;
 
         $this->view->sandbox_plugins = $plugins = ORM::factory('plugin')
             ->where('sandbox_profile_id', $profile->id)

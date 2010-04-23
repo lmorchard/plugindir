@@ -1,15 +1,114 @@
-{% if not sandbox_plugins %}
-    <p>{% trans "This sandbox is empty." %}</p>
-{% else %}
+{% set is_mine as is_logged_in and authprofile.screen_name == profile.screen_name %}
 
-    <ul class="counts sandbox_plugins">
-        {% for plugin in sandbox_plugins %}
-            <li id="{{plugin.pfs_id|e}}">
-                [<a href="{{base_url}}profiles/{{profile.screen_name|e}}/plugins/detail/{{plugin.pfs_id|urlencode|e}};delete">{% trans "delete" %}</a>]
-                [<a href="{{base_url}}profiles/{{profile.screen_name|e}}/plugins/detail/{{plugin.pfs_id|urlencode|e}};edit">{% trans "edit" %}</a>]
-                <a href="{{base_url}}profiles/{{profile.screen_name|e}}/plugins/detail/{{plugin.pfs_id | urlencode | e}}">{{plugin.name | e}}</a>
-            </li>
-        {% endfor %}
-    </ul>
+<div class="sandbox_sections">
 
-{% endif %}
+    <div class="detected_in_sandbox">
+        <h3>Plugins in sandbox:</h3>
+        <table class="plugins_list">
+            <thead>
+                <tr>
+                    {% if is_mine %}<th>Actions</th>{% endif %}
+                    <th>Name</th>
+                    <th>Version detected</th>
+                    <th>Directory status</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for plugin in sandbox_plugins %}
+                <tr id="sandbox-plugin-{{plugin.pfs_id|e}}" data-pfsid="{{plugin.pfs_id|e}}" class="plugin inprogress">
+                    {% if is_mine %}
+                        <td class="actions">
+                            [<a href="{{base_url}}profiles/{{profile.screen_name|e}}/plugins/detail/{{plugin.pfs_id|urlencode|e}};delete">{% trans "delete" %}</a>]
+                            [<a href="{{base_url}}profiles/{{profile.screen_name|e}}/plugins/detail/{{plugin.pfs_id|urlencode|e}};edit">{% trans "edit" %}</a>]
+                        </td>
+                    {% endif %}
+                    <td class="name">
+                        <a href="{{base_url}}profiles/{{profile.screen_name|e}}/plugins/detail/{{plugin.pfs_id | urlencode | e}}">{{plugin.name | e}}</a>
+                    </td>
+                    <td class="detected"><span>Detecting...</span></td>
+                    <td class="pfs_status"><span>Loading...</span></td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+    <div class="found_outside">
+        <h3>Version detected, match found outside sandbox:</h3>
+        <table class="plugins_list">
+            <thead>
+                <tr>
+                    {% if is_mine %}<th>Actions</th>{% endif %}
+                    <th>Name</th>
+                    <th>Version detected</th>
+                    <th>Directory status</th>
+                </tr>
+            </thead>
+            <tbody class="plugins">
+                <tr class="template plugin">
+                    {% if is_mine %}
+                        <td class="actions">
+                            [<a href="#" class="copy">copy</a>]
+                        </td>
+                    {% endif %}
+                    <td class="name_link">
+                        <a href="#" class="detail name"></a>
+                    </td>
+                    <td class="version"><span>Detecting...</span></td>
+                    <td class="status"><span>Loading...</span></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="not_found">
+        <h3>Version detected, no match found:</h3>
+        <table class="plugins_list">
+            <thead>
+                <tr>
+                    {% if is_mine %}<th>Actions</th>{% endif %}
+                    <th>Name</th>
+                    <th>Version detected</th>
+                </tr>
+            </thead>
+            <tbody class="plugins">
+                <tr class="template plugin">
+                    {% if is_mine %}
+                        <td class="actions">
+                            [<a href="#" class="create">create</a>]
+                        </td>
+                    {% endif %}
+                    <td class="name">
+                        <span class="name"></span>
+                    </td>
+                    <td class="version"><span>Detecting...</span></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="unknown">
+        <h3>Installed, unable to detect version:</h3>
+        <table class="plugins_list">
+            <thead>
+                <tr>
+                    {% if is_mine %}<th>Actions</th>{% endif %}
+                    <th>Name</th>
+                </tr>
+            </thead>
+            <tbody class="plugins">
+                <tr class="template plugin">
+                    {% if is_mine %}
+                        <td class="actions">
+                            ???
+                        </td>
+                    {% endif %}
+                    <td class="name">
+                        <a href="#" class="detail name"></a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+</div>
