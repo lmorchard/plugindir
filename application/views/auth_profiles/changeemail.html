@@ -15,6 +15,7 @@
             {% set data, errors as form_data, form_errors %}
             {{ forms.hidden(data, errors, 'crumb', crumb) }}
             {{ forms.fieldset('Login details', 'login'|trans) }}
+                {{ forms.input(data, errors, 'password', 'password',  'Password'|trans) }}
                 {{ forms.input(data, errors, 'text', 'new_email', 'New email'|trans) }}
                 {{ forms.submit('change', '', 'Change email'|trans) }}
             {{ forms.endfieldset() }}

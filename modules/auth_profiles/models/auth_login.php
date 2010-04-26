@@ -475,6 +475,8 @@ class Auth_Login_Model extends ORM implements Zend_Acl_Resource_Interface
         $data = Validation::factory($data)
             ->pre_filter('trim')
             ->add_rules('crumb', 'csrf_crumbs::validate')
+            ->add_callbacks('password',
+                array($this, 'is_password_correct'))
             ->add_rules('new_email', 
                 'required', 'length[3,255]', 'valid::email',
                 array($this, 'is_email_available'))
