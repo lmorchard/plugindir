@@ -72,7 +72,7 @@ class Auth_Profile_Model extends ORM implements Zend_Acl_Role_Interface, Zend_Ac
         if (!$force_email_verified) {
             $profile_data['new_email'] = $data['email'];
             $profile_data['email_verification_token'] = 
-                $new_login->set_email_verification_token($data['email']);
+                $new_login->generate_email_verification_token($data['email']);
         }
 
         $new_profile = ORM::factory('profile')->set($data)->save();
