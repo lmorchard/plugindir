@@ -337,6 +337,8 @@ class Auth_Profiles_Controller extends Local_Controller
         if (empty($reset_token)) {
             // No reset token, so try figuring out the profile and login.
             list($profile, $login) = $this->_find_profile_and_login();
+            if (!authprofiles::is_allowed($login, 'changeemail'))
+                return Event::run('system.403');
         } else {
             // Look up the login by token, and abort if not found.
             $login = ORM::factory('login')
