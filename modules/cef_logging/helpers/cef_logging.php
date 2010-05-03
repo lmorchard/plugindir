@@ -15,6 +15,7 @@ class cef_logging_Core
     public static $product;
     public static $product_version;
     public static $cef_version = 15;
+    public static $syslog_facility = LOG_LOCAL4;
 
     const ACCESS_CONTROL_VIOLATION = 'ACE0';
     const ACCOUNT_LOCKED           = 'AE2';
