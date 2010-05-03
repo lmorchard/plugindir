@@ -5,4 +5,4 @@
 $config['vendor']          = 'mozilla';
 $config['product']         = 'CHANGEME';
 $config['product_version'] = '0.0';
-$config['cef_version']     = '15';
+$config['cef_version']     = '0';

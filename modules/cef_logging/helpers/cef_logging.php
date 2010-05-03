@@ -45,7 +45,10 @@ class cef_logging_Core
             'rt' => date('m d Y H:i:s'),
             'dst' => $_SERVER['SERVER_ADDR'] . ':' . $_SERVER['SERVER_PORT'],
             'requestMethod' => strtoupper(request::method()),
-            'requestClientApplication' => Kohana::user_agent(),
+
+            'cs1Label' => 'requestClientApplication',
+            'cs1' => Kohana::user_agent(),
+
             'request' => url::site(url::current(true)),
             'msg' => Router::$controller . '::' . Router::$method,
         );
