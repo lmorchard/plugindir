@@ -30,6 +30,7 @@ class cef_logging_Core
         self::$product         = Kohana::config('cef_logging.product');
         self::$product_version = Kohana::config('cef_logging.product_version');
         self::$cef_version     = Kohana::config('cef_logging.cef_version');
+        self::$syslog_facility = Kohana::config('cef_logging.syslog_facility');
 
         openlog(self::$product, LOG_ODELAY, LOG_AUTHPRIV);
     }
