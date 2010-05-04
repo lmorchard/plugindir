@@ -4,7 +4,7 @@
         "pfs_id": "realplayer", 
         "created": "2010-01-06 19:50:45", 
         "url": "http://www.real.com/realplayer/rp11free", 
-        "modified": "2010-03-21 17:30:02", 
+        "modified": "2010-04-28 02:07:43", 
         "name": "RealPlayer"
     }, 
     "releases": [
@@ -20,7 +20,7 @@
                 "app_version": "*", 
                 "app_id": "*"
             }, 
-            "detection_type": "original", 
+            "detection_type": "*", 
             "version": "6.0.12.448", 
             "detected_version": "6.0.12.448"
         }, 
@@ -36,7 +36,7 @@
                 "app_version": "*", 
                 "app_id": "*"
             }, 
-            "detection_type": "original", 
+            "detection_type": "*", 
             "version": "0.0.1d1", 
             "detected_version": "0.0.1d1"
         }

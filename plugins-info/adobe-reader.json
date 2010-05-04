@@ -4,13 +4,13 @@
         "description": "Adobe PDF Plug-In For Firefox and Netscape", 
         "created": "2010-01-06 19:50:44", 
         "url": "http://get.adobe.com/reader/", 
-        "modified": "2010-03-21 17:30:01", 
+        "modified": "2010-04-27 15:58:58", 
         "name": "Adobe Reader", 
         "pfs_id": "adobe-reader"
     }, 
     "releases": [
         {
-            "status": "latest", 
+            "status": "outdated", 
             "os_name": "win", 
             "platform": {
                 "app_release": "*", 
@@ -21,15 +21,28 @@
             "detection_type": "original", 
             "version": "9.1.0.163", 
             "detected_version": "9.1.0.163"
+        }, 
+        {
+            "status": "latest", 
+            "os_name": "*", 
+            "platform": {
+                "app_release": "*", 
+                "locale": "*", 
+                "app_version": "*", 
+                "app_id": "*"
+            }, 
+            "detection_type": "*", 
+            "version": "9.3.2", 
+            "detected_version": "9.3.2"
         }
     ], 
     "mimes": [
         "application/pdf", 
-        "application/vnd.adobe.pdfxml", 
-        "application/vnd.adobe.x-mars", 
-        "application/vnd.fdf", 
-        "application/vnd.adobe.xfdf", 
-        "application/vnd.adobe.xdp+xml", 
+        "application/vnd.adobe.pdfxml",
+        "application/vnd.adobe.x-mars",
+        "application/vnd.fdf",
+        "application/vnd.adobe.xfdf",
+        "application/vnd.adobe.xdp+xml",
         "application/vnd.adobe.xfd+xml"
     ], 
     "aliases": {

@@ -1,24 +1,38 @@
 {
     "meta": {
-        "pfs_id": "yahoo-browserplus",
-        "name": "BrowserPlus",
-	"vendor": "Yahoo",
-	"platform": { "app_id": "*"},
-        "url": "http://browserplus.yahoo.com/"
-
-    },
-    "aliases": {
-        "literal": ["BrowserPlus (from Yahoo!)"],
-        "regex":["BrowserPlus.*"]
-    },
-    "mimes":[
-        "application\/x-yahoo-browserplus_2.5.1",
-        "application\/x-yahoo-browserplus_2"
-    ],
-    "releases":[
+        "vendor": "Yahoo", 
+        "pfs_id": "yahoo-browserplus", 
+        "created": "2010-04-22 17:52:52", 
+        "url": "http://browserplus.yahoo.com/", 
+        "modified": "2010-04-22 17:52:52", 
+        "name": "BrowserPlus"
+    }, 
+    "releases": [
         {
-            "status": "latest",
-            "version": "2.5.1"
+            "status": "latest", 
+            "os_name": "*", 
+            "platform": {
+                "app_release": "*", 
+                "locale": "*", 
+                "app_version": "*", 
+                "app_id": "*"
+            }, 
+            "detection_type": "original", 
+            "version": "2.5.1", 
+            "detected_version": "2.5.1"
         }
-    ]
+    ], 
+    "mimes": [
+        "application/x-yahoo-browserplus_2", 
+        "application/x-yahoo-browserplus_2.5.1"
+    ], 
+    "aliases": {
+        "regex": [
+            "BrowserPlus.*"
+        ], 
+        "literal": [
+            "BrowserPlus (from Yahoo!)", 
+            "BrowserPlus"
+        ]
+    }
 }
