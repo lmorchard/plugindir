@@ -1,11 +1,11 @@
-#: views/plugins/edit.html:254
+#: views/plugins/edit.html:250
 msgid   "                            <a href=\"#\" class=\"show\">Show</a> /\n"
         "                            <a href=\"#\" class=\"hide\">Hide</a>\n"
         "                            empty properties.\n"
         "                        "
 msgstr  ""
 
-#: views/plugins/edit.html:173
+#: views/plugins/edit.html:169
 msgid   "                    <a href=\"#\" class=\"show\">Show</a> /\n"
         "                    <a href=\"#\" class=\"hide\">Hide</a>\n"
         "                    empty properties.\n"
@@ -34,14 +34,14 @@ msgid   "                    Use this form to provide details to create a new "
         "                "
 msgstr  ""
 
-#: views/index/index_shell.html:84
-msgid   "            If you want to get even more involved, you can sign up "
-        "for a\n"
+#: views/index/index_shell.html:67
+msgid   "            If you want to get involved, you can sign up for a\n"
         "            profile.  This will give you access to a sandbox in "
         "which to \n"
         "            edit plugin records, test them against our detection "
         "code in \n"
-        "            browsers, and submit changes to our editors for\n"
+        "            multiple browsers, and submit changes to our editors "
+        "for\n"
         "            approval and inclusion in the database.\n"
         "        "
 msgstr  ""
@@ -51,27 +51,6 @@ msgid   "            This site is an attempt to collect and provide "
         "information about\n"
         "            third-party browser plugins installed by people across "
         "the web.  \n"
-        "        "
-msgstr  ""
-
-#: views/index/index_shell.html:67
-msgid   "            Using our plugin detection service, you can check to see "
-        "if your\n"
-        "            plugins are up to date (as far as we know) or if you may "
-        "be\n"
-        "            vulnerable to any problems or security issues.\n"
-        "        "
-msgstr  ""
-
-#: views/index/index_shell.html:75
-msgid   "            We can also use your help:  If you are a plugin vendor, "
-        "or simply\n"
-        "            know something we don't know about a plugin, you can "
-        "help us by\n"
-        "            submitting suggested updates to this database along with "
-        "information\n"
-        "            we've detected about your browser and installed "
-        "plugins.\n"
         "        "
 msgstr  ""
 
@@ -123,24 +102,27 @@ msgid   "        The following is a list of plugins detected as installed\n"
         "    "
 msgstr  ""
 
-#: models/plugin.php:758
+#. i18n: %1$s = plugin_name_e
+#. i18n: %2$s = screen_name_e
+#: views/plugins/detail.html:55
+#, php-format
+msgid   "%1$s (%2$s sandbox)"
+msgstr  ""
+
+#: models/plugin.php:1078
 msgid   "(0/1) whether or not the OS needs to restart after plugin "
         "installation"
 msgstr  ""
 
-#: models/plugin.php:754
+#: models/plugin.php:1074
 msgid   "(0/1) whether or not the installer displays a user interface"
 msgstr  ""
 
-#: models/plugin.php:762 models/plugin.php:766 models/plugin.php:770
+#: models/plugin.php:1082 models/plugin.php:1086 models/plugin.php:1090
 msgid   "(Not sure, inherited from PFS1, need a description)"
 msgstr  ""
 
-#: PluginDir/Index.js:150
-msgid   "(from sandbox)"
-msgstr  ""
-
-#: views/plugins/sandbox_mine.html:24
+#: views/plugins/sandbox_mine.html:43
 msgid   "+ Create new sandbox plugin"
 msgstr  ""
 
@@ -149,18 +131,18 @@ msgstr  ""
 msgid   "<span class=\"version\">###</span> available"
 msgstr  ""
 
-#: models/plugin.php:714
+#: models/plugin.php:1030
 msgid   "A GUID for the plugin release, may differ between releases and "
         "platforms (unlike pfs_id)"
 msgstr  ""
 
-#: models/plugin.php:694
+#: models/plugin.php:1010
 msgid   "A dot-separated normalized version for the plugin, may differ from "
         "official vendor versioning scheme in order to maintain internal "
         "consistency in PFS2"
 msgstr  ""
 
-#: models/plugin.php:750
+#: models/plugin.php:1070
 msgid   "A hash of the installer contents for verifying its integrity"
 msgstr  ""
 
@@ -168,11 +150,11 @@ msgstr  ""
 msgid   "A login has already been registered using this email address."
 msgstr  ""
 
-#: auth_profiles/i18n/en_US/form_errors_auth.php:96
+#: auth_profiles/i18n/en_US/form_errors_auth.php:106
 msgid   "A valid new email confirmation is required"
 msgstr  ""
 
-#: auth_profiles/i18n/en_US/form_errors_auth.php:90
+#: auth_profiles/i18n/en_US/form_errors_auth.php:100
 msgid   "A valid new email is required"
 msgstr  ""
 
@@ -184,12 +166,17 @@ msgstr  ""
 msgid   "Account activation email sent."
 msgstr  ""
 
-#: PluginDir/Index.js:262
-#, c-format
-msgid   "Add release to %1$s"
+#. i18n: %1$s = screen_name_e
+#: views/plugins/detail.html:152
+#, php-format
+msgid   "Add %1$s as trusted"
 msgstr  ""
 
-#: views/layout.html:117
+#: views/plugins/addtrusted.html:55
+msgid   "Add as trusted"
+msgstr  ""
+
+#: views/layout.html:126
 msgid   "Advanced search"
 msgstr  ""
 
@@ -201,53 +188,54 @@ msgstr  ""
 msgid   "Any"
 msgstr  ""
 
-#: models/plugin.php:774
+#: models/plugin.php:1094
 msgid   "Application ID for client app"
-msgstr  ""
-
-#: views/plugins/edit.html:138
-msgid   "Autosave"
 msgstr  ""
 
 #: views/plugins/submission_detail.html:57
 msgid   "Back to submissions"
 msgstr  ""
 
-#: auth_profiles/controllers/auth_profiles.php:379
+#: auth_profiles/controllers/auth_profiles.php:448
 msgid   "Basics"
 msgstr  ""
 
-#: views/auth_profiles/editprofile.html:54
-#: views/auth_profiles/register.html:54
+#: views/auth_profiles/editprofile.html:58
+#: views/auth_profiles/register.html:58
 msgid   "Bio / About you"
 msgstr  ""
 
-#: views/index/index_shell.html:133
+#: views/index/index_shell.html:101
 msgid   "By Application"
 msgstr  ""
 
-#: views/index/index_shell.html:141
+#: views/index/index_shell.html:109
 msgid   "By MIME Type"
 msgstr  ""
 
-#: views/index/index_shell.html:129
+#: views/index/index_shell.html:97
 msgid   "By Name"
 msgstr  ""
 
-#: views/index/index_shell.html:137
+#: views/index/index_shell.html:105
 msgid   "By Operating System"
 msgstr  ""
 
-#: views/plugins/copy.html:47 views/plugins/delete.html:52
-#: views/plugins/deploy.html:47 views/plugins/requestpush.html:47
+#: views/auth_profiles/invalidcrumb.html:19
+msgid   "CSRF alert!"
+msgstr  ""
+
+#: views/plugins/addtrusted.html:64 views/plugins/copy.html:47
+#: views/plugins/delete.html:52 views/plugins/deploy.html:47
+#: views/plugins/removetrusted.html:64 views/plugins/requestpush.html:47
 msgid   "Cancel"
 msgstr  ""
 
-#: views/auth_profiles/register.html:74 views/plugins/submit.html:139
+#: views/auth_profiles/register.html:78 views/plugins/submit.html:139
 msgid   "Captcha"
 msgstr  ""
 
-#: views/auth_profiles/changeemail.html:64
+#: views/auth_profiles/changeemail.html:72
 msgid   "Change email"
 msgstr  ""
 
@@ -257,16 +245,16 @@ msgstr  ""
 msgid   "Change email address for %1$s"
 msgstr  ""
 
-#: auth_profiles/controllers/auth_profiles.php:389
+#: auth_profiles/controllers/auth_profiles.php:458
 msgid   "Change login email"
 msgstr  ""
 
-#: auth_profiles/controllers/auth_profiles.php:384
+#: auth_profiles/controllers/auth_profiles.php:453
 msgid   "Change login password"
 msgstr  ""
 
-#: views/auth_profiles/changepassword.html:107
-#: views/auth_profiles/changepassword.html:130
+#: views/auth_profiles/changepassword.html:111
+#: views/auth_profiles/changepassword.html:134
 msgid   "Change password"
 msgstr  ""
 
@@ -290,19 +278,23 @@ msgstr  ""
 msgid   "Check your inbox for a link to verify this new email address."
 msgstr  ""
 
-#: models/plugin.php:794
+#: views/auth_profiles/invalidcrumb.html:31
+msgid   "Click here to try again."
+msgstr  ""
+
+#: models/plugin.php:1114
 msgid   "Client app OS for which the plugin is intended (* is wildcard)"
 msgstr  ""
 
-#: models/plugin.php:789
+#: models/plugin.php:1109
 msgid   "Client app locale for which the plugin is intended (* is wildcard)"
 msgstr  ""
 
-#: models/plugin.php:779
+#: models/plugin.php:1099
 msgid   "Client app release for which the plugin is intended (* is wildcard)"
 msgstr  ""
 
-#: models/plugin.php:784
+#: models/plugin.php:1104
 msgid   "Client app version for which the plugin is intended (* is wildcard)"
 msgstr  ""
 
@@ -328,7 +320,7 @@ msgstr  ""
 msgid   "Copy to Sandbox"
 msgstr  ""
 
-#: views/plugins/detail.html:140 PluginDir/Index.js:237
+#: views/plugins/detail.html:179
 msgid   "Copy to sandbox"
 msgstr  ""
 
@@ -346,21 +338,17 @@ msgstr  ""
 msgid   "Create new public plugin"
 msgstr  ""
 
-#: PluginDir/Index.js:255
-msgid   "Create new sandbox plugin"
-msgstr  ""
-
 #. i18n: %1$s = screen_name_e
 #: views/plugins/create.html:59
 #, php-format
 msgid   "Create new sandbox plugin for %1$s"
 msgstr  ""
 
-#: views/plugins/edit.html:159
+#: views/plugins/edit.html:155
 msgid   "Current JSON data"
 msgstr  ""
 
-#: models/plugin.php:686
+#: models/plugin.php:1002
 msgid   "Current status of the release, eg. latest, outdated, vulnerable"
 msgstr  ""
 
@@ -368,7 +356,7 @@ msgstr  ""
 msgid   "Date"
 msgstr  ""
 
-#: views/plugins/delete.html:43 views/plugins/detail.html:166
+#: views/plugins/delete.html:43 views/plugins/detail.html:205
 msgid   "Delete plugin"
 msgstr  ""
 
@@ -382,7 +370,7 @@ msgstr  ""
 msgid   "Delete this plugin?"
 msgstr  ""
 
-#: PluginDir/Editor.js:504
+#: PluginDir/Editor.js:512
 msgid   "Delete this release?"
 msgstr  ""
 
@@ -390,24 +378,20 @@ msgstr  ""
 msgid   "Description"
 msgstr  ""
 
-#: views/plugins/detail.html:209
-msgid   "Description:"
-msgstr  ""
-
 #: views/index/index_byinstalled.html:48
 msgid   "Detected Version"
 msgstr  ""
 
-#: models/plugin.php:702
+#: models/plugin.php:1018
 msgid   "Detection scheme used in the client to derive the detected_version "
         "value"
 msgstr  ""
 
-#: views/plugins/detail.html:307
+#: views/plugins/detail.html:346
 msgid   "Download / Details"
 msgstr  ""
 
-#: views/plugins/detail.html:153
+#: views/plugins/detail.html:192
 msgid   "Edit details"
 msgstr  ""
 
@@ -417,20 +401,16 @@ msgstr  ""
 msgid   "Edit details for %1$s"
 msgstr  ""
 
-#: PluginDir/Index.js:245
-msgid   "Edit in sandbox"
-msgstr  ""
-
-#: auth_profiles/controllers/auth_profiles.php:394
+#: auth_profiles/controllers/auth_profiles.php:463
 msgid   "Edit profile details"
 msgstr  ""
 
-#: views/auth_profiles/forgotpassword.html:64
-#: views/auth_profiles/register.html:58
+#: views/auth_profiles/forgotpassword.html:68
+#: views/auth_profiles/register.html:62
 msgid   "Email"
 msgstr  ""
 
-#: views/auth_profiles/register.html:62
+#: views/auth_profiles/register.html:66
 msgid   "Email (confirm)"
 msgstr  ""
 
@@ -450,7 +430,7 @@ msgstr  ""
 msgid   "Feedback Actions"
 msgstr  ""
 
-#: models/plugin.php:726
+#: models/plugin.php:1042
 msgid   "Filename of the plugin as installed"
 msgstr  ""
 
@@ -458,34 +438,34 @@ msgstr  ""
 msgid   "Firefox"
 msgstr  ""
 
-#: models/plugin.php:722
+#: models/plugin.php:1038
 msgid   "For status vulnerable, a URL detailing security vulnerabilities for "
         "the plugin release"
 msgstr  ""
 
-#: models/plugin.php:718
+#: models/plugin.php:1034
 msgid   "For status vulnerable, a short description of security "
         "vulnerabilities for the plugin release"
 msgstr  ""
 
-#: views/auth_profiles/forgotpassword.html:68
+#: views/auth_profiles/forgotpassword.html:72
 msgid   "Forgot password"
 msgstr  ""
 
-#: views/auth_profiles/login.html:99
+#: views/auth_profiles/login.html:123
 msgid   "Forgot password?"
 msgstr  ""
 
-#: views/auth_profiles/editprofile.html:50
-#: views/auth_profiles/register.html:50
+#: views/auth_profiles/editprofile.html:54
+#: views/auth_profiles/register.html:54
 msgid   "Full name"
 msgstr  ""
 
-#: auth_profiles/i18n/en_US/form_errors_auth.php:64
+#: auth_profiles/i18n/en_US/form_errors_auth.php:68
 msgid   "Full name is required"
 msgstr  ""
 
-#: auth_profiles/i18n/en_US/form_errors_auth.php:66
+#: auth_profiles/i18n/en_US/form_errors_auth.php:70
 msgid   "Full name must contain only alphanumeric characters"
 msgstr  ""
 
@@ -513,16 +493,17 @@ msgstr  ""
 msgid   "Invalid password reset attempt."
 msgstr  ""
 
-#: views/plugins/detail.html:179
+#: views/plugins/detail.html:218
 msgid   "JSON export"
 msgstr  ""
 
-#: PluginDir/Editor.js:190
+#: PluginDir/Editor.js:194
 #, c-format
 msgid   "Last saved at %1$s"
 msgstr  ""
 
-#: views/macros/statuses.html:33 models/plugin.php:672
+#: views/macros/statuses.html:33 views/plugins/edit.html:287
+#: models/plugin.php:987
 msgid   "Latest"
 msgstr  ""
 
@@ -530,11 +511,11 @@ msgstr  ""
 msgid   "Linux"
 msgstr  ""
 
-#: views/plugins/edit.html:203
+#: views/plugins/edit.html:199
 msgid   "Literal aliases"
 msgstr  ""
 
-#: PluginDir/Editor.js:247
+#: PluginDir/Editor.js:251
 #, c-format
 msgid   "Loaded at %1$s"
 msgstr  ""
@@ -543,8 +524,8 @@ msgstr  ""
 msgid   "Logged out."
 msgstr  ""
 
-#: views/auth_profiles/login.html:27 views/auth_profiles/login.html:81
-#: views/auth_profiles/login.html:93
+#: views/auth_profiles/login.html:27 views/auth_profiles/login.html:51
+#: views/auth_profiles/login.html:117
 msgid   "Login"
 msgstr  ""
 
@@ -552,12 +533,12 @@ msgstr  ""
 msgid   "Login again?"
 msgstr  ""
 
-#: views/auth_profiles/register.html:42
+#: views/auth_profiles/register.html:46
 msgid   "Login details"
 msgstr  ""
 
-#: views/auth_profiles/forgotpassword.html:60
-#: views/auth_profiles/login.html:85 views/auth_profiles/register.html:46
+#: views/auth_profiles/forgotpassword.html:64
+#: views/auth_profiles/login.html:109 views/auth_profiles/register.html:50
 msgid   "Login name"
 msgstr  ""
 
@@ -586,15 +567,15 @@ msgstr  ""
 msgid   "Logout"
 msgstr  ""
 
-#: views/plugins/edit.html:192
+#: views/plugins/edit.html:188
 msgid   "MIME types"
 msgstr  ""
 
-#: views/plugins/edit.html:186
+#: views/plugins/edit.html:182
 msgid   "MIME types and aliases"
 msgstr  ""
 
-#: views/plugins/edit.html:197
+#: views/plugins/edit.html:193
 msgid   "MIME types of content handled by this plugin"
 msgstr  ""
 
@@ -606,6 +587,13 @@ msgstr  ""
 msgid   "Mac OS X"
 msgstr  ""
 
+#. i18n: %1$s = screen_name_e
+#. i18n: %2$s = plugin_name_e
+#: views/plugins/addtrusted.html:27 views/plugins/addtrusted.html:50
+#, php-format
+msgid   "Make %1$s trusted for \"%2$s\""
+msgstr  ""
+
 #: views/plugins/submission_detail.html:47 views/plugins/submissions.html:23
 #: views/plugins/submissions.html:154
 msgid   "Mark as seen"
@@ -615,15 +603,15 @@ msgstr  ""
 msgid   "Mark as unseen"
 msgstr  ""
 
-#: models/plugin.php:706
+#: models/plugin.php:1022
 msgid   "More verbose description of the plugin"
 msgstr  ""
 
-#: views/layout.html:40
+#: views/layout.html:49
 msgid   "Mozilla"
 msgstr  ""
 
-#: views/layout.html:169
+#: views/layout.html:178
 msgid   "Mozilla Plugin Directory"
 msgstr  ""
 
@@ -632,11 +620,11 @@ msgstr  ""
 msgid   "Name"
 msgstr  ""
 
-#: models/plugin.php:690
+#: models/plugin.php:1006
 msgid   "Name of the plugin"
 msgstr  ""
 
-#: models/plugin.php:710
+#: models/plugin.php:1026
 msgid   "Name of the vendor providing the plugin"
 msgstr  ""
 
@@ -644,15 +632,15 @@ msgstr  ""
 msgid   "Needs update"
 msgstr  ""
 
-#: views/auth_profiles/changepassword.html:122
+#: views/auth_profiles/changepassword.html:126
 msgid   "New Password"
 msgstr  ""
 
-#: views/auth_profiles/changepassword.html:126
+#: views/auth_profiles/changepassword.html:130
 msgid   "New Password (confirm)"
 msgstr  ""
 
-#: views/auth_profiles/changeemail.html:60
+#: views/auth_profiles/changeemail.html:68
 msgid   "New email"
 msgstr  ""
 
@@ -660,15 +648,15 @@ msgstr  ""
 msgid   "New email address verified."
 msgstr  ""
 
-#: auth_profiles/i18n/en_US/form_errors_auth.php:84
+#: auth_profiles/i18n/en_US/form_errors_auth.php:94
 msgid   "New password confirmation required"
 msgstr  ""
 
-#: auth_profiles/i18n/en_US/form_errors_auth.php:80
+#: auth_profiles/i18n/en_US/form_errors_auth.php:86
 msgid   "New password is required"
 msgstr  ""
 
-#: views/index/index_byinstalled.html:97 models/plugin.php:675
+#: views/index/index_byinstalled.html:97 models/plugin.php:990
 msgid   "Newer than directory"
 msgstr  ""
 
@@ -680,25 +668,20 @@ msgstr  ""
 msgid   "No submissions."
 msgstr  ""
 
-#: PluginDir/Index.js:187
-msgid   "Not detected (<a href=\"https://bugzilla.mozilla.org/show_bug.cgi?"
-        "id=536394\" target=\"_new\">Any ideas?</a>)"
-msgstr  ""
-
-#: views/plugins/detail.html:255 views/plugins/submissions.html:49
+#: views/plugins/detail.html:294 views/plugins/submissions.html:49
 #: views/search/results.html:65
 msgid   "OS"
 msgstr  ""
 
-#: views/auth_profiles/changepassword.html:115
+#: views/auth_profiles/changepassword.html:119
 msgid   "Old Password"
 msgstr  ""
 
-#: auth_profiles/i18n/en_US/form_errors_auth.php:74
+#: auth_profiles/i18n/en_US/form_errors_auth.php:78
 msgid   "Old password is invalid."
 msgstr  ""
 
-#: auth_profiles/i18n/en_US/form_errors_auth.php:76
+#: auth_profiles/i18n/en_US/form_errors_auth.php:80
 msgid   "Old password is required"
 msgstr  ""
 
@@ -706,7 +689,8 @@ msgstr  ""
 msgid   "Options"
 msgstr  ""
 
-#: views/macros/statuses.html:42 models/plugin.php:673
+#: views/macros/statuses.html:42 views/plugins/edit.html:291
+#: models/plugin.php:988
 msgid   "Outdated"
 msgstr  ""
 
@@ -714,16 +698,17 @@ msgstr  ""
 msgid   "PPC Mac OS X"
 msgstr  ""
 
-#: views/auth_profiles/login.html:89 views/auth_profiles/register.html:66
+#: views/auth_profiles/changeemail.html:64 views/auth_profiles/login.html:113
+#: views/auth_profiles/register.html:70
 msgid   "Password"
 msgstr  ""
 
-#: views/auth_profiles/register.html:70
+#: views/auth_profiles/register.html:74
 msgid   "Password (confirm)"
 msgstr  ""
 
-#: auth_profiles/i18n/en_US/form_errors_auth.php:50
-#: auth_profiles/i18n/en_US/form_errors_auth.php:86
+#: auth_profiles/i18n/en_US/form_errors_auth.php:54
+#: auth_profiles/i18n/en_US/form_errors_auth.php:96
 msgid   "Password and confirmation must match."
 msgstr  ""
 
@@ -731,11 +716,12 @@ msgstr  ""
 msgid   "Password changed."
 msgstr  ""
 
-#: auth_profiles/i18n/en_US/form_errors_auth.php:48
+#: auth_profiles/i18n/en_US/form_errors_auth.php:52
 msgid   "Password confirmation is required."
 msgstr  ""
 
 #: auth_profiles/i18n/en_US/form_errors_auth.php:42
+#: auth_profiles/i18n/en_US/form_errors_auth.php:84
 msgid   "Password is invalid."
 msgstr  ""
 
@@ -743,43 +729,42 @@ msgstr  ""
 msgid   "Password is required."
 msgstr  ""
 
-#: views/plugins/detail.html:251 views/plugins/submissions.html:53
+#: auth_profiles/i18n/en_US/form_errors_auth.php:48
+#: auth_profiles/i18n/en_US/form_errors_auth.php:90
+msgid   "Password must be 8 characters or greater in length, contain at least "
+        "one number, and contain at least one non-alphanumeric character (eg. "
+        "punctuation, special characters)."
+msgstr  ""
+
+#: auth_profiles/i18n/en_US/form_errors_auth.php:46
+#: auth_profiles/i18n/en_US/form_errors_auth.php:88
+msgid   "Password must be between 8 and 255 characters in length."
+msgstr  ""
+
+#: views/plugins/detail.html:290 views/plugins/submissions.html:53
 #: views/search/results.html:61
 msgid   "Platform"
 msgstr  ""
 
-#. i18n: %1$s = plugin_name_e
-#: views/plugins/detail.html:64
-#, php-format
-msgid   "Plugin Detail :: %1$s"
-msgstr  ""
-
-#. i18n: %1$s = plugin_name_e
-#. i18n: %2$s = screen_name_e
-#: views/plugins/detail.html:55
-#, php-format
-msgid   "Plugin Detail :: %1$s (%2$s sandbox)"
-msgstr  ""
-
-#: views/layout.html:42
+#: views/layout.html:51
 msgid   "Plugin Directory"
 msgstr  ""
 
 #. i18n: %1$s = profile_screen_name_e
-#: views/plugins/sandbox.html:20 views/plugins/sandbox.html:29
+#: views/plugins/sandbox.html:42 views/plugins/sandbox.html:54
 #, php-format
 msgid   "Plugin Sandbox for %1$s"
 msgstr  ""
 
-#: views/plugins/edit.html:147 views/plugins/submit.html:92
+#: views/plugins/edit.html:143 views/plugins/submit.html:92
 msgid   "Plugin details"
 msgstr  ""
 
-#: views/plugins/detail.html:196
+#: views/plugins/detail.html:235
 msgid   "Plugin icon"
 msgstr  ""
 
-#: views/plugins/edit.html:168
+#: views/plugins/edit.html:164
 msgid   "Plugin metadata and release defaults"
 msgstr  ""
 
@@ -791,12 +776,12 @@ msgstr  ""
 msgid   "Profile settings for <a href=\"%1$sprofiles/%2$s\">%3$s</a>"
 msgstr  ""
 
-#: views/plugins/detail.html:103
-msgid   "Push changes live"
-msgstr  ""
-
 #: views/plugins/deploy.html:33
 msgid   "Push changes to this plugin live?"
+msgstr  ""
+
+#: views/plugins/detail.html:109
+msgid   "Push live"
 msgstr  ""
 
 #. i18n: %1$s = plugin_name_e
@@ -809,7 +794,7 @@ msgstr  ""
 msgid   "Push plugin changes live"
 msgstr  ""
 
-#: views/auth_profiles/login.html:61
+#: views/auth_profiles/login.html:89
 msgid   "Re-send Account Activation Information"
 msgstr  ""
 
@@ -824,16 +809,16 @@ msgstr  ""
 msgid   "Recovering password for %1$s"
 msgstr  ""
 
-#: views/plugins/edit.html:214
+#: views/plugins/edit.html:210
 msgid   "Regex aliases"
 msgstr  ""
 
-#: views/plugins/edit.html:219
+#: views/plugins/edit.html:215
 msgid   "Regexes matching names by which this plugin has been known"
 msgstr  ""
 
 #: views/auth_profiles/forgotpassword.html:27
-#: views/auth_profiles/register.html:27 views/auth_profiles/register.html:78
+#: views/auth_profiles/register.html:27 views/auth_profiles/register.html:82
 msgid   "Register"
 msgstr  ""
 
@@ -846,20 +831,33 @@ msgstr  ""
 msgid   "Register (verify)"
 msgstr  ""
 
-#: views/plugins/edit.html:249 PluginDir/Editor.js:445
+#: views/plugins/edit.html:245 PluginDir/Editor.js:452
 msgid   "Release"
 msgstr  ""
 
-#: views/plugins/edit.html:228
+#: views/plugins/edit.html:224
 msgid   "Releases"
 msgstr  ""
 
-#: views/plugins/requestpush.html:38
-msgid   "Request approval"
+#. i18n: %1$s = screen_name_e
+#: views/plugins/detail.html:140
+#, php-format
+msgid   "Remove %1$s as trusted"
 msgstr  ""
 
-#: views/plugins/detail.html:116
-msgid   "Request approval for changes"
+#. i18n: %1$s = screen_name_e
+#. i18n: %2$s = plugin_name_e
+#: views/plugins/removetrusted.html:27 views/plugins/removetrusted.html:50
+#, php-format
+msgid   "Remove %1$s as trusted for \"%2$s\""
+msgstr  ""
+
+#: views/plugins/removetrusted.html:55
+msgid   "Remove as trusted"
+msgstr  ""
+
+#: views/plugins/detail.html:122 views/plugins/requestpush.html:38
+msgid   "Request approval"
 msgstr  ""
 
 #. i18n: %1$s = plugin_name_e
@@ -876,7 +874,7 @@ msgstr  ""
 msgid   "Return to the home page?"
 msgstr  ""
 
-#: views/auth_profiles/editprofile.html:62
+#: views/auth_profiles/editprofile.html:66
 msgid   "Role"
 msgstr  ""
 
@@ -884,7 +882,7 @@ msgstr  ""
 msgid   "Sandbox Actions"
 msgstr  ""
 
-#: PluginDir/Editor.js:195
+#: PluginDir/Editor.js:199
 #, c-format
 msgid   "Save failed at %1$s"
 msgstr  ""
@@ -893,55 +891,51 @@ msgstr  ""
 msgid   "Save now"
 msgstr  ""
 
-#: views/plugins/edit.html:154
+#: views/plugins/edit.html:150
 msgid   "Saved JSON data"
 msgstr  ""
 
-#: PluginDir/Editor.js:175
+#: PluginDir/Editor.js:179
 #, c-format
 msgid   "Saving at %1$s"
 msgstr  ""
 
-#: auth_profiles/i18n/en_US/form_errors_auth.php:60
+#: auth_profiles/i18n/en_US/form_errors_auth.php:64
 msgid   "Screen name is not available."
 msgstr  ""
 
-#: auth_profiles/i18n/en_US/form_errors_auth.php:54
+#: auth_profiles/i18n/en_US/form_errors_auth.php:58
 msgid   "Screen name is required."
 msgstr  ""
 
-#: auth_profiles/i18n/en_US/form_errors_auth.php:56
+#: auth_profiles/i18n/en_US/form_errors_auth.php:60
 msgid   "Screen name must be between 3 and 64 characters in length"
 msgstr  ""
 
-#: auth_profiles/i18n/en_US/form_errors_auth.php:58
+#: auth_profiles/i18n/en_US/form_errors_auth.php:62
 msgid   "Screen name must contain only alphanumeric characters"
 msgstr  ""
 
-#. i18n: %1$s = authprofile_screen_name_e
+#. i18n: %1$s = profile_screen_name
 #: views/auth_profiles/settings.html:31
 #, php-format
 msgid   "Settings for %1$s"
+msgstr  ""
+
+#: models/plugin.php:992
+msgid   "Should be disabled"
 msgstr  ""
 
 #: views/forbidden.html:31
 msgid   "Sorry, that action is not allowed."
 msgstr  ""
 
-#: views/auth_profiles/login.html:39
-msgid   "Sorry, that login has been disabled."
-msgstr  ""
-
-#: views/auth_profiles/login.html:51
-msgid   "Sorry, the email address for that login has not yet been verified."
-msgstr  ""
-
-#: views/plugins/detail.html:259 views/plugins/submissions.html:45
+#: views/plugins/detail.html:298 views/plugins/submissions.html:45
 #: views/plugins/submit.html:106 views/search/results.html:69
 msgid   "Status"
 msgstr  ""
 
-#: views/index/index_shell.html:122 views/plugins/submission_detail.html:19
+#: views/plugins/submission_detail.html:19
 msgid   "Submissions"
 msgstr  ""
 
@@ -971,7 +965,7 @@ msgstr  ""
 msgid   "SunOS (sun4u)"
 msgstr  ""
 
-#: views/auth_profiles/forgotpassword.html:56
+#: views/auth_profiles/forgotpassword.html:60
 msgid   "Supply either of these pieces of information to recover your "
         "password:"
 msgstr  ""
@@ -981,19 +975,37 @@ msgid   "The directory can't find any details on this plugin. You can share "
         "the details with us to help keep the directory up to date!"
 msgstr  ""
 
-#: views/plugins/edit.html:208
+#: views/plugins/edit.html:204
 msgid   "The literal names by which this plugin has been known"
 msgstr  ""
 
-#: auth_profiles/i18n/en_US/form_errors_auth.php:92
+#: views/auth_profiles/login.html:99
+msgid   "The username or password you entered is not correct."
+msgstr  ""
+
+#: views/auth_profiles/login.html:80
+msgid   "This email address for this login has not yet been verified."
+msgstr  ""
+
+#: auth_profiles/i18n/en_US/form_errors_auth.php:102
 msgid   "This email address is used by another login"
 msgstr  ""
 
-#: views/plugins/sandbox_listing.html:13
-msgid   "This sandbox is empty."
+#: views/auth_profiles/login.html:72
+msgid   "This login has been disabled."
 msgstr  ""
 
-#: models/plugin.php:798
+#: views/auth_profiles/login.html:64
+msgid   "This login has been temporarily disabled, due to multiple failed "
+        "login attempts.  Please try again later."
+msgstr  ""
+
+#: views/auth_profiles/invalidcrumb.html:27
+msgid   "This request appears to be an attempt at cross-site request forgery "
+        "and has been rejected!"
+msgstr  ""
+
+#: models/plugin.php:1118
 msgid   "Timestamp when last the release record was modified"
 msgstr  ""
 
@@ -1001,35 +1013,39 @@ msgstr  ""
 msgid   "Try again?"
 msgstr  ""
 
-#: views/plugins/detail.html:263
+#: views/plugins/detail.html:302
 msgid   "URL"
 msgstr  ""
 
-#: models/plugin.php:738
+#: models/plugin.php:1058
 msgid   "URL for a manually-launched executable installer for the plugin"
 msgstr  ""
 
-#: models/plugin.php:742
+#: models/plugin.php:1062
 msgid   "URL for an XPI-based installer for the plugin"
 msgstr  ""
 
-#: models/plugin.php:746
+#: models/plugin.php:1066
 msgid   "URL for an executable installer for the plugin (mainly for Windows)"
 msgstr  ""
 
-#: models/plugin.php:734
+#: models/plugin.php:1050
+msgid   "URL to an image icon for the plugin"
+msgstr  ""
+
+#: models/plugin.php:1054
 msgid   "URL where the license for using the plugin may be found"
 msgstr  ""
 
-#: models/plugin.php:730
+#: models/plugin.php:1046
 msgid   "URL with details describing the plugin"
 msgstr  ""
 
-#: models/plugin.php:676
+#: models/plugin.php:991
 msgid   "Uncertain"
 msgstr  ""
 
-#: views/macros/statuses.html:59 models/plugin.php:671
+#: views/macros/statuses.html:59 models/plugin.php:986
 msgid   "Unknown"
 msgstr  ""
 
@@ -1041,11 +1057,11 @@ msgstr  ""
 msgid   "Up to date"
 msgstr  ""
 
-#: views/auth_profiles/editprofile.html:69
+#: views/auth_profiles/editprofile.html:73
 msgid   "Update"
 msgstr  ""
 
-#: auth_profiles/i18n/en_US/form_errors_auth.php:70
+#: auth_profiles/i18n/en_US/form_errors_auth.php:74
 msgid   "Valid captcha response is required."
 msgstr  ""
 
@@ -1072,13 +1088,13 @@ msgstr  ""
 msgid   "Version"
 msgstr  ""
 
-#: models/plugin.php:698
+#: models/plugin.php:1014
 msgid   "Version detected in the client, can differ from vendor-intended "
         "version depending on capabilities of detection_type"
 msgstr  ""
 
-#: views/plugins/detail.html:90
-msgid   "View original"
+#: views/plugins/detail.html:96
+msgid   "View live"
 msgstr  ""
 
 #: views/plugins/submit.html:110
@@ -1090,7 +1106,7 @@ msgid   "Vulnerability description"
 msgstr  ""
 
 #: views/index/index_byinstalled.html:105 views/macros/statuses.html:51
-#: models/plugin.php:674
+#: views/plugins/edit.html:295 models/plugin.php:989
 msgid   "Vulnerable"
 msgstr  ""
 
@@ -1128,11 +1144,7 @@ msgid   "You appear to have the latest version of this plugin as far as the "
         "correction."
 msgstr  ""
 
-#: views/index/index_shell.html:103
-msgid   "Your Installed Plugins"
-msgstr  ""
-
-#: views/index/index_shell.html:111
+#: views/index/index_shell.html:90
 msgid   "Your Sandbox"
 msgstr  ""
 
@@ -1140,54 +1152,54 @@ msgstr  ""
 msgid   "Your plugin data submission has been accepted, thank you!"
 msgstr  ""
 
-#: views/plugins/edit.html:233
+#: views/plugins/edit.html:229
 msgid   "[ + ] Add new release"
 msgstr  ""
 
-#: views/plugins/edit.html:263
+#: views/plugins/edit.html:259
 msgid   "[ x ] Delete release"
 msgstr  ""
 
-#: auth_profiles/controllers/auth_profiles.php:390
+#: auth_profiles/controllers/auth_profiles.php:459
 msgid   "change current login email"
 msgstr  ""
 
-#: auth_profiles/controllers/auth_profiles.php:385
+#: auth_profiles/controllers/auth_profiles.php:454
 msgid   "change current login password"
 msgstr  ""
 
-#: auth_profiles/controllers/auth_profiles.php:395
+#: auth_profiles/controllers/auth_profiles.php:464
 msgid   "change screen name, bio, etc."
 msgstr  ""
 
-#: views/plugins/sandbox_listing.html:51
+#: views/plugins/sandbox_listing.html:66
 msgid   "delete"
 msgstr  ""
 
-#: views/plugins/sandbox_listing.html:61
+#: views/plugins/sandbox_listing.html:76
 msgid   "edit"
 msgstr  ""
 
-#: views/auth_profiles/changeemail.html:56 views/layout.html:85
+#: views/auth_profiles/changeemail.html:60 views/layout.html:94
 msgid   "login"
 msgstr  ""
 
-#: views/layout.html:74
+#: views/layout.html:83
 msgid   "logout"
 msgstr  ""
 
-#: models/plugin.php:682
+#: models/plugin.php:998
 msgid   "pfs_id of the plugin within PFS2"
 msgstr  ""
 
-#: views/layout.html:91
+#: views/layout.html:100
 msgid   "register"
 msgstr  ""
 
-#: views/layout.html:108
+#: views/layout.html:117
 msgid   "search releases"
 msgstr  ""
 
-#: views/layout.html:68
+#: views/layout.html:77
 msgid   "settings"
 msgstr  ""
