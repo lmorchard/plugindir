@@ -265,7 +265,7 @@ PluginDir.Editor = (function () {
             // Forcibly overwrite any edits to PFS ID with original value.
             $this.definition.meta.pfs_id = $this.pfs_id;
             
-            $this.definition.mimes = (''+$('#mimes').val()).replace("\n", " ").split(" ");
+            $this.definition.mimes = (''+$('#mimes').val()).split("\n");
             
             $this.definition.aliases = {
                 literal: (''+$('#literal_aliases').val()).split("\n"),
