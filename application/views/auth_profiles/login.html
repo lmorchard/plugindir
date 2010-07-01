@@ -3,7 +3,7 @@
 {% import "macros/forms.html" as forms %}
 
 {% block title %}
-    {% trans "Login" %}
+    {% trans "Log in" %}
 {% endblock %}
 
 {% block content %}
@@ -12,7 +12,7 @@
         {% set data, errors as form_data, [] %}
         {{ forms.hidden(data, errors, 'crumb', crumb) }}
         {{ forms.hidden(data, errors, 'jump') }}
-        {{ forms.fieldset('Login'|trans, 'login') }}
+        {{ forms.fieldset('Log in'|trans, 'login') }}
             {% if form_errors %}
                 <li class="error">
                     {% if form_errors.locked_out %}
@@ -31,7 +31,7 @@
             {% endif %}
             {{ forms.input(data, errors, 'text', 'login_name', 'Login name'|trans) }}
             {{ forms.input(data, errors, 'password', 'password', 'Password'|trans) }}
-            {{ forms.submit('login', '', 'Login'|trans) }}
+            {{ forms.submit('login', '', 'Log in'|trans) }}
             <li><a href="{{base_url}}forgotpassword">{% trans "Forgot password?" %}</a></li>
         {{ forms.endfieldset() }}
     </form>
