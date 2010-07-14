@@ -30,12 +30,13 @@ class Plugin_Model extends ORM_Resource {
     // {{{ Class constants
 
     public static $status_codes = array(
-        'unknown'    => 0,
-        'latest'     => 10,
-        'outdated'   => 20,
-        'vulnerable' => 30,
-        'newer'      => 40,
-        'uncertain'  => 50,
+        'unknown'        => 0,
+        'latest'         => 10,
+        'outdated'       => 20,
+        'vulnerable'     => 30,
+        'should_disable' => 35,
+        'newer'          => 40,
+        'uncertain'      => 50,
     );
 
     /**
@@ -697,6 +698,26 @@ class Plugin_Model extends ORM_Resource {
                     if ($is_new_latest) {
                         $rs['latest'] = $r;
                     }
+                }
+            }
+
+            // No latest release found, so they're probably all vulnerable or 
+            // should be disabled. So, try finding the highest version and use 
+            // that as the latest.
+            if (empty($rs['latest'])) {
+                $latest = null;
+                $latest_idx = 0;
+                foreach ($rs['others'] as $idx => $r) {
+                    $av = $r['version'];
+                    $bv = $latest['version'];
+                    if (null == $latest || $this->compareVersions($av, $bv) > 0) {
+                        $latest = $r;
+                        $latest_idx = $idx;
+                    }
+                }
+                if (!empty($latest)) { 
+                    $rs['latest'] = $latest; 
+                    array_splice($rs['others'], $latest_idx, 1);
                 }
             }
 
