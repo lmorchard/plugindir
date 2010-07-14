@@ -375,6 +375,25 @@ PluginDir.Editor = (function () {
                     field.show();
                 }
             });
+
+            $this.revealDependentFields(parent);
+        },
+
+        /**
+         * bug 553668: hack to reveal vulnerability fields on vulnerable
+         * status, even if empty.
+         */
+        revealDependentFields: function (parent) {
+            parent.find('.field select[name=status]').each(function () {
+                var field = $(this);
+                if (field.val() == 'vulnerable') {
+                    $.each(['vulnerability_description', 'vulnerability_url'], function () {
+                        parent.find('.field input[name='+this+']').each(function () {
+                            $(this).parent().show();
+                        });
+                    });
+                }
+            });
         },
 
         /**
@@ -430,6 +449,7 @@ PluginDir.Editor = (function () {
             if ($(this).parents('#meta-fields').length == 0) {
                 $this.updateReleaseSummary($(this).parents('fieldset:first'));
             }
+            $this.revealDependentFields($(this).parents('.fields'));
             $this.scheduleSavePlugin();
             return true;
         },
