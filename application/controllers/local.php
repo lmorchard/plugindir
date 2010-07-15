@@ -15,6 +15,11 @@ class Local_Controller extends TwigRender_Controller {
     {
         parent::__construct();
 
+        if (authprofiles::is_logged_in()) {
+            AuditLogEvent_Model::$current_profile =
+                authprofiles::get_profile();
+        }
+
         Event::add('system.403', array($this, 'show_forbidden'));
         Event::add('system.forbidden', array($this, 'show_forbidden'));
     }

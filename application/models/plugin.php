@@ -107,8 +107,12 @@ class Plugin_Model extends ORM_Resource {
     /**
      * Assemble a data structure suitable for later import from plugin records.
      */
-    public function export()
+    public function export($force_fresh=FALSE)
     {
+        if ($force_fresh) {
+            $this->db->clear_cache();
+        }
+
         // Build the export scaffolding.
         $out = array(
             'meta' => array(

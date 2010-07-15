@@ -1,0 +1,36 @@
+{% extends "layout.html" %}
+
+{% import "macros/auditlogevents.html" as auditlogevents %}
+
+{% block title %}
+    {% set plugin_name_e as plugin.name | e %}
+    {% set plugin_name_e as plugin.name | e %}
+    {% set screen_name_e as screen_name | e %}
+    {% if plugin %}
+        {% if plugin.sandbox_profile_id %}
+            {% blocktrans %}Activity log for {{plugin_name_e}} ({{screen_name_e}} sandbox){% endblocktrans %}
+        {% else %}
+            {% blocktrans %}Activity log for {{plugin_name_e}}{% endblocktrans %}
+        {% endif %}
+    {% else %}
+        {% blocktrans %}Activity log{% endblocktrans %}
+    {% endif %}
+{% endblock %}
+
+{% block content %}
+
+<div class="activity_log">
+    <ul class="events">
+        {% for event in events %}
+            <li>
+                <div class="event">
+                    {{auditlogevents.event(event, base_url)}}
+                </div>
+            </li>
+        {% endfor %}
+    </ul>
+</div>
+
+    {{pagination.render("extended")}}
+
+{% endblock %}

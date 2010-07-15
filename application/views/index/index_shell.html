@@ -1,6 +1,7 @@
 {% extends "layout.html" %}
 
 {% import "index/index_shell.html" as this %}
+{% import "macros/auditlogevents.html" as auditlogevents %}
 
 {% block title %}
     {% trans "Home" %}
@@ -27,6 +28,20 @@
             multiple browsers, and submit changes to our editors for
             approval and inclusion in the database.
         {% endblocktrans %}</p>
+    </div>
+
+    <div class="recent_events">
+        <h3>Recent activity</h3>
+        <ul class="events">
+            {% for event in events %}
+                <li>
+                    <div class="event">
+                        {{auditlogevents.event(event, base_url)}}
+                    </div>
+                </li>
+            {% endfor %}
+        </ul>
+        <a class="view_all" href="{{base_url}}plugins/activitylog">{% trans "View all activity" %}</a>
     </div>
 
     <div class="listing">

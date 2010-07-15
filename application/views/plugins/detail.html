@@ -3,6 +3,7 @@
 {% import "macros/platforms.html" as platforms %}
 {% import "macros/oses.html" as oses %}
 {% import "macros/statuses.html" as statuses %}
+{% import "macros/auditlogevents.html" as auditlogevents %}
 
 {% block title %}
     {% set plugin_name_e as plugin.name | e %}
@@ -52,6 +53,22 @@
             <li><a href="{{plugin_base}}.json">{% trans "JSON export" %}</a></li>
         {% endif %}
     </ul>
+
+    <div class="recent_events">
+        <h3>Recent activity</h3>
+        <ul class="events">
+            {% for event in events %}
+                <li>
+                    <div class="event">
+                        {{auditlogevents.event(event, base_url)}}
+                    </div>
+                </li>
+            {% else %}
+                <li>Nothing, yet.</li>
+            {% endfor %}
+        </ul>
+        <a class="view_all" href="{{plugin_base}};activitylog">{% trans "View all activity" %}</a>
+    </div>
 
     <div class="meta clearfix">
         {% if plugin.icon_url %}

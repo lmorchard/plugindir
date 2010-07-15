@@ -204,9 +204,44 @@ body.l10n-dir-rtl .content form fieldset ul.fields li.error p.error {
 body.l10n-dir-rtl .content form fieldset ul.fields li.field p.notes {
     margin: 0.25em 26ex 0.5em 0;
 }
-
+.index_home { position: relative; }
+.index_home .recent_events, #ctrl_plugins_act_detail .recent_events {
+    position: absolute;
+    right: 10px;
+    width: 350px;
+}
+.index_home .recent_events, #ctrl_plugins_act_detail .recent_events, .activity_log .events {
+    background: #fff;
+    margin: 0 0 0 0;
+    border: 1px solid #ccc;
+}
+.index_home .recent_events {
+    margin: 1.75em 0 0 0;
+}
+.recent_events h3 {
+    padding: 0 1em 0 1em;
+    margin: 0.5em 0 0 0;
+}
+ul.events {
+    margin: 0 0 0 1em;
+    padding: 0 1em 0 1.5em;
+}
+.recent_events ul.events li {
+    font-size: 0.85em;
+}
+ul.events li {
+    margin: 1em 0 1em 0;
+}
+.recent_events .view_all {
+    display: block;
+    margin: 1em 1em 1em 1em;
+}
+.recent_events .view_all:after {
+    content: " >>";
+}
 .index_home .listing {
-    margin: 1.5em 0 0 0;
+    margin-right: 360px;
+    padding: 0 1em 0 1em;
 }
 .index_home .listing .listing_content {
     padding: 0.75em 1.75em 0.75em 1.75em;
@@ -366,7 +401,7 @@ ul.actions > li > a:hover {
 }
 
 #ctrl_plugins_act_detail .meta {
-    margin: 0.5em;
+    margin: 0.5em 360px 0.5em 0.5em;
     padding: 0.5em;
     border: 1px solid #333;
     background: #fff;
@@ -388,7 +423,8 @@ ul.actions > li > a:hover {
 }
 #ctrl_plugins_act_detail ul.releases {
     list-style: none;
-    margin: 0; padding: 0;
+    margin: 0 360px 0 0; 
+    padding: 0;
 }
 #ctrl_plugins_act_detail ul.releases li.release {
 }

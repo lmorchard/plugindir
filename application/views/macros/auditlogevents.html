@@ -1,0 +1,50 @@
+{% macro event(event, base_url) %}
+
+    <div class="what">
+        <a class="actor" href="{{base_url}}profiles/{{event.profile.screen_name|e}}">{{ event.profile.screen_name|e }}</a>
+
+        <span class="action">
+            {% if 'copied_to_sandbox' == event.action %}
+                copied
+            {% elseif 'deployed_from_sandbox' == event.action %}
+                deployed
+            {% elseif 'requested_push' == event.action %}
+                requested deployment for 
+            {% elseif 'add_trusted' == event.action %}
+                enabled trusted status on
+            {% elseif 'remove_trusted' == event.action %}
+                removed trusted status on
+            {% else %}
+                {{ event.action }}
+            {% endif %}
+        </span>
+
+        {% if event.plugin.sandbox_profile_id %}
+            <a href="{{base_url}}profiles/{{event.plugin.sandbox_profile.screen_name|e}}/plugins/detail/{{event.plugin.pfs_id | urlencode | e}}">{{event.plugin.name | e}}</a>
+        {% else %}
+            <a href="{{base_url}}plugins/detail/{{event.plugin.pfs_id | urlencode | e}}">{{event.plugin.name | e}}</a>
+        {% endif %}
+
+        <span class="details">
+            {% if 'deployed_from_sandbox' == event.action %}
+                {% if event.details.sandbox_profile %}
+                    from <a class="actor" href="{{base_url}}profiles/{{event.details.sandbox_profile.screen_name|e}}/plugins/detail/{{event.plugin.pfs_id | urlencode | e}}">{{event.details.sandbox_profile.screen_name|e}}</a>
+                {% else %}
+                    to <a href="{{base_url}}plugins/detail/{{event.plugin.pfs_id | urlencode | e}}">public</a>
+                {% endif %}
+            {% elseif 'copied_to_sandbox' == event.action %}
+                to <a class="actor" href="{{base_url}}profiles/{{event.details.sandbox_profile.screen_name|e}}/plugins/detail/{{event.plugin.pfs_id | urlencode | e}}">sandbox</a>
+            {% elseif 'requested_push' == event.action %}
+                from sandbox
+            {% elseif 'remove_trusted' == event.action or 'add_trusted' == event.action %}
+                for <a class="actor" href="{{base_url}}profiles/{{event.details.profile.screen_name|e}}">{{event.details.profile.screen_name|e}}</a>
+            {% else %}
+                {{ event.details }}
+            {% endif %}
+        </span>
+
+    </div>
+
+    <abbr class="when" title="{{event.isotime}}">{{ event.relative_date }} at {{ event.time }} GMT</abbr>
+
+{% endmacro %}

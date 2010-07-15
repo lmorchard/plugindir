@@ -19,7 +19,8 @@ class Plugins_Controller extends Local_Controller {
     /**
      * Produce a JSON index of all plugins with release counts.
      */
-    function index_json(){
+    function index_json()
+    {
         $this->auto_render = FALSE;
         $name_counts = ORM::factory('plugin')->find_release_counts();
         $out = array();
@@ -118,6 +119,13 @@ class Plugins_Controller extends Local_Controller {
         // Create a new plugin from the export.
         $new_plugin = ORM::factory('plugin')->import($import);
 
+        // Log the plugin creation
+        ORM::factory('auditLogEvent')->set(array(
+            'action'    => 'created',
+            'plugin_id' => $new_plugin->id,
+            'new_state' => $import,
+        ))->save();
+
         // Bounce over to the created plugin
         if ($new_plugin->sandbox_profile_id) {
             url::redirect(
@@ -172,9 +180,59 @@ class Plugins_Controller extends Local_Controller {
         if ($screen_name == authprofiles::get_profile('screen_name')) {
             // HACK: Since this is using the index page shell, inform it which tab 
             // to select.  This should probably be done all in the view.
+            $this->view->events = ORM::factory('auditLogEvent')
+                ->orderby(array('created'=>'DESC'))
+                ->where('profile_id', $profile->id)
+                ->limit(15)
+                ->find_all_for_view();
             $this->view->by_cat = 'sandbox';
             $this->view->set_filename('plugins/sandbox_mine');
         }
+    }
+
+    /**
+     * Display the activity log for a plugin
+     */
+    function activitylog($pfs_id=null, $screen_name=null)
+    {
+        if (null == $pfs_id) {
+            $plugin = null;
+        } else {
+            list($plugin, $plugin_profile) = 
+                $this->_find_plugin($pfs_id, $screen_name);
+            if (!authprofiles::is_allowed($plugin, 'view'))
+                return Event::run('system.forbidden');
+        }
+
+        $per_page  = $this->input->get('limit', 25);
+        $curr_page = $this->input->get('page', 1);
+
+        if (null == $plugin) {
+            $total_items = ORM::factory('auditLogEvent')->count_all();
+        } else {
+            $total_items = ORM::factory('auditLogEvent')
+                ->where('plugin_id', $plugin->id)->count_all();
+        }
+
+        $pagination = new Pagination(array(
+            'base_url' => url::current(),
+            'total_items' => $total_items,
+            'items_per_page' => $per_page,
+            'query_string' => 'page'
+        ));
+
+        $events = ORM::factory('auditLogEvent')
+            ->orderby(array('created'=>'DESC'));
+        if ($plugin)
+            $events->where('plugin_id', $plugin->id);
+        $events->limit($pagination->items_per_page, $pagination->sql_offset);
+
+        $this->view->set(array(
+            'screenname' => $screen_name,
+            'plugin'     => $plugin,
+            'pagination' => $pagination,
+            'events'     => $events->find_all_for_view()
+        ));
     }
 
     /**
@@ -221,7 +279,18 @@ class Plugins_Controller extends Local_Controller {
                     }
                 }
                 
-                $plugin = ORM::factory('plugin')->import($data);
+                $old_state = $plugin->export();
+
+                $updated_plugin = ORM::factory('plugin')->import($data);
+
+                // Log the plugin modification
+                ORM::factory('auditLogEvent')->set(array(
+                    'action'    => 'modified',
+                    'plugin_id' => $plugin->id,
+                    'old_state' => $old_state,
+                    'new_state' => $data,
+                ))->save();
+
             }
             
             // Return the plugin data as an export in JSON
@@ -241,6 +310,12 @@ class Plugins_Controller extends Local_Controller {
 
         // Do a rough version sort.
         uksort($releases, array($this, '_versionCmp'));
+
+        $this->view->events = ORM::factory('auditLogEvent')
+            ->orderby(array('created'=>'DESC'))
+            ->where('plugin_id', $plugin->id)
+            ->limit(15)
+            ->find_all_for_view();
         
         $this->view->releases = $releases;
     }
@@ -271,6 +346,15 @@ class Plugins_Controller extends Local_Controller {
             
             // Create a new plugin from the export.
             $new_plugin = ORM::factory('plugin')->import($export);
+
+            // Log the sandbox copy.
+            ORM::factory('auditLogEvent')->set(array(
+                'action'    => 'copied_to_sandbox',
+                'plugin_id' => $plugin->id,
+                'details'   => array(
+                    'sandbox_profile' => authprofiles::get_profile()->as_array()
+                ),
+            ))->save();
 
             $auth_screen_name = authprofiles::get_profile('screen_name');
             if (empty($_GET)) {
@@ -311,6 +395,20 @@ class Plugins_Controller extends Local_Controller {
             // Import the export to finish deployment.
             $new_plugin = ORM::factory('plugin')->import($export);
 
+            ORM::factory('auditLogEvent')->set(array(
+                'action'    => 'deployed_from_sandbox',
+                'plugin_id' => $plugin->id,
+            ))->save();
+
+            ORM::factory('auditLogEvent')->set(array(
+                'action'    => 'deployed_from_sandbox',
+                'plugin_id' => $new_plugin->id,
+                'details'   => array(
+                    'sandbox_profile'=>$plugin_profile->as_array()
+                ),
+                'new_state' => $new_plugin->export(),
+            ))->save();
+
             // Bounce over to the deployed plugin
             url::redirect("plugins/detail/{$new_plugin->pfs_id}");
 
@@ -328,6 +426,12 @@ class Plugins_Controller extends Local_Controller {
 
         // Only perform the delete on POST.
         if ('post' == request::method()) {
+
+            ORM::factory('auditLogEvent')->set(array(
+                'action'    => 'deleted',
+                'plugin_id' => $plugin->id,
+                'old_state' => $plugin->export(),
+            ))->save();
 
             $plugin->delete();
 
@@ -385,6 +489,11 @@ class Plugins_Controller extends Local_Controller {
             Session::instance()
                 ->set_flash('message', 'Approval requested');
 
+            ORM::factory('auditLogEvent')->set(array(
+                'action'    => 'requested_push',
+                'plugin_id' => $plugin->id,
+            ))->save();
+
             // Bounce over to sandbox.
             $auth_screen_name = authprofiles::get_profile('screen_name');
             url::redirect(
@@ -406,6 +515,14 @@ class Plugins_Controller extends Local_Controller {
         if ('post' == request::method()) {
             $plugin->add_trusted($plugin_profile);
 
+            ORM::factory('auditLogEvent')->set(array(
+                'action'    => 'add_trusted',
+                'details'   => array(
+                    'profile' => $plugin_profile->as_array()
+                ),
+                'plugin_id' => $plugin->id,
+            ))->save();
+
             // Bounce over to sandbox.
             $auth_screen_name = authprofiles::get_profile('screen_name');
             url::redirect(
@@ -426,6 +543,14 @@ class Plugins_Controller extends Local_Controller {
         // Only perform the delete on POST.
         if ('post' == request::method()) {
             $plugin->remove_trusted($plugin_profile);
+
+            ORM::factory('auditLogEvent')->set(array(
+                'action'    => 'remove_trusted',
+                'details'   => array(
+                    'profile' => $plugin_profile->as_array()
+                ),
+                'plugin_id' => $plugin->id,
+            ))->save();
 
             // Bounce over to sandbox.
             $auth_screen_name = authprofiles::get_profile('screen_name');

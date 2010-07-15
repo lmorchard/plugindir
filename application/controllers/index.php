@@ -38,6 +38,11 @@ class Index_Controller extends Local_Controller {
                 break;
         }
 
+        $this->view->events = ORM::factory('auditLogEvent')
+            ->orderby(array('created'=>'DESC'))
+            ->limit(15)
+            ->find_all_for_view();
+
         $this->view->by_cat = $by_cat;
         $this->view->set_filename('index/index_by' . $this->view->by_cat);
     }
