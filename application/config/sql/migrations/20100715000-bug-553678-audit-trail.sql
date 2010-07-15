@@ -1,0 +1,1 @@
+application/config/sql/migrations/20100715000-bug-553678-audit-trail.sql
