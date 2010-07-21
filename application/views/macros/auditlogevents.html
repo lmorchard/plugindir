@@ -19,10 +19,15 @@
             {% endif %}
         </span>
 
-        {% if 'deleted' == event.action %}
+        {% if not event.plugin.name and event.old_state %}
             <strike>{{event.old_state.meta.name}}</strike>
             {% if event.old_state.meta.sandbox_profile_id %}
-                from sandbox
+                in sandbox
+            {% endif %}
+        {% elseif not event.plugin.name and event.new_state %}
+            <strike>{{event.new_state.meta.name}}</strike>
+            {% if event.new_state.meta.sandbox_profile_id %}
+                in sandbox
             {% endif %}
         {% elseif event.plugin.sandbox_profile_id %}
             <a href="{{base_url}}profiles/{{event.plugin.sandbox_profile.screen_name|e}}/plugins/detail/{{event.plugin.pfs_id | urlencode | e}}">{{event.plugin.name | e}}</a> in sandbox

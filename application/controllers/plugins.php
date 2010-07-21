@@ -351,6 +351,7 @@ class Plugins_Controller extends Local_Controller {
             ORM::factory('auditLogEvent')->set(array(
                 'action'    => 'copied_to_sandbox',
                 'plugin_id' => $plugin->id,
+                'old_state' => $export,
                 'details'   => array(
                     'sandbox_profile' => authprofiles::get_profile()->as_array()
                 ),
@@ -397,6 +398,7 @@ class Plugins_Controller extends Local_Controller {
 
             ORM::factory('auditLogEvent')->set(array(
                 'action'    => 'deployed_from_sandbox',
+                'old_state' => $export,
                 'plugin_id' => $plugin->id,
             ))->save();
 
@@ -492,6 +494,7 @@ class Plugins_Controller extends Local_Controller {
             ORM::factory('auditLogEvent')->set(array(
                 'action'    => 'requested_push',
                 'plugin_id' => $plugin->id,
+                'old_state' => $plugin->export(),
             ))->save();
 
             // Bounce over to sandbox.
@@ -521,6 +524,7 @@ class Plugins_Controller extends Local_Controller {
                     'profile' => $plugin_profile->as_array()
                 ),
                 'plugin_id' => $plugin->id,
+                'old_state' => $plugin->export(),
             ))->save();
 
             // Bounce over to sandbox.
@@ -550,6 +554,7 @@ class Plugins_Controller extends Local_Controller {
                     'profile' => $plugin_profile->as_array()
                 ),
                 'plugin_id' => $plugin->id,
+                'old_state' => $plugin->export(),
             ))->save();
 
             // Bounce over to sandbox.
