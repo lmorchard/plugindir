@@ -10,7 +10,8 @@
 
 {% block index_content %}
     <p>
-        <a class="new_plugin" href="{{base_url}}profiles/{{authprofile.screen_name|urlencode}}/plugins;create">{% trans "+ Create new sandbox plugin" %}</a>
+        <a class="new_plugin" href="{{base_url}}profiles/{{authprofile.screen_name|urlencode}}/plugins;create?appID=*&appRelease=*&appVersion=*&clientOS=*&chromeLocale=*">{% trans "+ Create new sandbox plugin" %}</a>
     </p>
+
     {% include 'plugins/sandbox_listing.html' %}
 {% endblock %}
