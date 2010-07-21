@@ -38,12 +38,12 @@
         <span class="details">
             {% if 'deployed_from_sandbox' == event.action %}
                 {% if event.details.sandbox_profile %}
-                    from <a class="actor" href="{{base_url}}profiles/{{event.details.sandbox_profile.screen_name|e}}/plugins/detail/{{event.plugin.pfs_id | urlencode | e}}">{{event.details.sandbox_profile.screen_name|e}}</a>
+                    from <a class="actor" href="{{base_url}}profiles/{{event.details.sandbox_profile.screen_name|e}}">{{event.details.sandbox_profile.screen_name|e}}</a>
                 {% else %}
-                    to <a href="{{base_url}}plugins/detail/{{event.plugin.pfs_id | urlencode | e}}">public</a>
+                    from sandbox to public
                 {% endif %}
             {% elseif 'copied_to_sandbox' == event.action %}
-                to <a class="actor" href="{{base_url}}profiles/{{event.details.sandbox_profile.screen_name|e}}/plugins/detail/{{event.plugin.pfs_id | urlencode | e}}">sandbox</a>
+                to sandbox
             {% elseif 'remove_trusted' == event.action or 'add_trusted' == event.action %}
                 for <a class="actor" href="{{base_url}}profiles/{{event.details.profile.screen_name|e}}">{{event.details.profile.screen_name|e}}</a>
             {% else %}
