@@ -41,8 +41,7 @@ PluginDir = (function () {
                 // Append 'create sandbox plugin' link on sandbox tab with
                 // detected browser info.
                 $('.listing a.new_plugin').each(function () {
-                    var submit_params = $.param(Pfs.UI.browserInfo());
-                    $(this).attr('href', $(this).attr('href') + '?' + submit_params);
+                    $(this).attr('href', $(this).attr('href'));
                 });
 
                 // Set up toggle-all checkboxes

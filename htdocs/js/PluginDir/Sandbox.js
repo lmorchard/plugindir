@@ -120,7 +120,7 @@ PluginDir.Sandbox = (function () {
                 // Build URL params for use in linking to the contribution
                 // and creation forms, composed of detected plugin details
                 // and browser info.
-                var submit_params = $.param($.extend({
+                var submit_params = $.param({
                     status: data.status,
                     pfs_id: pfs_id || '',
                     version: version,
@@ -130,8 +130,13 @@ PluginDir.Sandbox = (function () {
                     filename: raw_plugin.filename,
                     description: raw_plugin.description,
                     vendor: (!has_pfs_match) ? '' : latest.vendor,
-                    mimetypes: data.pluginInfo.mimes.join("\n")
-                }, Pfs.UI.browserInfo()));
+                    mimetypes: data.pluginInfo.mimes.join("\n"),
+                    appID: '*',
+                    appRelease: '*',
+                    appVersion: '*',
+                    clientOS: '*',
+                    chromeLocale: '*'
+                });
 
                 var tmpl_data = {
                     '.name': data.pluginInfo.raw.name,
