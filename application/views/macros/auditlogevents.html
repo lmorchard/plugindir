@@ -19,8 +19,13 @@
             {% endif %}
         </span>
 
-        {% if event.plugin.sandbox_profile_id %}
-            <a href="{{base_url}}profiles/{{event.plugin.sandbox_profile.screen_name|e}}/plugins/detail/{{event.plugin.pfs_id | urlencode | e}}">{{event.plugin.name | e}}</a>
+        {% if 'deleted' == event.action %}
+            <strike>{{event.old_state.meta.name}}</strike>
+            {% if event.old_state.meta.sandbox_profile_id %}
+                from sandbox
+            {% endif %}
+        {% elseif event.plugin.sandbox_profile_id %}
+            <a href="{{base_url}}profiles/{{event.plugin.sandbox_profile.screen_name|e}}/plugins/detail/{{event.plugin.pfs_id | urlencode | e}}">{{event.plugin.name | e}}</a> in sandbox
         {% else %}
             <a href="{{base_url}}plugins/detail/{{event.plugin.pfs_id | urlencode | e}}">{{event.plugin.name | e}}</a>
         {% endif %}
@@ -34,8 +39,6 @@
                 {% endif %}
             {% elseif 'copied_to_sandbox' == event.action %}
                 to <a class="actor" href="{{base_url}}profiles/{{event.details.sandbox_profile.screen_name|e}}/plugins/detail/{{event.plugin.pfs_id | urlencode | e}}">sandbox</a>
-            {% elseif 'requested_push' == event.action %}
-                from sandbox
             {% elseif 'remove_trusted' == event.action or 'add_trusted' == event.action %}
                 for <a class="actor" href="{{base_url}}profiles/{{event.details.profile.screen_name|e}}">{{event.details.profile.screen_name|e}}</a>
             {% else %}
