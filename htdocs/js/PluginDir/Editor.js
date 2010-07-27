@@ -170,6 +170,13 @@ PluginDir.Editor = (function () {
 
             $this.updateDefinitionFromForm();
 
+            var errors = $('.field.error');
+            if (errors.length > 0) {
+                $this.updateStatusMessage(_("Not saved: Validation errors detected and marked below"));
+                $this.save_inprogress = false;
+                return false;
+            }
+
             var json = $this.buildJSON(),
                 url  = $this.json_url;
 
@@ -329,21 +336,104 @@ PluginDir.Editor = (function () {
             for (name in $this.plugin_properties) {
                 if ($this.plugin_properties.hasOwnProperty(name)) {
                     var prop = $this.plugin_properties[name],
-                        val = parent.find('*[name='+name+']').val();
+                        field = parent.find('*[name='+name+']'),
+                        val = field.val();
+
                     if ('' === val || 'undefined' == val) { continue; }
-                    // Allow one level of data structure depth, specified by
-                    // 'parent' in property definition. (eg. platform')
-                    if (prop.parent) {
-                        if (!fields[prop.parent]) {
-                            fields[prop.parent] = {};
+
+                    // Perform field validation, if a method is declared
+                    var is_valid = true;
+                    if (prop.validation) {
+                        if ($this['validate_'+prop.validation]) {
+                            is_valid = 
+                                $this['validate_'+prop.validation](val, field);
+                            $this.markFieldValidity(field, is_valid);
                         }
-                        fields[prop.parent][name] = val;
-                    } else {
-                        fields[name] = val;
                     }
+
+                    if (is_valid) {
+                        // Allow one level of data structure depth, specified by
+                        // 'parent' in property definition. (eg. platform')
+                        if (prop.parent) {
+                            if (!fields[prop.parent]) {
+                                fields[prop.parent] = {};
+                            }
+                            fields[prop.parent][name] = val;
+                        } else {
+                            fields[name] = val;
+                        }
+                    }
+
                 }
             }
             return fields;
+        },
+
+        /**
+         * Mark the validation status of a field.
+         */
+        markFieldValidity: function (field, is_valid) {
+            var field_parent = field.parent();
+            if (is_valid) {
+                field_parent.removeClass('error');
+            } else {
+                field_parent.addClass('error');
+                field_parent.parents('fieldset.closed').removeClass('closed');
+            }
+        },
+
+        /**
+         * Validate a field expected to contain a URL.
+         */
+        validate_url: function (url, field) {
+            if (!url) {
+                // URL does not imply required, so empty is okay.
+                return true;
+            }
+            var parsed = $this.parseUri(url),
+                allowed_protos = [ 'http', 'https', 'ftp' ],
+                is_ok =
+                    parsed.host && 
+                    (-1 !== allowed_protos.indexOf(parsed.protocol));
+            if (is_ok) {
+                return true;
+            }
+
+            return false;
+        },
+
+        // see: http://blog.stevenlevithan.com/archives/parseuri
+        // parseUri 1.2.2
+        // (c) Steven Levithan <stevenlevithan.com>
+        // MIT License
+
+        parseUri: function (str) {
+            var o   = $this.parseUri_options,
+                m   = o.parser[o.strictMode ? "strict" : "loose"].exec(str),
+                uri = {},
+                i   = 14;
+
+            while (i--) uri[o.key[i]] = m[i] || "";
+
+            uri[o.q.name] = {};
+            uri[o.key[12]].replace(o.q.parser, function ($0, $1, $2) {
+                if ($1) uri[o.q.name][$1] = $2;
+            });
+
+            return uri;
+        },
+
+        parseUri_options: {
+            strictMode: false,
+            key: ["source","protocol","authority","userInfo","user","password","host","port","relative","path","directory","file","query","anchor"],
+            q:   {
+                name:   "queryKey",
+                parser: /(?:^|&)([^&=]*)=?([^&]*)/g
+            },
+            parser: {
+                strict: /^(?:([^:\/?#]+):)?(?:\/\/((?:(([^:@]*)(?::([^:@]*))?)?@)?([^:\/?#]*)(?::(\d*))?))?((((?:[^?#\/]*\/)*)([^?#]*))(?:\?([^#]*))?(?:#(.*))?)/,
+                loose:  /^(?:(?![^:@]+:[^:@\/]*@)([^:\/?#.]+):)?(?:\/\/)?((?:(([^:@]*)(?::([^:@]*))?)?@)?([^:\/?#]*)(?::(\d*))?)(((\/(?:[^?#](?![^?#\/]*\.[^?#\/.]+(?:[?#]|$)))*\/?)?([^?#\/]*))(?:\?([^#]*))?(?:#(.*))?)/
+            }
         },
 
         /**

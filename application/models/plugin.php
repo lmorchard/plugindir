@@ -196,6 +196,77 @@ class Plugin_Model extends ORM_Resource {
     }
 
     /**
+     * Validate all the data for a given plugin description structure.
+     */
+    public function validate($plugin_data)
+    {
+        $all_errors = array();
+
+        $meta_errors = $this->validate_release($plugin_data['meta']);
+        if (!empty($meta_errors)) 
+            $all_errors['meta'] = $meta_errors;
+
+        $releases_errors = array();
+        foreach ($plugin_data['releases'] as $idx=>$release_data) {
+            $release_errors = $this->validate_release($release_data); 
+            if (!empty($release_errors)) 
+                $releases_errors['release_'.$idx] = $release_errors;
+        }
+        if (!empty($releases_errors))
+            $all_errors['releases'] = $releases_errors;
+
+        return array( empty($all_errors), $all_errors );
+    }
+
+    /**
+     * Validate the data for an individual plugin release.
+     */
+    public function validate_release($release_data)
+    {
+        $errors = array();
+
+        foreach ($release_data as $name=>$value) {
+
+            $field_errors = array();
+
+            if ('platform' == $name) {
+                // TODO: Platform's nested structure might someday need validation
+                continue;
+            }
+
+            if (empty(self::$properties[$name])) {
+                $field_errors[] = 'unknown_property';
+                continue;
+            }
+            
+            $prop_spec = self::$properties[$name];
+            if (isset($prop_spec['validation'])) {
+
+                // TODO: Change to method dispatch if need more validation methods.
+                if ('url' == $prop_spec['validation']) {
+                    $is_valid = TRUE;
+                    if (valid::url($value) !== TRUE) {
+                        $is_valid = FALSE;
+                    } else {
+                        list ($proto, $rest) = explode(':', $value, 2);
+                        if (!in_array($proto, array('http', 'https', 'ftp'))) {
+                        $is_valid = FALSE;
+                        }
+                    }
+                    if (!$is_valid) {
+                        $field_errors[] = 'invalid_url';
+                    }
+                }
+
+            }
+
+            if ($field_errors) $errors[$name] = $field_errors;
+        }
+
+        return $errors;
+    }
+
+    /**
      * Import a plugin into the database from data structure.
      */
     public function import($plugin_data, $delete_first=FALSE)
@@ -1059,7 +1130,7 @@ Plugin_Model::$properties = array(
         'description' => _("For status vulnerable, a short description of security vulnerabilities for the plugin release")
     ),
     'vulnerability_url' => array( 
-        'type' => 'text', 
+        'type' => 'text', 'validation' => 'url',
         'description' => _("For status vulnerable, a URL detailing security vulnerabilities for the plugin release")
     ),
     'filename' => array( 
@@ -1067,27 +1138,27 @@ Plugin_Model::$properties = array(
         'description' => _("Filename of the plugin as installed")
     ),
     'url' => array( 
-        'type' => 'text', 
+        'type' => 'text', 'validation' => 'url', 
         'description' => _("URL with details describing the plugin")
     ),
     'icon_url' => array( 
-        'type' => 'text', 
+        'type' => 'text', 'validation' => 'url', 
         'description' => _("URL to an image icon for the plugin")
     ),
     'license_url' => array( 
-        'type' => 'text', 
+        'type' => 'text', 'validation' => 'url', 
         'description' => _("URL where the license for using the plugin may be found")
     ),
     'manual_installation_url' => array( 
-        'type' => 'text', 
+        'type' => 'text', 'validation' => 'url', 
         'description' => _("URL for a manually-launched executable installer for the plugin")
     ),
     'xpi_location' => array( 
-        'type' => 'text', 
+        'type' => 'text', 'validation' => 'url', 
         'description' => _("URL for an XPI-based installer for the plugin")
     ),
     'installer_location' => array( 
-        'type' => 'text', 
+        'type' => 'text', 'validation' => 'url', 
         'description' => _("URL for an executable installer for the plugin (mainly for Windows)")
     ),
     'installer_hash' => array( 

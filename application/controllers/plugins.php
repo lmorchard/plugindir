@@ -269,6 +269,16 @@ class Plugins_Controller extends Local_Controller {
                     exit;
                 }
 
+                list($is_valid, $errors) = ORM::factory('plugin')->validate($data);
+                if (!$is_valid) {
+                    header('HTTP/1.1 400 Bad Request');
+                    $this->auto_render = FALSE;
+                    return json::render(
+                        array('errors'=>$errors), 
+                        $this->input->get('callback')
+                    );
+                }
+
                 // Force some significant details in export to match original plugin.
                 $force_names = array(
                     'pfs_id', 'sandbox_profile_id', 'original_plugin_id'

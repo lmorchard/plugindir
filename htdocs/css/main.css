@@ -166,6 +166,7 @@ body.l10n-dir-rtl .content form fieldset ul.fields li.field label {
 .content form fieldset ul.fields li.error,
 .content form fieldset ul.fields li.error label {
     color: red;
+    font-weight: bold;
 }
 .content form fieldset ul.fields li.field textarea.textarea,
 .content form fieldset ul.fields li.field input.text,
