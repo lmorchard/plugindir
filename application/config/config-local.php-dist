@@ -8,6 +8,7 @@ $config['core.display_errors'] = FALSE;
 $config['core.render_stats'] = FALSE;
 
 $config['csrf_crumbs.secret'] = 'you should really change this';
+$config['auth_profiles.secret'] = 'you should really change this too';
 
 $config['model.database'] = 'default';
 
