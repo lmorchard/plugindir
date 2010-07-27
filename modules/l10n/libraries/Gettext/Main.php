@@ -60,6 +60,7 @@ class Gettext_Main {
         }
 
         $langs = array();
+        $supported_languages = Kohana::config('locale.supported_languages');
         $path_exceptions = Kohana::config('locale.path_exceptions');
         if (!in_array($segs[0], $path_exceptions)) {
             // Since the first path segment isn't an exception, pluck it off 
@@ -67,6 +68,11 @@ class Gettext_Main {
             // reconstitute the router's idea of current URI without that 
             // segment.
             $langs[] = $lang_seg = array_shift($segs);
+            if (empty($supported_languages[strtolower($lang_seg)])) {
+                // bug 580421: Ensure that this is a supported language
+                Event::run('system.404');
+                exit;
+            }
             Router::$current_uri = self::$modified_url = implode('/', $segs);
         }
 
