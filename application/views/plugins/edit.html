@@ -1,11 +1,8 @@
 {% extends "layout.html" %}
 
-{% import "macros/platforms.html" as platforms %}
-{% import "macros/oses.html" as oses %}
-{% import "macros/statuses.html" as statuses %}
-
 {% block title %}
-    Plugin Editor :: {{plugin.name | e}}
+    {% set plugin_name_e = plugin.name|e %}
+    {% blocktrans %}Plugin Editor :: {{plugin_name_e}}{% endblocktrans %}
 {% endblock %}
 
 {% block js_includes %}
@@ -26,10 +23,14 @@
 {% endblock %}
 
 {% block content %}
+{% import "macros/platforms.html" as platforms %}
+{% import "macros/oses.html" as oses %}
+{% import "macros/statuses.html" as statuses %}
+
     {% if plugin.sandbox_profile_id %}
-        {% set plugin_base as base_url ~ "profiles/" ~ screen_name|e ~ "/plugins/detail/" ~ plugin.pfs_id|urlencode|e %}
+        {% set plugin_base = base_url ~ "profiles/" ~ screen_name|e ~ "/plugins/detail/" ~ plugin.pfs_id|urlencode|e %}
     {% else %}
-        {% set plugin_base as base_url ~ "plugins/detail/" ~ plugin.pfs_id|urlencode|e %}
+        {% set plugin_base = base_url ~ "plugins/detail/" ~ plugin.pfs_id|urlencode|e %}
     {% endif %}
 
     <form id="editor">

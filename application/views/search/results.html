@@ -1,14 +1,14 @@
 {% extends "layout.html" %}
 
-{% import "macros/platforms.html" as platforms %}
-{% import "macros/oses.html" as oses %}
-{% import "macros/statuses.html" as statuses %}
-
 {% block title %}
     Search Results
 {% endblock %}
 
 {% block content %}
+    {% import "macros/platforms.html" as platforms %}
+    {% import "macros/oses.html" as oses %}
+    {% import "macros/statuses.html" as statuses %}
+
     <table class="releases">
         <thead>
             <tr>

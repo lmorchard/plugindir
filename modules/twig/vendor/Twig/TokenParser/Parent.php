@@ -11,19 +11,30 @@
  */
 class Twig_TokenParser_Parent extends Twig_TokenParser
 {
-  public function parse(Twig_Token $token)
-  {
-    if (null === $this->parser->getCurrentBlock())
+    /**
+     * Parses a token and returns a node.
+     *
+     * @param Twig_Token $token A Twig_Token instance
+     *
+     * @return Twig_NodeInterface A Twig_NodeInterface instance
+     */
+    public function parse(Twig_Token $token)
     {
-      throw new Twig_SyntaxError('Calling "parent" outside a block is forbidden', $token->getLine());
+        if (!count($this->parser->getBlockStack())) {
+            throw new Twig_SyntaxError('Calling "parent" outside a block is forbidden', $token->getLine());
+        }
+        $this->parser->getStream()->expect(Twig_Token::BLOCK_END_TYPE);
+
+        return new Twig_Node_Parent($this->parser->peekBlockStack(), $token->getLine(), $this->getTag());
     }
-    $this->parser->getStream()->expect(Twig_Token::BLOCK_END_TYPE);
 
-    return new Twig_Node_Parent($this->parser->getCurrentBlock(), $token->getLine(), $this->getTag());
-  }
-
-  public function getTag()
-  {
-    return 'parent';
-  }
+    /**
+     * Gets the tag name associated with this token parser.
+     *
+     * @param string The tag name
+     */
+    public function getTag()
+    {
+        return 'parent';
+    }
 }

@@ -185,11 +185,10 @@ class Util_Controller extends Local_Controller {
             // Load and compile the template
             $tmpl = twigutil::loadTemplate($fn);
             // Find the filename for the compiled template PHP
-            $tmpl_name = $tmpl->getName();
-            $cache_fn  = twigutil::getEnv()->getCacheFilename($tmpl_name);
+            $cache_fn  = twigutil::getEnv()->getCacheFilename($fn);
             // Copy the compiled PHP to the temporary directory structure
-            copy($cache_fn, "$tmp_dir/$tmpl_name");
-            echo "\t$tmpl_name\n";
+            copy($cache_fn, "$tmp_dir/$fn");
+            echo "\t$fn\n";
         }
     }
 

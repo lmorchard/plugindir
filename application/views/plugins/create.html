@@ -1,12 +1,7 @@
 {% extends "layout.html" %}
 
-{% import "macros/platforms.html" as platforms %}
-{% import "macros/oses.html" as oses %}
-{% import "macros/statuses.html" as statuses %}
-{% import "macros/forms.html" as forms %}
-
 {% block title %}
-    {% set screen_name_e as profile.screen_name|e %}
+    {% set screen_name_e = profile.screen_name|e %}
     {% if profile %}
         {% blocktrans %}Create new sandbox plugin for {{screen_name_e}}{% endblocktrans %}
     {% else %}
@@ -15,13 +10,17 @@
 {% endblock %}
 
 {% block content %}
+{% import "macros/platforms.html" as platforms %}
+{% import "macros/oses.html" as oses %}
+{% import "macros/statuses.html" as statuses %}
+{% import "macros/forms.html" as forms %}
+
     {% if saved %}
         <p>{% blocktrans %}Your plugin data submission has been accepted, thank you!{% endblocktrans %}</p>
     {% else %}
 
         <form class="contribute" action="" method="post">
-
-            {% set data, errors as form_data, form_errors %}
+            {% set data, errors = form_data, form_errors %}
 
             {{ forms.hidden(data, errors, 'crumb', crumb) }}
             {{ forms.hidden(data, errors, 'detected_version', _GET.version) }}

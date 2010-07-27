@@ -90,4 +90,24 @@ class ORM extends ORM_Core {
         return parent::save();
     }
 
+    /**
+     * HACK: Wrap Kohana's ORM method call hack in our own hack that eats up 
+     * "Invalid method" exceptions when methods named for table columns are
+     * called. This is a dirty, dirty workaround for Twig's admittedly 
+     * reasonable reliance on an object actually reporting a method as 
+     * non-callable when it's non-callable.
+     */
+    public function __call($method, array $args)
+    {
+        try {
+            return parent::__call($method, $args);
+        } catch (Kohana_Exception $e) {
+            if (isset($this->table_columns[$method])) {
+                return null;
+            } else {
+                throw $e;
+            }
+        } 
+    }
+
 }

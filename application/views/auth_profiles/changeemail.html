@@ -1,18 +1,18 @@
 {% extends "layout.html" %}
 
-{% import "macros/forms.html" as forms %}
-
 {% block title %}
-    {% set profile_screen_name_e as profile.screen_name|e %}
+    {% set profile_screen_name_e = profile.screen_name|e %}
     {% blocktrans %}Change email address for {{profile_screen_name_e}}{% endblocktrans %}
 {% endblock %}
 
 {% block content %}
+    {% import "macros/forms.html" as forms %}
+
     {% if email_verification_token_set %}
     <p>{% trans "Check your inbox for a link to verify this new email address." %}</p>
     {% else %}
         <form class="changeemail" action="" method="post">
-            {% set data, errors as form_data, form_errors %}
+            {% set data, errors = form_data, form_errors %}
             {{ forms.hidden(data, errors, 'crumb', crumb) }}
             {{ forms.fieldset('Login details', 'login'|trans) }}
                 {{ forms.input(data, errors, 'password', 'password',  'Password'|trans) }}

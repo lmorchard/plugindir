@@ -1,18 +1,19 @@
 {% extends "layout.html" %}
 
-{% import "index/index_shell.html" as this %}
-{% import "macros/auditlogevents.html" as auditlogevents %}
-
 {% block title %}
     {% trans "Home" %}
 {% endblock %}
 
 {% block js_includes %}
     {% parent %}
-    <script type="text/javascript" src="{{media_url}}js/PluginDir/Index.js"></script>
+    <!--<script type="text/javascript" src="{{media_url}}js/PluginDir/Index.js"></script>-->
 {% endblock %}
 
 {% block content %}
+
+{% import "index/index_shell.html" as this %}
+{% import "macros/auditlogevents.html" as auditlogevents %}
+
 <div class="index_home">
 
     <div class="intro">

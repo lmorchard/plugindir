@@ -1,16 +1,16 @@
 {% extends "layout.html" %}
 
-{% import "macros/forms.html" as forms %}
-
 {% block title %}
-    {% set profile_screen_name as profile.screen_name|e %}
+    {% set profile_screen_name = profile.screen_name|e %}
     {% blocktrans %}Settings for {{profile_screen_name}}{% endblocktrans %}
 {% endblock %}
 
 {% block content %}
+    {% import "macros/forms.html" as forms %}
+
     <h3>
-        {% set profile_screen_name_url as profile.screen_name|urlencode %}
-        {% set profile_screen_name as profile.screen_name|e %}
+        {% set profile_screen_name_url = profile.screen_name|urlencode %}
+        {% set profile_screen_name = profile.screen_name|e %}
         {% blocktrans %}Profile settings for <a href="{{base_url}}profiles/{{profile_screen_name_url}}">{{profile_screen_name}}</a>{% endblocktrans %}
     </h3>
     <ul class="sections">

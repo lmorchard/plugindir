@@ -105,22 +105,27 @@ class Twig_L10N_Extension_Trans_Node extends Twig_Node
 
     public function __construct(Twig_Node_Expression $msgid, $ctxt, $lineno, $tag)
     {
-        parent::__construct($lineno);
-        $this->msgid = $msgid;
-        $this->ctxt = $ctxt;
+        parent::__construct(
+            array(),
+            array(
+                'msgid' => $msgid,
+                'ctxt' => $ctxt,
+            ),
+            $lineno
+        );
     }
 
     public function compile($compiler)
     {
         $compiler->addDebugInfo($this)->write('echo ');
 
-        if (false === $this->ctxt) {
+        if (false === $this['ctxt']) {
             $compiler
-                ->raw('gettext(')->subcompile($this->msgid)->raw(')');
+                ->raw('gettext(')->subcompile($this['msgid'])->raw(')');
         } else {
             $compiler
-                ->raw('pgettext(')->string($this->ctxt)
-                ->raw(', ')->subcompile($this->msgid)->raw(");\n");
+                ->raw('pgettext(')->string($this['ctxt'])
+                ->raw(', ')->subcompile($this['msgid'])->raw(");\n");
         }
         $compiler->raw(";\n");
     }
@@ -237,18 +242,25 @@ class Twig_L10N_Extension_BlockTrans_TokenParser extends Twig_TokenParser
  */
 class Twig_L10N_Extension_BlockTrans_Node extends Twig_Node
 {
+    /*
     protected $fmt;
     protected $vars;
     protected $ctxt;
+     */
 
     public function __construct($fmts, $vars, $count, $ctxt, $lineno, $tag)
     {
-        parent::__construct($lineno);
-        $this->fmts  = $fmts;
-        $this->vars  = $vars;
-        $this->count = $count;
-        $this->ctxt  = $ctxt;
-        $this->tag   = $tag;
+        parent::__construct(
+            array(),
+            array(
+                'fmts' => $fmts,
+                'vars' => $vars,
+                'count' => $count,
+                'ctxt' => $ctxt,
+                'tag' => $tag,
+            ),
+            $lineno
+        );
     }
 
     /**
@@ -260,23 +272,23 @@ class Twig_L10N_Extension_BlockTrans_Node extends Twig_Node
     {
         $compiler->addDebugInfo($this);
 
-        if (!empty($this->vars)) {
+        if (!empty($this['vars'])) {
             // Write out pairings of sprintf placeholders and original var 
             // names as i18n comments for extraction, to provide a little 
             // context.
-            foreach ($this->vars as $var_idx=>$var_name) {
+            foreach ($this['vars'] as $var_idx=>$var_name) {
                 $compiler->write("// i18n: %".($var_idx+1)."\$s = {$var_name}\n");
             }
         }
         $compiler->write('echo ');
 
-        if (!empty($this->vars)) {
+        if (!empty($this['vars'])) {
             // Start using a sprintf if we have vars
             $compiler->raw('sprintf(');
         }
 
-        $no_context  = (FALSE === $this->ctxt);
-        $is_singular = (count($this->fmts) == 1);
+        $no_context  = (FALSE === $this['ctxt']);
+        $is_singular = (count($this['fmts']) == 1);
 
         // Pick the appropriate gettext function based on context / plurality
         $fn = $no_context ? 
@@ -286,29 +298,29 @@ class Twig_L10N_Extension_BlockTrans_Node extends Twig_Node
 
         if (!$no_context) {
             // If there's a context, insert the parameter
-            $compiler->string($this->ctxt)->raw(',');
+            $compiler->string($this['ctxt'])->raw(',');
         }
 
         if (!$is_singular) {
             // If this is plural, insert the singular string
-            $compiler->string(join(' ', $this->fmts[1]))->raw(',');
+            $compiler->string(join(' ', $this['fmts'][1]))->raw(',');
         }
 
         // Insert the next parameter, which maybe the plural or singular string 
         // depending on plurality.
-        $compiler->string(join('', $this->fmts[0]));
+        $compiler->string(join('', $this['fmts'][0]));
 
         if (!$is_singular) {
             // Insert the counter for plurality, if necessary
-            $compiler->raw(',')->subcompile($this->count);
+            $compiler->raw(',')->subcompile($this['count']);
         }
 
         // Finish up the gettext function call
         $compiler->raw(')');
 
-        if (!empty($this->vars)) {
+        if (!empty($this['vars'])) {
             // Insert the sprintf variables if needed.
-            foreach ($this->vars as $var_name) {
+            foreach ($this['vars'] as $var_name) {
                 $compiler->raw(sprintf(
                     ', (isset($context[\'%s\']) ? $context[\'%s\'] : null)', 
                     $var_name, $var_name

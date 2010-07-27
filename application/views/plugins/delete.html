@@ -1,7 +1,7 @@
 {% extends "layout.html" %}
 
 {% block title %}
-    {% set plugin_name_e as plugin.name | e %}
+    {% set plugin_name_e = plugin.name | e %}
     {% blocktrans %}Delete plugin "{{plugin_name_e}}"{% endblocktrans %}
 {% endblock %}
 

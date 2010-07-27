@@ -1,13 +1,8 @@
 {% extends "layout.html" %}
 
-{% import "macros/platforms.html" as platforms %}
-{% import "macros/oses.html" as oses %}
-{% import "macros/statuses.html" as statuses %}
-{% import "macros/auditlogevents.html" as auditlogevents %}
-
 {% block title %}
-    {% set plugin_name_e as plugin.name | e %}
-    {% set screen_name_e as screen_name | e %}
+    {% set plugin_name_e = plugin.name | e %}
+    {% set screen_name_e = screen_name | e %}
     {% if plugin.sandbox_profile_id %}
         {% blocktrans %}{{plugin_name_e}} ({{screen_name_e}} sandbox){% endblocktrans %}
     {% else %}
@@ -16,11 +11,16 @@
 {% endblock %}
 
 {% block content %}
-    {% set plugin_name_e as plugin.name | e %}
-    {% set screen_name_e as screen_name | e %}
+{% import "macros/platforms.html" as platforms %}
+{% import "macros/oses.html" as oses %}
+{% import "macros/statuses.html" as statuses %}
+{% import "macros/auditlogevents.html" as auditlogevents %}
+
+    {% set plugin_name_e = plugin.name | e %}
+    {% set screen_name_e = screen_name | e %}
     <ul class="actions clearfix">
         {% if plugin.sandbox_profile_id %}
-            {% set plugin_base as base_url ~ "profiles/" ~ screen_name|e ~ "/plugins/detail/" ~ plugin.pfs_id|urlencode|e %}
+            {% set plugin_base = base_url ~ "profiles/" ~ screen_name|e ~ "/plugins/detail/" ~ plugin.pfs_id|urlencode|e %}
             {% if live_plugin and live_plugin.is_allowed(authprofile, 'view') %}
                 <li><a href="{{base_url}}plugins/detail/{{plugin.pfs_id|urlencode|e}}">{% trans "View live" %}</a></li>
             {% endif %}
@@ -38,7 +38,7 @@
                 {% endif %}
             {% endif %}
         {% else %}
-            {% set plugin_base as base_url ~ "plugins/detail/" ~ plugin.pfs_id|urlencode|e %}
+            {% set plugin_base = base_url ~ "plugins/detail/" ~ plugin.pfs_id|urlencode|e %}
         {% endif %}
         {% if not plugin.sandbox_profile_id and plugin.is_allowed(authprofile, 'copy') %}
             <li><a href="{{plugin_base}};copy">{% trans "Copy to sandbox" %}</a></li>

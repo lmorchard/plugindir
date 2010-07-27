@@ -40,7 +40,7 @@
 {% endmacro %}
 
 {% macro dropdown(data, errors, name, label, choices, defval, notes) %}
-    {% set value as data[name] | default(defval) %}
+    {% set value = data[name] | default(defval) %}
     <li class="field dropdown {{ errors[name] ? 'error' : '' }}">
         <label for="{{name|e}}">{{label ? label : '&nbsp;' }}</label>
         <select id="{{name|e}}" name="{{name|e}}" class="select">

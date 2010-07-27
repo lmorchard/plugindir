@@ -1,14 +1,14 @@
 {% extends "layout.html" %}
 
-{% import "macros/forms.html" as forms %}
-
 {% block title %}
     {% trans "Register" %}
 {% endblock %}
 
 {% block content %}
+    {% import "macros/forms.html" as forms %}
+
     <form class="register" action="{{base_url}}register" method="post">
-        {% set data, errors as form_data, form_errors %}
+        {% set data, errors = form_data, form_errors %}
         {{ forms.hidden(data, errors, 'crumb', crumb) }}
         {{ forms.fieldset('Login details'|trans, 'login') }}
             {{ forms.input(data, errors, 'text', 'login_name', 'Login name'|trans) }}

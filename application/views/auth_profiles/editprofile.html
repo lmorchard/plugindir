@@ -1,15 +1,15 @@
 {% extends "layout.html" %}
 
-{% import "macros/forms.html" as forms %}
-
 {% block title %}
-    {% set profile_screen_name_e as profile.screen_name|e %}
+    {% set profile_screen_name_e = profile.screen_name|e %}
     {% blocktrans %}Edit details for {{profile_screen_name_e}}{% endblocktrans %}
 {% endblock %}
 
 {% block content %}
+    {% import "macros/forms.html" as forms %}
+
     <form class="register" action="" method="post">
-        {% set data, errors as form_data, form_errors %}
+        {% set data, errors = form_data, form_errors %}
         {{ forms.hidden(data, errors, 'crumb', crumb) }}
         {{ forms.fieldset('Profile details', 'profile') }}
             {# {{ forms.input(data, errors, 'text', 'screen_name', 'Screen name') }} #}

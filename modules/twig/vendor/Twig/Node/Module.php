@@ -17,231 +17,158 @@
  * @author     Fabien Potencier <fabien.potencier@symfony-project.com>
  * @version    SVN: $Id$
  */
-class Twig_Node_Module extends Twig_Node implements Twig_NodeListInterface
+class Twig_Node_Module extends Twig_Node
 {
-  protected $body;
-  protected $extends;
-  protected $blocks;
-  protected $macros;
-  protected $filename;
-  protected $usedFilters;
-  protected $usedTags;
-
-  public function __construct(Twig_NodeList $body, $extends, array $blocks, array $macros, $filename)
-  {
-    parent::__construct(1);
-
-    $this->body = $body;
-    $this->extends = $extends;
-    $this->blocks = array_values($blocks);
-    $this->macros = $macros;
-    $this->filename = $filename;
-    $this->usedFilters = array();
-    $this->usedTags = array();
-  }
-
-  public function __toString()
-  {
-    $repr = array(get_class($this).'(');
-    foreach ($this->body->getNodes() as $node)
+    public function __construct(Twig_NodeInterface $body, Twig_Node_Expression $parent = null, Twig_NodeInterface $blocks, Twig_NodeInterface $macros, $filename)
     {
-      foreach (explode("\n", $node->__toString()) as $line)
-      {
-        $repr[] = '  '.$line;
-      }
+        parent::__construct(array('parent' => $parent, 'body' => $body, 'blocks' => $blocks, 'macros' => $macros), array('filename' => $filename), 1);
     }
 
-    foreach ($this->blocks as $node)
+    /**
+     * Compiles the node to PHP.
+     *
+     * @param Twig_Compiler A Twig_Compiler instance
+     */
+    public function compile($compiler)
     {
-      foreach (explode("\n", $node->__toString()) as $line)
-      {
-        $repr[] = '  '.$line;
-      }
-    }
-    $repr[] = ')';
-
-    return implode("\n", $repr);
-  }
-
-  public function getFilename()
-  {
-    return $this->filename;
-  }
-
-  public function getBody()
-  {
-    return $this->body;
-  }
-
-  public function getNodes()
-  {
-    return array_merge(array($this->body), $this->blocks);
-  }
-
-  public function setNodes(array $nodes)
-  {
-    $this->body   = array_shift($nodes);
-    $this->blocks = $nodes;
-  }
-
-  public function setUsedFilters(array $filters)
-  {
-    $this->usedFilters = $filters;
-  }
-
-  public function setUsedTags(array $tags)
-  {
-    $this->usedTags = $tags;
-  }
-
-  public function compile($compiler)
-  {
-    $this->compileTemplate($compiler);
-    $this->compileMacros($compiler);
-  }
-
-  protected function compileTemplate($compiler)
-  {
-    $sandboxed = $compiler->getEnvironment()->hasExtension('sandbox');
-
-    $compiler->write("<?php\n\n");
-
-    if (!is_null($this->extends))
-    {
-      $compiler
-        ->write('$this->loadTemplate(')
-        ->repr($this->extends)
-        ->raw(");\n\n")
-      ;
+        $this->compileTemplate($compiler);
     }
 
-    $compiler
-      // if the filename contains */, add a blank to avoid a PHP parse error
-      ->write("/* ".str_replace('*/', '* /', $this->filename)." */\n")
-      ->write('class '.$compiler->getTemplateClass($this->filename))
-    ;
-
-    $parent = null === $this->extends ? $compiler->getEnvironment()->getBaseTemplateClass() : $compiler->getTemplateClass($this->extends);
-
-    $compiler
-      ->raw(" extends $parent\n")
-      ->write("{\n")
-      ->indent()
-      ->write("public function display(array \$context)\n", "{\n")
-      ->indent()
-    ;
-
-    if (null !== $this->extends)
+    protected function compileTemplate($compiler)
     {
-      // remove all but import nodes
-      $nodes = array();
-      foreach ($this->body->getNodes() as $node)
-      {
-        if ($node instanceof Twig_Node_Import)
-        {
-          $nodes[] = $node;
+        $this->compileClassHeader($compiler);
+
+        if (count($this->blocks)) {
+            $this->compileConstructor($compiler);
         }
-      }
 
-      $compiler
-        ->subcompile(new Twig_NodeList($nodes))
-        ->write("\n")
-        ->write("parent::display(\$context);\n")
-        ->outdent()
-        ->write("}\n\n")
-      ;
+        $this->compileDisplayHeader($compiler);
+
+        $this->compileDisplayBody($compiler);
+
+        $this->compileDisplayFooter($compiler);
+
+        $compiler->subcompile($this->blocks);
+
+        $this->compileMacros($compiler);
+
+        $this->compileClassFooter($compiler);
     }
-    else
+
+    protected function compileDisplayBody($compiler)
     {
-      if ($sandboxed)
-      {
-        $compiler->write("\$this->checkSecurity();\n");
-      }
+        if (null !== $this->parent) {
+            // remove all but import nodes
+            foreach ($this->body as $node) {
+                if ($node instanceof Twig_Node_Import) {
+                    $compiler->subcompile($node);
+                }
+            }
 
-      $compiler
-        ->subcompile($this->body)
-        ->outdent()
-        ->write("}\n\n")
-      ;
+            $compiler
+                ->write("if (null === \$this->parent) {\n")
+                ->indent();
+            ;
+
+            if ($this->parent instanceof Twig_Node_Expression_Constant) {
+                $compiler
+                    ->write("\$this->parent = clone \$this->env->loadTemplate(")
+                    ->subcompile($this->parent)
+                    ->raw(");\n")
+                ;
+            } else {
+                $compiler
+                    ->write("\$parent = ")
+                    ->subcompile($this->parent)
+                    ->raw(";\n")
+                    ->write("if (!\$parent")
+                    ->raw(" instanceof Twig_Template) {\n")
+                    ->indent()
+                    ->write("\$parent = \$this->env->loadTemplate(\$parent);\n")
+                    ->outdent()
+                    ->write("}\n")
+                    ->write("\$this->parent = clone \$parent;\n")
+                ;
+            }
+
+            $compiler
+                ->write("\$this->parent->pushBlocks(\$this->blocks);\n")
+                ->outdent()
+                ->write("}\n")
+                ->write("\$this->parent->display(\$context);\n")
+            ;
+        } else {
+            $compiler->subcompile($this->body);
+        }
     }
 
-    // blocks
-    foreach ($this->blocks as $node)
+    protected function compileClassHeader($compiler)
     {
-      $compiler->subcompile($node);
+        $compiler
+            ->write("<?php\n\n")
+            // if the filename contains */, add a blank to avoid a PHP parse error
+            ->write("/* ".str_replace('*/', '* /', $this['filename'])." */\n")
+            ->write('class '.$compiler->getEnvironment()->getTemplateClass($this['filename']))
+            ->raw(sprintf(" extends %s\n", $compiler->getEnvironment()->getBaseTemplateClass()))
+            ->write("{\n")
+            ->indent()
+        ;
+
+        if (null !== $this->parent) {
+            $compiler->write("protected \$parent;\n\n");
+        }
     }
 
-    if ($sandboxed)
+    protected function compileConstructor($compiler)
     {
-      // sandbox information
-      $compiler
-        ->write("protected function checkSecurity()\n", "{\n")
-        ->indent()
-        ->write("\$this->env->getExtension('sandbox')->checkSecurity(\n")
-        ->indent()
-        ->write(!$this->usedTags ? "array(),\n" : "array('".implode('\', \'', $this->usedTags)."'),\n")
-        ->write(!$this->usedFilters ? "array()\n" : "array('".implode('\', \'', $this->usedFilters)."')\n")
-        ->outdent()
-        ->write(");\n")
-        ->outdent()
-        ->write("}\n\n")
-      ;
+        $compiler
+            ->write("public function __construct(Twig_Environment \$env)\n", "{\n")
+            ->indent()
+            ->write("parent::__construct(\$env);\n\n")
+            ->write("\$this->blocks = array(\n")
+            ->indent()
+        ;
+
+        foreach ($this->blocks as $name => $node) {
+            $compiler
+                ->write(sprintf("'%s' => array(array(\$this, 'block_%s')),\n", $name, $name))
+            ;
+        }
+
+        $compiler
+            ->outdent()
+            ->write(");\n")
+            ->outdent()
+            ->write("}\n\n");
+        ;
     }
 
-    // debug information
-    if ($compiler->getEnvironment()->isDebug())
+    protected function compileDisplayHeader($compiler)
     {
-      $compiler
-        ->write("public function __toString()\n", "{\n")
-        ->indent()
-        ->write('return ')
-        ->string($this)
-        ->raw(";\n")
-        ->outdent()
-        ->write("}\n\n")
-      ;
+        $compiler
+            ->write("public function display(array \$context)\n", "{\n")
+            ->indent()
+        ;
     }
 
-    // original template name
-    $compiler
-      ->write("public function getName()\n", "{\n")
-      ->indent()
-      ->write('return ')
-      ->string($this->filename)
-      ->raw(";\n")
-      ->outdent()
-      ->write("}\n\n")
-    ;
-
-    $compiler
-      ->outdent()
-      ->write("}\n")
-    ;
-  }
-
-  protected function compileMacros($compiler)
-  {
-    if (!$this->macros)
+    protected function compileDisplayFooter($compiler)
     {
-      return;
+        $compiler
+            ->outdent()
+            ->write("}\n\n")
+        ;
     }
 
-    $compiler
-      ->write("\n")
-      ->write('class '.$compiler->getTemplateClass($this->filename).'_Macro extends Twig_Macro'."\n")
-      ->write("{\n")
-      ->indent()
-    ;
-
-    // macros
-    foreach ($this->macros as $node)
+    protected function compileClassFooter($compiler)
     {
-      $compiler->subcompile($node);
+        $compiler
+            ->outdent()
+            ->write("}\n")
+        ;
     }
 
-    $compiler
-      ->outdent()
-      ->write("}\n")
-    ;
-  }
+    protected function compileMacros($compiler)
+    {
+        $compiler->subcompile($this->macros);
+    }
 }
