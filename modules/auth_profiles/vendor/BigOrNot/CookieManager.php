@@ -119,7 +119,7 @@ class    BigOrNot_CookieManager
      * @param bool $secure when TRUE, send the cookie only on a secure connection
      * @param bool $httponly when TRUE the cookie will be made accessible only through the HTTP protocol
      */
-    public function  setCookie($cookiename, $value, $username, $expire = 0, $path = '/', $domain = '', $secure = false, $httponly = null)
+    public function  setCookie($cookiename, $value, $username, $expire = 0, $path = '/', $domain = '', $secure = false, $httponly = true)
     {
         $secureValue = $this->_secureCookieValue($value, $username, $expire);
         $this->setClassicCookie($cookiename, $secureValue, $expire, $path, $domain, $secure, $httponly);
@@ -134,7 +134,7 @@ class    BigOrNot_CookieManager
      * @param bool $secure when TRUE, send the cookie only on a secure connection
      * @param bool $httponly when TRUE the cookie will be made accessible only through the HTTP protocol
      */
-    public function  deleteCookie($name, $path = '/', $domain = '', $secure = false, $httponly = null)
+    public function  deleteCookie($name, $path = '/', $domain = '', $secure = false, $httponly = true)
     {
         /* 1980-01-01 */
         $expire = 315554400;
@@ -205,7 +205,7 @@ class    BigOrNot_CookieManager
      * @param bool $secure when TRUE, send the cookie only on a secure connection
      * @param bool $httponly when TRUE the cookie will be made accessible only through the HTTP protocol
      */
-    public function  setClassicCookie($cookiename, $value, $expire = 0, $path = '', $domain = '', $secure = false, $httponly = null)
+    public function  setClassicCookie($cookiename, $value, $expire = 0, $path = '', $domain = '', $secure = false, $httponly = true)
     {
         /* httponly option is only available for PHP version >= 5.2 */
         if ($httponly === null)

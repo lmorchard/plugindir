@@ -7,6 +7,7 @@ $config['core.internal_cache_key'] = '8675309';
 $config['core.display_errors'] = FALSE;
 $config['core.render_stats'] = FALSE;
 
+$config['cookie.domain'] = $config['core.site_domain'];
 $config['csrf_crumbs.secret'] = 'you should really change this';
 $config['auth_profiles.secret'] = 'you should really change this too';
 
