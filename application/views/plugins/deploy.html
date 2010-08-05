@@ -8,6 +8,7 @@
 {% block content %}
 
     <form action="" method="POST">
+        <input type="hidden" name="crumb" value="{{ crumb }}" />
         <p>{% trans "Push changes to this plugin live?" %}</p>
         <div>
             <input type="submit" value="{% trans "Push plugin changes live" %}" />

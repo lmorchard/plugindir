@@ -11,6 +11,8 @@ PluginDir.Editor = (function () {
         json_url: null, 
         // Description of plugin properties.
         plugin_properties: {}, 
+        // Anti-CSRF crumb provided by server
+        csrf_crumb: null,
         // Whether or not to autosave using idle timer.
         autosave: false, 
         // Idle timer used to save when user is inbetween edits.
@@ -183,6 +185,9 @@ PluginDir.Editor = (function () {
             // Perform the actual save via POST.
             $.ajax({
                 type: 'POST',
+                beforeSend: function (req) {
+                    req.setRequestHeader('X-CSRF-Crumb', $this.csrf_crumb);
+                },
                 url: url,
                 contentType: 'application/json',
                 data: json,

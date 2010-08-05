@@ -25,11 +25,28 @@ class Local_Controller extends TwigRender_Controller {
     }
 
     /**
+     * In reaction to an invalid CSRF crumb, throw up a generic error view.
+     */
+    public function invalidcrumb()
+    {
+        header('HTTP/1.1 400 Bad Request', true, 400);
+        $this->view->set_filename('invalidcrumb');
+        $this->render();
+
+        cef_logging::log(
+            cef_logging::ACCESS_CONTROL_VIOLATION, 
+            'Access Control Violation', 5
+        );
+
+        exit();
+    }
+
+    /**
      * In reaction to a 403 Forbidden event, throw up a forbidden view.
      */
     public function show_forbidden()
     {
-        header('403 Forbidden');
+        header('HTTP/1.1 403 Forbidden', true, 403);
         $this->view->set_filename('forbidden');
         $this->render();
 

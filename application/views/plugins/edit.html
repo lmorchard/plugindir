@@ -22,6 +22,7 @@
        "{{base_url}}plugins/detail/{{plugin.pfs_id|e}}.json";
     {% endif %}
     PluginDir.Editor.plugin_properties = {{ properties | json }};
+    PluginDir.Editor.csrf_crumb = "{{ crumb }}";
 {% endblock %}
 
 {% block content %}
@@ -32,6 +33,7 @@
     {% endif %}
 
     <form id="editor">
+        <input type="hidden" name="crumb" value="{{ crumb }}" />
 
         <fieldset>
             <legend>{% trans "Options" %}</legend>

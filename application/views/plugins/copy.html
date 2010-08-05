@@ -8,6 +8,7 @@
 {% block content %}
 
     <form action="" method="POST">
+        <input type="hidden" name="crumb" value="{{ crumb }}" />
         <p>{% trans "Copy this plugin to your sandbox?" %}</p>
         <div>
             <input type="submit" value="{% trans "Copy to Sandbox" %}" />

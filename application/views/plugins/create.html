@@ -20,8 +20,10 @@
     {% else %}
 
         <form class="contribute" action="" method="post">
+
             {% set data, errors as form_data, form_errors %}
 
+            {{ forms.hidden(data, errors, 'crumb', crumb) }}
             {{ forms.hidden(data, errors, 'detected_version', _GET.version) }}
             
             {{ forms.fieldset('New plugin details', 'plugin_details') }}

@@ -14,6 +14,28 @@ class Plugins_Controller extends Local_Controller {
     public function __construct() 
     {
         parent::__construct();
+        
+        // Protect some methods by requiring an anti-CSRF crumb on POST.
+        $crumb_methods = array(
+            'create', 'edit', 'detail', 'copy', 'deploy', 'delete',
+            'requestpush', 'addtrusted', 'removetrusted'
+        );
+        if (in_array(Router::$method, $crumb_methods)) {
+            
+            // Generate a crumb for these methods.
+            $this->view->crumb = csrf_crumbs::generate();
+
+            // Require a valid crumb on POST requests.
+            if ('post' == request::method()) {
+                // TODO: Disable this if/when details becomes an external API
+                $crumb = $this->input->server('HTTP_X_CSRF_CRUMB', null);
+                if (empty($crumb)) $crumb = $this->input->post('crumb');
+                if (!csrf_crumbs::validate($crumb)) {
+                    Router::$method = 'invalidcrumb';
+                }
+            }
+
+        }
     }
 
     /**
