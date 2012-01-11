@@ -1,4 +1,5 @@
 <?php
+require_once Kohana::find_file('libraries','Gettext/Main');
 /**
  * L10N enabled URL helper
  *
