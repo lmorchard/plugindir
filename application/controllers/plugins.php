@@ -328,7 +328,12 @@ class Plugins_Controller extends Local_Controller {
             // Return the plugin data as an export in JSON
             $this->auto_render = FALSE;
             $out = $plugin->export();
-            return ('rawjson' == $format) ? $out : json::render($out, $this->input->get('callback'));
+
+            if ('rawjson' == $format) {
+                return $out;
+            } else {
+                return json::render($out, $this->input->get('callback'));
+            }
         }
 
         // Collate the plugin releases by version.
@@ -361,11 +366,9 @@ class Plugins_Controller extends Local_Controller {
 
         foreach ($releases as $index => $release) {
 
-            $release['detected_version'] = substr($release['detected_version'],
-                               (strpos($release['detected_version'], '.')) + 1);
-            $release['version'] = substr($release['version'],
-                                  (strpos($release['version'], '.')) + 1);
-            // Stick the ammended array back onto the main container.
+            $release['detected_version'] = substr($release['detected_version'], 1);
+            $release['version'] = substr($release['version'], 1);
+            // Stick the amended array back onto the main container.
             $releases[$index] = $release;
         }
 
@@ -411,18 +414,11 @@ class Plugins_Controller extends Local_Controller {
         $releases_by_os['mac'] = $mac;
         $releases_by_os['lin'] = $lin;
 
-        foreach ($releases_by_os as $key => $os) {
-            if (count($os) == 0) {
-                unset($releases_by_os[$key]);
-            }
-        }
-
         return $releases_by_os;
     }
 
     /**
-     * Return the first instance of two possible releases from all releases
-     * of the following type: latest, vulnerable
+     * Return all latest and vulnerable releases.
      */
     function get_releases_by_status($releases)
     {
@@ -444,40 +440,18 @@ class Plugins_Controller extends Local_Controller {
     }
 
     /**
-     * Returns releases filtered on status. Only one of each of the following is
+     * Returns releases filtered on status.
      * returned: latest, vulnerable
      */
     function filter_releases_by_plugin($releases_by_os)
     {
-        $filtered_releases_for_os = array();
-        $releases = $releases_by_os;
+        $filtered_releases = array();
 
-
-        if (isset($releases['all'])) {
-            $filtered_releases_for_os['all'] = $this::get_releases_by_status($releases['all']);
+        foreach ($releases_by_os as $key => $release) {
+            $filtered_releases[$key] = $this::get_releases_by_status($releases_by_os[$key]);
         }
 
-        if (isset($releases['win'])) {
-            $filtered_releases_for_os['win'] = $this::get_releases_by_status($releases['win']);
-        }
-
-        if (isset($releases['mac'])) {
-            $filtered_releases_for_os['mac'] = $this::get_releases_by_status($releases['mac']);
-        }
-
-        if (isset($releases['lin'])) {
-            $filtered_releases_for_os['lin'] = $this::get_releases_by_status($releases['lin']);
-        }
-
-        // After the filltering above some of the operating systems might no
-        // longer have any releases so, remove any OS with no data.
-        foreach ($filtered_releases_for_os as $key => $os) {
-            if (count($os) == 0) {
-                unset($filtered_releases_for_os[$key]);
-            }
-        }
-
-        return $filtered_releases_for_os;
+        return $filtered_releases;
     }
 
     /**
