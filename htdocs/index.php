@@ -101,11 +101,11 @@ unset($kohana_application, $kohana_modules, $kohana_system);
 
 if (file_exists(DOCROOT.'install'.EXT))
 {
-	// Load the installation tests
-	include DOCROOT.'install'.EXT;
+    // Load the installation tests
+    include DOCROOT.'install'.EXT;
 }
 else
 {
-	// Initialize Kohana
-	require SYSPATH.'core/Bootstrap'.EXT;
+    // Initialize Kohana
+    require SYSPATH.'core/Bootstrap'.EXT;
 }
